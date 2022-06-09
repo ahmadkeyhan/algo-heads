@@ -1,0 +1,482 @@
+.container {
+  display: flex;
+  width: 100vw;
+  justify-content: space-evenly;
+  height: 100vh;
+  align-items: center;
+}
+
+.landing {
+  position: relative;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+
+.wheelButtons {
+  position: absolute;
+  left: 31.5vw;
+  top: 39vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wheelButton {
+  width: 9vw;
+  height: 9vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 5vw;
+  border: none;
+  background-color: #fff;
+  font-size: 1rem;
+}
+
+.mainButton {
+  position: absolute;
+  left: 50vw;
+  top: 32vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 12vw;
+  width: 36vw;
+  border-radius: 7vw;
+  border: 0.125rem solid #212121;
+  background-color: #ffffff;
+  font-size: 0.8rem;
+  font-family: 'Gluten', cursive;
+  font-weight: bold;
+  color: #212121;
+  z-index: 5;
+}
+
+.mainCountDown {
+  position: absolute;
+  left: 50vw;
+  top: 30vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 14vw;
+  width: 36vw;
+  border-radius: 7vw;
+  border: 0.125rem solid #212121;
+  background-color: #ffffff;
+  font-size: 0.7rem;
+  font-family: 'Gluten', cursive;
+  text-align: center;
+  font-weight: 300;
+  color: #212121;
+  line-height: 1rem;
+  z-index: 5;
+}
+
+.mainCountDown p {
+  width: 14ch;
+}
+
+.scrollButton {
+    position: absolute;
+    left: 32vw;
+    top: 28vw;
+    height: 10vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+    border-radius: 5.5vw;
+    padding: 0;
+    border: none;
+    background:none;
+    color: #6a6a6a;
+    z-index: 2;
+}
+
+.scrollButton p {
+  font-size: .6rem;
+  font-family: 'Gluten', cursive;
+  margin: 0;
+  width:13ch;
+  text-align: end;
+}
+
+.genderCatcher {
+  position: absolute;
+  left: 0;
+  top: -0.125rem;
+  width: 1.125rem;
+  height: 1.125rem;
+  border: 0.125rem solid #6a6a6a;
+  border-radius: 1rem;
+  background-color: #bab9b3;
+}
+
+.genderSlider {
+  position: absolute;
+  top: 64vw;
+  left: -28vw;
+  padding: 0;
+  z-index: 11;
+}
+
+.genderBearing {
+  margin-left: -2px;
+  margin-top: -6px;
+}
+
+.colorSlider {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 1.125rem;
+  padding: 0;
+  left: calc(41vw - 1.125rem);
+  top: calc(43.5vw - 3.9375rem);
+  width: 1.125rem;
+  border-radius: 1rem;
+  border: 0.125rem solid #6a6a6a;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.colorCatcher {
+  position: absolute;
+  transform: translate(0,0);
+  width: 1.125rem;
+  height: 1.125rem;
+  background-color: #bab9b3;
+  border: 0.125rem solid #6a6a6a;
+  border-radius: 1rem;
+  top: 0;
+  right: -0.125rem;
+  z-index: 10;
+}
+
+.colorSlide {
+  width: 0.125rem;
+  height: 0.125rem;
+  border-radius: 0.5rem;
+  border-width: 0;
+  padding: 0;
+}
+
+.title {
+  position: absolute;
+  font-family: 'Sue Ellen Francisco', cursive;
+  color: #212121;
+  left: -48vw;
+  top: 52vw;
+  margin: 0;
+  font-size: 5vw;
+  font-weight: 500;
+  text-align: start;
+  width: 14ch;
+  line-height: 9vw;
+  z-index: 10;
+}
+
+.wheelOne, .wheelTwo, .wheelThree, .wheelFour {
+  position: absolute;
+  width: 87vw;
+  height: 87vw;
+  border-radius: 44vw;
+}
+
+.wheelOne {
+  top: -44vw;
+  left: 0;
+}
+
+.wheelTwo {
+  left: 57vw;
+  top: 13vw;
+}
+
+
+.wheelThree {
+  left: -21vw;
+  top: 76vw;
+}
+
+.wheelFour {
+  top: 127vw;
+  left: 36vw;
+}
+
+.headHolder {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 26vw;
+  height: 26vw;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 14vw;
+  z-index: 6;
+  display: flex;
+  justify-content: center;
+}
+
+.headCard {
+  width: 28vw;
+  height: 9vw;
+  border-radius: 5vw;
+  z-index: 13;
+  position: absolute;
+  transform: translate(-50%, 14vw);
+    font-family: 'Gluten', cursive;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: 0.6rem;
+  font-weight: 300;
+}
+
+.headCard p {
+  margin: 0;
+}
+
+
+.arrowHolder {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 55vw;
+  height: 55vw;
+  top: 16vw;
+  left: 16vw;
+}
+
+.scrollArrowHolder {
+  position: absolute;
+  width: 55vw;
+  height: 55vw;
+  top: 16vw;
+  left: 16vw;
+  transform: rotate(75deg);
+}
+
+.linkArrowHolder {
+  position: absolute;
+  width: 63vw;
+  height: 63vw;
+  top: 24vw;
+  left: 32vw;
+  transform: rotate(290deg);
+}
+
+.counterArrows {
+  transform: scaleY(-1);
+}
+
+.counterScrollArrows {
+  transform: scaleX(-1);
+}
+
+
+.logoHolder {
+  position: absolute;
+  width: 28vw;
+  height: 28vw;
+  top: 44vw;
+  z-index: 1000;
+  border-radius: 0 0 14vw 14vw;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.social {
+  position: absolute;
+  top: 110vw;
+  left: 18vw;
+  width: 20vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.socialButton {
+  width: 9vw;
+  height: 9vw;
+  border-radius: 5vw;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bannerHolder {
+  position: absolute;
+  width: 95vw;
+  height: 95vw;
+  top: 5vw;
+  left: -5vw;
+}
+
+.buyBanner {
+  border-radius: 50%;
+  border: 2px solid green;
+  z-index: 0;
+}
+
+.navSliderFrame {
+  position: absolute;
+  top: 145vw;
+  left: 91vw;
+}
+
+@media only screen and (min-width: 600px) {
+
+  .wheelButtons {
+    left:17.72vh;
+    top: 21.94vh;
+  }
+  
+  .wheelButton {
+    width: 5.1vh;
+    height: 5.1vh;
+    border-radius: 2.55vh;
+  }
+  
+  .mainButton {
+    left: 28.13vh;
+    top: 18vh;
+    height: 6.75vh;
+    width: 20.25vh;
+    border-radius: 4vh;
+  }
+  
+  .mainCountDown {
+    left: 28.13vh;
+    top: 16.88vh;
+    height: 7.88vh;
+    width: 20.25vh;
+    border-radius: 5vh;
+  }
+  
+  .scrollButton {
+      left: 18vh;
+      top: 15.75vh;
+      height: 5.63vh;
+      border-radius: 4vh;
+  }
+
+  
+  
+  .genderSlider {
+    top: 36vh;
+    left: -15.75vh;
+  }
+  
+  .colorSlider {
+    left: calc(23.06vh - 1.125rem);
+    top: calc(24.47vh - 3.9375rem);
+  }
+  
+  
+  .title {
+    left: -27vh;
+    top: 29.25vh;
+    font-size: 2.81vh;
+    line-height: 5.06vh;
+  }
+
+  .wheelOne, .wheelTwo, .wheelThree, .wheelFour {
+    width: 48.94vh;
+    height: 48.94vh;
+    border-radius: 24.47vh;
+  }
+  
+  .wheelOne {
+    top: -24.75vh;
+    left: 0;
+  }
+  
+  .wheelTwo {
+    left: 32vh;
+    top: 7.31vh;
+  }
+  
+  
+  .wheelThree {
+    left: -11.81vh;
+    top: 42.75vh;
+  }
+  
+  .wheelFour {
+    top: 71.44vh;
+    left: 20.25vh;
+  }
+  
+  .headHolder {
+    width: 14.63vh;
+    height: 14.63vh;
+    border-radius: 8vh;
+  }
+  
+  .headCard {
+    width: 15.75vh;
+    height: 5vh;
+    border-radius: 2.5vh;
+    transform: translate(-50%, 7.88vh);
+  }
+  
+  .arrowHolder {
+    width: 30.94vh;
+    height: 30.94vh;
+    top: 9vh;
+    left: 9vh;
+  }
+  
+  .scrollArrowHolder {
+    width: 30.94vh;
+    height: 30.94vh;
+    top: 9vh;
+    left: 9vh;
+  }
+  
+  .linkArrowHolder {
+    width: 35.44vh;
+    height: 35.44vh;
+    top: 13.5vh;
+    left: 18vh;
+  }
+  
+  .logoHolder {
+    width: 15.75vh;
+    height: 15.75vh;
+    top: 24.75vh;
+    border-radius: 0 0 8vh 8vh;
+  }
+
+  .social {
+    top: 61.88vh;
+    left: 10.13vh;
+    width: 11.25vh;
+    height: 11.25vh;
+    flex-direction: column;
+  }
+  
+  .socialButton {
+    width: 5.06vh;
+    height: 5.06vh;
+    border-radius: 3vh;
+  }
+
+  .bannerHolder {
+    width: 53.44vh;
+    height: 53.44vh;
+    top: 2.81vh;
+    left: -2.81vh;
+  }
+  
+  .navSliderFrame {
+    top: 81.56vh;
+    left: 51.19vh;
+  }
+}
