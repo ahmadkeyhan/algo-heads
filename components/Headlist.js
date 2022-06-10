@@ -27,8 +27,12 @@ function Headlist() {
                                                 ])
 
   const [isLoading, setLoading] = useState()
+  
+  const router = useRouter()
+  
   useEffect(() => {
-      setLoading(true)
+      if (router.route == '/headlist') {
+        setLoading(true)
       fetch('api/nftx')
         .then((res) => res.json())
         .then((data) => {
@@ -43,10 +47,8 @@ function Headlist() {
           }
           setLoading(false)
         })
+      }
   }, [])
-
-
-  const router = useRouter()
 
   const [sortBy, setSortBy] = useState(true)
   const [sortDirection, setSortDirection] = useState(true)
