@@ -417,7 +417,7 @@ function Headlist() {
           </motion.div>
           <motion.div className={styles.nftxCollection}>
             <p><span style={{color: lightColorPalette[colorCode]}}>*</span>
-              Data is fetched from <a style={{borderBottom: `2px solid ${lightColorPalette[colorCode]}`}} href='https://www.nftexplorer.app/collection/-23Svkt7qO6f' target='_blank'>
+              Data is fetched from <a style={{borderBottom: `2px solid ${lightColorPalette[colorCode]}`}} href='https://www.nftexplorer.app/collection/algo-heads' target='_blank'>
                 nft
                 <span style={{color: lightColorPalette[colorCode]}}>X</span>
                 plorer
