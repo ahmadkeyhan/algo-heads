@@ -53,7 +53,6 @@ function Headlist() {
         .then((res) => res.json())
         .then((data) => {
           data.message.sales.reverse()
-          console.log(data)
           for (var j=0; j < data.message.sales.length; j++) {
             for (var i=0; i < sortedHeads.length; i++) {
               if (data.message.sales[j].nftxUrl.slice(30)*1 == sortedHeads[i].assetId) {
@@ -94,40 +93,16 @@ function Headlist() {
   const [width, setWidth] = useState(360)
   const [height, setHeight] = useState(640)
   const [normalizedwidth, setNormalizedWidth] = useState(100)
-  // const [margin, setMargin] = useState([0,0])
 
   useEffect(() => {
     setWidth(window.innerWidth)
     setHeight(window.innerHeight)
     if (window.innerHeight/window.innerWidth >= 16/9) {
       setNormalizedWidth(100)
-      // setMargin([(window.innerHeight/window.innerWidth-16/9)*50,0])
     } else {
-      // setMargin([0,50-(window.innerHeight*450)/(16*window.innerWidth)])
       setNormalizedWidth((window.innerHeight*900)/(16*window.innerWidth))
     }
   }, [])
-
-  // useEffect(() => {
-  //   if (sortBy && !sortDirection) {
-  //     setSortedHeads(heads.reverse())
-  //   } else if (!sortBy && sortDirection) {
-  //     setSortedHeads(heads.sort((a,b) => {
-  //       return a.price - b.price
-  //     }))
-  //   } else if (!sortBy && !sortDirection) {
-  //     setSortedHeads(heads.sort((a,b) => {
-  //       return b.price - a.price
-  //     }))
-  //   }
-  //     // heads.sort((a, b) => {
-  //     //   if (sortDirection) {
-  //     //     return a.price - b.price
-  //     //   } else {
-  //     //     return b.price - a.price
-  //     //   }
-  //     // }) 
-  // }, [sortBy, sortDirection])
 
   function HeadHolder({top, left, rank, rotation}) {
     if (rank != step-1 && rank < sortedHeads.length) {
@@ -387,23 +362,25 @@ function Headlist() {
             <motion.div className={styles.sortDirection}>
               <motion.div className={styles.sortDirections}>
                 {sortBy ?
-                  <p style={sortDirection ? {opacity: 1} :{opacity: 0.4}}>latest</p> :
+                  <p style={sortDirection ? {opacity: 1} :{opacity: 0.4}}>earliest</p> :
                   <p style={sortDirection ? {opacity: 1} : {opacity: 0.4}}>highest</p>
                 }
                 {sortBy ?
-                  <p style={!sortDirection ? {opacity: 1} : {opacity: 0.4}}>earliest</p> :
+                  <p style={!sortDirection ? {opacity: 1} : {opacity: 0.4}}>latest</p> :
                   <p style={!sortDirection ? {opacity: 1} : {opacity: 0.4}}>lowest</p>
                 }
               </motion.div>
               <motion.div
                 style={{borderColor: darkColorPalette[colorCode]}}
                 animate={sortDirection ? {justifyContent: 'flex-start'} : {justifyContent: 'flex-end'}}
-                onClick={() => setSortDirection(!sortDirection)}
                 className={styles.sortDirectionSlider}>
                 <motion.div
                   style={{borderColor: darkColorPalette[colorCode], backgroundColor: lightColorPalette[colorCode]}}
                   className={styles.sortDirectionCatcher}
-                  onClick={() => setSortDirection(!sortDirection)} />
+                  onClick={() => {
+                    setSortDirection(!sortDirection)
+                    setSortedHeads(sortedHeads.reverse())
+                  }} />
               </motion.div>
             </motion.div>
             <motion.div className={styles.sortBy}>
@@ -414,12 +391,19 @@ function Headlist() {
               <motion.div
                                     style={{borderColor: darkColorPalette[colorCode]}}
                 animate={sortBy ? {justifyContent: 'flex-start'} : {justifyContent: 'flex-end'}}
-                onClick={() => setSortBy(!sortBy)} 
                 className={styles.sortBySlider}>
                 <motion.div
                                     style={{borderColor: darkColorPalette[colorCode], backgroundColor: lightColorPalette[colorCode]}}
                   className={styles.sortByCatcher}
-                  onClick={() => setSortBy(!sortBy)} />
+                  onClick={() => {
+                    setSortBy(!sortBy)
+                    sortedHeads.sort((a,b) => {
+                      if (sortBy && sortDirection) return b.price - a.price
+                      else if (sortBy && ! sortDirection) return a.price - b.price
+                      else if (!sortBy && sortDirection) return a.assetId*1 - b.assetId*1
+                      else return b.assetId*1 - a.assetId*1
+                    })
+                  }} />
               </motion.div>
             </motion.div>
             <p>head first</p>
