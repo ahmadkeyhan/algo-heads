@@ -134,10 +134,10 @@ function Headlist() {
             style={{backgroundColor: lightColorPalette[sortedHeads[rank].bgColorCode], transform: `rotate(${rotation}deg)`,
                     }}
             onClick={() => setStep(rank)}
-            className={styles.frame}>
+            className={rank == step ? styles.bigFrame : styles.frame}>
             <Image style={{transform: `rotate(${rotation*-1}deg)`}} src={sortedHeads[rank].src} alt={sortedHeads[rank].src.slice(1,12)} layout='fill' />
           </motion.div>
-          <motion.div style={rank == step ? {fontSize: '0.8rem'} : null} className={styles.headCard}>
+          <motion.div style={rank == step ? {fontSize: '0.8rem', top: window.innerHeight/window.innerWidth >= 16/9 ? '28vw' : '15.75vh'} : null} className={styles.headCard}>
             <p>{sortedHeads[rank].src.slice(1,12)}</p>
           </motion.div>
         </motion.div>
