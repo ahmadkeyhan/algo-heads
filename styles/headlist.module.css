@@ -388,7 +388,7 @@ align-items: center;
     font-weight: 300;
     color: #212121;
     position: absolute;
-    top: 32vw;
+    top: 28vw;
     left: 22vw;
     width: 50vw;
     display: flex;
@@ -399,6 +399,7 @@ align-items: center;
   .sortWheel p {
     margin: 0.1rem 0;
   }
+
 
   .sortDirection, .sortBy {
     display: flex;
@@ -434,6 +435,29 @@ align-items: center;
     border: 0.125rem solid #a77c4e;
     border-radius: 1rem;
     background-color: #FFBC76;
+  }
+
+  .nftxCollection {
+    font-family: 'Gluten', cursive;
+    font-size: 0.6rem;
+    font-weight: 300;
+    color: #212121;
+    position: absolute;
+    top: 39vw;
+    left: 22vw;
+    width: 50vw;
+    text-align: right;
+  }
+
+  .nftxCollection span {
+    margin: 0 0.1rem 0 0;
+  }
+
+  .goBack {
+    font-size: 0.9rem;
+    width: 20vw;
+    text-align: center;
+    line-height: 1.2rem;
   }
 
   .navSliderFrame {
@@ -608,7 +632,7 @@ align-items: center;
       }
     
       .sortWheel {
-        top: 18vh;
+        top: 15.75vh;
         left: 12.38vh;
         width: 28.13vh;
       }
@@ -620,5 +644,15 @@ align-items: center;
       .navSliderFrame {
         top: 81.56vh;
         left: 51.19vh;
+      }
+
+      .nftxCollection {
+        top: 21.94vh;
+        left: 12.38vh;
+        width: 28.13vh;
+      }
+    
+      .goBack {
+        width: 11.25vh;
       }
   }

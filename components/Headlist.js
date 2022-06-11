@@ -88,7 +88,11 @@ function Headlist() {
 
 
 
-  const colorCode = 3
+  const [colorCode, setColorCode] = useState(sortedHeads[step].bgColorCode)
+
+  useEffect(() => {
+    setColorCode(sortedHeads[step].bgColorCode)
+  })
   
   const [width, setWidth] = useState(360)
   const [height, setHeight] = useState(640)
@@ -192,9 +196,11 @@ function Headlist() {
               </Link>
             </motion.div>
             <motion.div style={{border: `0.125rem solid ${lightColorPalette[sortedHeads[rank+1].bgColorCode]}`}} className={styles.nftxLink}>
-              <a href={'https://www.nftexplorer.app/asset/'+sortedHeads[rank+1].assetId}>
-                <p>see more</p>
-              </a>
+              <Link href={'https://www.nftexplorer.app/asset/'+sortedHeads[rank+1].assetId} passHref>
+                <a target='_blank'>
+                  <p>see more</p>
+                </a>
+              </Link>
             </motion.div>
             <motion.div className={styles.rank}
              style={{color: darkColorPalette[sortedHeads[rank+1].bgColorCode], borderColor: lightColorPalette[sortedHeads[rank+1].bgColorCode]}}>
@@ -220,7 +226,8 @@ function Headlist() {
                 transform: `rotate(${rotation}deg)`} : {display: 'none'}}
             onClick={() => setStep(0)}
             className={styles.frame}>
-            <p style={rank == sortedHeads.length ? {color: darkColorPalette[colorCode],transform: `rotate(${-rotation}deg)`} : {display: 'none'}}>Go back top!</p>
+            <p className={styles.goBack}
+              style={rank == sortedHeads.length ? {color: darkColorPalette[colorCode],transform: `rotate(${-rotation}deg)`} : {display: 'none'}}>Go back top!</p>
           </motion.div>          
         </motion.div>
       )
@@ -407,6 +414,15 @@ function Headlist() {
               </motion.div>
             </motion.div>
             <p>head first</p>
+          </motion.div>
+          <motion.div className={styles.nftxCollection}>
+            <p><span style={{color: lightColorPalette[colorCode]}}>*</span>
+              Data is fetched from <a style={{borderBottom: `2px solid ${lightColorPalette[colorCode]}`}} href='https://www.nftexplorer.app/collection/-23Svkt7qO6f' target='_blank'>
+                nft
+                <span style={{color: lightColorPalette[colorCode]}}>X</span>
+                plorer
+              </a>
+            </p>
           </motion.div>
           <HeadHolder top={13} left={-10} rank={step + 7} rotation={22.5} borderRadius={[5,14,14,14]} />
           <HeadHolder top={-10} left={13} rank={step + 8} rotation={-22.5} borderRadius={[14,14,5,14]} />
