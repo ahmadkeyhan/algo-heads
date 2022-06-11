@@ -29,13 +29,14 @@ function Headlist() {
   const [isLoading, setLoading] = useState()
   
   const router = useRouter()
-  
+
   useEffect(() => {
       if (router.route == '/headlist') {
         setLoading(true)
       fetch('api/nftx')
         .then((res) => res.json())
         .then((data) => {
+          data.message.sales.reverse()
           console.log(data)
           for (var j=0; j < data.message.sales.length; j++) {
             for (var i=0; i < sortedHeads.length; i++) {
