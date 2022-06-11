@@ -25,6 +25,21 @@ function Headlist() {
                                                    {sholder: '', assetId: '761648256', src: '/algoHead013.png',bgColorCode: 2,price: 0},
                                                    {sholder: '', assetId: '761649296', src: '/algoHead014.png',bgColorCode: 3,price: 0},
                                                    {sholder: '', assetId: '761650042', src: '/algoHead015.png',bgColorCode: 2,price: 0},
+                                                   {sholder: '', assetId: '773795933', src: '/algoHead016.png',bgColorCode: 0,price: 0},
+                                                   {sholder: '', assetId: '773796455', src: '/algoHead017.png',bgColorCode: 5,price: 0},
+                                                   {sholder: '', assetId: '773797150', src: '/algoHead018.png',bgColorCode: 4,price: 0},
+                                                   {sholder: '', assetId: '773797594', src: '/algoHead019.png',bgColorCode: 0,price: 0},
+                                                   {sholder: '', assetId: '773798196', src: '/algoHead020.png',bgColorCode: 1,price: 0},
+                                                   {sholder: '', assetId: '773798650', src: '/algoHead021.png',bgColorCode: 5,price: 0},
+                                                   {sholder: '', assetId: '773799175', src: '/algoHead022.png',bgColorCode: 6,price: 0},
+                                                   {sholder: '', assetId: '773799589', src: '/algoHead023.png',bgColorCode: 3,price: 0},
+                                                   {sholder: '', assetId: '773800011', src: '/algoHead024.png',bgColorCode: 6,price: 0},
+                                                   {sholder: '', assetId: '773800369', src: '/algoHead025.png',bgColorCode: 3,price: 0},
+                                                   {sholder: '', assetId: '773801040', src: '/algoHead026.png',bgColorCode: 3,price: 0},
+                                                   {sholder: '', assetId: '773802119', src: '/algoHead027.png',bgColorCode: 4,price: 0},
+                                                   {sholder: '', assetId: '773802712', src: '/algoHead028.png',bgColorCode: 6,price: 0},
+                                                   {sholder: '', assetId: '773803162', src: '/algoHead029.png',bgColorCode: 6,price: 0},
+                                                   {sholder: '', assetId: '773803473', src: '/algoHead030.png',bgColorCode: 1,price: 0},
                                                 ])
 
   const [isLoading, setLoading] = useState()
