@@ -7,6 +7,7 @@ import NavSlider from './NavSlider'
 import { useRouter } from 'next/router'
 import { lightColorPalette, darkColorPalette } from './colorPalette'
 import {arrowPalette, scrollArrowPalette} from './Assets'
+import Link from 'next/link'
 
 function Headlist() {
    const [sortedHeads, setSortedHeads] = useState([{sholder: '', assetId: '761630099', src: '/algoHead001.png',bgColorCode: 6,price: 0},
@@ -194,9 +195,11 @@ function Headlist() {
             </motion.div>
             <motion.div className={styles.sholderTag}>
               <p>Sholder: </p>
-              <div>
-                <p className={styles.price}>{sortedHeads[rank+1].sholder.slice(0,5)}...</p>
-              </div>
+              <Link href={`https://algoexplorer.io/address/${sortedHeads[rank+1].sholder}`} passHref>
+                <a target="_blank">
+                  <p className={styles.price}>{sortedHeads[rank+1].sholder.slice(0,5)}...</p>
+                </a>
+              </Link>
             </motion.div>
             <motion.div style={{border: `0.125rem solid ${lightColorPalette[sortedHeads[rank+1].bgColorCode]}`}} className={styles.nftxLink}>
               <a href={'https://www.nftexplorer.app/asset/'+sortedHeads[rank+1].assetId}>

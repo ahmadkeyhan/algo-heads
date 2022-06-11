@@ -242,7 +242,7 @@ align-items: center;
     z-index: 10;
   }
 
-  .sholderTag div p {
+  .sholderTag a p {
     text-decoration: underline;
   }
 
