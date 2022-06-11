@@ -17,7 +17,7 @@ import Link from 'next/link'
  function Landing() {
 
     var now = new Date()
-    var end = new Date('Fri Jun 10 2022 19:30:00')
+    var end = new Date('Fri Jun 17 2022 19:30:00')
     var nowUTC = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds())
 
     const router = useRouter()
