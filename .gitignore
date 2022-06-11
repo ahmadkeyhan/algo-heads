@@ -32,5 +32,4 @@ yarn-error.log*
 
 # vercel
 .vercel
-.zip
-algoHeadsV1.1.zip
+*.zip
