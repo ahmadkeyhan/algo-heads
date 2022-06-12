@@ -16,10 +16,7 @@ import Link from 'next/link'
 
  function Landing() {
 
-    var now = new Date()
     var end = new Date('Fri Jun 17 2022 19:30:00')
-    var nowUTC = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds())
-
     const router = useRouter()
   
     const control1 = useAnimation()
@@ -39,7 +36,7 @@ import Link from 'next/link'
     const [shuffleHours, setShuffleHours] = useState()
     const [shuffleMinutes, setShuffleMinutes] = useState()
   
-    const [colorCode, setColorCode] = useState(0)
+    const [colorCode, setColorCode] = useState(2)
     
     const [colorSliderOpen, setColorSliderOpen] = useState(false)
     const [tout, setTout] = useState(null)
@@ -437,6 +434,20 @@ import Link from 'next/link'
             <h2 style={{color: darkColorPalette[6-colorCode]}} className={styles.title}>
               Watch the  <span style={{marginLeft: male ? '0.5rem' : '0.1rem',color: lightColorPalette[6-colorCode]}}>{male ? 'male' : 'female '}</span> heads spin!
             </h2>
+            <motion.div style={{color: darkColorPalette[6-colorCode]}} className={styles.subTitle}>
+              <h2>on Algorand blockchain</h2>
+              <motion.div className={styles.mintPrice}>
+              <p>Mint price: 25</p>
+              <motion.div className={styles.algoLogo}>
+                <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18.0006 19.0109H15.1785L13.3456 12.193L9.40508
+                    19.0116H6.25445L12.345 8.45714L11.3648 4.79298L3.15215
+                    19.0139H0L10.408 0.986084H13.1674L14.3757 5.46509H17.2228L15.2789
+                    8.8453L18.0006 19.0109Z" fill={lightColorPalette[6-colorCode]} />
+                </svg>
+              </motion.div>
+              </motion.div>
+            </motion.div>
             <motion.div className={styles.genderSlider}
               style={{borderColor: darkColorPalette[6-colorCode]}}>
               <div className={styles.genderBearing} onClick={() => setMale(!male)}>

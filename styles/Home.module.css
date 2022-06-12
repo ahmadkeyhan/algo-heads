@@ -67,16 +67,16 @@
   border: 0.125rem solid #212121;
   background-color: #ffffff;
   font-size: 0.7rem;
+  font-weight: 600;
   font-family: 'Gluten', cursive;
   text-align: center;
-  font-weight: 300;
   color: #212121;
   line-height: 1rem;
   z-index: 5;
 }
 
 .mainCountDown p {
-  width: 14ch;
+  width: 15ch;
 }
 
 .scrollButton {
@@ -117,7 +117,7 @@
 
 .genderSlider {
   position: absolute;
-  top: 64vw;
+  top: 57vw;
   left: -28vw;
   padding: 0;
   z-index: 11;
@@ -169,16 +169,46 @@
 .title {
   position: absolute;
   font-family: 'Sue Ellen Francisco', cursive;
-  color: #212121;
   left: -48vw;
-  top: 52vw;
+  top: 48vw;
   margin: 0;
   font-size: 5vw;
   font-weight: 500;
   text-align: start;
   width: 14ch;
-  line-height: 9vw;
+  line-height: 7vw;
   z-index: 10;
+}
+
+.subTitle {
+  position: absolute;
+  left: -48vw;
+  top: 64vw;
+  z-index: 4;
+}
+
+.subTitle h2 {
+  font-size: 0.6rem;
+  font-weight: 600;
+  margin: 0.4rem 0;
+}
+
+.mintPrice {
+  display: flex;
+  align-items: center;
+  height: 4vw;
+}
+
+.subTitle p {
+  font-size: 0.7rem;
+  margin: 0;
+}
+
+.algoLogo {
+  display: flex;
+  align-items: center;
+  height: 2.5vw;
+  width: 2.5vw;
 }
 
 .wheelOne, .wheelTwo, .wheelThree, .wheelFour {
@@ -212,8 +242,8 @@
 .headHolder {
   position: absolute;
   transform: translate(-50%, -50%);
-  width: 26vw;
-  height: 26vw;
+  width: 24vw;
+  height: 24vw;
   padding: 0;
   overflow: hidden;
   border-radius: 14vw;
@@ -257,7 +287,7 @@
   height: 55vw;
   top: 16vw;
   left: 16vw;
-  transform: rotate(75deg);
+  transform: rotate(30deg);
 }
 
 .linkArrowHolder {
@@ -369,7 +399,7 @@
   
   
   .genderSlider {
-    top: 36vh;
+    top: 32.06vh;
     left: -15.75vh;
   }
   
@@ -381,9 +411,14 @@
   
   .title {
     left: -27vh;
-    top: 29.25vh;
+    top: 27vh;
     font-size: 2.81vh;
-    line-height: 5.06vh;
+    line-height: 3.94vh;
+  }
+
+  .subTitle {
+    left: -27vh;
+    top: 36vh;
   }
 
   .wheelOne, .wheelTwo, .wheelThree, .wheelFour {
@@ -414,8 +449,8 @@
   }
   
   .headHolder {
-    width: 14.63vh;
-    height: 14.63vh;
+    width: 13.5vh;
+    height: 13.5vh;
     border-radius: 8vh;
   }
   
