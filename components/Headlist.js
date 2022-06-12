@@ -115,7 +115,7 @@ function Headlist() {
           style={{color: darkColorPalette[sortedHeads[rank].bgColorCode],
           top: window.innerHeight/window.innerWidth >= 16/9 ? `${top}vw` : `${top*9/16}vh`,
           left: window.innerHeight/window.innerWidth >= 16/9 ? `${left}vw` : `${left*9/16}vh`}}>
-          <motion.div className={rank == step ? styles.firstPriceTag : styles.priceTag}>
+          <motion.div style={{borderColor: lightColorPalette[sortedHeads[rank].bgColorCode]}} className={rank == step ? styles.firstPriceTag : styles.priceTag}>
             <p className={styles.price}>{sortedHeads[rank].price}</p>
             <motion.div className={styles.algoLogo}>
               <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -315,17 +315,32 @@ function Headlist() {
             <motion.div className={styles.arrowHolder}>
               <motion.div className={styles.stepsBackward}>
                 <motion.div
-                  style={{borderColor: lightColorPalette[colorCode], color: lightColorPalette[colorCode]}}
+                  style={{backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]}}
                   onClick={() => setStep(step-10)}
                   animate={step > 9 ? null : {display: 'none'}}
                   className={styles.step}>
-                  <MdIcons.MdOutlineDoubleArrow style={{transform: 'rotate(-90deg)'}} />
+                  <p>-<span>10</span></p>
                 </motion.div>
                 <motion.div
-                  style={{borderColor: lightColorPalette[colorCode], color: lightColorPalette[colorCode]}}
-                  onClick={() => setStep(step-1)}
+                  style={{backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]}}
+                  onClick={() => setStep(step-5)}
+                  animate={step > 4 ? null : {display: 'none'}}
                   className={styles.step}>
-                  <MdIcons.MdPlayArrow style={{fontSize: '0.9rem' ,transform: 'rotate(-90deg)'}} />
+                  <p>-<span>5</span></p>
+                </motion.div>
+                <motion.div
+                  style={{backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]}}
+                  onClick={() => setStep(0)}
+                  animate={step > 4 ? {display: 'none'} : null}
+                  className={styles.step}>
+                  <span>Go back</span>
+                </motion.div>
+                <motion.div
+                  style={{backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]}}
+                  onClick={() => setStep(0)}
+                  animate={step > 4 ? {display: 'none'} : null}
+                  className={styles.step}>
+                  <span>To top</span>
                 </motion.div>
               </motion.div>
               <Image className={styles.counterArrows} src={arrowPalette[colorCode]} alt="" layout='fill' />
@@ -345,18 +360,18 @@ function Headlist() {
           <motion.div className={styles.arrowHolder}>
             <motion.div className={styles.stepsForward}>
               <motion.div
-                style={{borderColor: lightColorPalette[colorCode], color: lightColorPalette[colorCode]}}
-                animate={step+1 < sortedHeads.length ? null : {display: 'none'}}
-                onClick={() => setStep(step+1)}
+                style={{backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]}}
+                animate={step+5 < sortedHeads.length ? null : {display: 'none'}}
+                onClick={() => setStep(step+5)}
                 className={styles.step}>
-                <MdIcons.MdPlayArrow style={{fontSize: '0.9rem',transform: 'rotate(90deg)'}} />
+                <p>+<span>5</span></p>
               </motion.div>
               <motion.div
-                style={{borderColor: lightColorPalette[colorCode], color: lightColorPalette[colorCode]}}
+                style={{backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]}}
                 animate={step+10 < sortedHeads.length ? null : {display: 'none'}}
                 onClick={() => setStep(step+10)}
                 className={styles.step}>
-                <MdIcons.MdOutlineDoubleArrow style={{transform: 'rotate(90deg)'}} />
+                <p>+<span>10</span></p>
               </motion.div>
             </motion.div>
             <Image style={{transform: 'rotate(315deg)'}} className={styles.counterArrows} src={arrowPalette[colorCode]} alt="" layout='fill' />

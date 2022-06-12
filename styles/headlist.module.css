@@ -170,7 +170,18 @@ align-items: center;
       width: 9vw;
       height: 9vw;
       border-radius: 4.5vw;
-      border: 2px solid #a77c4e;
+  }
+
+  .step p {
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .step span {
+    margin-left: 0.1rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-align: center;
   }
 
   .counterArrows {
@@ -252,8 +263,8 @@ align-items: center;
 
   .headHolder .rank {
     position: absolute;
-    top: 19vw;
-    left: 2vw;
+    top: 20vw;
+    left: 20vw;
     width: 7vw;
     height: 7vw;
     border-radius: 5vw;
@@ -370,9 +381,9 @@ align-items: center;
 
   .headHolder .priceTag {
     position: absolute;
-    top: 19vw;
-    left: 19vw;
-    width: 10vw;
+    top: 20vw;
+    left: 0;
+    width: 12vw;
     height: 7vw;
     border-radius: 5vw;
     background-color: rgba(255,255,255,1);
@@ -383,6 +394,7 @@ align-items: center;
     justify-content: space-evenly;
     align-items: center;
     z-index: 10;
+    border: 2px solid #FFBC76;
   }
 
   .firstRank, .firstPriceTag {
@@ -581,8 +593,8 @@ align-items: center;
       }
     
       .headHolder .rank {
-        top: 10.69vh;
-        left: 1.13vh;
+        top: 11.25vh;
+        left: 11.25vh;
         width: 3.94vh;
         height: 3.94vh;
         border-radius: 2vh;
@@ -641,9 +653,8 @@ align-items: center;
       }
 
       .headHolder .priceTag {
-        top: 10.69vh;
-        left: 10.69vh;
-        width: 5.63vh;
+        top: 11.25vh;
+        width: 6.75vh;
         height: 3.94vh;
         border-radius: 2vh;
       }
