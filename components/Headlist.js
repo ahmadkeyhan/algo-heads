@@ -301,7 +301,7 @@ function Headlist() {
             </motion.div>
             <motion.div className={styles.stepCounter}>
               <p>( Phase 1 )</p>
-              <p>( Heads {step+1} to {step+10} )</p>
+              <p>( Heads {step+1} to {Math.min(step+10, sortedHeads.length)} )</p>
             </motion.div>
           </motion.div>
         }
@@ -357,7 +357,7 @@ function Headlist() {
           <HeadHolder top={70} left={13} rank={step + 4} rotation={67.5} borderRadius={[14,5,14,14]} />
         </motion.div>
         <motion.div className={styles.wheelSeven}>
-          <motion.div className={styles.arrowHolder}>
+          <motion.div animate={step+5 < sortedHeads.length ? null : {display: 'none'}} className={styles.arrowHolder}>
             <motion.div className={styles.stepsForward}>
               <motion.div
                 style={{backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]}}
