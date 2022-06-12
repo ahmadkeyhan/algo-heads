@@ -125,8 +125,8 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
-                                        color: date.getDate == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
-                                        backgroundColor: date.getDate == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
                                 </motion.div>
@@ -162,8 +162,8 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vh`,
-                                        color: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
-                                        backgroundColor: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
                                 </motion.div>
@@ -198,8 +198,8 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
                                         left:window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
-                                        color: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
-                                        backgroundColor: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
                                 </motion.div>
@@ -232,8 +232,8 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
-                                        color: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
-                                        backgroundColor: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
                                 </motion.div>
@@ -269,8 +269,8 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top:window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vh`,
-                                        color: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
-                                        backgroundColor: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
                                 </motion.div>
@@ -306,8 +306,8 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
-                                        color: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
-                                        backgroundColor: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
                                 </motion.div>
@@ -342,8 +342,8 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
-                                        color: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
-                                        backgroundColor: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
                                 </motion.div>
@@ -512,8 +512,8 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
-                                        color: date.getDate == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
-                                        backgroundColor: date.getDate == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
                                 </motion.div>
@@ -585,8 +585,8 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vh`,
-                                        color: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
-                                        backgroundColor: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
                                 </motion.div>
@@ -657,8 +657,8 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
                                         left:window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
-                                        color: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
-                                        backgroundColor: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
                                 </motion.div>
@@ -729,8 +729,8 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
-                                        color: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
-                                        backgroundColor: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
                                 </motion.div>
@@ -802,8 +802,8 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top:window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vh`,
-                                        color: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
-                                        backgroundColor: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
                                 </motion.div>
@@ -875,8 +875,8 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
-                                        color: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
-                                        backgroundColor: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
                                 </motion.div>
@@ -947,8 +947,8 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
-                                        color: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
-                                        backgroundColor: date.getDate() == now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
                                 </motion.div>

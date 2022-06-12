@@ -10,7 +10,6 @@ align-items: center;
     position: relative;
     background-color: #fff;
     overflow-y: scroll;
-    border-left: 0.125rem solid #ff9977;
   }
 
   .roadmap::-webkit-scrollbar {
