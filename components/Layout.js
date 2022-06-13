@@ -1,4 +1,4 @@
-import styles from '../styles/Home.module.css'
+import styles from '../styles/landing.module.css'
 import NavSlider from './NavSlider'
 import { useState } from 'react'
 

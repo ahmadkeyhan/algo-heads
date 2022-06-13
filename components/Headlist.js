@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import styles from '../styles/headlist.module.css'
+import narrowStyles from '../styles/headlist.module.css'
+import wideStyles from '../styles/headlistWide.module.css'
 import { useState, useEffect } from 'react'
 import * as MdIcons from 'react-icons/md'
 import { motion } from "framer-motion"
@@ -97,14 +98,14 @@ function Headlist() {
   const [width, setWidth] = useState(360)
   const [height, setHeight] = useState(640)
   const [normalizedwidth, setNormalizedWidth] = useState(100)
+  const [styles, setStyles] = useState(narrowStyles)
 
   useEffect(() => {
     setWidth(window.innerWidth)
     setHeight(window.innerHeight)
-    if (window.innerHeight/window.innerWidth >= 16/9) {
-      setNormalizedWidth(100)
-    } else {
+    if (window.innerHeight/window.innerWidth < 16/9) {
       setNormalizedWidth((window.innerHeight*900)/(16*window.innerWidth))
+      setStyles(wideStyles)
     }
   }, [])
 

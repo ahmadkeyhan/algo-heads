@@ -228,7 +228,6 @@
   top: 13vw;
 }
 
-
 .wheelThree {
   left: -21vw;
   top: 76vw;
@@ -270,7 +269,6 @@
 .headCard p {
   margin: 0;
 }
-
 
 .arrowHolder {
   position: absolute;
@@ -358,160 +356,4 @@
   position: absolute;
   top: 145vw;
   left: 91vw;
-}
-
-@media only screen and (min-width: 600px) {
-
-  .wheelButtons {
-    left:17.72vh;
-    top: 21.94vh;
-  }
-  
-  .wheelButton {
-    width: 5.1vh;
-    height: 5.1vh;
-    border-radius: 2.55vh;
-  }
-  
-  .mainButton {
-    left: 28.13vh;
-    top: 18vh;
-    height: 6.75vh;
-    width: 20.25vh;
-    border-radius: 4vh;
-  }
-  
-  .mainCountDown {
-    left: 28.13vh;
-    top: 16.88vh;
-    height: 7.88vh;
-    width: 20.25vh;
-    border-radius: 5vh;
-  }
-  
-  .scrollButton {
-      left: 18vh;
-      top: 15.75vh;
-      height: 5.63vh;
-      border-radius: 4vh;
-  }
-
-  
-  
-  .genderSlider {
-    top: 32.06vh;
-    left: -15.75vh;
-  }
-  
-  .colorSlider {
-    left: calc(23.06vh - 1.125rem);
-    top: calc(24.47vh - 3.9375rem);
-  }
-  
-  
-  .title {
-    left: -27vh;
-    top: 27vh;
-    font-size: 2.81vh;
-    line-height: 3.94vh;
-  }
-
-  .subTitle {
-    left: -27vh;
-    top: 36vh;
-  }
-
-  .wheelOne, .wheelTwo, .wheelThree, .wheelFour {
-    width: 48.94vh;
-    height: 48.94vh;
-    border-radius: 24.47vh;
-  }
-  
-  .wheelOne {
-    top: -24.75vh;
-    left: 0;
-  }
-  
-  .wheelTwo {
-    left: 32vh;
-    top: 7.31vh;
-  }
-  
-  
-  .wheelThree {
-    left: -11.81vh;
-    top: 42.75vh;
-  }
-  
-  .wheelFour {
-    top: 71.44vh;
-    left: 20.25vh;
-  }
-  
-  .headHolder {
-    width: 13.5vh;
-    height: 13.5vh;
-    border-radius: 8vh;
-  }
-  
-  .headCard {
-    width: 15.75vh;
-    height: 5vh;
-    border-radius: 2.5vh;
-    transform: translate(-50%, 7.88vh);
-  }
-  
-  .arrowHolder {
-    width: 30.94vh;
-    height: 30.94vh;
-    top: 9vh;
-    left: 9vh;
-  }
-  
-  .scrollArrowHolder {
-    width: 30.94vh;
-    height: 30.94vh;
-    top: 9vh;
-    left: 9vh;
-  }
-  
-  .linkArrowHolder {
-    width: 35.44vh;
-    height: 35.44vh;
-    top: 13.5vh;
-    left: 18vh;
-  }
-  
-  .logoHolder {
-    width: 15.75vh;
-    height: 15.75vh;
-    top: 24.75vh;
-    border-radius: 0 0 8vh 8vh;
-  }
-
-  .social {
-    top: 61.88vh;
-    left: 10.13vh;
-    width: 11.25vh;
-    height: 11.25vh;
-    flex-direction: column;
-  }
-  
-  .socialButton {
-    width: 5.06vh;
-    height: 5.06vh;
-    border-radius: 3vh;
-  }
-
-  .bannerHolder {
-    width: 53.44vh;
-    height: 53.44vh;
-    top: 2.81vh;
-    left: -2.81vh;
-  }
-  
-  .navSliderFrame {
-    top: 81.56vh;
-    left: 51.19vh;
-  }
 }

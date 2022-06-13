@@ -1,8 +1,8 @@
-import styles from '../styles/roadmap.module.css'
+import narrowStyles from '../styles/roadmap.module.css'
+import wideStyles from '../styles/roadmapWide.module.css'
 import { useState, useEffect } from 'react'
 import { motion } from "framer-motion"
 import NavSlider from '../components/NavSlider'
-import { useRouter } from 'next/router'
 import {lightColorPalette, darkColorPalette} from '../components/colorPalette'
 
 function Roadmap() {
@@ -21,7 +21,6 @@ function Roadmap() {
     }, [])
 
     var now = new Date()
-    var nowUTC = now.getUTCDate()
 
     const colorCode = 4
     
@@ -31,17 +30,14 @@ function Roadmap() {
     const [width, setWidth] = useState(360)
     const [height, setHeight] = useState(640)
     const [normalizedwidth, setNormalizedWidth] = useState(100)
-    const [margin, setMargin] = useState([0,0])
+    const [styles, setStyles] = useState(narrowStyles)
 
     useEffect(() => {
         setWidth(window.innerWidth)
         setHeight(window.innerHeight)
-        if (window.innerHeight/window.innerWidth >= 16/9) {
-          setNormalizedWidth(100)
-          setMargin([(window.innerHeight/window.innerWidth-16/9)*50,0])
-        } else {
-            setMargin([0,50-(window.innerHeight*450)/(16*window.innerWidth)])
+        if (window.innerHeight/window.innerWidth < 16/9) {
             setNormalizedWidth((window.innerHeight*900)/(16*window.innerWidth))
+            setStyles(wideStyles)
         }
     }, [])
 

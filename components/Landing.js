@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import narrowStyles from '../styles/landing.module.css'
+import wideStyles from '../styles/landingWide.module.css'
 import { useState, useEffect } from 'react'
 import * as MdIcons from 'react-icons/md'
 import * as SiIcon from 'react-icons/si'
@@ -52,7 +53,7 @@ import Link from 'next/link'
     const [width, setWidth] = useState(360)
     const [height, setHeight] = useState(640)
     const [normalizedwidth, setNormalizedWidth] = useState(100)
-    const [margin, setMargin] = useState([0,0])
+    const [styles, setStyles] = useState(narrowStyles)
    
     useEffect(() => {
       setShuffleDays(0)
@@ -75,8 +76,6 @@ import Link from 'next/link'
       setHeight(window.innerHeight)
 
       if (window.innerHeight/window.innerWidth >= 16/9) {
-        setNormalizedWidth(100)
-        setMargin([(window.innerHeight/window.innerWidth-16/9)*50,0])
         control1.start({
           left: ['27vw', '27vw', '27vw', '27vw',
                 '60vw', '60vw', '60vw', '60vw',
@@ -198,8 +197,8 @@ import Link from 'next/link'
               0.75,0.8125, 0.875,0.9375, 1]}
         })
       } else {
-        setMargin(window.innerWidth > 900 ? [0,0] : [0,50-(window.innerHeight*450)/(16*window.innerWidth)])
         setNormalizedWidth((window.innerHeight*900)/(16*window.innerWidth))
+        setStyles(wideStyles)
         control1.start({
           left: ['15.19vh', '15.19vh', '15.19vh', '15.19vh',
                 '33.75vh', '33.75vh', '33.75vh', '33.75vh',
