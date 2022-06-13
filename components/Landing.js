@@ -371,7 +371,7 @@ import Link from 'next/link'
       <div className={styles.landing}
         style={{height: `${normalizedwidth*16/9}vw`,
         width: `${normalizedwidth}vw`}}>
-        <motion.div style={window.innerWidth > 900 ? {display: 'none'} : null} className={styles.navSliderFrame}>
+        <motion.div className={styles.navSliderFrame}>
           <NavSlider colorCode={colorCode} />
         </motion.div>
         <div className={styles.wheelHolder}>
@@ -588,7 +588,7 @@ import Link from 'next/link'
             </Link>
             }
           </div>
-          <div style={window.innerWidth > 900 ? {display: 'none'} : null} className={styles.wheelFour}>
+          <div className={styles.wheelFour}>
               <motion.div
                 className={styles.scrollArrowHolder}>
                 <Image className={styles.counterScrollArrows} src={scrollArrowPalette[colorCode]} layout='fill' />

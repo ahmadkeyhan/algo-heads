@@ -53,10 +53,10 @@ function Roadmap() {
                 style={{height: `${normalizedwidth*16/9}vw`,
                 width: `${normalizedwidth}vw`
                 }}>
-            <motion.div style={window.innerWidth > 900 ? {display: 'none'} : null} className={styles.navSliderFrame}>
+            <motion.div className={styles.navSliderFrame}>
                 <NavSlider colorCode={colorCode} />
             </motion.div>
-            <motion.div style={window.innerWidth > 900 ? {display: 'none'} : null} className={styles.navSliderFrame2}>
+            <motion.div className={styles.navSliderFrame2}>
                 <NavSlider colorCode={colorCode} />
             </motion.div>
                 <motion.div className={styles.wheelHolder}>
@@ -368,10 +368,10 @@ function Roadmap() {
                 style={{height: `${normalizedwidth*16/9}vw`,
                 width: `${normalizedwidth}vw`
                 }}>
-            <motion.div style={window.innerWidth > 900 ? {display: 'none'} : null} className={styles.navSliderFrame}>
+            <motion.div className={styles.navSliderFrame}>
                 <NavSlider colorCode={colorCode} />
             </motion.div>
-            <motion.div style={window.innerWidth > 900 ? {display: 'none'} : null} className={styles.navSliderFrame2}>
+            <motion.div className={styles.navSliderFrame2}>
                 <NavSlider colorCode={colorCode} />
             </motion.div>
                 <motion.div className={styles.wheelHolder}>
