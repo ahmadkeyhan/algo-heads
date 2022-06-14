@@ -319,14 +319,19 @@
   .social {
     position: absolute;
     display: flex;
-    top: 61.88vh;
-    left: 10.13vh;
-    width: 11.25vh;
-    height: 11.25vh;
+    top:59.63vh;
+    left: 11.25vh;
+    width: 5.06vh;
+    height: calc(15.19vh + 1rem);
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     z-index: 1000;
+  }
+
+  .social p {
+    font-size: 0.7rem;
+    text-decoration: underline;
   }
   
   .socialButton {

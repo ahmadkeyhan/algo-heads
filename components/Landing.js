@@ -13,9 +13,25 @@ import { femaleHeads } from './FemaleHeads'
 import { lightColorPalette, darkColorPalette } from '../components/colorPalette'
 import { arrowPalette, buyBannerPalette, linkArrowPalette, scrollArrowPalette } from './Assets'
 import Link from 'next/link'
-
+import MyAlgoConnect from '@randlabs/myalgo-connect'
 
  function Landing() {
+
+    const myAlgoConnect = new MyAlgoConnect({ disableLedgerNano: false })
+    const settings = {
+      shouldSelectOneAccount: true,
+      openManager: false
+    }
+
+    const [account, setAccount] = useState()
+
+    const connectWallet = async () => {
+      let fetchedAccount = await myAlgoConnect.connect(settings).then(fetchedAccount => {
+        setAccount(fetchedAccount)
+        console.log(account, fetchedAccount)
+      })
+    }
+
 
     var end = new Date('Fri Jun 17 2022 19:30:00')
     const router = useRouter()
@@ -560,6 +576,12 @@ import Link from 'next/link'
                   <SiIcon.SiTwitter />
                 </motion.button>
               </Link>
+              {!account ? 
+                <motion.button onClick={() => connectWallet()} style={{backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]}} className={styles.socialButton}>
+                  <MdIcons.MdAccountBalanceWallet />
+                </motion.button> : 
+                <p>{account[0].address.slice(0,7)+ '...'}</p>
+              }
             </motion.div>
           </div>
           <div className={styles.wheelThree}>
