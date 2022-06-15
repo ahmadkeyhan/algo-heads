@@ -590,7 +590,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
                 </motion.button>
                 <p style={{color: darkColorPalette[6-colorCode]}}>Connect</p>
               </motion.div> :
-                <motion.div className={styles.wallet} onClick={() => router.push('/sholder')}>
+                <motion.div className={styles.wallet} onClick={() => router.push(`/sholder/${account[0].address}?walletName=${account[0].name}`)}>
                   <motion.button className={styles.walletButton}
                     style={{backgroundColor: lightColorPalette[6-colorCode],
                     color: darkColorPalette[6-colorCode],
