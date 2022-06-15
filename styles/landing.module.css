@@ -320,20 +320,25 @@
 .social {
   position: absolute;
   top: 106vw;
-  left: 20vw;
-  width: 9vw;
+  left: 4vw;
   height: calc(27vw + 1rem);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   z-index: 1000;
 }
 .social p {
   font-size: 0.7rem;
-  text-decoration: underline;
+  margin-right: 0.5rem;
 }
-.socialButton {
+
+.wallet {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.socialButton, .walletButton {
   width: 9vw;
   height: 9vw;
   border-radius: 5vw;

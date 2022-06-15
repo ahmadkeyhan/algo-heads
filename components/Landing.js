@@ -20,16 +20,19 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
     const myAlgoConnect = new MyAlgoConnect({ disableLedgerNano: false })
     const settings = {
       shouldSelectOneAccount: true,
-      openManager: false
+      openManager: true
     }
 
     const [account, setAccount] = useState()
 
     const connectWallet = async () => {
-      let fetchedAccount = await myAlgoConnect.connect(settings).then(fetchedAccount => {
-        setAccount(fetchedAccount)
-        console.log(account, fetchedAccount)
-      })
+      try {
+        let fetchedAccount = await myAlgoConnect.connect(settings).then(fetchedAccount => {
+          setAccount(fetchedAccount)
+        })
+      } catch (error) {
+        console.log(error)
+      }
     }
 
 
@@ -577,10 +580,25 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
                 </motion.button>
               </Link>
               {!account ? 
-                <motion.button onClick={() => connectWallet()} style={{backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]}} className={styles.socialButton}>
+              <motion.div className={styles.wallet}>
+                <motion.button onClick={() => connectWallet()}
+                  style={{backgroundColor: lightColorPalette[6-colorCode],
+                  color: darkColorPalette[6-colorCode],
+                  fontSize: '1.2rem'}}
+                  className={styles.walletButton}>
                   <MdIcons.MdAccountBalanceWallet />
-                </motion.button> : 
-                <p>{account[0].address.slice(0,7)+ '...'}</p>
+                </motion.button>
+                <p style={{color: darkColorPalette[6-colorCode]}}>Connect</p>
+              </motion.div> :
+                <motion.div className={styles.wallet} onClick={() => router.push('/sholder')}>
+                  <motion.button className={styles.walletButton}
+                    style={{backgroundColor: lightColorPalette[6-colorCode],
+                    color: darkColorPalette[6-colorCode],
+                    fontSize: '1.2rem'}}>
+                    <MdIcons.MdAccountCircle />
+                  </motion.button> 
+                  <p style={{color: darkColorPalette[6-colorCode]}}>{account[0].name.length > 8 ? account[0].name.slice(0,7)+'...' : account[0].name}</p>
+                </motion.div>
               }
             </motion.div>
           </div>

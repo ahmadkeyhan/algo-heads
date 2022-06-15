@@ -206,8 +206,8 @@
   .algoLogo {
     display: flex;
     align-items: center;
-    height: 2.5vw;
-    width: 2.5vw;
+    height: 1.41vh;
+    width: 1.41vh;
   }
   
   .wheelOne, .wheelTwo, .wheelThree, .wheelFour {
@@ -320,21 +320,25 @@
     position: absolute;
     display: flex;
     top:59.63vh;
-    left: 11.25vh;
-    width: 5.06vh;
+    left: 2.25vh;
     height: calc(15.19vh + 1rem);
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
     z-index: 1000;
   }
 
   .social p {
     font-size: 0.7rem;
-    text-decoration: underline;
+    margin-right: 0.5rem;
+  }
+
+  .wallet {
+    display: flex;
+    flex-direction: row-reverse;
   }
   
-  .socialButton {
+  .socialButton, .walletButton {
     width: 5.06vh;
     height: 5.06vh;
     border-radius: 3vh;
