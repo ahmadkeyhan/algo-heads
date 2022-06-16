@@ -4,11 +4,12 @@
     justify-content: space-evenly;
     height: 100vh;
     align-items: center;
+    background-color: var(--color-bg-primary);
   }
   
   .landing {
     position: relative;
-    background-color: #fff;
+    background-color: var(--color-bg-primary);
     overflow: hidden;
   }
   
@@ -27,7 +28,7 @@
     justify-content: center;
     padding: 0;
     border: none;
-    background-color: #fff;
+    background-color: var(--color-bg-primary);
     font-size: 1rem;
     width: 5.1vh;
     height: 5.1vh;
@@ -39,8 +40,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 0.125rem solid #212121;
-    background-color: #ffffff;
+    border: 0.125rem solid var(--color-text-secondary);
+    background-color: var(--color-bg-primary);
     font-size: 0.8rem;
     font-family: 'Gluten', cursive;
     font-weight: bold;
@@ -58,13 +59,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 0.125rem solid #212121;
-    background-color: #ffffff;
+    border: 0.125rem solid var(--color-text-secondary);
+    background-color: var(--color-bg-primary);
     font-size: 0.7rem;
-    font-weight: 600;
     font-family: 'Gluten', cursive;
     text-align: center;
-    color: #212121;
     line-height: 1rem;
     z-index: 5;
     left: 28.13vh;
@@ -75,7 +74,7 @@
   }
   
   .mainCountDown p {
-    width: 15ch;
+    width: 16ch;
   }
   
   .scrollButton {
@@ -87,7 +86,7 @@
       padding: 0;
       border: none;
       background:none;
-      color: #6a6a6a;
+      color: var(--color-text-secondary);
       z-index: 2;
       left: 18vh;
       top: 15.75vh;
@@ -109,9 +108,8 @@
     top: -0.125rem;
     width: 1.125rem;
     height: 1.125rem;
-    border: 0.125rem solid #6a6a6a;
+    border: 0.125rem solid var(--color-text-secondary);
     border-radius: 1rem;
-    background-color: #bab9b3;
   }
   
   .genderSlider {
@@ -139,7 +137,7 @@
     top: calc(24.47vh - 3.9375rem);
     width: 1.125rem;
     border-radius: 1rem;
-    border: 0.125rem solid #6a6a6a;
+    border: 0.125rem solid var(--color-text-secondary);
     z-index: 2;
     overflow: hidden;
   }
@@ -149,8 +147,7 @@
     transform: translate(0,0);
     width: 1.125rem;
     height: 1.125rem;
-    background-color: #bab9b3;
-    border: 0.125rem solid #6a6a6a;
+    border: 0.125rem solid var(--color-text-secondary);
     border-radius: 1rem;
     top: 0;
     right: -0.125rem;
@@ -177,6 +174,7 @@
     font-size: 2.81vh;
     line-height: 3.94vh;
     z-index: 10;
+    color: var(--color-text-secondary);
   }
   
   .subTitle {
@@ -184,6 +182,7 @@
     left: -27vh;
     top: 36vh;
     z-index: 4;
+    color: var(--color-text-secondary);
   }
   
   .subTitle h2 {
@@ -195,7 +194,7 @@
   .mintPrice {
     display: flex;
     align-items: center;
-    height: 4vw;
+    height: 2.5vh;
   }
   
   .subTitle p {
@@ -226,7 +225,6 @@
     left: 32vh;
     top: 7.31vh;
   }
-  
   
   .wheelThree {
     left: -11.81vh;
@@ -264,6 +262,7 @@
     justify-content: center;
     font-size: 0.6rem;
     font-weight: 300;
+    color: var(--color-text-secondary);
   }
   
   .headCard p {
@@ -312,7 +311,7 @@
     height: 15.75vh;
     top: 24.75vh;
     border-radius: 0 0 8vh 8vh;
-    background-color: #fff;
+    background-color: var(--color-bg-primary);
     overflow: hidden;
   }
   
@@ -346,6 +345,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: var(--color-bg-primary);
+  }
+
+  .themeSliderFrame {
+    position: absolute;
+    top: 51.75vh;
+    left: 18vh;
   }
   
   .bannerHolder {
@@ -358,7 +364,6 @@
   
   .buyBanner {
     border-radius: 50%;
-    border: 2px solid green;
     z-index: 0;
   }
   
@@ -367,3 +372,30 @@
     top: 81.56vh;
     left: 51.19vh;
   }
+
+  .themeSlider {
+    position: absolute;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    left: 0;
+    top: 0;
+    height: 1.125rem;
+    width: 2.25rem;
+    padding: 0;
+    border-radius: 1rem;
+    background-color: var(--color-bg-primary);
+    border: 0.125rem solid var(--color-text-secondary);
+  }
+  
+    .themeCatcher {
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 0.125rem solid var(--color-text-secondary);
+      border-radius: 1rem;
+      background-color: var(--color-text-secondary);
+      position: absolute;
+      top: -0.1875rem;
+      left: -0.1875rem;
+    }

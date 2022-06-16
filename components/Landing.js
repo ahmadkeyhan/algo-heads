@@ -17,6 +17,13 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
 
  function Landing() {
 
+  const [activeTheme, setActiveTheme] = useState("light")
+  const inactiveTheme = activeTheme === "light" ? "dark" : "light"
+
+  useEffect(() => {
+    document.body.dataset.theme = activeTheme
+  }, [activeTheme])
+
     const myAlgoConnect = new MyAlgoConnect({ disableLedgerNano: false })
     const settings = {
       shouldSelectOneAccount: true,
@@ -395,7 +402,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
         <div className={styles.wheelHolder}>
         <div className={styles.wheelOne}>
             <motion.div animate={control10} className={styles.arrowHolder}>
-              <Image className={styles.counterArrows} src={arrowPalette[colorCode]} layout='fill' />
+              <Image className={styles.counterArrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
             </motion.div>
             <div className={styles.logoHolder}>
               <Image className={styles.logo} src='/logo.png' layout='fill' />
@@ -406,7 +413,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
               <Image className={styles.head} src={heads[1]} layout='fill' />
             </motion.div>
             <motion.div
-              style={{color: darkColorPalette[colorCode]}}
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: null}}
               animate={control5}
               className={styles.headCard}>
               <p>{heads[1].slice(1,12)}</p>
@@ -417,7 +424,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
               <Image className={styles.head} src={heads[3]} layout='fill' />
             </motion.div>
             <motion.div
-              style={{color: darkColorPalette[colorCode]}}
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: null}}
               animate={control6}
               className={styles.headCard}>
               <p>{heads[3].slice(1,12)}</p>
@@ -428,7 +435,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
               <Image className={styles.head} src={heads[5]} layout='fill' />
             </motion.div>
             <motion.div
-              style={{color: darkColorPalette[colorCode]}}
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: null}}
               animate={control7}
               className={styles.headCard}>
               <p>{heads[5].slice(1,12)}</p>
@@ -439,7 +446,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
               <Image className={styles.head} src={heads[7]} layout='fill' />
             </motion.div>
             <motion.div
-              style={{color: darkColorPalette[colorCode]}}
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: null}}
               animate={control8}
               className={styles.headCard}>
               <p>{heads[7].slice(1,12)}</p>
@@ -447,15 +454,15 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
           </div>
           <div className={styles.wheelTwo}>
             <motion.div animate={control9} className={styles.arrowHolder}>
-              <Image className={styles.arrows} src={arrowPalette[colorCode]} layout='fill' />
+              <Image className={styles.arrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
             </motion.div>
-            <h2 style={{color: darkColorPalette[6-colorCode]}} className={styles.title}>
+            <h2 style={{color:activeTheme === 'light' ? darkColorPalette[6-colorCode]: null}} className={styles.title}>
               Watch the  <span style={{marginLeft: male ? '0.5rem' : '0.1rem',color: lightColorPalette[6-colorCode]}}>{male ? 'male' : 'female '}</span> heads spin!
             </h2>
-            <motion.div style={{color: darkColorPalette[6-colorCode]}} className={styles.subTitle}>
-              <h2>on Algorand blockchain</h2>
+            <motion.div className={styles.subTitle}>
+              <h2 style={{color: activeTheme==='light' ? darkColorPalette[6-colorCode]: lightColorPalette[6-colorCode]}}>on Algorand blockchain</h2>
               <motion.div className={styles.mintPrice}>
-              <p>Mint price: 25</p>
+              <p style={{color:activeTheme === 'light' ? darkColorPalette[6-colorCode]: null}}>Mint price: 25</p>
               <motion.div className={styles.algoLogo}>
                 <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M18.0006 19.0109H15.1785L13.3456 12.193L9.40508
@@ -466,20 +473,19 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
               </motion.div>
               </motion.div>
             </motion.div>
-            <motion.div className={styles.genderSlider}
-              style={{borderColor: darkColorPalette[6-colorCode]}}>
+            <motion.div className={styles.genderSlider}>
               <div className={styles.genderBearing} onClick={() => setMale(!male)}>
                 <svg width="36" height="29" viewBox="0 0 36 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9.00195 28.0015C8.44967 28.0015 8.00195 27.5538 8.00195 27.0015V20.0015L10.002 20.0015V27.0015C10.002 27.5538 9.55424 28.0015 9.00195 28.0015Z" fill={male ? lightColorPalette[6-colorCode] : darkColorPalette[6-colorCode]} opacity={male ? 0.5 : 1} />
-                  <path d="M7.00195 26.0015C6.44967 26.0015 6.00195 25.5538 6.00195 25.0015C6.00195 24.4492 6.44967 24.0015 7.00195 24.0015H11.002C11.5542 24.0015 12.002 24.4492 12.002 25.0015C12.002 25.5538 11.5542 26.0015 11.002 26.0015H7.00195Z" fill={male ? lightColorPalette[6-colorCode] : darkColorPalette[6-colorCode]} opacity={male ? 0.5 : 1} />
-                  <path d="M33.6068 2.39346C33.9973 2.78398 33.9973 3.41714 33.6068 3.80767L28.6571 8.75742L27.2429 7.3432L32.1926 2.39346C32.5831 2.00293 33.2163 2.00293 33.6068 2.39346Z" fill={!male ? lightColorPalette[6-colorCode] : darkColorPalette[6-colorCode]} opacity={!male ? 0.5 : 1} />
-                  <path d="M33.6068 5.22188C33.9973 5.61241 33.9973 6.24557 33.6068 6.6361C33.2163 7.02662 32.5831 7.02662 32.1926 6.6361L29.3642 3.80767C28.9737 3.41715 28.9737 2.78398 29.3642 2.39346C29.7547 2.00293 30.3879 2.00293 30.7784 2.39346L33.6068 5.22188Z" fill={!male ? lightColorPalette[6-colorCode] : darkColorPalette[6-colorCode]} opacity={!male ? 0.5 : 1} />
-                  <rect x="1" y="5" width="30" height="16" rx="8" stroke={darkColorPalette[6-colorCode]} strokeWidth="0.125rem"/>
+                  <path d="M9.00195 28.0015C8.44967 28.0015 8.00195 27.5538 8.00195 27.0015V20.0015L10.002 20.0015V27.0015C10.002 27.5538 9.55424 28.0015 9.00195 28.0015Z" fill={activeTheme==='light' ? darkColorPalette[6-colorCode] : '#dfdfdf'} opacity={male ? 0.3 : 1} />
+                  <path d="M7.00195 26.0015C6.44967 26.0015 6.00195 25.5538 6.00195 25.0015C6.00195 24.4492 6.44967 24.0015 7.00195 24.0015H11.002C11.5542 24.0015 12.002 24.4492 12.002 25.0015C12.002 25.5538 11.5542 26.0015 11.002 26.0015H7.00195Z" fill={activeTheme==='light' ? darkColorPalette[6-colorCode] : '#dfdfdf'} opacity={male ? 0.3 : 1} />
+                  <path d="M33.6068 2.39346C33.9973 2.78398 33.9973 3.41714 33.6068 3.80767L28.6571 8.75742L27.2429 7.3432L32.1926 2.39346C32.5831 2.00293 33.2163 2.00293 33.6068 2.39346Z" fill={activeTheme==='light' ? darkColorPalette[6-colorCode] : '#fdfdfd'} opacity={!male ? 0.3 : 1} />
+                  <path d="M33.6068 5.22188C33.9973 5.61241 33.9973 6.24557 33.6068 6.6361C33.2163 7.02662 32.5831 7.02662 32.1926 6.6361L29.3642 3.80767C28.9737 3.41715 28.9737 2.78398 29.3642 2.39346C29.7547 2.00293 30.3879 2.00293 30.7784 2.39346L33.6068 5.22188Z" fill={activeTheme==='light' ? darkColorPalette[6-colorCode] : '#fdfdfd'} opacity={!male ? 0.3 : 1} />
+                  <rect x="1" y="5" width="30" height="16" rx="8" stroke={activeTheme === 'light' ? darkColorPalette[6-colorCode] : '#dfdfdf'} strokeWidth="0.125rem"/>
                 </svg>
               </div>
               <motion.div 
                 animate={{left: !male ? '-0.125rem' : '0.75rem'}}
-                style={{borderColor: darkColorPalette[6-colorCode],
+                style={{borderColor:activeTheme === 'light' ? darkColorPalette[6-colorCode] : null,
                   backgroundColor: lightColorPalette[6-colorCode]}}
                 className={styles.genderCatcher}
                 onClick={() => setMale(!male)} />
@@ -518,10 +524,10 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
               animate={colorSliderOpen? {left: '26vw'} : null}
               className={styles.wheelButtons}>
               <button
-                style={{borderColor: darkColorPalette[colorCode], backgroundColor: lightColorPalette[colorCode]}}
+                style={activeTheme==='light' ? {backgroundColor: lightColorPalette[colorCode]} : {border: `2px solid ${darkColorPalette[colorCode]}`}}
                 className={styles.wheelButton} onClick={()=> setColorSliderOpen(true)}>
                 <MdIcons.MdColorize
-                  style={{color: darkColorPalette[colorCode]}}/>
+                  style={{color: activeTheme==='light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}/>
               </button>
             </motion.div>
             <motion.div
@@ -530,7 +536,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
               <Image className={styles.head} src={heads[0]} layout='fill' />
             </motion.div>
             <motion.div
-              style={{color: darkColorPalette[colorCode]}}
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: null}}
               animate={control1}
               className={styles.headCard}>
               <p>{heads[0].slice(1,12)}</p>
@@ -541,7 +547,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
               <Image className={styles.head} src={heads[2]} layout='fill' />
             </motion.div>
             <motion.div
-              style={{color: darkColorPalette[colorCode]}}
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: null}}
               animate={control2}
               className={styles.headCard}>
               <p>{heads[2].slice(1,12)}</p>
@@ -552,7 +558,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
               <Image className={styles.head} src={heads[4]} layout='fill' />
             </motion.div>
             <motion.div
-              style={{color: darkColorPalette[colorCode]}}
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: null}}
               animate={control3}
               className={styles.headCard}>
               <p>{heads[4].slice(1,12)}</p>
@@ -563,28 +569,29 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
               <Image className={styles.head} src={heads[6]} layout='fill' />
             </motion.div>
             <motion.div
-              style={{color: darkColorPalette[colorCode]}}
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: null}}
               animate={control4}
               className={styles.headCard}>
               <p>{heads[6].slice(1,12)}</p>
             </motion.div>
             <motion.div className={styles.social}>
               <Link href='https://discord.gg/NECZgDreUq'>
-                <motion.button style={{backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]}} className={styles.socialButton}>
+                <motion.button style={activeTheme==='light' ? {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} : {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}} className={styles.socialButton}>
                   <SiIcon.SiDiscord />
                 </motion.button>
               </Link>
               <Link href='https://twitter.com/algoheads'>
-                <motion.button style={{backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]}} className={styles.socialButton}>
+                <motion.button style={activeTheme==='light' ? {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} : {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}} className={styles.socialButton}>
                   <SiIcon.SiTwitter />
                 </motion.button>
               </Link>
               {!account ? 
               <motion.div className={styles.wallet}>
                 <motion.button onClick={() => connectWallet()}
-                  style={{backgroundColor: lightColorPalette[6-colorCode],
-                  color: darkColorPalette[6-colorCode],
-                  fontSize: '1.2rem'}}
+                  style={{backgroundColor: activeTheme==='light' ? lightColorPalette[6-colorCode]: null,
+                  color:activeTheme==='light' ? darkColorPalette[6-colorCode]: lightColorPalette[6-colorCode],
+                  fontSize: '1.2rem',
+                  border: activeTheme==='light' ? null:`2px solid ${darkColorPalette[6-colorCode]}`}}
                   className={styles.walletButton}>
                   <MdIcons.MdAccountBalanceWallet />
                 </motion.button>
@@ -592,9 +599,10 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
               </motion.div> :
                 <motion.div className={styles.wallet} onClick={() => router.push(`/sholder/${account[0].address}?walletName=${account[0].name}`)}>
                   <motion.button className={styles.walletButton}
-                    style={{backgroundColor: lightColorPalette[6-colorCode],
-                    color: darkColorPalette[6-colorCode],
-                    fontSize: '1.2rem'}}>
+                    style={{backgroundColor: activeTheme==='light' ? lightColorPalette[6-colorCode]: null,
+                    color:activeTheme==='light' ? darkColorPalette[6-colorCode]: lightColorPalette[6-colorCode],
+                    fontSize: '1.2rem',
+                      border: activeTheme==='light' ? null:`2px solid ${darkColorPalette[6-colorCode]}`}}>
                     <MdIcons.MdAccountCircle />
                   </motion.button> 
                   <p style={{color: darkColorPalette[6-colorCode]}}>{account[0].name.length > 8 ? account[0].name.slice(0,7)+'...' : account[0].name}</p>
@@ -605,14 +613,29 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
           <div className={styles.wheelThree}>
             <motion.div
               className={styles.linkArrowHolder}>
-              <Image src={linkArrowPalette[6 - colorCode]} layout='fill' />
+              <Image src={activeTheme === 'light' ? linkArrowPalette[6 - colorCode] : linkArrowPalette[7]} layout='fill' />
+            </motion.div>
+            <motion.div className={styles.themeSliderFrame}>
+              <div>
+                <div className={styles.themeSlider}
+                    onClick={() => setActiveTheme(inactiveTheme)}
+                    aria-label={`Change to ${inactiveTheme} mode`}
+                    title={`Change to ${inactiveTheme} mode`}
+                    style={{borderColor: darkColorPalette[colorCode]}}>
+                    <motion.div 
+                    style={{borderColor: darkColorPalette[colorCode],backgroundColor: lightColorPalette[colorCode]}}
+                    animate={activeTheme === "light" ? {left:'-0.1875rem'} : {left: '0.9375rem'}}
+                    transition={{duration: 0.2}}
+                    className={styles.themeCatcher} />
+                </div>
+              </div>
             </motion.div>
             <div className={styles.bannerHolder}>
-              <Image className={styles.buyBanner} src={buyBannerPalette[6-colorCode]} layout='fill' />
+              <Image className={styles.buyBanner} src={activeTheme === 'light' ? buyBannerPalette[6-colorCode] : buyBannerPalette[7]} layout='fill' />
             </div>
             {soldOut ?
             <div
-              style={{ borderColor: darkColorPalette[6 - colorCode],color: darkColorPalette[6 - colorCode],backgroundColor: lightColorPalette[6 - colorCode] }}
+              style={{ borderColor: activeTheme==='light'? darkColorPalette[6 - colorCode] : null,color: activeTheme==='light' ? '#212121' : lightColorPalette[6-colorCode],backgroundColor: activeTheme==='light' ? lightColorPalette[6 - colorCode] : null}}
               className={styles.mainCountDown}>
               <p>
                 Shuffle starts in <span style={{fontSize: '0.7rem'}}>{shuffleDays}d {shuffleHours}h {shuffleMinutes}m</span>
@@ -620,7 +643,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
             </div> :  
             <Link href={process.env.NEXT_PUBLIC_SHUFFLE_LINK}>          
               <button
-                style={{ borderColor: darkColorPalette[6 - colorCode],color: darkColorPalette[6 - colorCode],backgroundColor: lightColorPalette[6 - colorCode] }}
+                style={{ borderColor: activeTheme==='light'? darkColorPalette[6 - colorCode] : null,color: activeTheme==='light' ? '#212121' : lightColorPalette[6-colorCode],backgroundColor: activeTheme==='light' ? lightColorPalette[6 - colorCode] : null}}
                 className={styles.mainButton}>
                 Enter shuffle!
               </button>
@@ -630,7 +653,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
           <div className={styles.wheelFour}>
               <motion.div
                 className={styles.scrollArrowHolder}>
-                <Image className={styles.counterScrollArrows} src={scrollArrowPalette[colorCode]} layout='fill' />
+                <Image className={styles.counterScrollArrows} src={activeTheme === 'light' ? scrollArrowPalette[colorCode] : scrollArrowPalette[7]} layout='fill' />
               </motion.div>
               <button
                 style={{color: darkColorPalette[colorCode]}}
