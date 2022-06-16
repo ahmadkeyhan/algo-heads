@@ -405,7 +405,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
               <Image className={styles.counterArrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
             </motion.div>
             <div className={styles.logoHolder}>
-              <Image className={styles.logo} src='/logo.png' layout='fill' />
+              <Image className={styles.logo} src={activeTheme==='light'? '/logo.png' : '/darkLogo.png'} layout='fill' />
             </div>
             <motion.div 
               className={styles.headHolder}
