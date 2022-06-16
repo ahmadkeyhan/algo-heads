@@ -4,16 +4,15 @@
   justify-content: space-evenly;
   height: 100vh;
 align-items: center;
+background-color: var(--color-bg-primary);
 }
-
 
 .headList {
   position: relative;
-  background-color: #fff;
+  background-color: var(--color-bg-primary);
   overflow: hidden;
   }
   
-
   .wheelFive, .wheelSix, .wheelSeven, .wheelEight {
     position: absolute;
     width: 87vw;
@@ -30,10 +29,12 @@ align-items: center;
     left: 57vw;
     top: 13vw;
   }
+
   .wheelSeven {
     left: -44vw;
     top: 70vw;
   }
+
   .wheelEight {
     top: 127vw;
     left: 13vw;
@@ -67,7 +68,7 @@ align-items: center;
     font-family: 'Gluten', cursive;
     font-size: 0.6rem;
     font-weight: 300;
-    color: #212121;
+    color: var(--color-text-primary);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -85,14 +86,12 @@ align-items: center;
     font-weight: 600;
     line-height:110%;
     margin: 0;
-    color: #a77c4e;
   }
 
   .nextStepsTitle h1 {
     font-size: 0.9rem;
     font-weight: 500;
     margin: 0;
-    color: #a77c4e;
   }
 
   .firstStepTitle h2 {
@@ -100,7 +99,7 @@ align-items: center;
     font-size: 0.7rem;
     font-weight: 300;
     margin: 0.5rem 0 0 0;
-    color: #212121;
+    color: var(--color-text-primary);
   }
 
   .nextStepsTitle h2 {
@@ -108,7 +107,6 @@ align-items: center;
     font-size: 0.6rem;
     font-weight: 600;
     margin: 0 0 0 0.2rem;
-    color: #212121;
   }
 
   .arrowHolder {
@@ -130,11 +128,10 @@ align-items: center;
     justify-content: space-around;
     border-radius: 5.5vw;
     border: none;
-    background-color: #fff;
+    background-color: var(--color-bg-primary);
     font-size: 0.6rem;
     font-family: 'Gluten', cursive;
-    color: #6a6a6a;
-
+    color: var(--color-text-secondary);
 }
 
   .stepsBackward {
@@ -147,7 +144,6 @@ align-items: center;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      color: #a77c4e;
   }
 
   .stepsForward {
@@ -160,7 +156,6 @@ align-items: center;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      color: #a77c4e;
   }
 
   .step {
@@ -195,6 +190,7 @@ align-items: center;
     border-radius: 14vw;
     display: flex;
     justify-content: center;
+    color: var(--color-text-secondary);
   }
 
   .bigHeadHolder {
@@ -207,6 +203,7 @@ align-items: center;
     padding: 0;
     justify-content: space-around;
     align-items: center;
+    color: var(--color-text-secondary);
   }
 
   .bigHeadHolder .bigPriceTag div {
@@ -237,7 +234,7 @@ align-items: center;
     justify-content: space-between;
     align-items: center;
     border-radius: 10vw;
-    background-color: #fff;
+    background-color: var(--color-bg-primary);
     border-width: 3px;
     z-index: 10;
   }
@@ -268,8 +265,8 @@ align-items: center;
     width: 7vw;
     height: 7vw;
     border-radius: 5vw;
-    background-color: rgba(255,255,255,1);
-    border: 2px solid #FFBC76;
+    background-color: var(--color-bg-primary);
+    border: 2px solid var(--color-text-secondary);
     font-family: 'Gluten', cursive;
     font-size: 0.7rem;
     font-weight: 300;
@@ -330,8 +327,8 @@ align-items: center;
     width: 7vw;
     height: 7vw;
     border-radius: 5vw;
-    background-color: rgba(255,255,255,1);
-    border: 2px solid #FFBC76;
+    background-color: var(--color-bg-primary);
+    border: 2px solid var(--color-text-secondary);
     font-family: 'Gluten', cursive;
     font-size: 0.7rem;
     font-weight: 300;
@@ -356,7 +353,7 @@ align-items: center;
     width: calc(27vw - 0.2rem);
     height: calc(27vw - 0.2rem);
     border-radius: 14vw;
-    background-color: #fff;
+    background-color: var(--color-bg-primary);
     opacity: 1;
   }
 
@@ -386,7 +383,7 @@ align-items: center;
     width: 12vw;
     height: 7vw;
     border-radius: 5vw;
-    background-color: rgba(255,255,255,1);
+    background-color: var(--color-bg-primary);
     font-family: 'Gluten', cursive;
     font-size: 0.7rem;
     font-weight: 300;
@@ -412,7 +409,7 @@ align-items: center;
     font-family: 'Gluten', cursive;
     font-size: 0.6rem;
     font-weight: 300;
-    color: #212121;
+    color: var(--color-text-secondary);
     position: absolute;
     top: 28vw;
     left: 22vw;
@@ -425,7 +422,6 @@ align-items: center;
   .sortWheel p {
     margin: 0.1rem 0;
   }
-
 
   .sortDirection, .sortBy {
     display: flex;
@@ -440,7 +436,6 @@ align-items: center;
     align-items: flex-end;
   }
 
-
   .sortDirectionSlider, .sortBySlider {
     display: flex;
     flex-direction: column;
@@ -450,24 +445,23 @@ align-items: center;
     width: 1.125rem;
     padding: 0;
     border-radius: 1rem;
-    background-color: #fff;
-    border: 0.125rem solid #a77c4e;
+    background-color: var(--color-bg-primary);
+    border: 0.125rem solid var(--color-text-secondary);
   }
 
   .sortDirectionCatcher, .sortByCatcher {
     margin: -0.125rem 0;
     width: 1.125rem;
     height: 1.125rem;
-    border: 0.125rem solid #a77c4e;
+    border: 0.125rem solid var(--color-text-secondary);
     border-radius: 1rem;
-    background-color: #FFBC76;
   }
 
   .nftxCollection {
     font-family: 'Gluten', cursive;
     font-size: 0.6rem;
     font-weight: 300;
-    color: #212121;
+    color: var(--color-text-secondary);
     position: absolute;
     top: 39vw;
     left: 22vw;

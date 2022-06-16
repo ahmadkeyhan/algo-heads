@@ -11,6 +11,8 @@ import {arrowPalette, scrollArrowPalette} from './Assets'
 import Link from 'next/link'
 
 function Headlist() {
+  const [activeTheme, setActiveTheme] = useState('light')
+
    const [sortedHeads, setSortedHeads] = useState([{sholder: '', assetId: '761630099', src: '/algoHead001.png',bgColorCode: 6,price: 0},
                                                    {sholder: '', assetId: '761631219', src: '/algoHead002.png',bgColorCode: 0,price: 0},
                                                    {sholder: '', assetId: '761633300', src: '/algoHead003.png',bgColorCode: 4,price: 0},
@@ -101,6 +103,7 @@ function Headlist() {
   const [styles, setStyles] = useState(narrowStyles)
 
   useEffect(() => {
+    setActiveTheme(document.body.dataset.theme)
     setWidth(window.innerWidth)
     setHeight(window.innerHeight)
     if (window.innerHeight/window.innerWidth < 16/9) {
@@ -113,7 +116,7 @@ function Headlist() {
     if (rank != step-1 && rank < sortedHeads.length) {
       return (
         <motion.div className={styles.headHolder}
-          style={{color: darkColorPalette[sortedHeads[rank].bgColorCode],
+          style={{color: activeTheme==='light' ? darkColorPalette[sortedHeads[rank].bgColorCode] : null,
           top: window.innerHeight/window.innerWidth >= 16/9 ? `${top}vw` : `${top*9/16}vh`,
           left: window.innerHeight/window.innerWidth >= 16/9 ? `${left}vw` : `${left*9/16}vh`}}>
           <motion.div style={{borderColor: lightColorPalette[sortedHeads[rank].bgColorCode]}} className={rank == step ? styles.firstPriceTag : styles.priceTag}>
@@ -171,7 +174,7 @@ function Headlist() {
       } else {
         return (
           <motion.div className={styles.bigHeadHolder}
-            style={{color: darkColorPalette[sortedHeads[rank+1].bgColorCode],
+            style={{color: activeTheme==='light' ? darkColorPalette[sortedHeads[rank+1].bgColorCode] : null,
             top: window.innerHeight/window.innerWidth >= 16/9 ? `${top}vw` : `${top*9/16}vh`,
             left: window.innerHeight/window.innerWidth >= 16/9 ? `${left}vw` : `${left*9/16}vh`}}>
             <motion.div className={styles.bigPriceTag}>
@@ -196,7 +199,9 @@ function Headlist() {
                 </a>
               </Link>
             </motion.div>
-            <motion.div style={{border: `0.125rem solid ${lightColorPalette[sortedHeads[rank+1].bgColorCode]}`}} className={styles.nftxLink}>
+            <motion.div className={styles.nftxLink}
+              style={{color: activeTheme==='light'? null : lightColorPalette[sortedHeads[rank+1].bgColorCode],
+                border: `0.125rem solid ${activeTheme==='light' ? lightColorPalette[sortedHeads[rank+1].bgColorCode] : darkColorPalette[sortedHeads[rank+1].bgColorCode]}`}}>
               <Link href={'https://www.nftexplorer.app/asset/'+sortedHeads[rank+1].assetId} passHref>
                 <a target='_blank'>
                   <p>see more</p>
@@ -204,11 +209,11 @@ function Headlist() {
               </Link>
             </motion.div>
             <motion.div className={styles.rank}
-             style={{color: darkColorPalette[sortedHeads[rank+1].bgColorCode], borderColor: lightColorPalette[sortedHeads[rank+1].bgColorCode]}}>
+             style={{color: activeTheme==='light'? darkColorPalette[sortedHeads[rank+1].bgColorCode] : lightColorPalette[sortedHeads[rank+1].bgColorCode], borderColor: activeTheme==='light' ? lightColorPalette[sortedHeads[rank+1].bgColorCode] : darkColorPalette[sortedHeads[rank+1].bgColorCode]}}>
               <p>{rank + 2}</p>
             </motion.div>
             <motion.div
-              style={{backgroundColor: lightColorPalette[sortedHeads[rank+1].bgColorCode] ,
+              style={{backgroundColor: activeTheme==='light' ? lightColorPalette[sortedHeads[rank+1].bgColorCode] : darkColorPalette[sortedHeads[rank+1].bgColorCode],
                       transform: `rotate(${rotation}deg)`}}
               className={styles.frame}>
                 <motion.div className={styles.secondFrame}></motion.div>
@@ -222,13 +227,14 @@ function Headlist() {
           style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${top}vw` : `${top*9/16}vh`,
           left: window.innerHeight/window.innerWidth >= 16/9 ? `${left}vw` : `${left*9/16}vh`}}>
           <motion.div
-            style={rank == sortedHeads.length ?
-              {backgroundColor: lightColorPalette[colorCode],
-                transform: `rotate(${rotation}deg)`} : {display: 'none'}}
+            style={rank == sortedHeads.length && activeTheme === 'light' ?
+              {color: darkColorPalette[colorCode],backgroundColor: lightColorPalette[colorCode], transform: `rotate(${rotation}deg)`} : 
+              rank == sortedHeads.length && activeTheme === 'dark' ?
+              {border: `2px solid #dfdfdf`,color: lightColorPalette[colorCode],transform: `rotate(${rotation}deg)`} : {display: 'none'}}
             onClick={() => setStep(0)}
             className={styles.frame}>
             <p className={styles.goBack}
-              style={rank == sortedHeads.length ? {color: darkColorPalette[colorCode],transform: `rotate(${-rotation}deg)`} : {display: 'none'}}>Go back top!</p>
+              style={rank == sortedHeads.length ? {transform: `rotate(${-rotation}deg)`} : {display: 'none'}}>Go back top!</p>
           </motion.div>          
         </motion.div>
       )
@@ -294,11 +300,11 @@ function Headlist() {
               <MdIcons.MdHomeFilled style={{fontSize: '1rem'}} />
               Tap to go home!
             </motion.div>
-            <Image style={{transform: 'rotate(-135deg) scaleX(-1)'}} src={scrollArrowPalette[colorCode]} alt="" layout='fill' />
+            <Image style={{transform: 'rotate(-135deg) scaleX(-1)'}} src={activeTheme==='light'? scrollArrowPalette[colorCode] : scrollArrowPalette[7]} alt="" layout='fill' />
           </motion.div> : 
           <motion.div className={styles.nextStepsTitle}>
             <motion.div className={styles.title}>
-              <h1 style={{color: darkColorPalette[colorCode]}}>Homosapien heads</h1>
+              <h1 style={{color:activeTheme==='light'? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}>Homosapien heads</h1>
             </motion.div>
             <motion.div className={styles.stepCounter}>
               <p>( Phase 1 )</p>
@@ -316,38 +322,46 @@ function Headlist() {
             <motion.div className={styles.arrowHolder}>
               <motion.div className={styles.stepsBackward}>
                 <motion.div
-                  style={{backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]}}
+                  style={activeTheme==='light'?
+                    {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} :
+                    {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}}
                   onClick={() => setStep(step-10)}
                   animate={step > 9 ? null : {display: 'none'}}
                   className={styles.step}>
                   <p>-<span>10</span></p>
                 </motion.div>
                 <motion.div
-                  style={{backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]}}
+                  style={activeTheme==='light'?
+                    {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} :
+                    {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}}
                   onClick={() => setStep(step-5)}
                   animate={step > 4 ? null : {display: 'none'}}
                   className={styles.step}>
                   <p>-<span>5</span></p>
                 </motion.div>
                 <motion.div
-                  style={{backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]}}
+                  style={activeTheme==='light'?
+                    {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} :
+                    {color: lightColorPalette[colorCode]}}
                   onClick={() => setStep(0)}
                   animate={step > 4 ? {display: 'none'} : null}
                   className={styles.step}>
                   <span>Go back</span>
                 </motion.div>
                 <motion.div
-                  style={{backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]}}
+                  style={activeTheme==='light'?
+                    {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} :
+                    {color: lightColorPalette[colorCode]}}
                   onClick={() => setStep(0)}
                   animate={step > 4 ? {display: 'none'} : null}
                   className={styles.step}>
                   <span>To top</span>
                 </motion.div>
               </motion.div>
-              <Image className={styles.counterArrows} src={arrowPalette[colorCode]} alt="" layout='fill' />
+              <Image className={styles.counterArrows} src={activeTheme==='light'? arrowPalette[colorCode] : arrowPalette[7]} alt="" layout='fill' />
             </motion.div> :
             <motion.div className={styles.firstStepTitle}>
-              <h1 style={{color: darkColorPalette[colorCode]}} >Homosapien heads</h1>
+              <h1 style={{color:activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}} >Homosapien heads</h1>
               <h2>( Phase 1 )</h2>
               <motion.div style={{border: 'none', marginRight: '-2rem'}} className={styles.stepCounter}>
                 <p>{step+1} to {step+10}</p>
@@ -361,28 +375,32 @@ function Headlist() {
           <motion.div animate={step+5 < sortedHeads.length ? null : {display: 'none'}} className={styles.arrowHolder}>
             <motion.div className={styles.stepsForward}>
               <motion.div
-                style={{backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]}}
+                style={activeTheme==='light'?
+                  {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} :
+                  {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}}
                 animate={step+5 < sortedHeads.length ? null : {display: 'none'}}
                 onClick={() => setStep(step+5)}
                 className={styles.step}>
                 <p>+<span>5</span></p>
               </motion.div>
               <motion.div
-                style={{backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]}}
+                style={activeTheme==='light'?
+                  {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} :
+                  {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}}
                 animate={step+10 < sortedHeads.length ? null : {display: 'none'}}
                 onClick={() => setStep(step+10)}
                 className={styles.step}>
                 <p>+<span>10</span></p>
               </motion.div>
             </motion.div>
-            <Image style={{transform: 'rotate(315deg)'}} className={styles.counterArrows} src={arrowPalette[colorCode]} alt="" layout='fill' />
+            <Image style={{transform: 'rotate(315deg)'}} className={styles.counterArrows} src={activeTheme==='light'? arrowPalette[colorCode]: arrowPalette[7]} alt="" layout='fill' />
           </motion.div>
           <HeadHolder top={-10} left={46} rank={step + 5} rotation={-102.5} borderRadius={[14,14,14,5]} />
           <HeadHolder top={13} left={70} rank={step + 6} rotation={-67.5} borderRadius={[14,14,14,5]} />
         </motion.div>
         <motion.div className={styles.wheelEight}>
           <motion.div className={styles.sortWheel}>
-            <motion.div className={styles.sortDirection}>
+            <motion.div style={activeTheme==='light' ? {color:darkColorPalette[colorCode]} : null} className={styles.sortDirection}>
               <motion.div className={styles.sortDirections}>
                 {sortBy ?
                   <p style={sortDirection ? {opacity: 1} :{opacity: 0.4}}>earliest</p> :
@@ -412,11 +430,11 @@ function Headlist() {
                 <p style={!sortBy ? {opacity: 1} : {opacity: 0.4}}>priced</p>
               </motion.div>
               <motion.div
-                                    style={{borderColor: darkColorPalette[colorCode]}}
+                style={{borderColor: darkColorPalette[colorCode]}}
                 animate={sortBy ? {justifyContent: 'flex-start'} : {justifyContent: 'flex-end'}}
                 className={styles.sortBySlider}>
                 <motion.div
-                                    style={{borderColor: darkColorPalette[colorCode], backgroundColor: lightColorPalette[colorCode]}}
+                  style={{borderColor: darkColorPalette[colorCode], backgroundColor: lightColorPalette[colorCode]}}
                   className={styles.sortByCatcher}
                   onClick={() => {
                     setSortBy(!sortBy)
