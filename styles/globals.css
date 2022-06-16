@@ -5,6 +5,19 @@ body {
   font-family: 'Gluten', cursive;
 }
 
+body,
+body[data-theme="light"] {
+  --color-text-primary: #212121;
+  --color-text-secondary: #6a6a6a;
+  --color-bg-primary: #fff;
+}
+
+body[data-theme="dark"] {
+  --color-text-primary: #fff;
+  --color-text-secondary: #dfdfdf;
+  --color-bg-primary: #121f24;
+}
+
 a {
   color: inherit;
   text-decoration: none;
