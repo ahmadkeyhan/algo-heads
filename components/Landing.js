@@ -620,15 +620,21 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
             <motion.div className={styles.themeSliderFrame}>
               <div>
                 <div className={styles.themeSlider}
-                    onClick={() => setActiveTheme(activeTheme === "light" ? "dark" : "light")}
-                    aria-label={`Change to ${inactiveTheme} mode`}
-                    title={`Change to ${inactiveTheme} mode`}
-                    style={{borderColor: darkColorPalette[colorCode]}}>
-                    <motion.div 
+                  onClick={() => setActiveTheme(activeTheme === "light" ? "dark" : "light")}
+                  aria-label={`Change to ${inactiveTheme} mode`}
+                  title={`Change to ${inactiveTheme} mode`}
+                  style={{borderColor: darkColorPalette[colorCode]}}>
+                    
+                  <motion.div 
                     style={{borderColor: darkColorPalette[colorCode],backgroundColor: lightColorPalette[colorCode]}}
                     animate={activeTheme === "light" ? {left:'-0.1875rem'} : {left: '0.9375rem'}}
                     transition={{duration: 0.2}}
-                    className={styles.themeCatcher} />
+                    className={styles.themeCatcher}>
+                    <motion.div 
+                      animate={activeTheme === "light" ? {left:'-1.125rem', top: '-1.125rem'} : null}
+                      transition={{duration: 0.2}}
+                      className={styles.shadowCatcher} />
+                  </motion.div>
                 </div>
               </div>
             </motion.div>
