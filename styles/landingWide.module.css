@@ -336,6 +336,11 @@
     display: flex;
     flex-direction: row-reverse;
   }
+
+  .wallet p {
+    width: 9vh;
+    text-align: right;
+  }
   
   .socialButton, .walletButton {
     width: 5.06vh;

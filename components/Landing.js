@@ -17,11 +17,12 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
 
  function Landing() {
 
-  const [activeTheme, setActiveTheme] = useState("light")
+  const [activeTheme, setActiveTheme] = useState("dark")
   const inactiveTheme = activeTheme === "light" ? "dark" : "light"
 
   useEffect(() => {
     document.body.dataset.theme = activeTheme
+    window.localStorage.setItem("theme", activeTheme)
   }, [activeTheme])
 
     const myAlgoConnect = new MyAlgoConnect({ disableLedgerNano: false })
@@ -82,6 +83,9 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
     const [styles, setStyles] = useState(narrowStyles)
    
     useEffect(() => {
+      const savedTheme = window.localStorage.getItem("theme")
+      savedTheme && setActiveTheme(savedTheme)
+
       setShuffleDays(0)
       setShuffleHours(0)
       setShuffleMinutes(0)
@@ -618,7 +622,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
             <motion.div className={styles.themeSliderFrame}>
               <div>
                 <div className={styles.themeSlider}
-                    onClick={() => setActiveTheme(inactiveTheme)}
+                    onClick={() => setActiveTheme(activeTheme === "light" ? "dark" : "light")}
                     aria-label={`Change to ${inactiveTheme} mode`}
                     title={`Change to ${inactiveTheme} mode`}
                     style={{borderColor: darkColorPalette[colorCode]}}>

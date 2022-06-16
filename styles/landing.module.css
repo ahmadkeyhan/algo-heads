@@ -337,6 +337,11 @@
   flex-direction: row-reverse;
 }
 
+.wallet p {
+  width: 16vw;
+  text-align: right;
+}
+
 .socialButton, .walletButton {
   width: 9vw;
   height: 9vw;
