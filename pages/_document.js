@@ -7,6 +7,17 @@ class MyDocument extends Document {
     }
 
     render() {
+        const setInitialTheme = `
+        function getUserPreference() {
+          if(window.localStorage.getItem('theme')) {
+            return window.localStorage.getItem('theme')
+          }
+          return window.matchMedia('(prefers-color-scheme: dark)').matches
+                    ? 'dark'
+                    : 'light'
+        }
+        document.body.dataset.theme = getUserPreference();
+      `;
         return (
             <Html>
                 <Head>
@@ -16,6 +27,7 @@ class MyDocument extends Document {
 <link href="https://fonts.googleapis.com/css2?family=Sue+Ellen+Francisco&display=swap" rel="stylesheet"/>
                 </Head>
                 <body>
+                    <script dangerouslySetInnerHTML={{ __html: setInitialTheme }} />
                     <Main />
                     <NextScript />
                 </body>

@@ -17,7 +17,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
 
  function Landing() {
 
-  const [activeTheme, setActiveTheme] = useState("dark")
+  const [activeTheme, setActiveTheme] = useState(document.body.dataset.theme)
   const inactiveTheme = activeTheme === "light" ? "dark" : "light"
 
   useEffect(() => {
@@ -83,8 +83,6 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
     const [styles, setStyles] = useState(narrowStyles)
    
     useEffect(() => {
-      const savedTheme = window.localStorage.getItem("theme")
-      savedTheme && setActiveTheme(savedTheme)
 
       setShuffleDays(0)
       setShuffleHours(0)
