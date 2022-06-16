@@ -317,8 +317,8 @@
 
 .social {
   position: absolute;
-  top: 106vw;
-  left: 4vw;
+  top: 118vw;
+  left: 2vw;
   height: calc(27vw + 1rem);
   display: flex;
   flex-direction: column;

@@ -651,7 +651,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
             }
           </div>
           <div className={styles.wheelFour}>
-              <motion.div
+              {/* <motion.div
                 className={styles.scrollArrowHolder}>
                 <Image className={styles.counterScrollArrows} src={activeTheme === 'light' ? scrollArrowPalette[colorCode] : scrollArrowPalette[7]} layout='fill' />
               </motion.div>
@@ -662,7 +662,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
                 <MdIcons.MdFace
                   style={{fontSize: '1rem', color: lightColorPalette[colorCode]}}/>
                   <p>Tap to see minted heads!</p>
-              </button>
+              </button> */}
           </div>
         </div>
       </div>
