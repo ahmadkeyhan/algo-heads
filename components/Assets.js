@@ -4,7 +4,8 @@ export const arrowPalette = ['/tealArrows.png',
                             '/greyArrows.png',
                             '/redArrows.png',
                             '/purpleArrows.png',
-                            '/orangeArrows.png']
+                            '/orangeArrows.png',
+                            '/darkArrows.png']
 
 export const buyBannerPalette = ['/buyBannerTeal.png',
                                 '/buyBannerYellow.png',
@@ -12,7 +13,8 @@ export const buyBannerPalette = ['/buyBannerTeal.png',
                                 '/buyBannerGrey.png',
                                 '/buyBannerRed.png',
                                 '/buyBannerPurple.png',
-                                '/buyBannerOrange.png']                        
+                                '/buyBannerOrange.png',
+                                '/buyBannerDark.png']                        
 
 export const linkArrowPalette = ['/tealLinkArrows.png',
                                 '/yellowLinkArrows.png',
@@ -20,7 +22,8 @@ export const linkArrowPalette = ['/tealLinkArrows.png',
                                 '/greyLinkArrows.png',
                                 '/redLinkArrows.png',
                                 '/purpleLinkArrows.png',
-                                '/orangeLinkArrows.png']                                
+                                '/orangeLinkArrows.png',
+                                '/darkLinkArrows.png']                                
 
 export const scrollArrowPalette = ['/tealScrollArrows.png',
                                 '/yellowScrollArrows.png',
@@ -28,4 +31,5 @@ export const scrollArrowPalette = ['/tealScrollArrows.png',
                                 '/greyScrollArrows.png',
                                 '/redScrollArrows.png',
                                 '/purpleScrollArrows.png',
-                                '/orangeScrollArrows.png']
+                                '/orangeScrollArrows.png',
+                                '/darkScrollArrows.png']
