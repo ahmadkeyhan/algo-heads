@@ -11,7 +11,7 @@ left: 0;
   width: 1.125rem;
   padding: 0;
   border-radius: 1rem;
-  background-color: #fff;
+  background-color: var(--color-bg-primary);
   border: 0.125rem solid #6a6a6a;
 }
 
