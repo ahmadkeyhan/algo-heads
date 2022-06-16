@@ -6,6 +6,8 @@ import NavSlider from '../components/NavSlider'
 import {lightColorPalette, darkColorPalette} from '../components/colorPalette'
 
 function Roadmap() {
+    const [activeTheme, setActiveTheme] = useState('light')
+
     const [tasks, setTasks] = useState()
     const [isLoading, setLoading] = useState()
     useEffect(() => {
@@ -33,6 +35,7 @@ function Roadmap() {
     const [styles, setStyles] = useState(narrowStyles)
 
     useEffect(() => {
+        setActiveTheme(document.body.dataset.theme)
         setWidth(window.innerWidth)
         setHeight(window.innerHeight)
         if (window.innerHeight/window.innerWidth < 16/9) {
@@ -61,21 +64,9 @@ function Roadmap() {
                             style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/10)}vw` : `${24.47*Math.sin(Math.PI/10)}vh`,
                                 left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10))}vw` : `${24.47*(1+Math.cos(Math.PI/10))}vh`,
                                 borderColor: darkColorPalette[colorCode],
-                                color: darkColorPalette[colorCode]}}
+                                color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
                             <h2>Week 1</h2>
-                            <motion.div className={styles.doneAverage}>
-                                <motion.div className={styles.doneSlider}
-                                    style={Math.floor(average)==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode)%7]}}>
-                                    <motion.div
-                                        className={styles.doneSlide}
-                                        style={{width:  window.innerHeight/window.innerWidth >= 16/9 ? `${average*0.1}vw` : `${average*0.06}vh`,
-                                        backgroundColor: lightColorPalette[(colorCode)%7]}} />
-                                </motion.div>
-                                <p style={{color: darkColorPalette[(colorCode)%7]}}>
-                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
-                                </p>
-                            </motion.div>
                         </motion.div>
                         {angles.map((index) => {
                             average = 0
@@ -84,7 +75,7 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+1))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+1))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
-                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
@@ -98,21 +89,9 @@ function Roadmap() {
                             style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1+Math.cos(Math.PI/10+Math.PI/12))}vh`,
                                 left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.sin(Math.PI/10+Math.PI/12))}vh`,
                                 borderColor: darkColorPalette[colorCode],
-                                color: darkColorPalette[colorCode]}}
+                                color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
                             <h2>Week 2</h2>
-                            <motion.div className={styles.doneAverage}>
-                                <motion.div className={styles.doneSlider}
-                                    style={average==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode)%7]}}>
-                                    <motion.div
-                                        style={{width: window.innerHeight/window.innerWidth >= 16/9 ? `${average*0.1}vw` : `${average*0.06}vh`,
-                                        backgroundColor: lightColorPalette[(colorCode)%7]}}
-                                        className={styles.doneSlide} />
-                                </motion.div>
-                                <p style={{color: darkColorPalette[(colorCode)%7]}}>
-                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
-                                </p>
-                            </motion.div>
                         </motion.div>
                         {moreAngles.map((index) => {
                             average = 0
@@ -121,7 +100,7 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
-                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
@@ -135,21 +114,9 @@ function Roadmap() {
                             style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.cos(Math.PI/10+Math.PI/12))}vh`,
                                 left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/10+Math.PI/12)}vw` : `${24.47*Math.sin(Math.PI/10+Math.PI/12)}vh`,
                                 borderColor: darkColorPalette[colorCode],
-                                color: darkColorPalette[colorCode]}}
+                                color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
                             <h2 >Week 3</h2>
-                            <motion.div className={styles.doneAverage}>
-                                <motion.div className={styles.doneSlider}
-                                    style={average==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode)%7]}}>
-                                    <motion.div
-                                        style={{width: window.innerHeight/window.innerWidth >= 16/9 ?  `${average*0.1}vw` : `${average*0.06}vh`,
-                                        backgroundColor: lightColorPalette[(colorCode)%7]}}
-                                        className={styles.doneSlide} />
-                                </motion.div>
-                                <p style={{color: darkColorPalette[(colorCode)%7]}}>
-                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
-                                </p>
-                            </motion.div>
                         </motion.div>
                         {moreAngles.map((index) => {
                             average = 0
@@ -158,7 +125,7 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vh`,
-                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
@@ -171,21 +138,9 @@ function Roadmap() {
                             style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10))}vw` : `${24.47*(1-Math.sin(Math.PI/10))}vh`,
                                 left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10))}vw` : `${24.47*(1-Math.cos(Math.PI/10))}vh`,
                                 borderColor: darkColorPalette[colorCode],
-                                color: darkColorPalette[colorCode]}}
+                                color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
                             <h2>Week 4</h2>
-                            <motion.div className={styles.doneAverage}>
-                                <motion.div className={styles.doneSlider}
-                                    style={average==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode)%7]}}>
-                                    <motion.div
-                                        style={{width: window.innerHeight/window.innerWidth >= 16/9 ?  `${average*0.1}vw` : `${average*0.06}vh`,
-                                        backgroundColor: lightColorPalette[(colorCode)%7]}}
-                                        className={styles.doneSlide} />
-                                </motion.div>
-                                <p style={{color: darkColorPalette[(colorCode)%7]}}>
-                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
-                                </p>
-                            </motion.div>
                         </motion.div>
                         {angles.map((index) => {
                             average = 0
@@ -194,7 +149,7 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
                                         left:window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
-                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
@@ -205,21 +160,9 @@ function Roadmap() {
                             style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.sin(Math.PI/10))}vw` : `${24.47*(1+Math.sin(Math.PI/10))}vh`,
                                 left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10))}vw` : `${24.47*(1-Math.cos(Math.PI/10))}vh`,
                                 borderColor: darkColorPalette[colorCode],
-                                color: darkColorPalette[colorCode]}}
+                                color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
                             <h2>Week 5</h2>
-                            <motion.div className={styles.doneAverage}>
-                                <motion.div className={styles.doneSlider}
-                                    style={average==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode)%7]}}>
-                                    <motion.div
-                                        style={{width: window.innerHeight/window.innerWidth >= 16/9 ?  `${average*0.1}vw` : `${average*0.06}vh`,
-                                        backgroundColor: lightColorPalette[(colorCode)%7]}}
-                                        className={styles.doneSlide} />
-                                </motion.div>
-                                <p style={{color: darkColorPalette[(colorCode)%7]}}>
-                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
-                                </p>
-                            </motion.div>
                         </motion.div>
                         {angles.map((index) => {
                             average = 0
@@ -228,7 +171,7 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
-                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
@@ -242,21 +185,9 @@ function Roadmap() {
                             style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1+Math.cos(Math.PI/10+Math.PI/12))}vh`,
                                 left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/10+Math.PI/12)}vw` : `${24.47*Math.sin(Math.PI/10+Math.PI/12)}vh`,
                                 borderColor: darkColorPalette[colorCode],
-                                color: darkColorPalette[colorCode]}}
+                                color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
                             <h2>Week 6</h2>
-                            <motion.div className={styles.doneAverage}>
-                                <motion.div className={styles.doneSlider}
-                                    style={average==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode)%7]}}>
-                                    <motion.div
-                                        style={{width: window.innerHeight/window.innerWidth >= 16/9 ?  `${average*0.1}vw` : `${average*0.06}vh`,
-                                        backgroundColor: lightColorPalette[(colorCode)%7]}}
-                                        className={styles.doneSlide} />
-                                </motion.div>
-                                <p style={{color: darkColorPalette[(colorCode)%7]}}>
-                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
-                                </p>
-                            </motion.div>
                         </motion.div>
                         {moreAngles.map((index) => {
                             average = 0
@@ -265,7 +196,7 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top:window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vh`,
-                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
@@ -279,21 +210,9 @@ function Roadmap() {
                             style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.cos(Math.PI/10+Math.PI/12))}vh`,
                                 left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.sin(Math.PI/10+Math.PI/12))}vh`,
                                 borderColor: darkColorPalette[colorCode],
-                                color: darkColorPalette[colorCode]}}
+                                color: activeTheme==='light'? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
                             <h2>Week 7</h2>
-                            <motion.div className={styles.doneAverage}>
-                                <motion.div className={styles.doneSlider}
-                                    style={average==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode)%7]}}>
-                                    <motion.div
-                                        style={{width: window.innerHeight/window.innerWidth >= 16/9 ?  `${average*0.1}vw` : `${average*0.06}vh`,
-                                        backgroundColor: lightColorPalette[(colorCode)%7]}}
-                                        className={styles.doneSlide} />
-                                </motion.div>
-                                <p style={{color: darkColorPalette[(colorCode)%7]}}>
-                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
-                                </p>
-                            </motion.div>
                         </motion.div>
                         {moreAngles.map((index) => {
                             average = 0
@@ -302,7 +221,7 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
-                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
@@ -315,21 +234,9 @@ function Roadmap() {
                             style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10))}vw` : `${24.47*(1-Math.sin(Math.PI/10))}vh`,
                                 left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10))}vw` : `${24.47*(1+Math.cos(Math.PI/10))}vh`,
                                 borderColor: darkColorPalette[colorCode],
-                                color: darkColorPalette[colorCode]}}
+                                color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
                             <h2>Week 8</h2>
-                            <motion.div className={styles.doneAverage}>
-                                <motion.div className={styles.doneSlider}
-                                    style={average==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode)%7]}}>
-                                    <motion.div
-                                        style={{width: window.innerHeight/window.innerWidth >= 16/9 ?  `${average*0.1}vw` : `${average*0.06}vh`,
-                                        backgroundColor: lightColorPalette[(colorCode)%7]}}
-                                        className={styles.doneSlide} />
-                                </motion.div>
-                                <p style={{color: darkColorPalette[(colorCode)%7]}}>
-                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
-                                </p>
-                            </motion.div>
                         </motion.div>
                         {angles.map((index) => {
                             average = 0
@@ -338,7 +245,7 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
-                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
@@ -379,7 +286,7 @@ function Roadmap() {
                                     <h2 style={{color: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                         {task.title}
                                     </h2>
-                                    <p style={{color: darkColorPalette[(colorCode+task.type+1)%7]}}>
+                                    <p style={{color: activeTheme==='light'? darkColorPalette[(colorCode+task.type+1)%7] : '#dfdfdf'}}>
                                         {task.brief}
                                     </p>
                                     <motion.div className={styles.done}>
@@ -412,7 +319,7 @@ function Roadmap() {
                             style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/10)}vw` : `${24.47*Math.sin(Math.PI/10)}vh`,
                                 left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10))}vw` : `${24.47*(1+Math.cos(Math.PI/10))}vh`,
                                 borderColor: darkColorPalette[colorCode],
-                                color: darkColorPalette[colorCode]}}
+                                color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
                             <h2>Week 1</h2>
                             <motion.div className={styles.doneAverage}>
@@ -423,7 +330,7 @@ function Roadmap() {
                                         style={{width:  window.innerHeight/window.innerWidth >= 16/9 ? `${average*0.1}vw` : `${average*0.06}vh`,
                                         backgroundColor: lightColorPalette[(colorCode)%7]}} />
                                 </motion.div>
-                                <p style={{color: darkColorPalette[(colorCode)%7]}}>
+                                <p style={{color:activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}>
                                     {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
                                 </p>
                             </motion.div>
@@ -435,7 +342,7 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+1))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+1))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
-                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
@@ -452,7 +359,7 @@ function Roadmap() {
                                         <h2 style={{color: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                             {task.title}
                                         </h2>
-                                        <p style={{color: darkColorPalette[(colorCode+task.type+1)%7]}}>
+                                        <p style={{color: activeTheme==='light'? darkColorPalette[(colorCode+task.type+1)%7] : '#dfdfdf'}}>
                                             {task.brief}
                                         </p>
                                         <motion.div className={styles.done}>
@@ -485,7 +392,7 @@ function Roadmap() {
                             style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1+Math.cos(Math.PI/10+Math.PI/12))}vh`,
                                 left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.sin(Math.PI/10+Math.PI/12))}vh`,
                                 borderColor: darkColorPalette[colorCode],
-                                color: darkColorPalette[colorCode]}}
+                                color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
                             <h2>Week 2</h2>
                             <motion.div className={styles.doneAverage}>
@@ -496,7 +403,7 @@ function Roadmap() {
                                         backgroundColor: lightColorPalette[(colorCode)%7]}}
                                         className={styles.doneSlide} />
                                 </motion.div>
-                                <p style={{color: darkColorPalette[(colorCode)%7]}}>
+                                <p style={{color:activeTheme==='light'? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}>
                                     {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
                                 </p>
                             </motion.div>
@@ -508,7 +415,7 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
-                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
@@ -525,7 +432,7 @@ function Roadmap() {
                                         <h2 style={{color: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                             {task.title}
                                         </h2>
-                                        <p style={{color: darkColorPalette[(colorCode+task.type+1)%7]}}>
+                                        <p style={{color: activeTheme==='light'? darkColorPalette[(colorCode+task.type+1)%7] : '#dfdfdf'}}>
                                             {task.brief}
                                         </p>
                                         <motion.div className={styles.done}>
@@ -558,7 +465,7 @@ function Roadmap() {
                             style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.cos(Math.PI/10+Math.PI/12))}vh`,
                                 left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/10+Math.PI/12)}vw` : `${24.47*Math.sin(Math.PI/10+Math.PI/12)}vh`,
                                 borderColor: darkColorPalette[colorCode],
-                                color: darkColorPalette[colorCode]}}
+                                color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
                             <h2 >Week 3</h2>
                             <motion.div className={styles.doneAverage}>
@@ -569,7 +476,7 @@ function Roadmap() {
                                         backgroundColor: lightColorPalette[(colorCode)%7]}}
                                         className={styles.doneSlide} />
                                 </motion.div>
-                                <p style={{color: darkColorPalette[(colorCode)%7]}}>
+                                <p style={{color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}>
                                     {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
                                 </p>
                             </motion.div>
@@ -581,7 +488,7 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vh`,
-                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
@@ -597,7 +504,7 @@ function Roadmap() {
                                         <h2 style={{color: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                             {task.title}
                                         </h2>
-                                        <p style={{color: darkColorPalette[(colorCode+task.type+1)%7]}}>
+                                        <p style={{color: activeTheme==='light'? darkColorPalette[(colorCode+task.type+1)%7] : '#dfdfdf'}}>
                                             {task.brief}
                                         </p>
                                         <motion.div className={styles.done}>
@@ -630,7 +537,7 @@ function Roadmap() {
                             style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10))}vw` : `${24.47*(1-Math.sin(Math.PI/10))}vh`,
                                 left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10))}vw` : `${24.47*(1-Math.cos(Math.PI/10))}vh`,
                                 borderColor: darkColorPalette[colorCode],
-                                color: darkColorPalette[colorCode]}}
+                                color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
                             <h2>Week 4</h2>
                             <motion.div className={styles.doneAverage}>
@@ -641,7 +548,7 @@ function Roadmap() {
                                         backgroundColor: lightColorPalette[(colorCode)%7]}}
                                         className={styles.doneSlide} />
                                 </motion.div>
-                                <p style={{color: darkColorPalette[(colorCode)%7]}}>
+                                <p style={{color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}>
                                     {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
                                 </p>
                             </motion.div>
@@ -653,7 +560,7 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
                                         left:window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
-                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
@@ -668,7 +575,7 @@ function Roadmap() {
                                             <h2 style={{color: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                                 {task.title}
                                             </h2>
-                                            <p style={{color: darkColorPalette[(colorCode+task.type+1)%7]}}>
+                                            <p style={{color: activeTheme==='light'? darkColorPalette[(colorCode+task.type+1)%7] : '#dfdfdf'}}>
                                                 {task.brief}
                                             </p>
                                             <motion.div className={styles.done}>
@@ -702,7 +609,7 @@ function Roadmap() {
                             style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.sin(Math.PI/10))}vw` : `${24.47*(1+Math.sin(Math.PI/10))}vh`,
                                 left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10))}vw` : `${24.47*(1-Math.cos(Math.PI/10))}vh`,
                                 borderColor: darkColorPalette[colorCode],
-                                color: darkColorPalette[colorCode]}}
+                                color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
                             <h2>Week 5</h2>
                             <motion.div className={styles.doneAverage}>
@@ -713,7 +620,7 @@ function Roadmap() {
                                         backgroundColor: lightColorPalette[(colorCode)%7]}}
                                         className={styles.doneSlide} />
                                 </motion.div>
-                                <p style={{color: darkColorPalette[(colorCode)%7]}}>
+                                <p style={{color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}>
                                     {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
                                 </p>
                             </motion.div>
@@ -725,7 +632,7 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
-                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
@@ -742,7 +649,7 @@ function Roadmap() {
                                         <h2 style={{color: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                             {task.title}
                                         </h2>
-                                        <p style={{color: darkColorPalette[(colorCode+task.type+1)%7]}}>
+                                        <p style={{color: activeTheme==='light'? darkColorPalette[(colorCode+task.type+1)%7] : '#dfdfdf'}}>
                                             {task.brief}
                                         </p>
                                         <motion.div className={styles.done}>
@@ -775,7 +682,7 @@ function Roadmap() {
                             style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1+Math.cos(Math.PI/10+Math.PI/12))}vh`,
                                 left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/10+Math.PI/12)}vw` : `${24.47*Math.sin(Math.PI/10+Math.PI/12)}vh`,
                                 borderColor: darkColorPalette[colorCode],
-                                color: darkColorPalette[colorCode]}}
+                                color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
                             <h2>Week 6</h2>
                             <motion.div className={styles.doneAverage}>
@@ -786,7 +693,7 @@ function Roadmap() {
                                         backgroundColor: lightColorPalette[(colorCode)%7]}}
                                         className={styles.doneSlide} />
                                 </motion.div>
-                                <p style={{color: darkColorPalette[(colorCode)%7]}}>
+                                <p style={{color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}>
                                     {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
                                 </p>
                             </motion.div>
@@ -798,7 +705,7 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top:window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vh`,
-                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
@@ -815,7 +722,7 @@ function Roadmap() {
                                         <h2 style={{color: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                             {task.title}
                                         </h2>
-                                        <p style={{color: darkColorPalette[(colorCode+task.type+1)%7]}}>
+                                        <p style={{color: activeTheme==='light'? darkColorPalette[(colorCode+task.type+1)%7] : '#dfdfdf'}}>
                                             {task.brief}
                                         </p>
                                         <motion.div className={styles.done}>
@@ -848,7 +755,7 @@ function Roadmap() {
                             style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.cos(Math.PI/10+Math.PI/12))}vh`,
                                 left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.sin(Math.PI/10+Math.PI/12))}vh`,
                                 borderColor: darkColorPalette[colorCode],
-                                color: darkColorPalette[colorCode]}}
+                                color: activeTheme==='light'? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
                             <h2>Week 7</h2>
                             <motion.div className={styles.doneAverage}>
@@ -859,7 +766,7 @@ function Roadmap() {
                                         backgroundColor: lightColorPalette[(colorCode)%7]}}
                                         className={styles.doneSlide} />
                                 </motion.div>
-                                <p style={{color: darkColorPalette[(colorCode)%7]}}>
+                                <p style={{color:activeTheme==='light'? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}>
                                     {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
                                 </p>
                             </motion.div>
@@ -871,7 +778,7 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
-                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>
@@ -887,7 +794,7 @@ function Roadmap() {
                                         <h2 style={{color: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                             {task.title}
                                         </h2>
-                                        <p style={{color: darkColorPalette[(colorCode+task.type+1)%7]}}>
+                                        <p style={{color:activeTheme==='light'? darkColorPalette[(colorCode+task.type+1)%7]:null}}>
                                             {task.brief}
                                         </p>
                                         <motion.div className={styles.done}>
@@ -920,7 +827,7 @@ function Roadmap() {
                             style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10))}vw` : `${24.47*(1-Math.sin(Math.PI/10))}vh`,
                                 left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10))}vw` : `${24.47*(1+Math.cos(Math.PI/10))}vh`,
                                 borderColor: darkColorPalette[colorCode],
-                                color: darkColorPalette[colorCode]}}
+                                color: activeTheme==='light'? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
                             <h2>Week 8</h2>
                             <motion.div className={styles.doneAverage}>
@@ -931,7 +838,7 @@ function Roadmap() {
                                         backgroundColor: lightColorPalette[(colorCode)%7]}}
                                         className={styles.doneSlide} />
                                 </motion.div>
-                                <p style={{color: darkColorPalette[(colorCode)%7]}}>
+                                <p style={{color: activeTheme==='light'? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}>
                                     {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
                                 </p>
                             </motion.div>
@@ -943,7 +850,7 @@ function Roadmap() {
                                 <motion.div key={index}
                                     style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
                                         left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
-                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : darkColorPalette[colorCode],
+                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
                                     <p>{date.getDate()}</p>

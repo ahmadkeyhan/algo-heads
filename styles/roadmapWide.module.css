@@ -4,11 +4,12 @@
     justify-content: space-evenly;
     height: 100vh;
   align-items: center;
+  background-color: var(--color-bg-primary);
   }
   
   .roadmap {
       position: relative;
-      background-color: #fff;
+      background-color: var(--color-bg-primary);
       overflow-y: scroll;
     }
   
@@ -18,7 +19,7 @@
     }
     
     .roadmap::-webkit-scrollbar-track {
-      background: #eee;
+      background: #666;
     }
     
     .roadmap::-webkit-scrollbar-thumb {
@@ -33,7 +34,7 @@
       width: 9.56vh;
       height: 9.56vh;
       border-radius: 4.78vh;
-      background-color: #fff;
+      background-color: var(--color-bg-primary);
       border: 2px solid aquamarine;
       display: flex;
       flex-direction: column;
@@ -55,7 +56,7 @@
       width: 4.5vh;
       height: 4.5vh;
       border-radius: 2.25vh;
-      background-color: #fff;
+      background-color: var(--color-bg-primary);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -122,7 +123,7 @@
     font-family: 'Gluten', cursive;
     font-size: 0.6rem;
     font-weight: 300;
-    color: #212121;
+    color: var(--color-text-primary);
   }
   
   .wheel9 .done {
@@ -196,7 +197,7 @@
     font-family: 'Gluten', cursive;
     font-size: 0.6rem;
     font-weight: 300;
-    color: #212121;
+    color: var(--color-text-primary);
   }
   
   
@@ -271,7 +272,7 @@
     font-family: 'Gluten', cursive;
     font-size: 0.6rem;
     font-weight: 300;
-    color: #212121;
+    color: var(--color-text-primary);
   }
   
   
@@ -385,7 +386,7 @@
     font-family: 'Gluten', cursive;
     font-size: 0.6rem;
     font-weight: 300;
-    color: #212121;
+    color: var(--color-text-primary);
   }
   
   .wheel12 .done, .wheel15 .done {
@@ -423,7 +424,6 @@
     top: 0;
     height: 0.125rem;
     border-radius: 0.0625rem;
-    background-color: salmon;
   }
   
   .doneAverage {
