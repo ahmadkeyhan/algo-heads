@@ -55,10 +55,11 @@ function Headlist() {
       fetch('api/nftx')
         .then((res) => res.json())
         .then((data) => {
+          console.log(data)
           data.message.sales.reverse()
           for (var j=0; j < data.message.sales.length; j++) {
             for (var i=0; i < sortedHeads.length; i++) {
-              if (data.message.sales[j].nftxUrl.slice(30)*1 == sortedHeads[i].assetId) {
+              if (data.message.sales[j].asset == sortedHeads[i].assetId) {
                 sortedHeads[i].price = data.message.sales[j].ualgos/1000000
                 sortedHeads[i].sholder = data.message.sales[j].receiver
               }
