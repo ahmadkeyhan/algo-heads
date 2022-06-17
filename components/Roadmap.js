@@ -331,7 +331,7 @@ function Roadmap() {
                                         backgroundColor: lightColorPalette[(colorCode)%7]}} />
                                 </motion.div>
                                 <p style={{color:activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}>
-                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
+                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓✓'}
                                 </p>
                             </motion.div>
                         </motion.div>
@@ -364,7 +364,7 @@ function Roadmap() {
                                         </p>
                                         <motion.div className={styles.done}>
                                             <p style={{color: lightColorPalette[(colorCode+task.type+1)%7]}}>
-                                                {!task.done ? '~' : task.done < 100 ? `${task.done}%` : '✓'}
+                                                {!task.done ? '~' : task.done < 100 ? `${task.done}%` : '✓✓'}
                                             </p>
                                             <motion.div className={styles.doneSlider}
                                                 style={task.done%100==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
@@ -404,7 +404,7 @@ function Roadmap() {
                                         className={styles.doneSlide} />
                                 </motion.div>
                                 <p style={{color:activeTheme==='light'? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}>
-                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
+                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓✓'}
                                 </p>
                             </motion.div>
                         </motion.div>
@@ -437,7 +437,7 @@ function Roadmap() {
                                         </p>
                                         <motion.div className={styles.done}>
                                             <p style={{color: lightColorPalette[(colorCode+task.type+1)%7]}}>
-                                                {!task.done ? '~' : task.done < 100 ? `${task.done}%` : '✓'}
+                                                {!task.done ? '~' : task.done < 100 ? `${task.done}%` : '✓✓'}
                                             </p>
                                             <motion.div className={styles.doneSlider}
                                                 style={task.done%100==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
@@ -477,7 +477,7 @@ function Roadmap() {
                                         className={styles.doneSlide} />
                                 </motion.div>
                                 <p style={{color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}>
-                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
+                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓✓'}
                                 </p>
                             </motion.div>
                         </motion.div>
@@ -509,7 +509,7 @@ function Roadmap() {
                                         </p>
                                         <motion.div className={styles.done}>
                                             <p style={{color: lightColorPalette[(colorCode+task.type+1)%7]}}>
-                                                {!task.done ? '~' : task.done < 100 ? `${task.done}%` : '✓'}
+                                                {!task.done ? '~' : task.done < 100 ? `${task.done}%` : '✓✓'}
                                             </p>
                                             <motion.div className={styles.doneSlider}
                                                 style={task.done%100==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
@@ -549,7 +549,7 @@ function Roadmap() {
                                         className={styles.doneSlide} />
                                 </motion.div>
                                 <p style={{color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}>
-                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
+                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓✓'}
                                 </p>
                             </motion.div>
                         </motion.div>
@@ -580,7 +580,7 @@ function Roadmap() {
                                             </p>
                                             <motion.div className={styles.done}>
                                                 <p style={{color: lightColorPalette[(colorCode+task.type+1)%7]}}>
-                                                    {!task.done ? '~' : task.done < 100 ? `${task.done}%` : '✓'}
+                                                    {!task.done ? '~' : task.done < 100 ? `${task.done}%` : '✓✓'}
                                                 </p>
                                                 <motion.div className={styles.doneSlider}
                                                     style={task.done%100==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
@@ -621,7 +621,7 @@ function Roadmap() {
                                         className={styles.doneSlide} />
                                 </motion.div>
                                 <p style={{color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}>
-                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
+                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓✓'}
                                 </p>
                             </motion.div>
                         </motion.div>
@@ -654,7 +654,7 @@ function Roadmap() {
                                         </p>
                                         <motion.div className={styles.done}>
                                             <p style={{color: lightColorPalette[(colorCode+task.type+1)%7]}}>
-                                                {!task.done ? '~' : task.done < 100 ? `${task.done}%` : '✓'}
+                                                {!task.done ? '~' : task.done < 100 ? `${task.done}%` : '✓✓'}
                                             </p>
                                             <motion.div className={styles.doneSlider}
                                                 style={task.done%100==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
@@ -694,7 +694,7 @@ function Roadmap() {
                                         className={styles.doneSlide} />
                                 </motion.div>
                                 <p style={{color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}>
-                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
+                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓✓'}
                                 </p>
                             </motion.div>
                         </motion.div>
@@ -727,7 +727,7 @@ function Roadmap() {
                                         </p>
                                         <motion.div className={styles.done}>
                                             <p style={{color: lightColorPalette[(colorCode+task.type+1)%7]}}>
-                                                {!task.done ? '~' : task.done < 100 ? `${task.done}%` : '✓'}
+                                                {!task.done ? '~' : task.done < 100 ? `${task.done}%` : '✓✓'}
                                             </p>
                                             <motion.div className={styles.doneSlider}
                                                 style={task.done%100==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
@@ -767,7 +767,7 @@ function Roadmap() {
                                         className={styles.doneSlide} />
                                 </motion.div>
                                 <p style={{color:activeTheme==='light'? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}>
-                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
+                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓✓'}
                                 </p>
                             </motion.div>
                         </motion.div>
@@ -799,7 +799,7 @@ function Roadmap() {
                                         </p>
                                         <motion.div className={styles.done}>
                                             <p style={{color: lightColorPalette[(colorCode+task.type+1)%7]}}>
-                                                {!task.done ? '~' : task.done < 100 ? `${task.done}%` : '✓'}
+                                                {!task.done ? '~' : task.done < 100 ? `${task.done}%` : '✓✓'}
                                             </p>
                                             <motion.div className={styles.doneSlider}
                                                 style={task.done%100==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
@@ -839,7 +839,7 @@ function Roadmap() {
                                         className={styles.doneSlide} />
                                 </motion.div>
                                 <p style={{color: activeTheme==='light'? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}>
-                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓'}
+                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓✓'}
                                 </p>
                             </motion.div>
                         </motion.div>
