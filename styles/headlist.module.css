@@ -10,7 +10,7 @@ background-color: var(--color-bg-primary);
 .headList {
   position: relative;
   background-color: var(--color-bg-primary);
-  overflow: hidden;
+  overflow-y: scroll;
   }
   
   .wheelFive, .wheelSix, .wheelSeven, .wheelEight {

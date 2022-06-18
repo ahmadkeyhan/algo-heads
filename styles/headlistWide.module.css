@@ -9,7 +9,7 @@
   
   .headList {
     position: relative;
-    overflow: hidden;
+    overflow-y: scroll;
     background-color: var(--color-bg-primary);
     }
     
