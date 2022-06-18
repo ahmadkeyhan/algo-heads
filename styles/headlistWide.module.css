@@ -12,6 +12,20 @@
     overflow-y: scroll;
     background-color: var(--color-bg-primary);
     }
+
+    .headList::-webkit-scrollbar {
+      height: 0.125rem;
+      width: 0.125rem;
+    }
+    
+    .headList::-webkit-scrollbar-track {
+      background: var(--color-bg-primary);
+    }
+    
+    .headList::-webkit-scrollbar-thumb {
+      background: var(--color-bg-primary);
+      border-radius: 0.0625;
+    }
     
     .wheelFive, .wheelSix, .wheelSeven, .wheelEight {
       position: absolute;

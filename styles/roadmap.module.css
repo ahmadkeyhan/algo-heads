@@ -15,7 +15,6 @@ background-color: var(--color-bg-primary);
 
   .roadmap::-webkit-scrollbar {
     width: 0.125rem;
-    margin-top: 1rem;
   }
   
   .roadmap::-webkit-scrollbar-track {
@@ -24,8 +23,7 @@ background-color: var(--color-bg-primary);
   
   .roadmap::-webkit-scrollbar-thumb {
     background: #ff9977;
-    border-radius: 0.0625;
-    padding-top: 1rem;
+    border-radius: 0.0625rem;
   }
 
 .phaseHolder {
