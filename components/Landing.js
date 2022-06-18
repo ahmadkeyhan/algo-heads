@@ -44,7 +44,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
     }
 
 
-    var end = new Date('Fri Jun 17 2022 19:30:00')
+    var end = new Date('Fri Jun 24 2022 19:30:00')
     const router = useRouter()
   
     const control1 = useAnimation()
