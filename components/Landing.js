@@ -77,9 +77,9 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
     const [male, setMale] = useState(true)
     const [heads, setHeads] = useState(maleHeads)
   
-    const [width, setWidth] = useState(360)
-    const [height, setHeight] = useState(640)
-    const [normalizedwidth, setNormalizedWidth] = useState(100)
+    const [width, setWidth] = useState()
+    const [height, setHeight] = useState()
+    const [normalizedwidth, setNormalizedWidth] = useState()
     const [styles, setStyles] = useState(narrowStyles)
    
     useEffect(() => {
@@ -102,8 +102,10 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
   
       setWidth(window.visualViewport.width)
       setHeight(window.visualViewport.height)
+      // console.log(window.visualViewport.width, window.visualViewport.height)
 
       if (window.visualViewport.height/window.visualViewport.width >= 16/9) {
+        setNormalizedWidth(100)
         control1.start({
           left: ['27vw', '27vw', '27vw', '27vw',
                 '60vw', '60vw', '60vw', '60vw',
@@ -376,6 +378,8 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
         setTout(setTimeout(() => setColorSliderOpen(false),5000))
       } 
     }, [])
+
+    console.log(width, height, normalizedwidth)
     
     useEffect(() => {
       clearTimeout(tout)
