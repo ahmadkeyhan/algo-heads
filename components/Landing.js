@@ -74,7 +74,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
     const [linkArrows, setLinkArrows] = useState(linkArrowPalette[6])
     const [scrollArrows, setScrollArrows] = useState(scrollArrowPalette[0])
   
-    const [male, setMale] = useState(true)
+    const [male, setMale] = useState(false)
     const [heads, setHeads] = useState(maleHeads)
   
     const [width, setWidth] = useState()
@@ -419,7 +419,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
               <Image className={styles.head} src={heads[1]} layout='fill' />
             </motion.div>
             <motion.div
-              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: null}}
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
               animate={control5}
               className={styles.headCard}>
               <p>{heads[1].slice(1,12)}</p>
@@ -430,7 +430,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
               <Image className={styles.head} src={heads[3]} layout='fill' />
             </motion.div>
             <motion.div
-              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: null}}
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
               animate={control6}
               className={styles.headCard}>
               <p>{heads[3].slice(1,12)}</p>
@@ -441,7 +441,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
               <Image className={styles.head} src={heads[5]} layout='fill' />
             </motion.div>
             <motion.div
-              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: null}}
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
               animate={control7}
               className={styles.headCard}>
               <p>{heads[5].slice(1,12)}</p>
@@ -452,7 +452,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
               <Image className={styles.head} src={heads[7]} layout='fill' />
             </motion.div>
             <motion.div
-              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: null}}
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
               animate={control8}
               className={styles.headCard}>
               <p>{heads[7].slice(1,12)}</p>
@@ -542,7 +542,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
               <Image className={styles.head} src={heads[0]} layout='fill' />
             </motion.div>
             <motion.div
-              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: null}}
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
               animate={control1}
               className={styles.headCard}>
               <p>{heads[0].slice(1,12)}</p>
@@ -553,7 +553,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
               <Image className={styles.head} src={heads[2]} layout='fill' />
             </motion.div>
             <motion.div
-              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: null}}
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
               animate={control2}
               className={styles.headCard}>
               <p>{heads[2].slice(1,12)}</p>
@@ -564,7 +564,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
               <Image className={styles.head} src={heads[4]} layout='fill' />
             </motion.div>
             <motion.div
-              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: null}}
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
               animate={control3}
               className={styles.headCard}>
               <p>{heads[4].slice(1,12)}</p>
@@ -575,7 +575,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
               <Image className={styles.head} src={heads[6]} layout='fill' />
             </motion.div>
             <motion.div
-              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: null}}
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
               animate={control4}
               className={styles.headCard}>
               <p>{heads[6].slice(1,12)}</p>
