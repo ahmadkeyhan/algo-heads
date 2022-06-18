@@ -36,10 +36,10 @@ function Roadmap() {
 
     useEffect(() => {
         setActiveTheme(document.body.dataset.theme)
-        setWidth(window.innerWidth)
-        setHeight(window.innerHeight)
-        if (window.innerHeight/window.innerWidth < 16/9) {
-            setNormalizedWidth((window.innerHeight*900)/(16*window.innerWidth))
+        setWidth(window.visualViewport.width)
+        setHeight(window.visualViewport.height)
+        if (window.visualViewport.height/window.visualViewport.width < 16/9) {
+            setNormalizedWidth((window.visualViewport.height*900)/(16*window.visualViewport.width))
             setStyles(wideStyles)
         }
     }, [])
@@ -61,8 +61,8 @@ function Roadmap() {
                 <motion.div className={styles.wheelHolder}>
                     <motion.div className={styles.wheel9}>
                         <motion.div
-                            style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/10)}vw` : `${24.47*Math.sin(Math.PI/10)}vh`,
-                                left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10))}vw` : `${24.47*(1+Math.cos(Math.PI/10))}vh`,
+                            style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/10)}vw` : `${24.47*Math.sin(Math.PI/10)}vh`,
+                                left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10))}vw` : `${24.47*(1+Math.cos(Math.PI/10))}vh`,
                                 borderColor: darkColorPalette[colorCode],
                                 color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
@@ -73,8 +73,8 @@ function Roadmap() {
                             var date = new Date(weekStart*1 + (6-index)*24*3600000)
                             return(
                                 <motion.div key={index}
-                                    style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+1))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+1))}vh`,
-                                        left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
+                                    style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+1))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+1))}vh`,
+                                        left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
                                         color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
@@ -86,8 +86,8 @@ function Roadmap() {
                     </motion.div>
                     <motion.div className={styles.wheel10}>
                         <motion.div
-                            style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1+Math.cos(Math.PI/10+Math.PI/12))}vh`,
-                                left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.sin(Math.PI/10+Math.PI/12))}vh`,
+                            style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1+Math.cos(Math.PI/10+Math.PI/12))}vh`,
+                                left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.sin(Math.PI/10+Math.PI/12))}vh`,
                                 borderColor: darkColorPalette[colorCode],
                                 color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
@@ -98,8 +98,8 @@ function Roadmap() {
                             var date = new Date(weekStart*1 + (14-index)*24*3600000)
                             return(
                                 <motion.div key={index}
-                                    style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
-                                        left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
+                                    style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
+                                        left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
                                         color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
@@ -111,8 +111,8 @@ function Roadmap() {
                     </motion.div>
                     <motion.div className={styles.wheel11}>
                         <motion.div
-                            style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.cos(Math.PI/10+Math.PI/12))}vh`,
-                                left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/10+Math.PI/12)}vw` : `${24.47*Math.sin(Math.PI/10+Math.PI/12)}vh`,
+                            style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.cos(Math.PI/10+Math.PI/12))}vh`,
+                                left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/10+Math.PI/12)}vw` : `${24.47*Math.sin(Math.PI/10+Math.PI/12)}vh`,
                                 borderColor: darkColorPalette[colorCode],
                                 color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
@@ -123,8 +123,8 @@ function Roadmap() {
                             var date = new Date(weekStart*1 + (index-16)*24*3600000)
                             return(
                                 <motion.div key={index}
-                                    style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
-                                        left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vh`,
+                                    style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
+                                        left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vh`,
                                         color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
@@ -135,8 +135,8 @@ function Roadmap() {
                     </motion.div>
                     <motion.div className={styles.wheel12}>
                         <motion.div
-                            style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10))}vw` : `${24.47*(1-Math.sin(Math.PI/10))}vh`,
-                                left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10))}vw` : `${24.47*(1-Math.cos(Math.PI/10))}vh`,
+                            style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10))}vw` : `${24.47*(1-Math.sin(Math.PI/10))}vh`,
+                                left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10))}vw` : `${24.47*(1-Math.cos(Math.PI/10))}vh`,
                                 borderColor: darkColorPalette[colorCode],
                                 color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
@@ -147,8 +147,8 @@ function Roadmap() {
                             var date = new Date(weekStart*1 + (index+23)*24*3600000)
                             return(
                                 <motion.div key={index}
-                                    style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
-                                        left:window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
+                                    style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
+                                        left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
                                         color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
@@ -157,8 +157,8 @@ function Roadmap() {
                             )
                         })}
                         <motion.div
-                            style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.sin(Math.PI/10))}vw` : `${24.47*(1+Math.sin(Math.PI/10))}vh`,
-                                left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10))}vw` : `${24.47*(1-Math.cos(Math.PI/10))}vh`,
+                            style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.sin(Math.PI/10))}vw` : `${24.47*(1+Math.sin(Math.PI/10))}vh`,
+                                left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10))}vw` : `${24.47*(1-Math.cos(Math.PI/10))}vh`,
                                 borderColor: darkColorPalette[colorCode],
                                 color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
@@ -169,8 +169,8 @@ function Roadmap() {
                             var date = new Date(weekStart*1 + (36-index)*24*3600000)
                             return(
                                 <motion.div key={index}
-                                    style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
-                                        left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
+                                    style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
+                                        left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
                                         color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
@@ -182,8 +182,8 @@ function Roadmap() {
                     </motion.div>
                     <motion.div className={styles.wheel13}>
                         <motion.div
-                            style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1+Math.cos(Math.PI/10+Math.PI/12))}vh`,
-                                left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/10+Math.PI/12)}vw` : `${24.47*Math.sin(Math.PI/10+Math.PI/12)}vh`,
+                            style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1+Math.cos(Math.PI/10+Math.PI/12))}vh`,
+                                left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/10+Math.PI/12)}vw` : `${24.47*Math.sin(Math.PI/10+Math.PI/12)}vh`,
                                 borderColor: darkColorPalette[colorCode],
                                 color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
@@ -194,8 +194,8 @@ function Roadmap() {
                             var date = new Date(weekStart*1 + (44 - index)*24*3600000)
                             return(
                                 <motion.div key={index}
-                                    style={{top:window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
-                                        left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vh`,
+                                    style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
+                                        left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vh`,
                                         color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
@@ -207,8 +207,8 @@ function Roadmap() {
                     </motion.div>
                     <motion.div className={styles.wheel14}>
                         <motion.div
-                            style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.cos(Math.PI/10+Math.PI/12))}vh`,
-                                left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.sin(Math.PI/10+Math.PI/12))}vh`,
+                            style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.cos(Math.PI/10+Math.PI/12))}vh`,
+                                left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.sin(Math.PI/10+Math.PI/12))}vh`,
                                 borderColor: darkColorPalette[colorCode],
                                 color: activeTheme==='light'? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
@@ -219,8 +219,8 @@ function Roadmap() {
                             var date = new Date(weekStart*1 + (45 + index)*24*3600000)
                             return(
                                 <motion.div key={index}
-                                    style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
-                                        left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
+                                    style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
+                                        left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
                                         color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
@@ -231,8 +231,8 @@ function Roadmap() {
                     </motion.div>
                     <motion.div className={styles.wheel15}>
                         <motion.div
-                            style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10))}vw` : `${24.47*(1-Math.sin(Math.PI/10))}vh`,
-                                left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10))}vw` : `${24.47*(1+Math.cos(Math.PI/10))}vh`,
+                            style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10))}vw` : `${24.47*(1-Math.sin(Math.PI/10))}vh`,
+                                left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10))}vw` : `${24.47*(1+Math.cos(Math.PI/10))}vh`,
                                 borderColor: darkColorPalette[colorCode],
                                 color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
@@ -243,8 +243,8 @@ function Roadmap() {
                             var date = new Date(weekStart*1 + (53 + index)*24*3600000)
                             return(
                                 <motion.div key={index}
-                                    style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
-                                        left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
+                                    style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
+                                        left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
                                         color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
@@ -297,7 +297,7 @@ function Roadmap() {
                                             style={task.done%100==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                             <motion.div
                                                 className={styles.doneSlide} 
-                                                style={{width: window.innerHeight/window.innerWidth >= 16/9 ? `${task.done*0.1}vw` : `${task.done*0.06}vh` ,
+                                                style={{width: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${task.done*0.1}vw` : `${task.done*0.06}vh` ,
                                                 backgroundColor: lightColorPalette[(colorCode+task.type+1)%7]}} />
                                         </motion.div>
                                     </motion.div>
@@ -308,16 +308,16 @@ function Roadmap() {
                             if(task.type != 2) {
                                 return(
                                     <motion.div key={task.id} className={styles.dateCatcher}
-                                        style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(7-task.date))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(7-task.date))}vh`,
-                                            left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(7-task.date)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(7-task.date)))}vh`,
+                                        style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(7-task.date))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(7-task.date))}vh`,
+                                            left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(7-task.date)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(7-task.date)))}vh`,
                                             borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                     </motion.div>
                                 )
                             }
                         })}
                         <motion.div
-                            style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/10)}vw` : `${24.47*Math.sin(Math.PI/10)}vh`,
-                                left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10))}vw` : `${24.47*(1+Math.cos(Math.PI/10))}vh`,
+                            style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/10)}vw` : `${24.47*Math.sin(Math.PI/10)}vh`,
+                                left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10))}vw` : `${24.47*(1+Math.cos(Math.PI/10))}vh`,
                                 borderColor: darkColorPalette[colorCode],
                                 color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
@@ -327,7 +327,7 @@ function Roadmap() {
                                     style={Math.floor(average)==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode)%7]}}>
                                     <motion.div
                                         className={styles.doneSlide}
-                                        style={{width:  window.innerHeight/window.innerWidth >= 16/9 ? `${average*0.1}vw` : `${average*0.06}vh`,
+                                        style={{width:  window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${average*0.1}vw` : `${average*0.06}vh`,
                                         backgroundColor: lightColorPalette[(colorCode)%7]}} />
                                 </motion.div>
                                 <p style={{color:activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}>
@@ -340,8 +340,8 @@ function Roadmap() {
                             var date = new Date(weekStart*1 + (6-index)*24*3600000)
                             return(
                                 <motion.div key={index}
-                                    style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+1))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+1))}vh`,
-                                        left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
+                                    style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+1))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+1))}vh`,
+                                        left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
                                         color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
@@ -369,7 +369,7 @@ function Roadmap() {
                                             <motion.div className={styles.doneSlider}
                                                 style={task.done%100==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                                 <motion.div
-                                                    style={{width: window.innerHeight/window.innerWidth >= 16/9 ?  `${task.done*0.1}vw` : `${task.done*0.06}vh`,
+                                                    style={{width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?  `${task.done*0.1}vw` : `${task.done*0.06}vh`,
                                                     backgroundColor: lightColorPalette[(colorCode+task.type+1)%7]}}
                                                     className={styles.doneSlide} />
                                             </motion.div>
@@ -381,16 +381,16 @@ function Roadmap() {
                             if (task.type != 2) {
                                 return(
                                     <motion.div key={task.id} className={styles.dateCatcher}
-                                        style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(16-task.date)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(16-task.date)))}vh`,
-                                            left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(16-task.date)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(16-task.date)))}vh`,
+                                        style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(16-task.date)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(16-task.date)))}vh`,
+                                            left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(16-task.date)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(16-task.date)))}vh`,
                                             borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                     </motion.div>
                                 )
                             }
                         })}
                         <motion.div
-                            style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1+Math.cos(Math.PI/10+Math.PI/12))}vh`,
-                                left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.sin(Math.PI/10+Math.PI/12))}vh`,
+                            style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1+Math.cos(Math.PI/10+Math.PI/12))}vh`,
+                                left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.sin(Math.PI/10+Math.PI/12))}vh`,
                                 borderColor: darkColorPalette[colorCode],
                                 color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
@@ -399,7 +399,7 @@ function Roadmap() {
                                 <motion.div className={styles.doneSlider}
                                     style={average==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode)%7]}}>
                                     <motion.div
-                                        style={{width: window.innerHeight/window.innerWidth >= 16/9 ? `${average*0.1}vw` : `${average*0.06}vh`,
+                                        style={{width: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${average*0.1}vw` : `${average*0.06}vh`,
                                         backgroundColor: lightColorPalette[(colorCode)%7]}}
                                         className={styles.doneSlide} />
                                 </motion.div>
@@ -413,8 +413,8 @@ function Roadmap() {
                             var date = new Date(weekStart*1 + (14-index)*24*3600000)
                             return(
                                 <motion.div key={index}
-                                    style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
-                                        left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
+                                    style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
+                                        left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
                                         color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
@@ -442,7 +442,7 @@ function Roadmap() {
                                             <motion.div className={styles.doneSlider}
                                                 style={task.done%100==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                                 <motion.div
-                                                    style={{width: window.innerHeight/window.innerWidth >= 16/9 ?  `${task.done*0.1}vw` : `${task.done*0.06}vh`,
+                                                    style={{width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?  `${task.done*0.1}vw` : `${task.done*0.06}vh`,
                                                     backgroundColor: lightColorPalette[(colorCode+task.type+1)%7]}}
                                                     className={styles.doneSlide} />
                                             </motion.div>
@@ -454,16 +454,16 @@ function Roadmap() {
                             if (task.type != 2) {
                                 return(
                                     <motion.div key={task.id} className={styles.dateCatcher}
-                                        style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(task.date-13)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(task.date-13)))}vh`,
-                                            left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(task.date-13))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(task.date-13))}vh`,
+                                        style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(task.date-13)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(task.date-13)))}vh`,
+                                            left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(task.date-13))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(task.date-13))}vh`,
                                             borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                     </motion.div>
                                 )
                             }
                         })}
                         <motion.div
-                            style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.cos(Math.PI/10+Math.PI/12))}vh`,
-                                left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/10+Math.PI/12)}vw` : `${24.47*Math.sin(Math.PI/10+Math.PI/12)}vh`,
+                            style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.cos(Math.PI/10+Math.PI/12))}vh`,
+                                left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/10+Math.PI/12)}vw` : `${24.47*Math.sin(Math.PI/10+Math.PI/12)}vh`,
                                 borderColor: darkColorPalette[colorCode],
                                 color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
@@ -472,7 +472,7 @@ function Roadmap() {
                                 <motion.div className={styles.doneSlider}
                                     style={average==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode)%7]}}>
                                     <motion.div
-                                        style={{width: window.innerHeight/window.innerWidth >= 16/9 ?  `${average*0.1}vw` : `${average*0.06}vh`,
+                                        style={{width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?  `${average*0.1}vw` : `${average*0.06}vh`,
                                         backgroundColor: lightColorPalette[(colorCode)%7]}}
                                         className={styles.doneSlide} />
                                 </motion.div>
@@ -486,8 +486,8 @@ function Roadmap() {
                             var date = new Date(weekStart*1 + (index-16)*24*3600000)
                             return(
                                 <motion.div key={index}
-                                    style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
-                                        left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vh`,
+                                    style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
+                                        left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vh`,
                                         color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
@@ -514,7 +514,7 @@ function Roadmap() {
                                             <motion.div className={styles.doneSlider}
                                                 style={task.done%100==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                                 <motion.div
-                                                    style={{width: window.innerHeight/window.innerWidth >= 16/9 ?  `${task.done*0.1}vw` : `${task.done*0.06}vh`,
+                                                    style={{width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?  `${task.done*0.1}vw` : `${task.done*0.06}vh`,
                                                     backgroundColor: lightColorPalette[(colorCode+task.type+1)%7]}}
                                                     className={styles.doneSlide} />
                                             </motion.div>
@@ -526,16 +526,16 @@ function Roadmap() {
                             if (task.type != 2) {
                                 return(
                                     <motion.div key={task.id} className={styles.dateCatcher}
-                                        style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(task.date+2)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(task.date+2)))}vh`,
-                                            left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(task.date+2)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(task.date+2)))}vh`,
+                                        style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(task.date+2)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(task.date+2)))}vh`,
+                                            left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(task.date+2)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(task.date+2)))}vh`,
                                             borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                     </motion.div>
                                 )
                             }
                         })}
                         <motion.div
-                            style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10))}vw` : `${24.47*(1-Math.sin(Math.PI/10))}vh`,
-                                left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10))}vw` : `${24.47*(1-Math.cos(Math.PI/10))}vh`,
+                            style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10))}vw` : `${24.47*(1-Math.sin(Math.PI/10))}vh`,
+                                left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10))}vw` : `${24.47*(1-Math.cos(Math.PI/10))}vh`,
                                 borderColor: darkColorPalette[colorCode],
                                 color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
@@ -544,7 +544,7 @@ function Roadmap() {
                                 <motion.div className={styles.doneSlider}
                                     style={average==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode)%7]}}>
                                     <motion.div
-                                        style={{width: window.innerHeight/window.innerWidth >= 16/9 ?  `${average*0.1}vw` : `${average*0.06}vh`,
+                                        style={{width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?  `${average*0.1}vw` : `${average*0.06}vh`,
                                         backgroundColor: lightColorPalette[(colorCode)%7]}}
                                         className={styles.doneSlide} />
                                 </motion.div>
@@ -558,8 +558,8 @@ function Roadmap() {
                             var date = new Date(weekStart*1 + (index+23)*24*3600000)
                             return(
                                 <motion.div key={index}
-                                    style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
-                                        left:window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
+                                    style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
+                                        left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
                                         color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
@@ -585,7 +585,7 @@ function Roadmap() {
                                                 <motion.div className={styles.doneSlider}
                                                     style={task.done%100==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                                     <motion.div
-                                                        style={{width: window.innerHeight/window.innerWidth >= 16/9 ?  `${task.done*0.1}vw` : `${task.done*0.06}vh`,
+                                                        style={{width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?  `${task.done*0.1}vw` : `${task.done*0.06}vh`,
                                                         backgroundColor: lightColorPalette[(colorCode+task.type+1)%7]}}
                                                         className={styles.doneSlide} />
                                                 </motion.div>
@@ -598,16 +598,16 @@ function Roadmap() {
                             if (task.type != 2) {
                                 return(
                                     <motion.div key={task.id} className={styles.dateCatcher}
-                                        style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.sin(Math.PI/8+(Math.PI/12)*(13-task.date)))}vw` : `${24.47*(1+Math.sin(Math.PI/8+(Math.PI/12)*(13-task.date)))}vh`,
-                                            left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(13-task.date)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(13-task.date)))}vh`,
+                                        style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.sin(Math.PI/8+(Math.PI/12)*(13-task.date)))}vw` : `${24.47*(1+Math.sin(Math.PI/8+(Math.PI/12)*(13-task.date)))}vh`,
+                                            left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(13-task.date)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(13-task.date)))}vh`,
                                             borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                     </motion.div>
                                 )
                             }
                         })}
                         <motion.div
-                            style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.sin(Math.PI/10))}vw` : `${24.47*(1+Math.sin(Math.PI/10))}vh`,
-                                left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10))}vw` : `${24.47*(1-Math.cos(Math.PI/10))}vh`,
+                            style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.sin(Math.PI/10))}vw` : `${24.47*(1+Math.sin(Math.PI/10))}vh`,
+                                left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10))}vw` : `${24.47*(1-Math.cos(Math.PI/10))}vh`,
                                 borderColor: darkColorPalette[colorCode],
                                 color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
@@ -616,7 +616,7 @@ function Roadmap() {
                                 <motion.div className={styles.doneSlider}
                                     style={average==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode)%7]}}>
                                     <motion.div
-                                        style={{width: window.innerHeight/window.innerWidth >= 16/9 ?  `${average*0.1}vw` : `${average*0.06}vh`,
+                                        style={{width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?  `${average*0.1}vw` : `${average*0.06}vh`,
                                         backgroundColor: lightColorPalette[(colorCode)%7]}}
                                         className={styles.doneSlide} />
                                 </motion.div>
@@ -630,8 +630,8 @@ function Roadmap() {
                             var date = new Date(weekStart*1 + (36-index)*24*3600000)
                             return(
                                 <motion.div key={index}
-                                    style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
-                                        left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
+                                    style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
+                                        left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
                                         color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
@@ -659,7 +659,7 @@ function Roadmap() {
                                             <motion.div className={styles.doneSlider}
                                                 style={task.done%100==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                                 <motion.div
-                                                    style={{width: window.innerHeight/window.innerWidth >= 16/9 ?  `${task.done*0.1}vw` : `${task.done*0.06}vh`,
+                                                    style={{width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?  `${task.done*0.1}vw` : `${task.done*0.06}vh`,
                                                     backgroundColor: lightColorPalette[(colorCode+task.type+1)%7]}}
                                                     className={styles.doneSlide} />
                                             </motion.div>
@@ -671,16 +671,16 @@ function Roadmap() {
                             if (task.type != 2) {
                                 return(
                                     <motion.div key={task.id} className={styles.dateCatcher}
-                                        style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(15-task.date)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(15-task.date)))}vh`,
-                                            left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(Math.sin(Math.PI/8+(Math.PI/12)*(15-task.date)))}vw` : `${24.47*(Math.sin(Math.PI/8+(Math.PI/12)*(15-task.date)))}vh`,
+                                        style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(15-task.date)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(15-task.date)))}vh`,
+                                            left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(Math.sin(Math.PI/8+(Math.PI/12)*(15-task.date)))}vw` : `${24.47*(Math.sin(Math.PI/8+(Math.PI/12)*(15-task.date)))}vh`,
                                             borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                     </motion.div>
                                 )
                             }
                         })}
                         <motion.div
-                            style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1+Math.cos(Math.PI/10+Math.PI/12))}vh`,
-                                left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/10+Math.PI/12)}vw` : `${24.47*Math.sin(Math.PI/10+Math.PI/12)}vh`,
+                            style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1+Math.cos(Math.PI/10+Math.PI/12))}vh`,
+                                left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/10+Math.PI/12)}vw` : `${24.47*Math.sin(Math.PI/10+Math.PI/12)}vh`,
                                 borderColor: darkColorPalette[colorCode],
                                 color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
@@ -689,7 +689,7 @@ function Roadmap() {
                                 <motion.div className={styles.doneSlider}
                                     style={average==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode)%7]}}>
                                     <motion.div
-                                        style={{width: window.innerHeight/window.innerWidth >= 16/9 ?  `${average*0.1}vw` : `${average*0.06}vh`,
+                                        style={{width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?  `${average*0.1}vw` : `${average*0.06}vh`,
                                         backgroundColor: lightColorPalette[(colorCode)%7]}}
                                         className={styles.doneSlide} />
                                 </motion.div>
@@ -703,8 +703,8 @@ function Roadmap() {
                             var date = new Date(weekStart*1 + (44 - index)*24*3600000)
                             return(
                                 <motion.div key={index}
-                                    style={{top:window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
-                                        left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vh`,
+                                    style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
+                                        left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vh`,
                                         color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
@@ -732,7 +732,7 @@ function Roadmap() {
                                             <motion.div className={styles.doneSlider}
                                                 style={task.done%100==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                                 <motion.div
-                                                    style={{width: window.innerHeight/window.innerWidth >= 16/9 ?  `${task.done*0.1}vw` : `${task.done*0.06}vh`,
+                                                    style={{width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?  `${task.done*0.1}vw` : `${task.done*0.06}vh`,
                                                     backgroundColor: lightColorPalette[(colorCode+task.type+1)%7]}}
                                                     className={styles.doneSlide} />
                                             </motion.div>
@@ -744,16 +744,16 @@ function Roadmap() {
                             if (task.type != 2) {
                                 return(
                                     <motion.div key={task.id} className={styles.dateCatcher}
-                                        style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(task.date+5)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(task.date+5)))}vh`,
-                                            left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(task.date+5)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(task.date+5)))}vh`,
+                                        style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(task.date+5)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(task.date+5)))}vh`,
+                                            left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(task.date+5)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(task.date+5)))}vh`,
                                             borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                     </motion.div>
                                 )
                             }
                         })}
                         <motion.div
-                            style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.cos(Math.PI/10+Math.PI/12))}vh`,
-                                left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.sin(Math.PI/10+Math.PI/12))}vh`,
+                            style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.cos(Math.PI/10+Math.PI/12))}vh`,
+                                left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.sin(Math.PI/10+Math.PI/12))}vh`,
                                 borderColor: darkColorPalette[colorCode],
                                 color: activeTheme==='light'? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
@@ -762,7 +762,7 @@ function Roadmap() {
                                 <motion.div className={styles.doneSlider}
                                     style={average==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode)%7]}}>
                                     <motion.div
-                                        style={{width: window.innerHeight/window.innerWidth >= 16/9 ?  `${average*0.1}vw` : `${average*0.06}vh`,
+                                        style={{width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?  `${average*0.1}vw` : `${average*0.06}vh`,
                                         backgroundColor: lightColorPalette[(colorCode)%7]}}
                                         className={styles.doneSlide} />
                                 </motion.div>
@@ -776,8 +776,8 @@ function Roadmap() {
                             var date = new Date(weekStart*1 + (45 + index)*24*3600000)
                             return(
                                 <motion.div key={index}
-                                    style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
-                                        left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
+                                    style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
+                                        left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
                                         color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>
@@ -804,7 +804,7 @@ function Roadmap() {
                                             <motion.div className={styles.doneSlider}
                                                 style={task.done%100==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                                 <motion.div
-                                                    style={{width: window.innerHeight/window.innerWidth >= 16/9 ?  `${task.done*0.1}vw` : `${task.done*0.06}vh`,
+                                                    style={{width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?  `${task.done*0.1}vw` : `${task.done*0.06}vh`,
                                                     backgroundColor: lightColorPalette[(colorCode+task.type+1)%7]}}
                                                     className={styles.doneSlide} />
                                             </motion.div>
@@ -816,16 +816,16 @@ function Roadmap() {
                             if (task.type != 2) {
                                 return(
                                     <motion.div key={task.id} className={styles.dateCatcher}
-                                        style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(task.date-4)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(task.date-4)))}vh`,
-                                            left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(task.date-4)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(task.date-4)))}vh`,
+                                        style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(task.date-4)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(task.date-4)))}vh`,
+                                            left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(task.date-4)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(task.date-4)))}vh`,
                                             borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                     </motion.div>
                                 )
                             }
                         })}
                         <motion.div
-                            style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10))}vw` : `${24.47*(1-Math.sin(Math.PI/10))}vh`,
-                                left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10))}vw` : `${24.47*(1+Math.cos(Math.PI/10))}vh`,
+                            style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/10))}vw` : `${24.47*(1-Math.sin(Math.PI/10))}vh`,
+                                left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10))}vw` : `${24.47*(1+Math.cos(Math.PI/10))}vh`,
                                 borderColor: darkColorPalette[colorCode],
                                 color: activeTheme==='light'? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
@@ -834,7 +834,7 @@ function Roadmap() {
                                 <motion.div className={styles.doneSlider}
                                     style={average==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode)%7]}}>
                                     <motion.div
-                                        style={{width: window.innerHeight/window.innerWidth >= 16/9 ?  `${average*0.1}vw` : `${average*0.06}vh`,
+                                        style={{width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?  `${average*0.1}vw` : `${average*0.06}vh`,
                                         backgroundColor: lightColorPalette[(colorCode)%7]}}
                                         className={styles.doneSlide} />
                                 </motion.div>
@@ -848,8 +848,8 @@ function Roadmap() {
                             var date = new Date(weekStart*1 + (53 + index)*24*3600000)
                             return(
                                 <motion.div key={index}
-                                    style={{top: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
-                                        left: window.innerHeight/window.innerWidth >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
+                                    style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
+                                        left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
                                         color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
                                         backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
                                     className={styles.dateHolder}>

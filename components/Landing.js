@@ -100,10 +100,10 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
         }
       },1000)
   
-      setWidth(window.innerWidth)
-      setHeight(window.innerHeight)
+      setWidth(window.visualViewport.width)
+      setHeight(window.visualViewport.height)
 
-      if (window.innerHeight/window.innerWidth >= 16/9) {
+      if (window.visualViewport.height/window.visualViewport.width >= 16/9) {
         control1.start({
           left: ['27vw', '27vw', '27vw', '27vw',
                 '60vw', '60vw', '60vw', '60vw',
@@ -225,7 +225,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect'
               0.75,0.8125, 0.875,0.9375, 1]}
         })
       } else {
-        setNormalizedWidth((window.innerHeight*900)/(16*window.innerWidth))
+        setNormalizedWidth((window.visualViewport.height*900)/(16*window.visualViewport.width))
         setStyles(wideStyles)
         control1.start({
           left: ['15.19vh', '15.19vh', '15.19vh', '15.19vh',
