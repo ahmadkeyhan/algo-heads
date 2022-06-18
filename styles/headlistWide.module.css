@@ -15,9 +15,6 @@
     
     .wheelFive, .wheelSix, .wheelSeven, .wheelEight {
       position: absolute;
-      width: 48.94vh;
-      height: 48.94vh;
-      border-radius: 24.47vh;
     }
   
     .wheelFive {

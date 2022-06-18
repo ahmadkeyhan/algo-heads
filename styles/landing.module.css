@@ -211,9 +211,6 @@
 
 .wheelOne, .wheelTwo, .wheelThree, .wheelFour {
   position: absolute;
-  width: 87vw;
-  height: 87vw;
-  border-radius: 44vw;
 }
 
 .wheelOne {

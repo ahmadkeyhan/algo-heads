@@ -15,9 +15,6 @@ background-color: var(--color-bg-primary);
   
   .wheelFive, .wheelSix, .wheelSeven, .wheelEight {
     position: absolute;
-    width: 87vw;
-    height: 87vw;
-    border-radius: 44vw;
   }
 
   .wheelFive {
