@@ -13,36 +13,36 @@ import Link from 'next/link'
 function Headlist() {
   const [activeTheme, setActiveTheme] = useState('light')
 
-   const [sortedHeads, setSortedHeads] = useState([{sholder: '', assetId: '761630099', src: '/algoHead001.png',bgColorCode: 6,price: 0},
-                                                   {sholder: '', assetId: '761631219', src: '/algoHead002.png',bgColorCode: 0,price: 0},
-                                                   {sholder: '', assetId: '761633300', src: '/algoHead003.png',bgColorCode: 4,price: 0},
-                                                   {sholder: '', assetId: '761637294', src: '/algoHead004.png',bgColorCode: 5,price: 0},
-                                                   {sholder: '', assetId: '761639053', src: '/algoHead005.png',bgColorCode: 0,price: 0},
-                                                   {sholder: '', assetId: '761639913', src: '/algoHead006.png',bgColorCode: 1,price: 0},
-                                                   {sholder: '', assetId: '761641826', src: '/algoHead007.png',bgColorCode: 1,price: 0},
-                                                   {sholder: '', assetId: '761643188', src: '/algoHead008.png',bgColorCode: 5,price: 0},
-                                                   {sholder: '', assetId: '761644808', src: '/algoHead009.png',bgColorCode: 0,price: 0},
-                                                   {sholder: '', assetId: '761645819', src: '/algoHead010.png',bgColorCode: 4,price: 0},
-                                                   {sholder: '', assetId: '761646569', src: '/algoHead011.png',bgColorCode: 1,price: 0},
-                                                   {sholder: '', assetId: '761647328', src: '/algoHead012.png',bgColorCode: 2,price: 0},
-                                                   {sholder: '', assetId: '761648256', src: '/algoHead013.png',bgColorCode: 2,price: 0},
-                                                   {sholder: '', assetId: '761649296', src: '/algoHead014.png',bgColorCode: 3,price: 0},
-                                                   {sholder: '', assetId: '761650042', src: '/algoHead015.png',bgColorCode: 2,price: 0},
-                                                   {sholder: '', assetId: '773795933', src: '/algoHead016.png',bgColorCode: 0,price: 0},
-                                                   {sholder: '', assetId: '773796455', src: '/algoHead017.png',bgColorCode: 5,price: 0},
-                                                   {sholder: '', assetId: '773797150', src: '/algoHead018.png',bgColorCode: 4,price: 0},
-                                                   {sholder: '', assetId: '773797594', src: '/algoHead019.png',bgColorCode: 0,price: 0},
-                                                   {sholder: '', assetId: '773798196', src: '/algoHead020.png',bgColorCode: 1,price: 0},
-                                                   {sholder: '', assetId: '773798650', src: '/algoHead021.png',bgColorCode: 5,price: 0},
-                                                   {sholder: '', assetId: '773799175', src: '/algoHead022.png',bgColorCode: 6,price: 0},
-                                                   {sholder: '', assetId: '773799589', src: '/algoHead023.png',bgColorCode: 3,price: 0},
-                                                   {sholder: '', assetId: '773800011', src: '/algoHead024.png',bgColorCode: 6,price: 0},
-                                                   {sholder: '', assetId: '773800369', src: '/algoHead025.png',bgColorCode: 3,price: 0},
-                                                   {sholder: '', assetId: '773801040', src: '/algoHead026.png',bgColorCode: 3,price: 0},
-                                                   {sholder: '', assetId: '773802119', src: '/algoHead027.png',bgColorCode: 4,price: 0},
-                                                   {sholder: '', assetId: '773802712', src: '/algoHead028.png',bgColorCode: 6,price: 0},
-                                                   {sholder: '', assetId: '773803162', src: '/algoHead029.png',bgColorCode: 6,price: 0},
-                                                   {sholder: '', assetId: '773803473', src: '/algoHead030.png',bgColorCode: 1,price: 0},
+   const [sortedHeads, setSortedHeads] = useState([{sholder: {address: '', name: ''}, assetId: '761630099', src: '/algoHead001.png',bgColorCode: 6,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '761631219', src: '/algoHead002.png',bgColorCode: 0,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '761633300', src: '/algoHead003.png',bgColorCode: 4,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '761637294', src: '/algoHead004.png',bgColorCode: 5,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '761639053', src: '/algoHead005.png',bgColorCode: 0,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '761639913', src: '/algoHead006.png',bgColorCode: 1,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '761641826', src: '/algoHead007.png',bgColorCode: 1,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '761643188', src: '/algoHead008.png',bgColorCode: 5,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '761644808', src: '/algoHead009.png',bgColorCode: 0,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '761645819', src: '/algoHead010.png',bgColorCode: 4,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '761646569', src: '/algoHead011.png',bgColorCode: 1,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '761647328', src: '/algoHead012.png',bgColorCode: 2,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '761648256', src: '/algoHead013.png',bgColorCode: 2,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '761649296', src: '/algoHead014.png',bgColorCode: 3,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '761650042', src: '/algoHead015.png',bgColorCode: 2,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '773795933', src: '/algoHead016.png',bgColorCode: 0,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '773796455', src: '/algoHead017.png',bgColorCode: 5,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '773797150', src: '/algoHead018.png',bgColorCode: 4,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '773797594', src: '/algoHead019.png',bgColorCode: 0,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '773798196', src: '/algoHead020.png',bgColorCode: 1,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '773798650', src: '/algoHead021.png',bgColorCode: 5,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '773799175', src: '/algoHead022.png',bgColorCode: 6,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '773799589', src: '/algoHead023.png',bgColorCode: 3,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '773800011', src: '/algoHead024.png',bgColorCode: 6,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '773800369', src: '/algoHead025.png',bgColorCode: 3,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '773801040', src: '/algoHead026.png',bgColorCode: 3,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '773802119', src: '/algoHead027.png',bgColorCode: 4,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '773802712', src: '/algoHead028.png',bgColorCode: 6,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '773803162', src: '/algoHead029.png',bgColorCode: 6,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '773803473', src: '/algoHead030.png',bgColorCode: 1,price: 0},
                                                 ])
 
   const [isLoading, setLoading] = useState()
@@ -50,8 +50,7 @@ function Headlist() {
   const router = useRouter()
 
   useEffect(() => {
-      if (router.route == '/headlist') {
-        setLoading(true)
+      setLoading(true)
       fetch('api/nftx')
         .then((res) => res.json())
         .then((data) => {
@@ -61,13 +60,18 @@ function Headlist() {
             for (var i=0; i < sortedHeads.length; i++) {
               if (data.message.sales[j].asset == sortedHeads[i].assetId) {
                 sortedHeads[i].price = data.message.sales[j].ualgos/1000000
-                sortedHeads[i].sholder = data.message.sales[j].receiver
+                sortedHeads[i].sholder.address = data.message.sales[j].receiver
               }
             }
           }
+          sortedHeads.map((head) => {
+            fetch('api/headlist' , {
+              method: 'POST',
+              body: JSON.stringify(head)
+            }).then((res) => res.json())
+          })
           setLoading(false)
         })
-      }
   }, [])
 
   const [sortBy, setSortBy] = useState(true)
@@ -194,9 +198,9 @@ function Headlist() {
             </motion.div>
             <motion.div className={styles.sholderTag}>
               <p>Sholder: </p>
-              <Link href={`https://algoexplorer.io/address/${sortedHeads[rank+1].sholder}`} passHref>
+              <Link href={`https://algoexplorer.io/address/${sortedHeads[rank+1].sholder.address}`} passHref>
                 <a target="_blank">
-                  <p className={styles.price}>{sortedHeads[rank+1].sholder.slice(0,5)}...</p>
+                  <p className={styles.price}>{sortedHeads[rank+1].sholder.address.slice(0,5)}...</p>
                 </a>
               </Link>
             </motion.div>
