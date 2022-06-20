@@ -332,15 +332,11 @@
     top:66.38vh;
     left: 1.13vh;
     height: calc(15.19vh + 1rem);
+    width: calc(14.06vh + 0.5rem);
     flex-direction: column;
     align-items: flex-end;
     justify-content: space-between;
     z-index: 1000;
-  }
-
-  .social p {
-    font-size: 0.7rem;
-    margin-right: 0.5rem;
   }
 
   .wallet {
@@ -349,7 +345,11 @@
   }
 
   .wallet p {
+    position: absolute;
     width: 9vh;
+    font-size: 0.7rem;
+    margin-right: 0.5rem;
+    left: 0;
     text-align: right;
   }
   
@@ -362,6 +362,18 @@
     align-items: center;
     justify-content: center;
     background-color: var(--color-bg-primary);
+  }
+
+  .avatar {
+    width: 5.06vh;
+    height: 5.06vh;
+    border-radius: 3vh;
+    overflow: hidden;
+    position: relative;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .themeSliderFrame {
