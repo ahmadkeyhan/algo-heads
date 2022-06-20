@@ -43,6 +43,21 @@ function Headlist() {
                                                    {sholder: {address: '', name: ''}, assetId: '773802712', src: '/algoHead028.png',bgColorCode: 6,price: 0},
                                                    {sholder: {address: '', name: ''}, assetId: '773803162', src: '/algoHead029.png',bgColorCode: 6,price: 0},
                                                    {sholder: {address: '', name: ''}, assetId: '773803473', src: '/algoHead030.png',bgColorCode: 1,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '782758921', src: '/algoHead031.png',bgColorCode: 3,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '782759850', src: '/algoHead032.png',bgColorCode: 4,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '782760897', src: '/algoHead033.png',bgColorCode: 2,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '782761932', src: '/algoHead034.png',bgColorCode: 0,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '782762652', src: '/algoHead035.png',bgColorCode: 6,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '782763248', src: '/algoHead036.png',bgColorCode: 1,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '782763916', src: '/algoHead037.png',bgColorCode: 0,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '782764731', src: '/algoHead038.png',bgColorCode: 6,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '782767151', src: '/algoHead039.png',bgColorCode: 4,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '782768049', src: '/algoHead040.png',bgColorCode: 6,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '782768648', src: '/algoHead041.png',bgColorCode: 1,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '782770201', src: '/algoHead042.png',bgColorCode: 0,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '782771050', src: '/algoHead043.png',bgColorCode: 5,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '782771834', src: '/algoHead044.png',bgColorCode: 1,price: 0},
+                                                   {sholder: {address: '37XZFQ3R7XOQ5KRPIDOK3BK5O2N5UNFJOV6H3LAZA6R4KFRHQGKXE45DM4', name: ''}, assetId: '782772896', src: '/algoHead045.png',bgColorCode: 3,price: 0},
                                                 ])
 
   const [isLoading, setLoading] = useState()
