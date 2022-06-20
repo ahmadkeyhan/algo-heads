@@ -642,7 +642,7 @@ function Landing() {
                   fontSize: '1.2rem'}}>
                   <Image src={avatar} layout='fill' />
                 </motion.button> 
-                <p style={{color:activeTheme==='light' ? darkColorPalette[6-colorCode] : lightColorPalette[6-colorCode]}}>{account[0].name.length > 8 ? account[0].name.slice(0,7)+'...' : account[0].name}</p>
+                <p style={{color:activeTheme==='light' ? darkColorPalette[6-colorCode] : null}}>{account[0].name.length > 8 ? account[0].name.slice(0,7)+'...' : account[0].name}</p>
               </motion.div> :
               <motion.div className={styles.wallet} onClick={() => router.push('https://www.nftexplorer.app/sellers/algo-heads')}>
                 <motion.button className={styles.walletButton}
