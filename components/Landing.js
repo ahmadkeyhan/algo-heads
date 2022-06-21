@@ -50,17 +50,15 @@ function Landing() {
 
   const [account, setAccount] = useState()
   const [avatar, setAvatar] = useState()
-  const [sholderOrNot, setSholderOrNot] = useState(true)
+  const [sholderOrNot, setSholderOrNot] = useState(false)
 
   const connectWallet = async () => {
     try {
       let fetchedAccount = await myAlgoConnect.connect(settings).then(fetchedAccount => {
         setAccount(fetchedAccount)
         // let sholderOrNot = true
-        if (sholders.indexOf(fetchedAccount[0].address) === -1) {
-          // sholderOrNot = false
-          setSholderOrNot(false)
-        } else {
+        if (sholders.indexOf(fetchedAccount[0].address) !== -1) {
+          setSholderOrNot(true)
           headlist.map((head) => {
             if (head.sholder.address === fetchedAccount[0].address) {
               head.sholder.name = fetchedAccount[0].name
