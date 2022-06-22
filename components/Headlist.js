@@ -57,7 +57,10 @@ function Headlist() {
                                                    {sholder: {address: '', name: ''}, assetId: '782770201', src: '/algoHead042.png',bgColorCode: 0,price: 0},
                                                    {sholder: {address: '', name: ''}, assetId: '782771050', src: '/algoHead043.png',bgColorCode: 5,price: 0},
                                                    {sholder: {address: '', name: ''}, assetId: '782771834', src: '/algoHead044.png',bgColorCode: 1,price: 0},
-                                                   {sholder: {address: '37XZFQ3R7XOQ5KRPIDOK3BK5O2N5UNFJOV6H3LAZA6R4KFRHQGKXE45DM4', name: ''}, assetId: '782772896', src: '/algoHead045.png',bgColorCode: 3,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '782772896', src: '/algoHead045.png',bgColorCode: 3,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '786307589', src: '/algoHead121.png',bgColorCode: 6,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '786308097', src: '/algoHead122.png',bgColorCode: 5,price: 0},
+                                                   {sholder: {address: '', name: ''}, assetId: '786308637', src: '/algoHead123.png',bgColorCode: 0,price: 0},
                                                 ])
 
   const [isLoading, setLoading] = useState()
