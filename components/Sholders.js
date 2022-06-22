@@ -2,10 +2,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import narrowStyles from '../styles/sholders.module.css'
 import wideStyles from '../styles/sholdersWide.module.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import * as MdIcons from 'react-icons/md'
 import * as SiIcon from 'react-icons/si'
 import * as BsIcons from 'react-icons/bs'
+import * as CgIcons from 'react-icons/cg'
 import { motion, useAnimation } from "framer-motion"
 import NavSlider from './NavSlider'
 import { useRouter } from 'next/router'
@@ -24,6 +25,14 @@ function Sholders() {
   }, [activeTheme])
 
   const [step, setStep] = useState(0)
+
+  const [validAddress, setValidAddress] = useState(false)
+  const [inputAddress, setInputAddress] = useState('')
+  const input = useRef(null)
+
+  useEffect(() => {
+    setValidAddress(inputAddress.length === 58)
+  }, [inputAddress])
 
   const [heads, setHeads] = useState()
   const [isLoading, setLoading] = useState()
@@ -57,7 +66,7 @@ function Sholders() {
       })
   },[])
 
-  const [colorCode, setColorCode] = useState(2)
+  const [colorCode, setColorCode] = useState(0)
 
   const [width, setWidth] = useState()
   const [height, setHeight] = useState()
@@ -116,14 +125,23 @@ function Sholders() {
           <div className={styles.wheelHolder}>
             <div className={styles.wheelOne}>
               <motion.div className={styles.arrowHolder}>
-                <Image className={styles.counterArrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
+                <Image className={styles.logoArrows} src={activeTheme === 'light' ? scrollArrowPalette[colorCode] : scrollArrowPalette[7]} layout='fill' />
+              </motion.div>
+              <motion.div style={{color: validAddress? lightColorPalette[colorCode] : null,
+                borderColor: validAddress? lightColorPalette[colorCode] : null,
+                fontSize: '1.1rem'}} className={styles.searchBox}>
+                <input ref={input}
+                    value={inputAddress}
+                    onChange={(e) => setInputAddress(e.target.value)}
+                    className={styles.addressBar} placeholder='Paste a valid algo wallet...'></input>
+                <MdIcons.MdSearch />
               </motion.div>
               <div className={styles.logoHolder}>
                 <Image className={styles.logo} src={activeTheme==='light'? '/logo.png' : '/darkLogo.png'} layout='fill' />
               </div>
             </div>
             <div className={styles.wheelThree}>
-              <motion.div className={styles.arrowHolder}>
+                <motion.div className={styles.arrowHolder}>
                 <Image className={styles.arrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
                 <motion.div className={styles.stepsForward}>
                     <motion.div
@@ -145,9 +163,9 @@ function Sholders() {
                         <p>+<span>4</span></p>
                     </motion.div>
                 </motion.div>
-              </motion.div>
-              <motion.div className={styles.counterArrowHolder}>
-                <Image className={styles.counterArrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
+                </motion.div>
+                <motion.div className={styles.counterArrowHolder}>
+                <Image className={styles.counterArrows} src={activeTheme === 'light' ? scrollArrowPalette[colorCode] : scrollArrowPalette[7]} layout='fill' />
                 <motion.div className={styles.stepsBackward}>
                     <motion.div
                         style={activeTheme==='light'?
@@ -168,7 +186,10 @@ function Sholders() {
                         <p>-<span>4</span></p>
                     </motion.div>
                 </motion.div>
-              </motion.div>
+                </motion.div>
+                <motion.div className={styles.topTitle}>
+                    <h1><span style={{color: lightColorPalette[colorCode]}}><CgIcons.CgTrophy /></span> Top Sholders</h1>
+                </motion.div>
                 <SholderHolder top={-11} left={46} rank={step} />
                 <SholderHolder top={16} left={70} rank={1+step} />
                 <SholderHolder top={43} left={70} rank={2+step} />
@@ -190,7 +211,7 @@ function Sholders() {
           <div className={styles.wheelHolder}>
             <div className={styles.wheelOne}>
               <motion.div className={styles.arrowHolder}>
-                <Image className={styles.counterArrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
+                <Image className={styles.logoArrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
               </motion.div>
               <div className={styles.logoHolder}>
                 <Image className={styles.logo} src={activeTheme==='light'? '/logo.png' : '/darkLogo.png'} layout='fill' />

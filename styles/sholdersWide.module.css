@@ -1,0 +1,441 @@
+.container {
+    display: flex;
+    width: 100vw;
+    justify-content: space-evenly;
+    height: 100vh;
+    align-items: center;
+    background-color: var(--color-bg-primary);
+  }
+  
+  .landing {
+    position: relative;
+    background-color: var(--color-bg-primary);
+    overflow-y: scroll;
+  }
+
+  .landing::-webkit-scrollbar {
+    height: 0.125rem;
+    width: 0.125rem;
+  }
+  
+  .landing::-webkit-scrollbar-track {
+    background: var(--color-bg-primary);
+  }
+  
+  .landing::-webkit-scrollbar-thumb {
+    background: var(--color-bg-primary);
+    border-radius: 0.0625rem;
+  }
+  
+  .wheelButtons {
+    position: absolute;
+    left:17.72vh;
+    top: 21.94vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .wheelButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background-color: var(--color-bg-primary);
+    font-size: 1rem;
+    width: 5.1vh;
+    height: 5.1vh;
+    border-radius: 2.55vh;
+  }
+  
+  .mainButton {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.125rem solid var(--color-text-secondary);
+    background-color: var(--color-bg-primary);
+    font-size: 0.8rem;
+    font-family: 'Gluten', cursive;
+    font-weight: bold;
+    color: #212121;
+    z-index: 5;
+    left: 28.13vh;
+    top: 18vh;
+    height: 6.75vh;
+    width: 20.25vh;
+    border-radius: 4vh;
+  }
+  
+  .mainCountDown {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.125rem solid var(--color-text-secondary);
+    background-color: var(--color-bg-primary);
+    font-size: 0.7rem;
+    font-family: 'Gluten', cursive;
+    text-align: center;
+    line-height: 1rem;
+    z-index: 5;
+    left: 28.13vh;
+    top: 16.88vh;
+    height: 7.88vh;
+    width: 20.25vh;
+    border-radius: 5vh;
+  }
+  
+  .mainCountDown p {
+    width: 16ch;
+  }
+  
+  .scrollButton {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: space-around;
+      padding: 0;
+      border: none;
+      background:none;
+      color: var(--color-text-secondary);
+      z-index: 2;
+      left: 18vh;
+      top: 15.75vh;
+      height: 5.63vh;
+      border-radius: 4vh;
+  }
+  
+  .scrollButton p {
+    font-size: .6rem;
+    font-family: 'Gluten', cursive;
+    margin: 0;
+    width:13ch;
+    text-align: end;
+  }
+  
+  .genderCatcher {
+    position: absolute;
+    left: 0;
+    top: -0.125rem;
+    width: 1.125rem;
+    height: 1.125rem;
+    border: 0.125rem solid var(--color-text-secondary);
+    border-radius: 1rem;
+  }
+  
+  .genderSlider {
+    position: absolute;
+    top: 32.06vh;
+    left: -15.75vh;
+    padding: 0;
+    z-index: 11;
+  }
+  
+  .genderBearing {
+    margin-left: -2px;
+    margin-top: -6px;
+  }
+  
+  .colorSlider {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 1.125rem;
+    padding: 0;
+    left: calc(23.06vh - 1.125rem);
+    top: calc(24.47vh - 3.9375rem);
+    width: 1.125rem;
+    border-radius: 1rem;
+    border: 0.125rem solid var(--color-text-secondary);
+    z-index: 2;
+    overflow: hidden;
+  }
+  
+  .colorCatcher {
+    position: absolute;
+    transform: translate(0,0);
+    width: 1.125rem;
+    height: 1.125rem;
+    border: 0.125rem solid var(--color-text-secondary);
+    border-radius: 1rem;
+    top: 0;
+    right: -0.125rem;
+    z-index: 10;
+  }
+  
+  .colorSlide {
+    width: 0.125rem;
+    height: 0.125rem;
+    border-radius: 0.5rem;
+    border-width: 0;
+    padding: 0;
+  }
+  
+  .title {
+    position: absolute;
+    font-family: 'Sue Ellen Francisco', cursive;
+    margin: 0;
+    font-weight: 500;
+    text-align: start;
+    width: 14ch;
+    left: -27vh;
+    top: 27vh;
+    font-size: 2.81vh;
+    line-height: 3.94vh;
+    z-index: 10;
+    color: var(--color-text-secondary);
+  }
+  
+  .subTitle {
+    position: absolute;
+    left: -27vh;
+    top: 36vh;
+    z-index: 4;
+    color: var(--color-text-secondary);
+  }
+  
+  .subTitle h2 {
+    font-size: 0.6rem;
+    font-weight: 600;
+    margin: 0.4rem 0;
+  }
+  
+  .mintPrice {
+    display: flex;
+    align-items: center;
+    height: 2.5vh;
+  }
+  
+  .subTitle p {
+    font-size: 0.7rem;
+    margin: 0;
+  }
+  
+  .algoLogo {
+    display: flex;
+    align-items: center;
+    height: 1.41vh;
+    width: 1.41vh;
+  }
+  
+  .wheelOne, .wheelTwo, .wheelThree, .wheelFour {
+    position: absolute;
+  }
+  
+  .wheelOne {
+    top: -24.75vh;
+    left: 0;
+  }
+  
+  .wheelTwo {
+    left: 32vh;
+    top: 7.31vh;
+  }
+  
+  .wheelThree {
+    left: -11.81vh;
+    top: 42.75vh;
+  }
+  
+  .wheelFour {
+    top: 71.44vh;
+    left: 20.25vh;
+  }
+  
+  .headHolder {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    padding: 0;
+    overflow: hidden;
+    width: 13.5vh;
+    height: 13.5vh;
+    border-radius: 8vh;
+    z-index: 6;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .headCard {
+    z-index: 13;
+    position: absolute;
+    width: 15.75vh;
+    height: 5vh;
+    border-radius: 2.5vh;
+    transform: translate(-50%, 7.88vh);
+      font-family: 'Gluten', cursive;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: 300;
+    color: var(--color-text-secondary);
+  }
+  
+  .headCard p {
+    margin: 0;
+  }
+  
+  .arrowHolder {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 30.94vh;
+    height: 30.94vh;
+    top: 9vh;
+    left: 9vh;
+  }
+  
+  .scrollArrowHolder {
+    position: absolute;
+    width: 30.94vh;
+    height: 30.94vh;
+    top: 9vh;
+    left: 9vh;
+    transform: rotate(30deg);
+  }
+  
+  .linkArrowHolder {
+    position: absolute;
+    width: 35.44vh;
+    height: 35.44vh;
+    top: 13.5vh;
+    left: 18vh;
+    transform: rotate(290deg);
+  }
+  
+  .counterArrows {
+    transform: scaleY(-1);
+  }
+  
+  .counterScrollArrows {
+    transform: scaleX(-1);
+  }
+  
+  .logoHolder {
+    position: absolute;
+    z-index: 1000;
+    width: 15.75vh;
+    height: 15.75vh;
+    top: 24.75vh;
+    border-radius: 0 0 8vh 8vh;
+    background-color: var(--color-bg-primary);
+    overflow: hidden;
+  }
+  
+  .social {
+    position: absolute;
+    display: flex;
+    top:66.38vh;
+    left: 1.13vh;
+    height: calc(15.19vh + 1rem);
+    width: calc(14.06vh + 0.5rem);
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    z-index: 1000;
+  }
+
+  .wallet {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .wallet p {
+    position: absolute;
+    width: 9vh;
+    font-size: 0.7rem;
+    margin-right: 0.5rem;
+    left: 0;
+    text-align: right;
+    color: var(--color-text-secondary);
+  }
+  
+  .socialButton, .walletButton {
+    width: 5.06vh;
+    height: 5.06vh;
+    border-radius: 3vh;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-bg-primary);
+  }
+
+  .avatar {
+    width: 5.06vh;
+    height: 5.06vh;
+    border-radius: 3vh;
+    overflow: hidden;
+    position: relative;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .themeSliderFrame {
+    position: absolute;
+    top: 51.75vh;
+    left: 18vh;
+  }
+  
+  .bannerHolder {
+    position: absolute;
+    width: 53.44vh;
+    height: 53.44vh;
+    top: 2.81vh;
+    left: -2.81vh;
+  }
+  
+  .buyBanner {
+    border-radius: 50%;
+    z-index: 0;
+  }
+  
+  .navSliderFrame {
+    position: absolute;
+    top: 81.56vh;
+    left: 51.19vh;
+  }
+
+  .themeSlider {
+    position: absolute;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    left: 0;
+    top: 0;
+    height: 1.125rem;
+    width: 2.25rem;
+    padding: 0;
+    border-radius: 1rem;
+    background-color: var(--color-bg-primary);
+    border: 0.125rem solid var(--color-text-secondary);
+  }
+  
+    .themeCatcher {
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 0.125rem solid var(--color-text-secondary);
+      border-radius: 1rem;
+      background-color: var(--color-text-secondary);
+      position: absolute;
+      top: -0.1875rem;
+      left: -0.1875rem;
+      overflow: hidden;
+    }
+
+    .shadowCatcher {
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 1rem;
+      background-color: var(--color-bg-primary);
+      position: absolute;
+      top: -0.45rem;
+      left: -0.45rem;
+    }
