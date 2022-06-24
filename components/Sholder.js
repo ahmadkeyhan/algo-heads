@@ -510,12 +510,12 @@ function Sholder() {
               </motion.div>
               {sholderRanking[sholderRank].heads.map((head, index) => {
                 return (
-                  <HeadHolder control={controlIndex[index]} head={head} />
+                  <HeadHolder control={controlIndex[index]} head={head} key={index} />
                 )
               })}
-              {controlIndex.map((control) => {
+              {controlIndex.map((control, index) => {
                 return (
-                  <HeadHolder head={null} control={control} />
+                  <HeadHolder head={null} control={control} key={index} />
                 )
               })}
               
