@@ -216,8 +216,8 @@ function Headlist() {
             </motion.div>
             <motion.div className={styles.sholderTag}>
               <p>Sholder: </p>
-              <Link href={`https://algoexplorer.io/address/${sortedHeads[rank+1].sholder.address}`} passHref>
-                <a target="_blank">
+              <Link href={`/sholders/${sortedHeads[rank+1].sholder.address}`} passHref>
+                <a>
                   <p className={styles.price}>{sortedHeads[rank+1].sholder.address.slice(0,5)}...</p>
                 </a>
               </Link>
