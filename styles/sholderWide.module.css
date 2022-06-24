@@ -93,6 +93,44 @@
     line-height: 1.2rem;
   }
 
+  .announceArrowHolder {
+    position: absolute;
+    width: 30.94vh;
+    height: 30.94vh;
+    top: 18vh;
+    left: 24.75vh;
+    /* left: 116vw; */
+  }
+
+  .announce p {
+    position: absolute;
+    top: -3.38vh;
+    left: 4.5vh;
+    width: 22.5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: var(--color-text-secondary);
+    font-family: 'Gluten', cursive;
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+  }
+
+  .announce h2 {
+    position: absolute;
+    top: 29.25vh;
+    left: 9vh;
+    width: 22.5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: var(--color-text-secondary);
+    font-family: 'Gluten', cursive;
+    font-size: 0.8rem;
+    line-height: 1.2rem;
+  }
+
+
 .sholderCard {
     position: absolute;
     width: 28.13vh;

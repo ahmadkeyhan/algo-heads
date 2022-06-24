@@ -68,6 +68,47 @@
     /* left: 116vw; */
   }
 
+  .announceArrowHolder {
+    position: absolute;
+    width: 55vw;
+    height: 55vw;
+    top: 32vw;
+    left: 44vw;
+    /* left: 116vw; */
+  }
+
+  .quoteArrows {
+    transform: scaleX(-1) rotate(67.5deg);
+  }
+
+  .announce p {
+    position: absolute;
+    top: -6vw;
+    left: 8vw;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: var(--color-text-secondary);
+    font-family: 'Gluten', cursive;
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+  }
+
+  .announce h2 {
+    position: absolute;
+    top: 52vw;
+    left: 16vw;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: var(--color-text-secondary);
+    font-family: 'Gluten', cursive;
+    font-size: 0.8rem;
+    line-height: 1.2rem;
+  }
+
   .headSpinHolder {
     position: absolute;
     width: 50vw;
@@ -93,6 +134,7 @@
     font-size: 0.9rem;
     line-height: 1.2rem;
   }
+
 
 .sholderCard {
     position: absolute;

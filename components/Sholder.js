@@ -521,67 +521,17 @@ function Sholder() {
               
             </div>
             <div className={styles.wheelThree}>
+            <motion.div className={styles.announceArrowHolder}>
+                <Image className={styles.announceArrows} src={activeTheme === 'light' ? linkArrowPalette[colorCode] : linkArrowPalette[7]} layout='fill' />
+                <motion.div className={styles.announce}>
+                <p>AHS (Algo Head Spin)</p>
+                <h2>coming soon...</h2>
+                </motion.div>
+              </motion.div>
                 <motion.div className={styles.headSpinHolder}>
                   <Image className={styles.headSpin} src='/headSpinDemo.gif' layout='fill' />
                 </motion.div>
             </div>
-            {/* <div className={styles.wheelThree}>
-                <motion.div className={styles.arrowHolder}>
-                <Image className={styles.arrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
-                <motion.div className={styles.stepsForward}>
-                    <motion.div
-                        style={activeTheme==='light'?
-                        {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} :
-                        {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}}
-                        animate={step+4 < sholderRanking.length ? null : {display: 'none'}}
-                        onClick={() => setStep(step+1)}
-                        className={styles.step}>
-                        <p>+<span>1</span></p>
-                    </motion.div>
-                    <motion.div
-                        style={activeTheme==='light'?
-                        {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} :
-                        {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}}
-                        animate={step+7 < sholderRanking.length ? null : {display: 'none'}}
-                        onClick={() => setStep(step+4)}
-                        className={styles.step}>
-                        <p>+<span>4</span></p>
-                    </motion.div>
-                </motion.div>
-                </motion.div>
-                <motion.div className={styles.counterArrowHolder}>
-                <Image className={styles.counterArrows} src={activeTheme === 'light' ? scrollArrowPalette[colorCode] : scrollArrowPalette[7]} layout='fill' />
-                <motion.div className={styles.stepsBackward}>
-                    <motion.div
-                        style={activeTheme==='light'?
-                        {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} :
-                        {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}}
-                        animate={step > 0 ? null : {display: 'none'}}
-                        onClick={() => setStep(step-1)}
-                        className={styles.step}>
-                        <p>-<span>1</span></p>
-                    </motion.div>
-                    <motion.div
-                        style={activeTheme==='light'?
-                        {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} :
-                        {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}}
-                        animate={step > 3 ? null : {display: 'none'}}
-                        onClick={() => setStep(step-4)}
-                        className={styles.step}>
-                        <p>-<span>4</span></p>
-                    </motion.div>
-                </motion.div>
-                </motion.div>
-                <motion.div className={styles.topTitle}>
-                    <h1><span style={{color: lightColorPalette[colorCode]}}><CgIcons.CgTrophy /></span> Top Sholders</h1>
-                </motion.div>
-
-            </div>
-            <div className={styles.wheelFour}>
-            <motion.div className={styles.arrowHolder}>
-                <Image className={styles.lastArrows} src={activeTheme === 'light' ? scrollArrowPalette[colorCode] : scrollArrowPalette[7]} layout='fill' />
-              </motion.div>
-            </div> */}
           </div>
         </div>
         )
@@ -589,6 +539,33 @@ function Sholder() {
       router.push('/sholders')
     }
     
+  } else {
+    return (
+      <div className={styles.landing}
+        style={{height: `${normalizedwidth*16/9}vw`,
+        width: `${normalizedwidth}vw`}}>
+        <motion.div className={styles.navSliderFrame}>
+          <NavSlider colorCode={colorCode} />
+        </motion.div>
+        <div className={styles.wheelHolder}>
+          <div className={styles.wheelOne}>
+            <motion.div className={styles.quoteArrowHolder}>
+              <Image className={styles.quoteArrows} src={activeTheme === 'light' ? linkArrowPalette[colorCode] : linkArrowPalette[7]} layout='fill' />
+            </motion.div>
+          </div>
+          <div className={styles.wheelTwo}>
+            <motion.div className={styles.arrowHolder}>
+              <Image className={styles.arrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
+            </motion.div>
+          </div>
+          <div className={styles.wheelThree}>
+              <motion.div className={styles.headSpinHolder}>
+                <Image className={styles.headSpin} src='/headSpinDemo.gif' layout='fill' />
+              </motion.div>
+          </div>
+        </div>
+      </div>
+      )
   }
 
 }

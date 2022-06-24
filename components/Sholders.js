@@ -47,7 +47,7 @@ function Sholders() {
       .then((data) => {
         setHeads(data.message)
         data.message.map((head) => {
-          if (addressBook.indexOf(head.sholder.address) === -1 && head.sholder.address) {
+          if (addressBook.indexOf(head.sholder.address) === -1 && head.sholder.address && head.sholder.address != '37XZFQ3R7XOQ5KRPIDOK3BK5O2N5UNFJOV6H3LAZA6R4KFRHQGKXE45DM4') {
             addressBook.push(head.sholder.address)
             nameBook.push(head.sholder.name)
           }
