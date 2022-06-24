@@ -1,0 +1,211 @@
+.container {
+    display: flex;
+    width: 100vw;
+    justify-content: space-evenly;
+    height: 100vh;
+    align-items: center;
+    background-color: var(--color-bg-primary);
+  }
+  
+  .landing {
+    position: relative;
+    background-color: var(--color-bg-primary);
+    overflow: scroll;
+  }
+  
+  .landing::-webkit-scrollbar {
+    height: 0.125rem;
+    width: 0.125rem;
+  }
+  
+  .landing::-webkit-scrollbar-track {
+    background: var(--color-bg-primary);
+  }
+  
+  .landing::-webkit-scrollbar-thumb {
+    background: var(--color-bg-primary);
+    border-radius: 0.0625rem;
+  }
+  
+  .wheelOne, .wheelTwo, .wheelThree, .wheelFour {
+    position: absolute;
+  }
+  
+  .wheelOne {
+    top: -22.5vh;
+    left: 2.25vh;
+  }
+  
+  .wheelTwo {
+    left: 32.06vh;
+    top:15.75vh;
+  }
+  
+  .wheelThree {
+    left: -24.75vh;
+    top: 42.19vh;
+  }
+  
+  .wheelFour {
+    top: 71.44vh;
+    left: 20.25vh;
+  }
+
+  .arrowHolder {
+    position: absolute;
+    width: 30.94vh;
+    height: 30.94vh;
+    top: 9vh;
+    left: 9vh;
+  }
+  
+  .quoteArrowHolder {
+    position: absolute;
+    width: 30.94vh;
+    height: 30.94vh;
+    top: 18vh;
+    left: -9vh;
+  }
+
+  .headSpinHolder {
+    position: absolute;
+    width: 28.13vh;
+    height: 28.13vh;
+    top: 20.25vh;
+    left: 27vh;
+  }
+
+  .quoteArrows {
+    transform: scaleX(-1) rotate(67.5deg);
+  }
+
+  .quote {
+    position: absolute;
+    top: 24.75vh;
+    left: 11.25vh;
+    width: 22.5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: var(--color-text-secondary);
+    font-family: 'Gluten', cursive;
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+  }
+
+.sholderCard {
+    position: absolute;
+    width: 28.13vh;
+    height: 13.5vh;
+    padding: 0 0 0 13.5vh;
+    border-radius: 6.75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: var(--color-bg-primary);
+    font-family: 'Gluten', cursive;
+  }
+  
+.sholderCard span {
+    font-size: 0.7rem;
+    font-weight: 300;
+    margin: 0;
+}
+
+.rank {
+    position: absolute;
+    top: 10.13vh;
+    left: 1.13vh;
+    width: 3.94vh;
+    height: 3.94vh;
+    border-radius: 2vh;
+    background-color: var(--color-bg-primary);
+    border: 2px solid var(--color-text-secondary);
+    font-family: 'Gluten', cursive;
+    font-size: 0.7rem;
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.sholderCard p {
+    font-size: 0.7rem;
+    font-weight: 300;
+    margin: 0 0 0 0.5rem;
+}
+
+.rank p {
+    margin: 0;
+}
+
+  .sholderCard h1{
+    font-size: 0.7rem;
+    margin: 0.3rem 0 0 0.8rem;
+  }
+
+  .sholderCol {
+    width: 14.63vh;
+  }
+  
+  .sholderHolder {
+    width: 13.5vh;
+    height: 13.5vh;
+    border-radius: 6.75vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+  }
+
+  .headHolder {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 13.5vh;
+    height: 13.5vh;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 7.88vh;
+    z-index: 6;
+    display: flex;
+    justify-content: center;
+  }
+
+  .placeHolder {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 13.5vh;
+    height: 13.5vh;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 7.88vh;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .headCard {
+    width: 15.75vh;
+    height: 5.06vh;
+    border-radius: 3vh;
+    z-index: 13;
+    position: absolute;
+    transform: translate(-50%, 7.88vh);
+      font-family: 'Gluten', cursive;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: 300;
+    color: var(--color-text-secondary);
+  }
+  
+  .headCard p {
+    margin: 0;
+  }
+  
+  .navSliderFrame {
+    position: absolute;
+    top: 81.56vh;
+    left: 51.19vh;
+  }

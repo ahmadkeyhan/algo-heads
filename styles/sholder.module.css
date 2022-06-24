@@ -76,12 +76,7 @@
     left: 48vw;
   }
 
-  .headSpin {
-
-  }
-
   .quoteArrows {
-
     transform: scaleX(-1) rotate(67.5deg);
   }
 
