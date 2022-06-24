@@ -15,6 +15,7 @@ import { arrowPalette, linkArrowPalette, scrollArrowPalette } from './Assets'
 import Link from 'next/link'
 
 function Sholders() {
+    const router = useRouter()
 
   const [activeTheme, setActiveTheme] = useState(document.body.dataset.theme)
   const inactiveTheme = activeTheme === "light" ? "dark" : "light"
@@ -39,14 +40,14 @@ function Sholders() {
   const [headlist, setHeadlist] = useState([])
   const [addressBook, setAddressBook]=useState([])
   const [nameBook, setNameBook] = useState([])
-  const [sholderRank, setSholderRank] = useState([])
+  const [sholderRanking, setSholderRanking] = useState([])
   useEffect(() => {
     fetch('api/headlist')
       .then((res) => res.json())
       .then((data) => {
         setHeads(data.message)
         data.message.map((head) => {
-          if (addressBook.indexOf(head.sholder.address) === -1) {
+          if (addressBook.indexOf(head.sholder.address) === -1 && head.sholder.address) {
             addressBook.push(head.sholder.address)
             nameBook.push(head.sholder.name)
           }
@@ -59,10 +60,10 @@ function Sholders() {
                     heads.push({src: head.src, bgColorCode: head.bgColorCode})
                 }
             })
-            sholderRank.push({sholder: {address: address, name: nameBook[index]}, heads: heads})
+            sholderRanking.push({sholder: {address: address, name: nameBook[index]}, heads: heads})
         })
-        sholderRank.sort((a,b) => b.heads.length - a.heads.length)
-        console.log(sholderRank)
+        sholderRanking.sort((a,b) => b.heads.length - a.heads.length)
+        console.log(sholderRanking)
       })
   },[])
 
@@ -89,26 +90,26 @@ function Sholders() {
   function SholderHolder({top, left, rank}) {
     return (
         <motion.div className={styles.sholderCard}
-          style={{color: activeTheme==='light' ? darkColorPalette[sholderRank[rank].heads[0].bgColorCode] : null,
-          backgroundColor: lightColorPalette[sholderRank[rank].heads[0].bgColorCode],
-          top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${top}vw` : `${top*9/16}vh`,
-          left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${left}vw` : `${left*9/16}vh`}}>
-
-          {/* <motion.div className={rank == step ? styles.firstRank : styles.rank}
-           style={{borderColor: lightColorPalette[sortedHeads[rank].bgColorCode]}}>
-            <p>{rank + 1}</p>
-          </motion.div> */}
-
-          <motion.div className={styles.sholderHolder}>
-            <Image src={sholderRank[rank].heads[0].src} layout='fill' />
-          </motion.div>
-            <motion.div className={styles.sholderCol}>
-            <p>Sholder:</p>
-            <h1>{sholderRank[rank].sholder.name ? sholderRank[rank].sholder.name : sholderRank[rank].sholder.address.slice(0,9)+'...'}</h1>
+            style={{color: activeTheme==='light' ? darkColorPalette[sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].bgColorCode] : null,
+            backgroundColor: lightColorPalette[sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].bgColorCode],
+            top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${top}vw` : `${top*9/16}vh`,
+            left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${left}vw` : `${left*9/16}vh`}}
+            onClick={() => router.push(`/sholders/${sholderRanking[rank].sholder.address}`)}>
+            <motion.div className={styles.sholderHolder}>
+                <Image src={sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].src} layout='fill' />
             </motion.div>
             <motion.div className={styles.sholderCol}>
-            <p>carrying:</p>
-            <h1>{sholderRank[rank].heads.length} <span>heads</span></h1>
+                <p>Sholder:</p>
+                <h1>{sholderRanking[rank].sholder.name ? sholderRanking[rank].sholder.name : sholderRanking[rank].sholder.address.slice(0,8)+'...'}</h1>
+            </motion.div>
+            <motion.div className={styles.sholderCol}>
+                <p>carrying:</p>
+                <h1>{sholderRanking[rank].heads.length} <span>{sholderRanking[rank].heads.length>1 ? 'heads' : 'head'}</span></h1>
+            </motion.div>
+            <motion.div className={styles.rank}
+                style={{borderColor: lightColorPalette[sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].bgColorCode],
+                color: activeTheme==='light'? darkColorPalette[sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].bgColorCode] : lightColorPalette[sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].bgColorCode]}}>
+                <p>{rank + 1}</p>
             </motion.div>
         </motion.div>
       )
@@ -133,8 +134,12 @@ function Sholders() {
                 <input ref={input}
                     value={inputAddress}
                     onChange={(e) => setInputAddress(e.target.value)}
-                    className={styles.addressBar} placeholder='Paste a valid algo wallet...'></input>
-                <MdIcons.MdSearch />
+                    className={styles.addressBar} placeholder='Paste a valid algo wallet...'>
+                </input>
+                <motion.div onClick={() => router.push(`/sholders/${inputAddress}`)}>
+                    <MdIcons.MdCheck style={validAddress ? null:{display: 'none'}} />
+                    <MdIcons.MdSearch />
+                </motion.div>
               </motion.div>
               <div className={styles.logoHolder}>
                 <Image className={styles.logo} src={activeTheme==='light'? '/logo.png' : '/darkLogo.png'} layout='fill' />
@@ -148,7 +153,7 @@ function Sholders() {
                         style={activeTheme==='light'?
                         {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} :
                         {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}}
-                        animate={step+4 < sholderRank.length ? null : {display: 'none'}}
+                        animate={step+4 < sholderRanking.length ? null : {display: 'none'}}
                         onClick={() => setStep(step+1)}
                         className={styles.step}>
                         <p>+<span>1</span></p>
@@ -157,7 +162,7 @@ function Sholders() {
                         style={activeTheme==='light'?
                         {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} :
                         {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}}
-                        animate={step+7 < sholderRank.length ? null : {display: 'none'}}
+                        animate={step+7 < sholderRanking.length ? null : {display: 'none'}}
                         onClick={() => setStep(step+4)}
                         className={styles.step}>
                         <p>+<span>4</span></p>
@@ -196,6 +201,9 @@ function Sholders() {
                 <SholderHolder top={70} left={46} rank={3+step} />
             </div>
             <div className={styles.wheelFour}>
+            <motion.div className={styles.arrowHolder}>
+                <Image className={styles.lastArrows} src={activeTheme === 'light' ? scrollArrowPalette[colorCode] : scrollArrowPalette[7]} layout='fill' />
+              </motion.div>
             </div>
           </div>
         </div>

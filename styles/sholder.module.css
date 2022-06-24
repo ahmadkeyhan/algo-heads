@@ -1,0 +1,205 @@
+.container {
+    display: flex;
+    width: 100vw;
+    justify-content: space-evenly;
+    height: 100vh;
+    align-items: center;
+    background-color: var(--color-bg-primary);
+  }
+  
+  .landing {
+    position: relative;
+    background-color: var(--color-bg-primary);
+    overflow: scroll;
+  }
+  
+  .landing::-webkit-scrollbar {
+    height: 0.125rem;
+    width: 0.125rem;
+  }
+  
+  .landing::-webkit-scrollbar-track {
+    background: var(--color-bg-primary);
+  }
+  
+  .landing::-webkit-scrollbar-thumb {
+    background: var(--color-bg-primary);
+    border-radius: 0.0625rem;
+  }
+  
+  .wheelOne, .wheelTwo, .wheelThree, .wheelFour {
+    position: absolute;
+  }
+  
+  .wheelOne {
+    top: -40vw;
+    left: 4vw;
+  }
+  
+  .wheelTwo {
+    left: 57vw;
+    top:28vw;
+  }
+  
+  .wheelThree {
+    left: -44vw;
+    top: 75vw;
+  }
+  
+  .wheelFour {
+    top: 127vw;
+    left: 36vw;
+  }
+
+  .arrowHolder {
+    position: absolute;
+    width: 55vw;
+    height: 55vw;
+    top: 16vw;
+    left: 16vw;
+  }
+  
+  .quoteArrowHolder {
+    position: absolute;
+    width: 55vw;
+    height: 55vw;
+    top: 32vw;
+    left: -16vw;
+    /* left: 116vw; */
+  }
+
+  .quoteArrows {
+
+    transform: scaleX(-1) rotate(67.5deg);
+  }
+
+  .quote {
+    position: absolute;
+    top: 44vw;
+    left: 20vw;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: var(--color-text-secondary);
+    font-family: 'Gluten', cursive;
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+  }
+
+.sholderCard {
+    position: absolute;
+    width: 50vw;
+    height: 24vw;
+    padding: 0 0 0 24vw;
+    border-radius: 12vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: var(--color-bg-primary);
+    font-family: 'Gluten', cursive;
+  }
+  
+.sholderCard span {
+    font-size: 0.7rem;
+    font-weight: 300;
+    margin: 0;
+}
+
+.rank {
+    position: absolute;
+    top: 18vw;
+    left: 2vw;
+    width: 7vw;
+    height: 7vw;
+    border-radius: 5vw;
+    background-color: var(--color-bg-primary);
+    border: 2px solid var(--color-text-secondary);
+    font-family: 'Gluten', cursive;
+    font-size: 0.7rem;
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.sholderCard p {
+    font-size: 0.7rem;
+    font-weight: 300;
+    margin: 0 0 0 0.5rem;
+}
+
+.rank p {
+    margin: 0;
+}
+
+  .sholderCard h1{
+    font-size: 0.7rem;
+    margin: 0.3rem 0 0 0.8rem;
+  }
+
+  .sholderCol {
+    width: 26vw;
+  }
+  
+  .sholderHolder {
+    width: 24vw;
+    height: 24vw;
+    border-radius: 12vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+  }
+
+  .headHolder {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 24vw;
+    height: 24vw;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 14vw;
+    z-index: 6;
+    display: flex;
+    justify-content: center;
+  }
+
+  .placeHolder {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 24vw;
+    height: 24vw;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 14vw;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .headCard {
+    width: 28vw;
+    height: 9vw;
+    border-radius: 5vw;
+    z-index: 13;
+    position: absolute;
+    transform: translate(-50%, 14vw);
+      font-family: 'Gluten', cursive;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: 300;
+    color: var(--color-text-secondary);
+  }
+  
+  .headCard p {
+    margin: 0;
+  }
+  
+  .navSliderFrame {
+    position: absolute;
+    top: 145vw;
+    left: 91vw;
+  }
