@@ -68,6 +68,18 @@
     /* left: 116vw; */
   }
 
+  .headSpinHolder {
+    position: absolute;
+    width: 50vw;
+    height: 50vw;
+    top: 36vw;
+    left: 48vw;
+  }
+
+  .headSpin {
+
+  }
+
   .quoteArrows {
 
     transform: scaleX(-1) rotate(67.5deg);

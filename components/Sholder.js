@@ -437,6 +437,11 @@ function Sholder() {
               })}
               
             </div>
+            <div className={styles.wheelThree}>
+                <motion.div className={styles.headSpinHolder}>
+                  <Image className={styles.headSpin} src='/headSpinDemo.gif' layout='fill' />
+                </motion.div>
+            </div>
             {/* <div className={styles.wheelThree}>
                 <motion.div className={styles.arrowHolder}>
                 <Image className={styles.arrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
