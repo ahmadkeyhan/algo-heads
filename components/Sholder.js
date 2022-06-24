@@ -521,7 +521,7 @@ function Sholder() {
               
             </div>
             <div className={styles.wheelThree}>
-            <motion.div className={styles.announceArrowHolder}>
+            <motion.div onClick={() => router.push('/sholders')} className={styles.announceArrowHolder}>
                 <Image className={styles.announceArrows} src={activeTheme === 'light' ? linkArrowPalette[colorCode] : linkArrowPalette[7]} layout='fill' />
                 <motion.div className={styles.announce}>
                 <p>AHS (Algo Head Spin)</p>

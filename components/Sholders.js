@@ -219,18 +219,41 @@ function Sholders() {
           <div className={styles.wheelHolder}>
             <div className={styles.wheelOne}>
               <motion.div className={styles.arrowHolder}>
-                <Image className={styles.logoArrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
+                <Image className={styles.logoArrows} src={activeTheme === 'light' ? scrollArrowPalette[colorCode] : scrollArrowPalette[7]} layout='fill' />
+              </motion.div>
+              <motion.div style={{color: validAddress? lightColorPalette[colorCode] : null,
+                borderColor: validAddress? lightColorPalette[colorCode] : null,
+                fontSize: '1.1rem'}} className={styles.searchBox}>
+                <input ref={input}
+                    value={inputAddress}
+                    onChange={(e) => setInputAddress(e.target.value)}
+                    className={styles.addressBar} placeholder='Paste a valid algo wallet...'>
+                </input>
+                <motion.div onClick={() => router.push(`/sholders/${inputAddress}`)}>
+                    <MdIcons.MdCheck style={validAddress ? null:{display: 'none'}} />
+                    <MdIcons.MdSearch />
+                </motion.div>
               </motion.div>
               <div className={styles.logoHolder}>
                 <Image className={styles.logo} src={activeTheme==='light'? '/logo.png' : '/darkLogo.png'} layout='fill' />
               </div>
             </div>
             <div className={styles.wheelThree}>
-              <motion.div className={styles.arrowHolder}>
-                <Image className={styles.counterArrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
-              </motion.div>
+                <motion.div className={styles.arrowHolder}>
+                <Image className={styles.arrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
+                </motion.div>
+                <motion.div className={styles.counterArrowHolder}>
+                <Image className={styles.counterArrows} src={activeTheme === 'light' ? scrollArrowPalette[colorCode] : scrollArrowPalette[7]} layout='fill' />
+                
+                </motion.div>
+                <motion.div className={styles.topTitle}>
+                    <h1><span style={{color: lightColorPalette[colorCode]}}><CgIcons.CgTrophy /></span> Top Sholders</h1>
+                </motion.div>
             </div>
             <div className={styles.wheelFour}>
+            <motion.div className={styles.arrowHolder}>
+                <Image className={styles.lastArrows} src={activeTheme === 'light' ? scrollArrowPalette[colorCode] : scrollArrowPalette[7]} layout='fill' />
+              </motion.div>
             </div>
           </div>
         </div>

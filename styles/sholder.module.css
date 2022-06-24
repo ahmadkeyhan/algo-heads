@@ -72,37 +72,34 @@
     position: absolute;
     width: 55vw;
     height: 55vw;
-    top: 32vw;
-    left: 44vw;
+    top: 72vw;
+    left: 108vw;
     /* left: 116vw; */
   }
-
-  .quoteArrows {
-    transform: scaleX(-1) rotate(67.5deg);
+  .announceArrows {
+    transform: scaleY(-1) rotate(67.5deg);
   }
 
-  .announce p {
+.announce {
     position: absolute;
-    top: -6vw;
-    left: 8vw;
+    top: 16vw;
+    left: -56vw;
     width: 40vw;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+}
+
+  .announce p {
     color: var(--color-text-secondary);
     font-family: 'Gluten', cursive;
     font-size: 0.9rem;
     line-height: 1.2rem;
+    margin: 0;
   }
 
   .announce h2 {
-    position: absolute;
-    top: 52vw;
-    left: 16vw;
-    width: 40vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    margin: 0;
     color: var(--color-text-secondary);
     font-family: 'Gluten', cursive;
     font-size: 0.8rem;
