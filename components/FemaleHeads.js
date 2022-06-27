@@ -1,8 +1,8 @@
-export const femaleHeads = ['/algoHead031.png',
-'/algoHead033.png',
-'/algoHead035.png',
-'/algoHead037.png',
-'/algoHead039.png',
-'/algoHead041.png',
-'/algoHead043.png',
-'/algoHead045.png']
+export const femaleHeads = ['/algoHead051.png',
+'/algoHead053.png',
+'/algoHead055.png',
+'/algoHead057.png',
+'/algoHead059.png',
+'/HappyPride!.png',
+'/HappyPride!.png',
+'/HappyPride!.png']
