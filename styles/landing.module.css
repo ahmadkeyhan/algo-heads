@@ -50,17 +50,22 @@
   background-color: var(--color-bg-primary);
 }
 
+.shuffleButtons {
+  position: absolute;
+  left: 32vw;
+  top: 14vw;
+}
+
 .mainButton {
   position: absolute;
-  left: 50vw;
-  top: 32vw;
+  left: 6vw;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 12vw;
   width: 36vw;
   border-radius: 7vw;
-  border: 0.125rem solid var(--color-text-secondary);
+  overflow: hidden;
   font-size: 0.8rem;
   font-family: 'Gluten', cursive;
   font-weight: bold;
@@ -70,16 +75,17 @@
 
 .mainCountDown {
   position: absolute;
-  left: 50vw;
-  top: 30vw;
+  left: 6vw;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 14vw;
-  width: 36vw;
+  height: 12vw;
+  width: 34vw;
   border-radius: 7vw;
-  border: 0.125rem solid var(--color-text-secondary);
-  font-size: 0.7rem;
+  overflow: hidden;
+  color: #212121;
+  font-size: 0.6rem;
+  font-weight: 600;
   font-family: 'Gluten', cursive;
   text-align: center;
   line-height: 1rem;
@@ -87,8 +93,66 @@
   background-color: var(--color-bg-primary);
 }
 
+.secondaryButton {
+  position: absolute;
+  top: 24vw;
+  left: 36vw;
+  padding: 3rem 1rem 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 12vw;
+  width: 18vw;
+  border-radius: 9vw;
+  overflow: hidden;
+  font-size: 0.8rem;
+  font-family: 'Gluten', cursive;
+  font-weight: bold;
+  z-index: 5;
+  background-color: var(--color-bg-primary);
+}
+
+.secondaryCountDown {
+  position: absolute;
+  top: 24vw;
+  left: 36vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 12vw;
+  width: 18vw;
+  border-radius: 9vw;
+  overflow: hidden;
+  color: #212121;
+  font-size: 0.6rem;
+  font-weight: 600;
+  font-family: 'Gluten', cursive;
+  text-align: center;
+  line-height: 0.9rem;
+  z-index: 5;
+  background-color: var(--color-bg-primary);
+}
+
 .mainCountDown p {
-  width: 16ch;
+  width: 17ch;
+  z-index: 2;
+}
+
+.mainCountDown span {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.secondaryCountDown p {
+  width: 8ch;
+  height: 1.8rem;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.secondaryCountDown span {
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .scrollButton {
@@ -380,20 +444,19 @@
 
 .themeSliderFrame {
   position: absolute;
-  top: 92vw;
-  left: 32vw;
+  top: 40vw;
+  left: 30vw;
 }
 
 .bannerHolder {
   position: absolute;
-  width: 95vw;
-  height: 95vw;
-  top: 5vw;
-  left: -5vw;
+  width: 104vw;
+  height: 104vw;
+  top: 10vw;
+  left: -12vw;
 }
 
 .buyBanner {
-  border-radius: 50%;
   z-index: 0;
 }
 

@@ -11,6 +11,7 @@ import NavSlider from './NavSlider'
 import { useRouter } from 'next/router'
 import { maleHeads } from './MaleHeads'
 import { femaleHeads } from './FemaleHeads'
+import {proudHeads } from './ProudHeads'
 import { lightColorPalette, darkColorPalette } from '../components/colorPalette'
 import { arrowPalette, buyBannerPalette, linkArrowPalette, scrollArrowPalette } from './Assets'
 import Link from 'next/link'
@@ -59,6 +60,9 @@ function Landing() {
         // let sholderOrNot = true
         if (sholders.indexOf(fetchedAccount[0].address) !== -1) {
           setSholderOrNot(true)
+          setSholderShuffleOrNot(true)
+          setColorCode(5)
+          setActiveTheme('light')
           headlist.map((head) => {
             if (head.sholder.address === fetchedAccount[0].address) {
               head.sholder.name = fetchedAccount[0].name
@@ -77,7 +81,9 @@ function Landing() {
   }
 
 
-  var end = new Date('Fri Jul 1 2022 19:30:00')
+  var shuffleDate = new Date('Fri Jul 1 2022 19:30:00')
+  var sholderShuffleDate = new Date('Thu Jun 30 2022 19:30:00')
+
   const router = useRouter()
 
   const control1 = useAnimation()
@@ -92,10 +98,18 @@ function Landing() {
   const control10 = useAnimation()
 
   const [soldOut, setSoldOut] = useState(true)
+  const [sholdOut, setSholdOut] = useState(true)
+
+  const [sholderShuffleOrNot, setSholderShuffleOrNot] = useState(false)
 
   const [shuffleDays, setShuffleDays] = useState()
   const [shuffleHours, setShuffleHours] = useState()
   const [shuffleMinutes, setShuffleMinutes] = useState()
+
+  const [sholderShuffleDays, setSholderShuffleDays] = useState()
+  const [sholderShuffleHours, setSholderShuffleHours] = useState()
+  const [sholderShuffleMinutes, setSholderShuffleMinutes] = useState()
+
 
   const [colorCode, setColorCode] = useState(2)
   
@@ -107,7 +121,7 @@ function Landing() {
   const [linkArrows, setLinkArrows] = useState(linkArrowPalette[6])
   const [scrollArrows, setScrollArrows] = useState(scrollArrowPalette[0])
 
-  const [male, setMale] = useState(false)
+  const [male, setMale] = useState(true)
   const [heads, setHeads] = useState(maleHeads)
 
   const [width, setWidth] = useState()
@@ -121,15 +135,26 @@ function Landing() {
     setShuffleHours(0)
     setShuffleMinutes(0)
 
+    setSholderShuffleDays(0)
+    setSholderShuffleHours(0)
+    setSholderShuffleMinutes(0)
+
     setInterval(() => {
       var now = new Date()
       var nowUTC = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds())
-      if (nowUTC >= end) {
+      if (nowUTC >= shuffleDate) {
         setSoldOut(false)
       } else {
-        setShuffleDays(Math.floor((end- nowUTC)/(3600000*24)))
-        setShuffleHours(Math.floor((end - nowUTC)%(3600000*24)/3600000))
-        setShuffleMinutes(Math.floor((end - nowUTC)%3600000/60000))
+        setShuffleDays(Math.floor((shuffleDate- nowUTC)/(3600000*24)))
+        setShuffleHours(Math.floor((shuffleDate - nowUTC)%(3600000*24)/3600000))
+        setShuffleMinutes(Math.floor((shuffleDate - nowUTC)%3600000/60000))
+      }
+      if (nowUTC >= sholderShuffleDate) {
+        setSholdOut(false)
+      } else {
+        setSholderShuffleDays(Math.floor((sholderShuffleDate- nowUTC)/(3600000*24)))
+        setSholderShuffleHours(Math.floor((sholderShuffleDate - nowUTC)%(3600000*24)/3600000))
+        setSholderShuffleMinutes(Math.floor((sholderShuffleDate - nowUTC)%3600000/60000))
       }
     },1000)
 
@@ -419,6 +444,10 @@ function Landing() {
   useEffect(() => {
     setHeads(male ? maleHeads : femaleHeads)
   }, [male])
+
+  useEffect(() => {
+    setHeads(sholderShuffleOrNot ? proudHeads : maleHeads)
+  }, [sholderShuffleOrNot])
   
   function ColorSlide(x) {
     setColorCode(x)
@@ -493,7 +522,7 @@ function Landing() {
             <Image className={styles.arrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
           </motion.div>
           <h2 style={{color:activeTheme === 'light' ? darkColorPalette[6-colorCode]: null}} className={styles.title}>
-            Watch the  <span style={{marginLeft: male ? '0.5rem' : '0.1rem',color: lightColorPalette[6-colorCode]}}>{male ? 'male' : 'female '}</span> heads spin!
+            Watch the  <span style={{marginLeft: male ? '0.5rem' : '0.1rem',color: sholderShuffleOrNot ? '#ffa7ff' : lightColorPalette[6-colorCode]}}>{sholderShuffleOrNot ? 'proud' : male ? 'male' : 'female '}</span> heads spin!
           </h2>
           <motion.div className={styles.subTitle}>
             <h2 style={{color: activeTheme==='light' ? darkColorPalette[6-colorCode]: lightColorPalette[6-colorCode]}}>on Algorand blockchain</h2>
@@ -504,29 +533,38 @@ function Landing() {
                 <path d="M18.0006 19.0109H15.1785L13.3456 12.193L9.40508
                   19.0116H6.25445L12.345 8.45714L11.3648 4.79298L3.15215
                   19.0139H0L10.408 0.986084H13.1674L14.3757 5.46509H17.2228L15.2789
-                  8.8453L18.0006 19.0109Z" fill={lightColorPalette[6-colorCode]} />
+                  8.8453L18.0006 19.0109Z" fill={sholderShuffleOrNot ? '#ffa7ff' : lightColorPalette[6-colorCode]} />
               </svg>
             </motion.div>
             </motion.div>
           </motion.div>
-          <motion.div className={styles.genderSlider}>
-            <div className={styles.genderBearing} onClick={() => setMale(!male)}>
-              <svg width="36" height="29" viewBox="0 0 36 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.00195 28.0015C8.44967 28.0015 8.00195 27.5538 8.00195 27.0015V20.0015L10.002 20.0015V27.0015C10.002 27.5538 9.55424 28.0015 9.00195 28.0015Z" fill={activeTheme==='light' ? darkColorPalette[6-colorCode] : '#dfdfdf'} opacity={male ? 0.3 : 1} />
-                <path d="M7.00195 26.0015C6.44967 26.0015 6.00195 25.5538 6.00195 25.0015C6.00195 24.4492 6.44967 24.0015 7.00195 24.0015H11.002C11.5542 24.0015 12.002 24.4492 12.002 25.0015C12.002 25.5538 11.5542 26.0015 11.002 26.0015H7.00195Z" fill={activeTheme==='light' ? darkColorPalette[6-colorCode] : '#dfdfdf'} opacity={male ? 0.3 : 1} />
-                <path d="M33.6068 2.39346C33.9973 2.78398 33.9973 3.41714 33.6068 3.80767L28.6571 8.75742L27.2429 7.3432L32.1926 2.39346C32.5831 2.00293 33.2163 2.00293 33.6068 2.39346Z" fill={activeTheme==='light' ? darkColorPalette[6-colorCode] : '#fdfdfd'} opacity={!male ? 0.3 : 1} />
-                <path d="M33.6068 5.22188C33.9973 5.61241 33.9973 6.24557 33.6068 6.6361C33.2163 7.02662 32.5831 7.02662 32.1926 6.6361L29.3642 3.80767C28.9737 3.41715 28.9737 2.78398 29.3642 2.39346C29.7547 2.00293 30.3879 2.00293 30.7784 2.39346L33.6068 5.22188Z" fill={activeTheme==='light' ? darkColorPalette[6-colorCode] : '#fdfdfd'} opacity={!male ? 0.3 : 1} />
-                <rect x="1" y="5" width="30" height="16" rx="8" stroke={activeTheme === 'light' ? darkColorPalette[6-colorCode] : '#dfdfdf'} strokeWidth="0.125rem" opacity={0.3}/>
-              </svg>
-            </div>
-            <motion.div 
-              animate={{left: !male ? '-0.125rem' : '0.75rem'}}
-              style={{borderColor:activeTheme === 'light' ? darkColorPalette[6-colorCode] : null,
-                backgroundColor: lightColorPalette[6-colorCode]}}
-              className={styles.genderCatcher}
-              onClick={() => setMale(!male)} />
-          </motion.div>
-          <motion.div className={styles.colorSlider}
+          {!sholderShuffleOrNot ? 
+                <motion.div className={styles.genderSlider}>
+                  <div className={styles.genderBearing} onClick={() => setMale(!male)}>
+                    <svg width="36" height="29" viewBox="0 0 36 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9.00195 28.0015C8.44967 28.0015 8.00195 27.5538 8.00195 27.0015V20.0015L10.002 20.0015V27.0015C10.002 27.5538 9.55424 28.0015 9.00195 28.0015Z" fill={activeTheme==='light' ? darkColorPalette[6-colorCode] : '#dfdfdf'} opacity={male ? 0.3 : 1} />
+                      <path d="M7.00195 26.0015C6.44967 26.0015 6.00195 25.5538 6.00195 25.0015C6.00195 24.4492 6.44967 24.0015 7.00195 24.0015H11.002C11.5542 24.0015 12.002 24.4492 12.002 25.0015C12.002 25.5538 11.5542 26.0015 11.002 26.0015H7.00195Z" fill={activeTheme==='light' ? darkColorPalette[6-colorCode] : '#dfdfdf'} opacity={male ? 0.3 : 1} />
+                      <path d="M33.6068 2.39346C33.9973 2.78398 33.9973 3.41714 33.6068 3.80767L28.6571 8.75742L27.2429 7.3432L32.1926 2.39346C32.5831 2.00293 33.2163 2.00293 33.6068 2.39346Z" fill={activeTheme==='light' ? darkColorPalette[6-colorCode] : '#fdfdfd'} opacity={!male ? 0.3 : 1} />
+                      <path d="M33.6068 5.22188C33.9973 5.61241 33.9973 6.24557 33.6068 6.6361C33.2163 7.02662 32.5831 7.02662 32.1926 6.6361L29.3642 3.80767C28.9737 3.41715 28.9737 2.78398 29.3642 2.39346C29.7547 2.00293 30.3879 2.00293 30.7784 2.39346L33.6068 5.22188Z" fill={activeTheme==='light' ? darkColorPalette[6-colorCode] : '#fdfdfd'} opacity={!male ? 0.3 : 1} />
+                      <rect x="1" y="5" width="30" height="16" rx="8" stroke={activeTheme === 'light' ? darkColorPalette[6-colorCode] : '#dfdfdf'} strokeWidth="0.125rem" opacity={0.3}/>
+                    </svg>
+                  </div>
+                  <motion.div 
+                  animate={{left: !male ? '-0.125rem' : '0.75rem'}}
+                  style={{borderColor:activeTheme === 'light' ? darkColorPalette[6-colorCode] : null,
+                    backgroundColor: lightColorPalette[6-colorCode]}}
+                  className={styles.genderCatcher}
+                  onClick={() => setMale(!male)} />
+                </motion.div> : 
+                <motion.div className={styles.genderSlider}>
+                  <motion.div 
+                  animate={{left: '0.3125rem'}}
+                  style={{borderColor:activeTheme === 'light' ? darkColorPalette[6-colorCode] : null,
+                    backgroundColor: sholderShuffleOrNot ? '#ffa7ff' : lightColorPalette[6-colorCode]}}
+                  className={styles.genderCatcher} />
+                </motion.div>  
+        }
+          {/* <motion.div className={styles.colorSlider}
             style={{borderColor: darkColorPalette[colorCode]}}
             animate={colorSliderOpen ? {height: '7.875rem'}: {height: 0, opacity:0}}>
             <motion.div
@@ -565,7 +603,30 @@ function Landing() {
               <MdIcons.MdColorize
                 style={{color: activeTheme==='light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}/>
             </button>
-          </motion.div>
+          </motion.div> */}
+          {sholderOrNot ? null :
+            <motion.div className={styles.themeSliderFrame}>
+              <div>
+                <div className={styles.themeSlider}
+                  onClick={() => setActiveTheme(activeTheme === "light" ? "dark" : "light")}
+                  aria-label={`Change to ${inactiveTheme} mode`}
+                  title={`Change to ${inactiveTheme} mode`}
+                  style={{borderColor: darkColorPalette[colorCode]}}>
+                    
+                  <motion.div 
+                    style={{borderColor: darkColorPalette[colorCode],backgroundColor: lightColorPalette[colorCode]}}
+                    animate={activeTheme === "light" ? {left:'-0.1875rem'} : {left: '0.9375rem'}}
+                    transition={{duration: 0.2}}
+                    className={styles.themeCatcher}>
+                    <motion.div 
+                      animate={activeTheme === "light" ? {left:'-1.125rem', top: '-1.125rem'} : null}
+                      transition={{duration: 0.2}}
+                      className={styles.shadowCatcher} />
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+          }
           <motion.div
             className={styles.headHolder}
             animate={control1}>
@@ -633,7 +694,7 @@ function Landing() {
                 </motion.button>
                 <p style={{color: activeTheme==='light' ? darkColorPalette[6-colorCode] : lightColorPalette[6-colorCode]}}>Connect</p>
               </motion.div> : sholderOrNot ?
-              <motion.div className={styles.wallet} onClick={() => router.push(`/sholder/${account[0].address}`)}>
+              <motion.div className={styles.wallet} onClick={() => router.push(`/sholders/${account[0].address}`)}>
                 <motion.button className={styles.avatar}
                   style={{backgroundColor: activeTheme==='light' ? lightColorPalette[6-colorCode]: null,
                   color:activeTheme==='light' ? darkColorPalette[6-colorCode]: lightColorPalette[6-colorCode],
@@ -656,50 +717,43 @@ function Landing() {
           </motion.div>
         </div>
         <div className={styles.wheelThree}>
-          <motion.div
-            className={styles.linkArrowHolder}>
-            <Image src={activeTheme === 'light' ? linkArrowPalette[6 - colorCode] : linkArrowPalette[7]} layout='fill' />
-          </motion.div>
-          <motion.div className={styles.themeSliderFrame}>
-            <div>
-              <div className={styles.themeSlider}
-                onClick={() => setActiveTheme(activeTheme === "light" ? "dark" : "light")}
-                aria-label={`Change to ${inactiveTheme} mode`}
-                title={`Change to ${inactiveTheme} mode`}
-                style={{borderColor: darkColorPalette[colorCode]}}>
-                  
-                <motion.div 
-                  style={{borderColor: darkColorPalette[colorCode],backgroundColor: lightColorPalette[colorCode]}}
-                  animate={activeTheme === "light" ? {left:'-0.1875rem'} : {left: '0.9375rem'}}
-                  transition={{duration: 0.2}}
-                  className={styles.themeCatcher}>
-                  <motion.div 
-                    animate={activeTheme === "light" ? {left:'-1.125rem', top: '-1.125rem'} : null}
-                    transition={{duration: 0.2}}
-                    className={styles.shadowCatcher} />
-                </motion.div>
-              </div>
-            </div>
-          </motion.div>
           <div className={styles.bannerHolder}>
-            <Image className={styles.buyBanner} src={activeTheme === 'light' ? buyBannerPalette[6-colorCode] : buyBannerPalette[7]} layout='fill' />
+            <Image className={styles.buyBanner} src={activeTheme === 'dark' ? buyBannerPalette[7] : sholderOrNot ? '/buyBannerProudLight.gif' : buyBannerPalette[6-colorCode]} layout='fill' />
           </div>
-          {soldOut ?
-          <div
-            style={{ borderColor: activeTheme==='light'? darkColorPalette[6 - colorCode] : null,color: activeTheme==='light' ? '#212121' : lightColorPalette[6-colorCode],backgroundColor: activeTheme==='light' ? lightColorPalette[6 - colorCode] : null}}
-            className={styles.mainCountDown}>
-            <p>
-              Shuffle starts in <span style={{fontSize: '0.7rem'}}>{shuffleDays}d {shuffleHours}h {shuffleMinutes}m</span>
-            </p>
-          </div> :  
-          <Link href={process.env.NEXT_PUBLIC_SHUFFLE_LINK}>          
-            <button
-              style={{ borderColor: activeTheme==='light'? darkColorPalette[6 - colorCode] : null,color: activeTheme==='light' ? '#212121' : lightColorPalette[6-colorCode],backgroundColor: activeTheme==='light' ? lightColorPalette[6 - colorCode] : null}}
-              className={styles.mainButton}>
-              Enter shuffle!
-            </button>
-          </Link>
+          <motion.div className={styles.shuffleButtons}>
+          {sholdOut && sholderOrNot ?
+            <div
+              style={{backgroundImage: 'linear-gradient(to right, #ffa7ff , #ffafc5)'}}
+              onClick={() => setSholderShuffleOrNot(true)}
+              className={sholderShuffleOrNot ? styles.mainCountDown : styles.secondaryCountDown}>
+              <p>Sholder shuffle in <span>{sholderShuffleDays}</span> d <span>{sholderShuffleHours}</span> h <span>{sholderShuffleMinutes}</span> m</p>
+            </div> : !sholdOut && sholderOrNot ?
+            <Link href={process.env.NEXT_PUBLIC_SHUFFLE_LINK}>          
+              <button
+                style={{backgroundImage: 'linear-gradient(to right, #ffa7ff , #ffafc5)'}}
+                className={sholderShuffleOrNot ? styles.mainButton : styles.secondaryButton}>
+                <p>Enter shuffle!</p>
+              </button>
+            </Link> : null
           }
+          {soldOut ?
+            <div
+              style={{backgroundColor: lightColorPalette[6 - colorCode]}}
+              onClick={() => setSholderShuffleOrNot(false)}
+              className={sholderShuffleOrNot && sholderOrNot ?  styles.secondaryCountDown : styles.mainCountDown}>
+              <p>
+                Public shuffle in <span>{shuffleDays}</span> d <span>{shuffleHours}</span> h <span>{shuffleMinutes}</span> m
+              </p>
+            </div> :  
+            <Link href={process.env.NEXT_PUBLIC_SHUFFLE_LINK}>          
+              <button
+                style={{backgroundColor: lightColorPalette[6 - colorCode]}}
+                className={sholderShuffleOrNot ? styles.secondaryButton : styles.mainButton}>
+                Enter shuffle!
+              </button>
+            </Link>
+          }
+          </motion.div>
         </div>
         <div className={styles.wheelFour}>
             {/* <motion.div

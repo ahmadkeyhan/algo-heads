@@ -48,47 +48,110 @@
     height: 5.1vh;
     border-radius: 2.55vh;
   }
+
+  .shuffleButtons {
+    position: absolute;
+    left: 18vh;
+    top: 7.88vh;
+  }
   
   .mainButton {
     position: absolute;
+    left: 3.38vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 0.125rem solid var(--color-text-secondary);
-    background-color: var(--color-bg-primary);
+    height: 6.75vh;
+    width: 20.25vh;
+    border-radius: 3.94vh;
+    overflow: hidden;
     font-size: 0.8rem;
     font-family: 'Gluten', cursive;
     font-weight: bold;
-    color: #212121;
     z-index: 5;
-    left: 28.13vh;
-    top: 18vh;
-    height: 6.75vh;
-    width: 20.25vh;
-    border-radius: 4vh;
+    background-color: var(--color-bg-primary);
   }
   
   .mainCountDown {
     position: absolute;
+    left: 3.38vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 0.125rem solid var(--color-text-secondary);
-    background-color: var(--color-bg-primary);
-    font-size: 0.7rem;
+    height: 6.75vh;
+    width: 19.13vh;
+    border-radius: 3.94vh;
+    overflow: hidden;
+    color: #212121;
+    font-size: 0.6rem;
+    font-weight: 600;
     font-family: 'Gluten', cursive;
     text-align: center;
     line-height: 1rem;
     z-index: 5;
-    left: 28.13vh;
-    top: 16.88vh;
-    height: 7.88vh;
-    width: 20.25vh;
-    border-radius: 5vh;
+    background-color: var(--color-bg-primary);
+  }
+  
+  .secondaryButton {
+    position: absolute;
+    top: 13.5vh;
+    left: 20.25vh;
+    padding: 3rem 1rem 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 6.75vh;
+    width: 10.13vh;
+    border-radius: 5.06vh;
+    overflow: hidden;
+    font-size: 0.8rem;
+    font-family: 'Gluten', cursive;
+    font-weight: bold;
+    z-index: 5;
+    background-color: var(--color-bg-primary);
+  }
+  
+  .secondaryCountDown {
+    position: absolute;
+    top: 13.5vh;
+    left: 20.25vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 6.75vh;
+    width: 10.13vh;
+    border-radius: 5.06vh;
+    overflow: hidden;
+    color: #212121;
+    font-size: 0.6rem;
+    font-weight: 600;
+    font-family: 'Gluten', cursive;
+    text-align: center;
+    line-height: 0.9rem;
+    z-index: 5;
+    background-color: var(--color-bg-primary);
   }
   
   .mainCountDown p {
-    width: 16ch;
+    width: 17ch;
+    z-index: 2;
+  }
+  
+  .mainCountDown span {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  .secondaryCountDown p {
+    width: 8ch;
+    height: 1.8rem;
+    overflow: hidden;
+    z-index: 2;
+  }
+  
+  .secondaryCountDown span {
+    font-size: 1rem;
+    font-weight: 500;
   }
   
   .scrollButton {
@@ -379,20 +442,19 @@
 
   .themeSliderFrame {
     position: absolute;
-    top: 51.75vh;
-    left: 18vh;
+    top: 22.5vh;
+    left: 16.88vh;
   }
   
   .bannerHolder {
     position: absolute;
-    width: 53.44vh;
-    height: 53.44vh;
-    top: 2.81vh;
-    left: -2.81vh;
+    width: 58.5vh;
+    height: 58.5vh;
+    top: 5.63vh;
+    left: -6.75vh;
   }
   
   .buyBanner {
-    border-radius: 50%;
     z-index: 0;
   }
   
