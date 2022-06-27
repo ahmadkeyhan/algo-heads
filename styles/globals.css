@@ -9,7 +9,7 @@ body,
 body[data-theme="light"] {
   --color-text-primary: #212121;
   --color-text-secondary: #6a6a6a;
-  --color-bg-primary: #fff;
+  --color-bg-primary: #f3f8f2;
 }
 
 body[data-theme="dark"] {
