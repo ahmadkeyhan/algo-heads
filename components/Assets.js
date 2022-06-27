@@ -7,13 +7,13 @@ export const arrowPalette = ['/tealArrows.png',
                             '/orangeArrows.png',
                             '/darkArrows.png']
 
-export const buyBannerPalette = ['/buyBannerTeal.png',
-                                '/buyBannerYellow.png',
-                                '/buyBannerAmber.png',
-                                '/buyBannerGrey.png',
-                                '/buyBannerRed.png',
-                                '/buyBannerPurple.png',
-                                '/buyBannerOrange.png',
+export const buyBannerPalette = ['/buyBannerLight.png',
+                                '/buyBannerLight.png',
+                                '/buyBannerLight.png',
+                                '/buyBannerLight.png',
+                                '/buyBannerLight.png',
+                                '/buyBannerLight.png',
+                                '/buyBannerLight.png',
                                 '/buyBannerDark.png']                        
 
 export const linkArrowPalette = ['/tealLinkArrows.png',
