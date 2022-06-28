@@ -65,12 +65,15 @@ function Landing() {
           setActiveTheme('light')
           headlist.map((head) => {
             if (head.sholder.address === fetchedAccount[0].address) {
-              head.sholder.name = fetchedAccount[0].name
+              // head.sholder.name = fetchedAccount[0].name
+              // console.log(head)
               setAvatar(head.src)
-              fetch('api/headlist' , {
-                method: 'POST',
-                body: JSON.stringify(head)
-              }).then((res) => res.json())
+              // fetch('api/headlist' , {
+              //   method: 'POST',
+              //   body: JSON.stringify(head)
+              // }).then((res) => {
+              //   res.json()
+              // })
             }
           })
         }
@@ -79,6 +82,20 @@ function Landing() {
       console.log(error)
     }
   }
+
+  useEffect(() => {
+    headlist.map((head) => {
+      if (head.sholder.address === account[0].address) {
+        head.sholder.name = account[0].name
+        console.log('found head')
+        // setAvatar(head.src)
+        fetch('api/headlist' , {
+          method: 'POST',
+          body: JSON.stringify(head)
+        }).then((res) => res.json())
+      }
+    })
+  }, [account])
 
 
   var shuffleDate = new Date('Fri Jul 1 2022 19:30:00')
