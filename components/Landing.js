@@ -45,12 +45,22 @@ function Landing() {
 
   const myAlgoConnect = new MyAlgoConnect({ disableLedgerNano: false })
   const settings = {
-    shouldSelectOneAccount: true,
+    shouldSelectOneAccount: false,
     openManager: true
   }
 
-  const [account, setAccount] = useState()
-  const [avatar, setAvatar] = useState()
+  const [account, setAccount] = useState(document.body.dataset.account)
+  useEffect(() => {
+    document.body.dataset.account = account
+    window.localStorage.setItem("account", account)
+  }, [account])
+
+  const [avatar, setAvatar] = useState(document.body.dataset.avatar)
+  useEffect(() => {
+    document.body.dataset.avatar = avatar
+    window.localStorage.setItem("account", avatar)
+  }, [avatar])
+
   const [sholderOrNot, setSholderOrNot] = useState(false)
 
   const connectWallet = async () => {
