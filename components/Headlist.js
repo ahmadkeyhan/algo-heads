@@ -138,8 +138,6 @@ function Headlist() {
   // //                         [ 70, 13,1, 22.5], //10
   // //                         [ 46,-10,1, 22.5]] //11
 
-
-
   const [colorCode, setColorCode] = useState()
 
   useEffect(() => {
