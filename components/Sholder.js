@@ -441,14 +441,14 @@ function Sholder() {
                 0.25,0.3125, 0.375,0.4375, 0.5,
                 0.5625, 0.625,0.6875, 0.75,
                 0.8125, 0.875,0.9375, 1]}}>
-            <Image className={styles.head} src='/darkSphere.png' layout='fill' />
+            <Image className={styles.head} src={activeTheme==='light' ? '/HappyPride!.png' : '/darkSphere.png'} layout='fill' />
           </motion.div>
         )
       } else {
         return (
           <motion.div className={styles.placeHolder}
             style={{top: control.top[0], left: control.left[0]}}>
-            <Image className={styles.head} src='/darkSphere.png' layout='fill' />
+            <Image className={styles.head} src={activeTheme==='light' ? '/HappyPride!.png' : '/darkSphere.png'} layout='fill' />
           </motion.div>
         )
       }
