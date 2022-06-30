@@ -28,13 +28,16 @@ function Landing() {
   }, [activeTheme])
 
   const [headlist, setHeadlist] = useState([])
-  const [sholders, setSholders]=useState([])
+  const [sholders, setSholders]=useState(['HFI4MIFJEV6X35EJRGLI3XGYH42ZQBNR4ZRBARAUVCSJN6EMKIJWGCTEGA'])
+  const [fetchedHeads, setFetchedHeads] = useState()
+
   useEffect(() => {
     fetch('api/headlist')
       .then((res) => res.json())
       .then((data) => {
+        setFetchedHeads(data.message)
         data.message.map((head) => {
-          if (sholders.indexOf(head.sholder.address) === -1) {
+          if (sholders.indexOf(head.sholder.address) === -1 && head.sholder.address) {
             sholders.push(head.sholder.address)
           }
           headlist.push(head)
@@ -700,7 +703,7 @@ function Landing() {
             </Link>
             {!account ? 
               <motion.div className={styles.wallet}>
-                <motion.button onClick={() => connectWallet()}
+                <motion.button onClick={() => fetchedHeads && connectWallet()}
                   style={{backgroundColor: activeTheme==='light' ? lightColorPalette[6-colorCode]: null,
                   color:activeTheme==='light' ? darkColorPalette[6-colorCode]: lightColorPalette[6-colorCode],
                   fontSize: '1.2rem',
