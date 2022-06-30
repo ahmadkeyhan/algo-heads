@@ -15,7 +15,7 @@ import {proudHeads } from './ProudHeads'
 import { lightColorPalette, darkColorPalette } from '../components/colorPalette'
 import { arrowPalette, buyBannerPalette, linkArrowPalette, scrollArrowPalette } from './Assets'
 import Link from 'next/link'
-import MyAlgoConnect from '@randlabs/myalgo-connect'
+import { myAlgoConnect, settings } from './Connect'
 
 function Landing() {
 
@@ -43,24 +43,11 @@ function Landing() {
       })
   },[])
 
-  const myAlgoConnect = new MyAlgoConnect({ disableLedgerNano: false })
-  const settings = {
-    shouldSelectOneAccount: false,
-    openManager: true
-  }
+  
+  
 
-  const [account, setAccount] = useState(document.body.dataset.account)
-  useEffect(() => {
-    document.body.dataset.account = account
-    window.localStorage.setItem("account", account)
-  }, [account])
-
-  const [avatar, setAvatar] = useState(document.body.dataset.avatar)
-  useEffect(() => {
-    document.body.dataset.avatar = avatar
-    window.localStorage.setItem("account", avatar)
-  }, [avatar])
-
+  const [account, setAccount] = useState()
+  const [avatar, setAvatar] = useState()
   const [sholderOrNot, setSholderOrNot] = useState(false)
 
   const connectWallet = async () => {
@@ -102,7 +89,9 @@ function Landing() {
         fetch('api/headlist' , {
           method: 'POST',
           body: JSON.stringify(head)
-        }).then((res) => res.json())
+        }).then((res) => {
+          res.json()
+        })
       }
     })
   }, [account])
