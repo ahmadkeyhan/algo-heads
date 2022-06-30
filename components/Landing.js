@@ -28,7 +28,7 @@ function Landing() {
   }, [activeTheme])
 
   const [headlist, setHeadlist] = useState([])
-  const [sholders, setSholders]=useState(['HFI4MIFJEV6X35EJRGLI3XGYH42ZQBNR4ZRBARAUVCSJN6EMKIJWGCTEGA'])
+  const [sholders, setSholders]=useState(['HFI4MIFJEV6X35EJRGLI3XGYH42ZQBNR4ZRBARAUVCSJN6EMKIJWGCTEGA','5DYIZMX7N4SAB44HLVRUGLYBPSN4UMPDZVTX7V73AIRMJQA3LKTENTLFZ4','DS6WZQE5S5SACIUW33DFTFMGI3NBTQZF6KCJUUYZLED66E4NLIT6N7TX7I'])
   const [fetchedHeads, setFetchedHeads] = useState()
 
   useEffect(() => {
