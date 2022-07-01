@@ -71,6 +71,7 @@
   font-weight: bold;
   z-index: 5;
   background-color: var(--color-bg-primary);
+  border: none;
 }
 
 .mainCountDown {

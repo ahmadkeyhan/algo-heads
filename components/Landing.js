@@ -747,7 +747,7 @@ function Landing() {
               className={sholderShuffleOrNot ? styles.mainCountDown : styles.secondaryCountDown}>
               <p>Sholder shuffle in <span>{sholderShuffleDays}</span> d <span>{sholderShuffleHours}</span> h <span>{sholderShuffleMinutes}</span> m</p>
             </div> : !sholdOut && sholderOrNot ?
-            <Link href={process.env.NEXT_SHOLDER_SHUFFLE_LINK}>          
+            <Link href={process.env.NEXT_PUBLIC_SHOLDER_SHUFFLE_LINK}>          
               <button
                 style={{backgroundImage: 'linear-gradient(to right, #ffa7ff , #ffafc5)'}}
                 className={sholderShuffleOrNot ? styles.mainButton : styles.secondaryButton}>
