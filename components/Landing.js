@@ -480,9 +480,6 @@ function Landing() {
     <div className={styles.landing}
       style={{height: `${normalizedwidth*16/9}vw`,
       width: `${normalizedwidth}vw`}}>
-      <motion.div className={styles.navSliderFrame}>
-        <NavSlider colorCode={colorCode} />
-      </motion.div>
       <div className={styles.wheelHolder}>
       <div className={styles.wheelOne}>
           <motion.div animate={control10} className={styles.arrowHolder}>
@@ -565,7 +562,7 @@ function Landing() {
                       <path d="M7.00195 26.0015C6.44967 26.0015 6.00195 25.5538 6.00195 25.0015C6.00195 24.4492 6.44967 24.0015 7.00195 24.0015H11.002C11.5542 24.0015 12.002 24.4492 12.002 25.0015C12.002 25.5538 11.5542 26.0015 11.002 26.0015H7.00195Z" fill={activeTheme==='light' ? darkColorPalette[6-colorCode] : '#dfdfdf'} opacity={male ? 0.3 : 1} />
                       <path d="M33.6068 2.39346C33.9973 2.78398 33.9973 3.41714 33.6068 3.80767L28.6571 8.75742L27.2429 7.3432L32.1926 2.39346C32.5831 2.00293 33.2163 2.00293 33.6068 2.39346Z" fill={activeTheme==='light' ? darkColorPalette[6-colorCode] : '#fdfdfd'} opacity={!male ? 0.3 : 1} />
                       <path d="M33.6068 5.22188C33.9973 5.61241 33.9973 6.24557 33.6068 6.6361C33.2163 7.02662 32.5831 7.02662 32.1926 6.6361L29.3642 3.80767C28.9737 3.41715 28.9737 2.78398 29.3642 2.39346C29.7547 2.00293 30.3879 2.00293 30.7784 2.39346L33.6068 5.22188Z" fill={activeTheme==='light' ? darkColorPalette[6-colorCode] : '#fdfdfd'} opacity={!male ? 0.3 : 1} />
-                      <rect x="1" y="5" width="30" height="16" rx="8" stroke={activeTheme === 'light' ? darkColorPalette[6-colorCode] : '#dfdfdf'} strokeWidth="0.125rem" opacity={0.3}/>
+                      <rect x="1" y="5" width="30" height="16" rx="8" stroke={activeTheme === 'light' ? darkColorPalette[6-colorCode] : '#dfdfdf'} fill={activeTheme === 'light' ? darkColorPalette[6-colorCode] : '#dfdfdf'} strokeWidth="0.125rem" />
                     </svg>
                   </div>
                   <motion.div 
@@ -630,16 +627,18 @@ function Landing() {
                   onClick={() => setActiveTheme(activeTheme === "light" ? "dark" : "light")}
                   aria-label={`Change to ${inactiveTheme} mode`}
                   title={`Change to ${inactiveTheme} mode`}
-                  style={{borderColor: darkColorPalette[colorCode]}}>
+                  style={{borderColor: darkColorPalette[3],
+                    backgroundColor: darkColorPalette[3]}}>
                     
                   <motion.div 
-                    style={{borderColor: darkColorPalette[colorCode],backgroundColor: lightColorPalette[colorCode]}}
-                    animate={activeTheme === "light" ? {left:'-0.1875rem'} : {left: '0.9375rem'}}
+                    style={{borderColor: darkColorPalette[3],backgroundColor: lightColorPalette[colorCode]}}
+                    animate={activeTheme === "light" ? {left:'0'} : {left: '0.75rem'}}
                     transition={{duration: 0.2}}
                     className={styles.themeCatcher}>
                     <motion.div 
-                      animate={activeTheme === "light" ? {left:'-1.125rem', top: '-1.125rem'} : null}
+                      animate={activeTheme === "light" ? {left:'-1.13rem', top: '-1.13rem'} : null}
                       transition={{duration: 0.2}}
+                      style={{backgroundColor: darkColorPalette[3]}}
                       className={styles.shadowCatcher} />
                   </motion.div>
                 </div>

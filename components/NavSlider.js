@@ -19,13 +19,16 @@ export default function NavSlider({colorCode}) {
 
   const router = useRouter()
   const routes = ['/','/headlist','/sholders','/roadmap']
+  const colorCodes = [2,3,0,4]
 
-  function NavDot({route}) {
+  function NavDot({routeIndex}) {
     return(
       <div
-        onClick={() => router.push(route)}
+        onClick={() => router.push(routes[routeIndex])}
         className={styles.navLink}>
-        <div style={{backgroundColor: darkColorPalette[colorCode]}} className={styles.navSlide}/>
+        <div
+          style={{backgroundColor: lightColorPalette[colorCodes[routeIndex]]}}
+          className={styles.navSlide} />
       </div>
     )
   }
@@ -33,23 +36,24 @@ export default function NavSlider({colorCode}) {
   return(
     <div>
         <div
-          style={{borderColor: darkColorPalette[colorCode]}}
+          style={{borderColor: darkColorPalette[3],
+            backgroundColor: darkColorPalette[3]}}
           className={styles.navSlider}>
-          <motion.div style={{color: darkColorPalette[colorCode]}} className={styles.routeIcon}>
+          <motion.div style={{color: darkColorPalette[colorCodes[routes.indexOf(router.route.slice(0,9))]]}} className={styles.routeIcon}>
             {routes.indexOf(router.route.slice(0,9)) == 0 ? <MdIcons.MdHome />:
             routes.indexOf(router.route.slice(0,9)) == 1 ? <MdIcons.MdFace />:
             routes.indexOf(router.route.slice(0,9)) == 2 ? <CgIcons.CgTrophy />:
             <RiIcons.RiRouteFill />}
           </motion.div>
           <motion.div 
-            style={{color: darkColorPalette[colorCode],borderColor: darkColorPalette[colorCode],backgroundColor: lightColorPalette[colorCode]}}
-            animate={{top: `${routes.indexOf(router.route.slice(0,9))*1.5-0.1875}rem`}}
+            style={{color: darkColorPalette[colorCodes[routes.indexOf(router.route.slice(0,9))]],borderColor: darkColorPalette[3],backgroundColor: lightColorPalette[colorCodes[routes.indexOf(router.route.slice(0,9))]]}}
+            animate={{top: `${routes.indexOf(router.route.slice(0,9))*1.5 - 0.0125}rem`}}
             transition={{duration: 0.2}}
             className={styles.routeCatcher} />
-          <NavDot route={routes[0]} />
-          <NavDot route={routes[1]} />
-          <NavDot route={routes[2]} />
-          <NavDot route={routes[3]} />
+          <NavDot routeIndex={0} />
+          <NavDot routeIndex={1} />
+          <NavDot routeIndex={2} />
+          <NavDot routeIndex={3} />
         </div>
     </div>
   )

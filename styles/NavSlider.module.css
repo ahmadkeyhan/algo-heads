@@ -6,12 +6,11 @@
   align-items: center;
   justify-content: space-around;
   height: 5.625rem;
-left: 0;
-  top: 0;
+  top: 145vw;
+  left: 91vw;
   width: 1.125rem;
   padding: 0;
   border-radius: 1rem;
-  background-color: var(--color-bg-primary);
   border: 0.125rem solid #6a6a6a;
 }
 
@@ -27,14 +26,13 @@ left: 0;
   }
   
   .routeCatcher {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1.125rem;
+    height: 1.125rem;
     border: 0.125rem solid #6a6a6a;
     border-radius: 1rem;
     background-color: #bab9b3;
     position: absolute;
-    top: -0.1875rem;
-    left: -0.1875rem;
+    top: -0.125rem;
   }
   
   .routeIcon {
