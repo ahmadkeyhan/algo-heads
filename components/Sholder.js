@@ -27,42 +27,27 @@ function Sholder() {
   }, [activeTheme])
 
   const [sholderRank, setSholderRank] = useState(-1)
-  const [heads, setHeads] = useState()
+  const [sholders, setSholders] = useState()
   const [isLoading, setLoading] = useState()
-  const [headlist, setHeadlist] = useState([])
-  const [addressBook, setAddressBook]=useState([])
-  const [nameBook, setNameBook] = useState([])
+
   const [sholderRanking, setSholderRanking] = useState([])
   const [colorCode, setColorCode] = useState(3)
 
   useEffect(() => {
-    fetch('/api/headlist')
+    setLoading(true)
+    fetch('/api/sholders')
       .then((res) => res.json())
       .then((data) => {
-        setHeads(data.message)
-        data.message.map((head) => {
-          if (addressBook.indexOf(head.sholder.address) === -1 && head.sholder.address) {
-            addressBook.push(head.sholder.address)
-            nameBook.push(head.sholder.name)
-          }
-          headlist.push(head)
-        })
-        addressBook.map((address, index) => {
-            let heads = []
-            headlist.map((head) => {
-                if (head.sholder.address === address) {
-                    heads.push({src: head.src, bgColorCode: head.bgColorCode})
-                }
-            })
-            sholderRanking.push({sholder: {address: address, name: nameBook[index]}, heads: heads})
-        })
-        sholderRanking.sort((a,b) => b.heads.length - a.heads.length)
-        sholderRanking.map((ranking,index) => {
-          if (sholder == ranking.sholder.address) {
+        data.message.sort((a,b) => b.heads.length - a.heads.length)
+        setSholders(data.message)
+        setSholderRanking(data.message)
+        data.message.map((sh, index) => {
+          if (sholder == sh.address) {
             setSholderRank(index)
-            setColorCode(ranking.heads[ranking.heads.length-1].bgColorCode)
+            setColorCode(sh.heads[0].bgColorCode)
           }
         })
+        setLoading(false)
       })
   },[])
 
@@ -459,32 +444,32 @@ function Sholder() {
   function SholderHolder({top, left, rank}) {
     return (
         <motion.div className={styles.sholderCard}
-            style={{color: activeTheme==='light' ? darkColorPalette[sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].bgColorCode] : null,
-            backgroundColor: lightColorPalette[sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].bgColorCode],
+            style={{color: activeTheme==='light' ? darkColorPalette[sholderRanking[rank].heads[0].bgColorCode] : null,
+            backgroundColor: lightColorPalette[sholderRanking[rank].heads[0].bgColorCode],
             top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${top}vw` : `${top*9/16}vh`,
             left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${left}vw` : `${left*9/16}vh`}}>
             <motion.div className={styles.sholderHolder}>
-                <Image src={sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].src} layout='fill' />
+                <Image src={sholderRanking[rank].heads[0].src} layout='fill' />
             </motion.div>
             <motion.div className={styles.sholderCol}>
                 <p>Sholder:</p>
-                <h1>{sholderRanking[rank].sholder.name ? sholderRanking[rank].sholder.name : sholderRanking[rank].sholder.address.slice(0,8)+'...'}</h1>
+                <h1>{sholderRanking[rank].address.slice(0,8)+'...'}</h1>
             </motion.div>
             <motion.div className={styles.sholderCol}>
                 <p>carrying:</p>
                 <h1>{sholderRanking[rank].heads.length} <span>{sholderRanking[rank].heads.length>1 ? 'heads' : 'head'}</span></h1>
             </motion.div>
             <motion.div className={styles.rank}
-                style={{borderColor: lightColorPalette[sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].bgColorCode],
-                color: activeTheme==='light'? darkColorPalette[sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].bgColorCode] : lightColorPalette[sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].bgColorCode]}}>
+                style={{borderColor: lightColorPalette[sholderRanking[rank].heads[0].bgColorCode],
+                color: activeTheme==='light'? darkColorPalette[sholderRanking[rank].heads[0].bgColorCode] : lightColorPalette[sholderRanking[rank].heads[0].bgColorCode]}}>
                 <p>{rank + 1}</p>
             </motion.div>
         </motion.div>
       )
   }
 
-  if(heads) {
-    if(sholderRank != -1) {
+  if(sholders) {
+    if(sholderRank !== -1) {
       return (
         <div className={styles.landing}
           style={{height: `${normalizedwidth*16/9}vw`,
