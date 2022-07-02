@@ -443,10 +443,9 @@
   justify-content: center;
 }
 
-.themeSliderFrame {
-  position: absolute;
-  top: 40vw;
-  left: 30vw;
+.themeBearing {
+  margin-left: -0.25rem;
+  margin-top: -0.25rem;
 }
 
 .bannerHolder {
@@ -461,45 +460,31 @@
   z-index: 0;
 }
 
-.navSliderFrame {
-  position: absolute;
-  top: 145vw;
-  left: 91vw;
-}
-
 .themeSlider {
   position: absolute;
   z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  left: 0;
-  top: 0;
-  height: 1.25rem;
-  width: 2rem;
+  top: 40vw;
+  left: 32vw;
   padding: 0;
-  border-radius: 1rem;
-  background-color: var(--color-bg-primary);
-  border: 0.125rem solid var(--color-bg-primary);
 }
 
   .themeCatcher {
-    width: 1rem;
-    height: 1rem;
+    width: 0.875rem;
+    height: 0.875rem;
     border-radius: 0.5rem;
     background-color: var(--color-text-secondary);
-    position: absolute;
-    top: 0.0625rem;
-    left: 0;
     overflow: hidden;
+    position: absolute;
+    left: 0.125rem;
+    top: 0.125rem;
   }
 
   .shadowCatcher {
-    width: 1.25rem;
-    height: 1.25rem;
-    border-radius: 1rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.5rem;
     background-color: var(--color-bg-primary);
     position: absolute;
-    top: -0.45rem;
-    left: -0.45rem;
+    top: -0.2rem;
+    left: -0.35rem;
   }

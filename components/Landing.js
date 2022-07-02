@@ -621,29 +621,33 @@ function Landing() {
             </button>
           </motion.div> */}
           {sholderOrNot ? null :
-            <motion.div className={styles.themeSliderFrame}>
-              <div>
-                <div className={styles.themeSlider}
+              <motion.div className={styles.themeSlider}>
+                <div className={styles.themeBearing}
                   onClick={() => setActiveTheme(activeTheme === "light" ? "dark" : "light")}
                   aria-label={`Change to ${inactiveTheme} mode`}
-                  title={`Change to ${inactiveTheme} mode`}
-                  style={{borderColor: darkColorPalette[3],
-                    backgroundColor: darkColorPalette[3]}}>
-                    
-                  <motion.div 
-                    style={{borderColor: darkColorPalette[3],backgroundColor: lightColorPalette[colorCode]}}
-                    animate={activeTheme === "light" ? {left:'0'} : {left: '0.75rem'}}
-                    transition={{duration: 0.2}}
-                    className={styles.themeCatcher}>
-                    <motion.div 
-                      animate={activeTheme === "light" ? {left:'-1.13rem', top: '-1.13rem'} : null}
-                      transition={{duration: 0.2}}
-                      style={{backgroundColor: darkColorPalette[3]}}
-                      className={styles.shadowCatcher} />
-                  </motion.div>
+                  title={`Change to ${inactiveTheme} mode`}>
+                  <svg width="36" height="26" viewBox="0 0 36 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="4.00098" y="3.99939" width="32" height="18" rx="9" fill={darkColorPalette[3]} />
+                    <rect y="11.9999" width="4" height="2" rx="1" fill={darkColorPalette[3]} opacity={activeTheme==='light' ? 1 : 0} />
+                    <rect x="12" width="2" height="4" rx="1" fill={darkColorPalette[3]} opacity={activeTheme==='light' ? 1 : 0} />
+                    <rect x="12" y="22" width="2" height="4" rx="1" fill={darkColorPalette[3]} opacity={activeTheme==='light' ? 1 : 0} />
+                    <rect x="22" y="11.9999" width="4" height="2" rx="1" fill={lightColorPalette[colorCode]} opacity={activeTheme==='light' ? 1 : 0} />
+                    <rect x="4.93164" y="19.0702" width="2" height="2" rx="1" fill={darkColorPalette[3]} opacity={activeTheme==='light' ? 1 : 0} />
+                    <rect x="4.93262" y="4.93005" width="2" height="2" rx="1" fill={darkColorPalette[3]} opacity={activeTheme==='light' ? 1 : 0} />
+                    <rect x="19.0713" y="19.0705" width="2" height="2" rx="1" fill={lightColorPalette[colorCode]} opacity={activeTheme==='light' ? 1 : 0} />
+                    <rect x="19.0713" y="4.92889" width="2" height="2" rx="1" fill={lightColorPalette[colorCode]} opacity={activeTheme==='light' ? 1 : 0} />
+                  </svg>
                 </div>
-              </div>
-            </motion.div>
+                <motion.div className={styles.themeCatcher}
+                  style={{borderColor: darkColorPalette[3],backgroundColor: lightColorPalette[colorCode]}}
+                  animate={activeTheme === "light" ? {left:'0.125rem'} : {left: '1rem'}}
+                  onClick={() => setActiveTheme(activeTheme === "light" ? "dark" : "light")}>
+                  <motion.div 
+                    animate={activeTheme === "light" ? {left:'-1.13rem', top: '-1.13rem'} : null}
+                    style={{backgroundColor: darkColorPalette[3]}}
+                    className={styles.shadowCatcher} />
+                </motion.div>
+              </motion.div>
           }
           <motion.div
             className={styles.headHolder}
