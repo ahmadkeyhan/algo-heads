@@ -83,6 +83,7 @@ function Headlist() {
   const [sortedHeads, setSortedHeads] = useState()
   const [listedHeads, setlistedHeads] = useState([])
   const [isLoading, setLoading] = useState()
+  const [sholders, setSholders] = useState([])
 
   useEffect(() => {
       setLoading(true)
@@ -107,13 +108,31 @@ function Headlist() {
             }
           }
           listedHeads.map((head) => {
+            var sholderCatcher = 0
+            sholders.map((sholder) => {
+              if (head.sholder.address === sholder.address) {
+                sholder.heads.push({assetId: head.assetId, bgColorCode: head.bgColorCode, src: head.src})
+                sholderCatcher += 1
+              }
+            })
+            if (!sholderCatcher) {
+              sholders.push({address: head.sholder.address, heads: [{assetId: head.assetId, bgColorCode: head.bgColorCode, src: head.src}]})
+            }
             fetch('api/headlist' , {
               method: 'POST',
               body: JSON.stringify(head)
             }).then((res) => res.json())
           })
           setLoading(false)
+          sholders.map((sholder) => {
+            fetch('api/sholders', {
+              method: 'POST',
+              body: JSON.stringify(sholder)
+            }).then((res) => res.json())
+          })
         })
+        console.log(sholders.length)
+
       })
       
   }, [])
