@@ -1,4 +1,5 @@
-import styles from '../styles/NavSlider.module.css'
+import narrowStyles from '../styles/NavSlider.module.css'
+import wideStyles from '../styles/NavSliderWide.module.css'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import * as MdIcons from 'react-icons/md'
@@ -9,12 +10,23 @@ import { darkColorPalette, lightColorPalette } from './colorPalette'
 
 export default function NavSlider({colorCode}) {
 
-  const [width, setWidth] = useState(360)
-  const [height, setHeight] = useState(640)
+  const [width, setWidth] = useState()
+  const [height, setHeight] = useState()
+  const [normalizedwidth, setNormalizedWidth] = useState()
+  const [styles, setStyles] = useState(narrowStyles)
+  const [offset, setOffset] = useState()
 
   useEffect(() => {
-    setWidth(window.innerWidth)
-    setHeight(window.innerHeight)
+    setWidth(window.visualViewport.width)
+    setHeight(window.visualViewport.height)
+    if (window.visualViewport.height/window.visualViewport.width >= 16/9) {
+      setNormalizedWidth(100)
+      setOffset(0)
+    } else {
+      setNormalizedWidth((window.visualViewport.height*900)/(16*window.visualViewport.width))
+      setOffset((100 - normalizedwidth)/2)
+      setStyles(wideStyles)
+    }
   })
 
   const router = useRouter()
@@ -36,7 +48,8 @@ export default function NavSlider({colorCode}) {
   return(
     <div>
         <div
-          style={{borderColor: darkColorPalette[3],
+          style={{marginLeft: `${offset}vw`,
+            borderColor: darkColorPalette[3],
             backgroundColor: darkColorPalette[3]}}
           className={styles.navSlider}>
           <motion.div style={{color: darkColorPalette[colorCodes[routes.indexOf(router.route.slice(0,9))]]}} className={styles.routeIcon}>
