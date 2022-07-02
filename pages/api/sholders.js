@@ -38,11 +38,11 @@ async function getSholders(req, res) {
 export default async function handler(req, res) {
     switch (req.method) {
         case 'GET': {
-            return getHeads(req, res);
+            return getSholders(req, res);
         }
 
         case 'POST': {
-            return listHeads(req, res);
+            return listSholders(req, res);
         }
     }
 }
