@@ -47,8 +47,9 @@ export const metaData = [
         head:'abby',
         eyesight: '20/20',
         mouth: 'closed',
-        accessory1: 'earing',
-        accessory2: 'crown'
+        accessory1: 'earing/piercing',
+        accessory2: 'crown',
+        accessory3: 'none'
     },
     {
         assetName: 'ah002',
@@ -59,8 +60,9 @@ export const metaData = [
         head:'codeHead',
         eyesight: '20/20',
         mouth: 'open',
-        accessory1: 'none',
-        accessory2: 'none'
+        accessory1: 'earing/piercing',
+        accessory2: 'none',
+        accessory3: 'none'
     },
     {
         assetName: 'ah003',
@@ -72,7 +74,8 @@ export const metaData = [
         eyesight: '20/20',
         mouth: 'closed',
         accessory1: 'none',
-        accessory2: 'none'
+        accessory2: 'none',
+        accessory3: 'none'
     },
     {
         assetName: 'ah004',
@@ -84,7 +87,8 @@ export const metaData = [
         eyesight: '20/20',
         mouth: 'closed',
         accessory1: 'none',
-        accessory2: 'none'
+        accessory2: 'none',
+        accessory3: 'none'
     },
     {
         assetName: 'ah005',
@@ -95,8 +99,9 @@ export const metaData = [
         head:'feminineSkull',
         eyesight: '20/20',
         mouth: 'open',
-        accessory1: 'piercing',
-        accessory2: 'none'
+        accessory1: 'earing/piercing',
+        accessory2: 'none',
+        accessory3: ''
     },
     {
         assetName: 'ah006',
@@ -107,8 +112,9 @@ export const metaData = [
         head:'cartoonHead',
         eyesight: '20/20',
         mouth: 'closed',
-        accessory1: 'none',
-        accessory2: 'none'
+        accessory1: 'mustache',
+        accessory2: 'none',
+        accessory3: 'none'
     },
     {
         assetName: 'ah007',
@@ -119,8 +125,9 @@ export const metaData = [
         head:'radioHead',
         eyesight: '20/20',
         mouth: 'closed',
-        accessory1: 'piercing',
-        accessory2: 'none'
+        accessory1: 'earing/piercing',
+        accessory2: 'none',
+        accessory3: 'none'
     },
     {
         assetName: 'ah008',
@@ -132,7 +139,8 @@ export const metaData = [
         eyesight: '20/20',
         mouth: 'closed',
         accessory1: 'none',
-        accessory2: 'none'
+        accessory2: 'none',
+        accessory3: 'none'
     },
     {
         assetName: 'ah009',
@@ -143,8 +151,9 @@ export const metaData = [
         head:'puffy',
         eyesight: '30/30',
         mouth: 'closed',
-        accessory1: 'earing',
-        accessory2: 'crown'
+        accessory1: 'earing/piercing',
+        accessory2: 'crown',
+        accessory3: 'none'
     },
     {
         assetName: 'ah010',
@@ -156,7 +165,8 @@ export const metaData = [
         eyesight: '17/20',
         mouth: 'closed',
         accessory1: 'glasses',
-        accessory2: 'wire'
+        accessory2: 'wire',
+        accessory3: 'none'
     },
     {
         assetName: 'ah011',
@@ -167,8 +177,9 @@ export const metaData = [
         head:'scheherazade',
         eyesight: '20/20',
         mouth: 'closed',
-        accessory1: 'earing',
-        accessory2: 'mask'
+        accessory1: 'earing/piercing',
+        accessory2: 'mask',
+        accessory3: 'vampTeeth'
     },
     {
         assetName: 'ah012',
@@ -180,7 +191,8 @@ export const metaData = [
         eyesight: '10/10',
         mouth: 'open',
         accessory1: 'none',
-        accessory2: 'none'
+        accessory2: 'none',
+        accessory3: 'none'
     },
     {
         assetName: 'ah013',
@@ -192,7 +204,8 @@ export const metaData = [
         eyesight: '20/20',
         mouth: 'open',
         accessory1: 'none',
-        accessory2: 'none'
+        accessory2: 'none',
+        accessory3: 'none'
     },
     {
         assetName: 'ah014',
@@ -203,8 +216,9 @@ export const metaData = [
         head:'coconut',
         eyesight: '20/20',
         mouth: 'closed',
-        accessory1: 'piercing',
-        accessory2: 'mask'
+        accessory1: 'earing/piercing',
+        accessory2: 'mask',
+        accessory3: 'none'
     },
     {
         assetName: 'ah015',
@@ -216,7 +230,8 @@ export const metaData = [
         eyesight: '40/40',
         mouth: 'closed',
         accessory1: 'none',
-        accessory2: 'crown'
+        accessory2: 'crown',
+        accessory3: 'none'
     },
     {
         assetName: 'ah016',
@@ -227,8 +242,9 @@ export const metaData = [
         head:'pentagonal',
         eyesight: '11/20',
         mouth: 'closed',
-        accessory1: 'earing',
-        accessory2: 'crown'
+        accessory1: 'earing/piercing',
+        accessory2: 'crown',
+        accessory3: 'none'
     },
     {
         assetName: 'ah017',
@@ -240,7 +256,8 @@ export const metaData = [
         eyesight: '0/20',
         mouth: 'open',
         accessory1: 'none',
-        accessory2: 'none'
+        accessory2: 'none',
+        accessory3: 'none'
     },
     {
         assetName: 'ah018',
@@ -251,8 +268,9 @@ export const metaData = [
         head:'abraham',
         eyesight: '10/20',
         mouth: 'closed',
-        accessory1: 'earing',
-        accessory2: 'none'
+        accessory1: 'earing/piercing',
+        accessory2: 'none',
+        accessory3: 'none'
     },
     {
         assetName: 'ah019',
@@ -264,7 +282,8 @@ export const metaData = [
         eyesight: '80/80',
         mouth: 'closed',
         accessory1: 'none',
-        accessory2: 'none'
+        accessory2: 'none',
+        accessory3: 'none'
     },
     {
         assetName: 'ah020',
@@ -276,7 +295,8 @@ export const metaData = [
         eyesight: '20/20',
         mouth: 'open',
         accessory1: 'none',
-        accessory2: 'bonePiercing'
+        accessory2: 'bonePiercing',
+        accessory3: 'none'
     },
     {
         assetName: 'ah021',
@@ -287,8 +307,9 @@ export const metaData = [
         head:'radioHead',
         eyesight: '20/20',
         mouth: 'open',
-        accessory1: 'piercing',
-        accessory2: 'wire'
+        accessory1: 'earing/piercing',
+        accessory2: 'wire',
+        accessory3: 'none'
     },
     {
         assetName: 'ah022',
@@ -300,7 +321,8 @@ export const metaData = [
         eyesight: '11/20',
         mouth: 'closed',
         accessory1: 'none',
-        accessory2: 'none'
+        accessory2: 'none',
+        accessory3: 'none'
     },
     {
         assetName: 'ah023',
@@ -312,7 +334,8 @@ export const metaData = [
         eyesight: '20/20',
         mouth: 'closed',
         accessory1: 'none',
-        accessory2: 'none'
+        accessory2: 'none',
+        accessory3: 'none'
     },
     {
         assetName: 'ah024',
@@ -324,7 +347,8 @@ export const metaData = [
         eyesight: '20/20',
         mouth: 'closed',
         accessory1: 'mustache',
-        accessory2: 'none'
+        accessory2: 'none',
+        accessory3: 'none'
     },
     {
         assetName: 'ah025',
@@ -335,8 +359,9 @@ export const metaData = [
         head:'feminineSkull',
         eyesight: '10/10',
         mouth: 'open',
-        accessory1: 'piercing',
-        accessory2: 'none'
+        accessory1: 'earing/piercing',
+        accessory2: 'none',
+        accessory3: 'none'
     },
     {
         assetName: 'ah026',
@@ -348,7 +373,8 @@ export const metaData = [
         eyesight: '20/20',
         mouth: 'closed',
         accessory1: 'mustache',
-        accessory2: 'none'
+        accessory2: 'none',
+        accessory3: 'none'
     },
     {
         assetName: 'ah027',
@@ -360,7 +386,8 @@ export const metaData = [
         eyesight: '20/20',
         mouth: 'closed',
         accessory1: 'earing/piercing',
-        accessory2: 'bubbleGum'
+        accessory2: 'bubbleGum',
+        accessory3: 'none'
     },
     {
         assetName: 'ah028',
@@ -372,7 +399,8 @@ export const metaData = [
         eyesight: '20/20',
         mouth: 'closed',
         accessory1: 'bandAid',
-        accessory2: 'none'
+        accessory2: 'none',
+        accessory3: 'none'
     },
     {
         assetName: 'ah029',
@@ -384,7 +412,8 @@ export const metaData = [
         eyesight: '20/20',
         mouth: 'open',
         accessory1: 'earing/piercing',
-        accessory2: 'none'
+        accessory2: 'none',
+        accessory3: 'none'
     },
     {
         assetName: 'ah030',
@@ -396,6 +425,137 @@ export const metaData = [
         eyesight: '20/20',
         mouth: 'open',
         accessory1: 'earing/piercing',
-        accessory2: 'mask'
+        accessory2: 'mask',
+        accessory3: 'vampTeeth'
+    },
+    {
+        assetName: 'ah031',
+        backgroundColor: '',
+        frameColor: '',
+        skinColor: '',
+        hairColor: '',
+        head:'radioHead',
+        eyesight: '20/20',
+        mouth: 'closed',
+        accessory1: 'earing/piercing',
+        accessory2: 'none',
+        accessory3: 'none'
+    },
+    {
+        assetName: 'ah031',
+        backgroundColor: '',
+        frameColor: '',
+        skinColor: '',
+        hairColor: '',
+        head:'creamy',
+        eyesight: '20/20',
+        mouth: 'closed',
+        accessory1: 'none',
+        accessory2: 'none',
+        accessory3: 'none'
+    },
+    {
+        assetName: 'ah033',
+        backgroundColor: '',
+        frameColor: '',
+        skinColor: '',
+        hairColor: '',
+        head:'umbrella',
+        eyesight: '20/20',
+        mouth: 'closed',
+        accessory1: 'none',
+        accessory2: 'none',
+        accessory3: 'none'
+    },
+    {
+        assetName: 'ah034',
+        backgroundColor: '',
+        frameColor: '',
+        skinColor: '',
+        hairColor: '',
+        head:'abraham',
+        eyesight: '20/20',
+        mouth: 'closed',
+        accessory1: 'mustache',
+        accessory2: 'none',
+        accessory3: 'none'
+    },
+    {
+        assetName: 'ah035',
+        backgroundColor: '',
+        frameColor: '',
+        skinColor: '',
+        hairColor: '',
+        head:'feminineSkull',
+        eyesight: '10/20',
+        mouth: 'open',
+        accessory1: 'earing/piercing',
+        accessory2: 'bonePiercing',
+        accessory3: 'none'
+    },
+    {
+        assetName: 'ah036',
+        backgroundColor: '',
+        frameColor: '',
+        skinColor: '',
+        hairColor: '',
+        head:'codeHead',
+        eyesight: '20/20',
+        mouth: 'closed',
+        accessory1: 'none',
+        accessory2: 'none',
+        accessory3: 'none'
+    },
+    {
+        assetName: 'ah037',
+        backgroundColor: '',
+        frameColor: '',
+        skinColor: '',
+        hairColor: '',
+        head:'abby',
+        eyesight: '10/20',
+        mouth: 'closed',
+        accessory1: 'none',
+        accessory2: 'none',
+        accessory3: 'none'
+    },
+    {
+        assetName: 'ah038',
+        backgroundColor: '',
+        frameColor: '',
+        skinColor: '',
+        hairColor: '',
+        head:'silvio',
+        eyesight: '30/30',
+        mouth: 'closed',
+        accessory1: 'mustache',
+        accessory2: 'none',
+        accessory3: 'none'
+    },
+    {
+        assetName: 'ah039',
+        backgroundColor: '',
+        frameColor: '',
+        skinColor: '',
+        hairColor: '',
+        head:'scheherazade',
+        eyesight: '11/20',
+        mouth: 'closed',
+        accessory1: 'earing/piercing',
+        accessory2: 'none',
+        accessory3: 'none'
+    },
+    {
+        assetName: 'ah040',
+        backgroundColor: '',
+        frameColor: '',
+        skinColor: '',
+        hairColor: '',
+        head:'masculineSkull',
+        eyesight: '15/20',
+        mouth: 'open',
+        accessory1: 'none',
+        accessory2: 'bonePiercing',
+        accessory3: 'none'
     },
 ]
