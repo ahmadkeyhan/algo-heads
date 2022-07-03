@@ -65,7 +65,7 @@ export const metaData = [
     {
         assetName: 'ah003',
         backgroundColor: 'red',
-        frameColor: 'yellow',
+        frameColor: 'green',
         skinColor: 'blue',
         hairColor: 'blue',
         head:'scheherazade',
@@ -172,7 +172,7 @@ export const metaData = [
     },
     {
         assetName: 'ah012',
-        backgroundColor: '',
+        backgroundColor: 'yellow',
         frameColor: 'red',
         skinColor: 'blue',
         hairColor: 'blue',
@@ -184,7 +184,7 @@ export const metaData = [
     },
     {
         assetName: 'ah013',
-        backgroundColor: '',
+        backgroundColor: 'yellow',
         frameColor: 'grey',
         skinColor: 'red',
         hairColor: 'red',
@@ -218,4 +218,5 @@ export const metaData = [
         accessory1: 'none',
         accessory2: 'crown'
     },
+    
 ]
