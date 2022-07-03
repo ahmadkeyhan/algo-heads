@@ -3,16 +3,10 @@ import Image from 'next/image'
 import narrowStyles from '../styles/sholder.module.css'
 import wideStyles from '../styles/sholderWide.module.css'
 import { useState, useEffect } from 'react'
-import * as MdIcons from 'react-icons/md'
-import * as SiIcon from 'react-icons/si'
-import * as BsIcons from 'react-icons/bs'
-import * as CgIcons from 'react-icons/cg'
 import { motion, useAnimation } from "framer-motion"
-import NavSlider from './NavSlider'
 import { useRouter } from 'next/router'
 import { lightColorPalette, darkColorPalette } from '../components/colorPalette'
-import { arrowPalette, linkArrowPalette, scrollArrowPalette } from './Assets'
-import Link from 'next/link'
+import { arrowPalette, linkArrowPalette } from './Assets'
 
 function Sholder() {
   const router = useRouter()
@@ -56,14 +50,7 @@ function Sholder() {
   const [normalizedwidth, setNormalizedWidth] = useState()
   const [styles, setStyles] = useState(narrowStyles)
 
-  const control1 = useAnimation()
-  const control2 = useAnimation()
-  const control3 = useAnimation()
-  const control4 = useAnimation()
-  const control5 = useAnimation()
-  const control6 = useAnimation()
-  const control7 = useAnimation()
-  const control8 = useAnimation()
+  const arrowControl = useAnimation()
 
   const topIndex = ['3vw', '27vw', '60vw', '84vw', '84vw', '60vw', '27vw', '3vw']
   const leftIndex = ['27vw', '4vw', '4vw', '27vw', '60vw', '84vw', '84vw', '60vw']
@@ -74,9 +61,20 @@ function Sholder() {
     setWidth(window.visualViewport.width)
     setHeight(window.visualViewport.height)
 
+    arrowControl.start({
+      rotate: [-5, -5, -95, -95,
+        -185, -185, -275, -275,
+        -365, -365, -455, -455,
+        -545, -545, -635, -635, -725],
+      transition: {ease: 'backInOut',repeat:Infinity, delay: 1, duration: 16,
+        times: [0, 0.0625, 0.125, 0.1875,
+          0.25,0.3125, 0.375,0.4375,
+          0.5,0.5625, 0.625,0.6875,
+          0.75,0.8125, 0.875,0.9375, 1]}
+    })
+
     if (window.visualViewport.height/window.visualViewport.width >= 16/9) {
-      setNormalizedWidth(100)
-  
+      setNormalizedWidth(100) 
       setControlIndex([
         {        
           left: ['27vw', '27vw', '4vw', '4vw',
@@ -109,55 +107,54 @@ function Sholder() {
             '3vw','3vw', '27vw','27vw','60vw']
         },
         {        
-          left: ['27vw', '27vw',
-            '60vw', '60vw', '84vw', '84vw',
-            '84vw', '84vw', '60vw','60vw','27vw', '27vw', '4vw', '4vw',
-            '4vw', '4vw', '27vw'],
-          top: ['84vw','84vw',
-            '84vw', '84vw', '60vw','60vw',
-            '27vw', '27vw', '3vw','3vw','3vw','3vw', '27vw','27vw',
-            '60vw', '60vw', '84vw']
+          left: ['27vw', '27vw','60vw', '60vw',
+            '84vw', '84vw','84vw', '84vw',
+            '60vw','60vw','27vw', '27vw',
+            '4vw', '4vw','4vw', '4vw', '27vw'],
+          top: ['84vw','84vw','84vw', '84vw',
+            '60vw','60vw','27vw', '27vw',
+            '3vw','3vw','3vw','3vw',
+            '27vw','27vw','60vw', '60vw', '84vw']
         },
         {        
-          left: [
-            '60vw', '60vw', '84vw', '84vw',
+          left: ['60vw', '60vw', '84vw', '84vw',
             '84vw', '84vw', '60vw','60vw',
             '27vw', '27vw', '4vw', '4vw',
             '4vw', '4vw', '27vw', '27vw','60vw'],
-          top: [
-            '84vw', '84vw', '60vw','60vw',
-            '27vw', '27vw', '3vw','3vw','3vw','3vw', '27vw','27vw',
+          top: ['84vw', '84vw', '60vw','60vw',
+            '27vw', '27vw', '3vw','3vw',
+            '3vw','3vw', '27vw','27vw',
             '60vw', '60vw', '84vw','84vw', '84vw']
         },
         {        
-          left: ['84vw', '84vw',
-            '84vw', '84vw', '60vw','60vw','27vw', '27vw', '4vw', '4vw',
-            '4vw', '4vw', '27vw', '27vw',
-            '60vw', '60vw', '84vw'],
-          top: ['60vw','60vw',
-            '27vw', '27vw', '3vw','3vw','3vw','3vw', '27vw','27vw',
-            '60vw', '60vw', '84vw','84vw',
-            '84vw', '84vw', '3vw']
+          left: ['84vw', '84vw','84vw', '84vw',
+            '60vw','60vw','27vw', '27vw',
+            '4vw', '4vw','4vw', '4vw',
+            '27vw', '27vw','60vw', '60vw', '84vw'],
+          top: ['60vw','60vw','27vw', '27vw',
+            '3vw','3vw','3vw','3vw',
+            '27vw','27vw','60vw', '60vw',
+            '84vw','84vw','84vw', '84vw', '60vw']
         },
         {        
-          left: [
-            '84vw', '84vw', '60vw','60vw','27vw', '27vw', '4vw', '4vw',
+          left: ['84vw', '84vw', '60vw','60vw',
+            '27vw', '27vw', '4vw', '4vw',
             '4vw', '4vw', '27vw', '27vw',
             '60vw', '60vw', '84vw', '84vw','84vw'],
-          top: [
-            '27vw', '27vw', '3vw','3vw','3vw','3vw', '27vw','27vw',
+          top: ['27vw', '27vw', '3vw','3vw',
+            '3vw','3vw', '27vw','27vw',
             '60vw', '60vw', '84vw','84vw',
             '84vw', '84vw', '60vw','60vw', '27vw']
         },
         {        
-          left: ['60vw','60vw','27vw', '27vw', '4vw', '4vw',
-          '4vw', '4vw', '27vw', '27vw',
-          '60vw', '60vw', '84vw', '84vw',
-          '84vw', '84vw', '60vw'],
-          top: ['3vw','3vw','3vw','3vw', '27vw','27vw',
-          '60vw', '60vw', '84vw','84vw',
-          '84vw', '84vw', '60vw','60vw',
-          '27vw', '27vw', '3vw']
+          left: ['60vw','60vw','27vw', '27vw',
+            '4vw', '4vw','4vw', '4vw',
+            '27vw', '27vw','60vw', '60vw',
+            '84vw', '84vw','84vw', '84vw', '60vw'],
+          top: ['3vw','3vw','3vw','3vw',
+            '27vw','27vw','60vw', '60vw',
+            '84vw','84vw','84vw', '84vw',
+            '60vw','60vw','27vw', '27vw', '3vw']
         }])
 
     } else {
@@ -195,177 +192,55 @@ function Sholder() {
             '1.69vh','1.69vh', '15.19vh','15.19vh','33.75vh']
         },
         {        
-          left: ['15.19vh', '15.19vh',
-            '33.75vh', '33.75vh', '47.25vh', '47.25vh',
-            '47.25vh', '47.25vh', '33.75vh','33.75vh','15.19vh', '15.19vh', '2.25vh', '2.25vh',
-            '2.25vh', '2.25vh', '15.19vh'],
-          top: ['47.25vh','47.25vh',
-            '47.25vh', '47.25vh', '33.75vh','33.75vh',
-            '15.19vh', '15.19vh', '1.69vh','1.69vh','1.69vh','1.69vh', '15.19vh','15.19vh',
-            '33.75vh', '33.75vh', '47.25vh']
+          left: ['15.19vh', '15.19vh','33.75vh', '33.75vh',
+            '47.25vh', '47.25vh','47.25vh', '47.25vh',
+            '33.75vh','33.75vh','15.19vh', '15.19vh',
+            '2.25vh', '2.25vh','2.25vh', '2.25vh', '15.19vh'],
+          top: ['47.25vh','47.25vh','47.25vh', '47.25vh',
+            '33.75vh','33.75vh','15.19vh', '15.19vh',
+            '1.69vh','1.69vh','1.69vh','1.69vh',
+            '15.19vh','15.19vh','33.75vh', '33.75vh', '47.25vh']
         },
         {        
-          left: [
-            '33.75vh', '33.75vh', '47.25vh', '47.25vh',
+          left: ['33.75vh', '33.75vh', '47.25vh', '47.25vh',
             '47.25vh', '47.25vh', '33.75vh','33.75vh',
             '15.19vh', '15.19vh', '2.25vh', '2.25vh',
             '2.25vh', '2.25vh', '15.19vh', '15.19vh','33.75vh'],
-          top: [
-            '47.25vh', '47.25vh', '33.75vh','33.75vh',
-            '15.19vh', '15.19vh', '1.69vh','1.69vh','1.69vh','1.69vh', '15.19vh','15.19vh',
+          top: ['47.25vh', '47.25vh', '33.75vh','33.75vh',
+            '15.19vh', '15.19vh', '1.69vh','1.69vh',
+            '1.69vh','1.69vh', '15.19vh','15.19vh',
             '33.75vh', '33.75vh', '47.25vh','47.25vh', '47.25vh']
         },
         {        
-          left: ['47.25vh', '47.25vh',
-            '47.25vh', '47.25vh', '33.75vh','33.75vh','15.19vh', '15.19vh', '2.25vh', '2.25vh',
-            '2.25vh', '2.25vh', '15.19vh', '15.19vh',
-            '33.75vh', '33.75vh', '47.25vh'],
-          top: ['33.75vh','33.75vh',
-            '15.19vh', '15.19vh', '1.69vh','1.69vh','1.69vh','1.69vh', '15.19vh','15.19vh',
-            '33.75vh', '33.75vh', '47.25vh','47.25vh',
-            '47.25vh', '47.25vh', '1.69vh']
+          left: ['47.25vh', '47.25vh','47.25vh', '47.25vh',
+            '33.75vh','33.75vh','15.19vh', '15.19vh',
+            '2.25vh', '2.25vh','2.25vh', '2.25vh',
+            '15.19vh', '15.19vh','33.75vh', '33.75vh', '47.25vh'],
+          top: ['33.75vh','33.75vh','15.19vh', '15.19vh',
+            '1.69vh','1.69vh','1.69vh','1.69vh',
+            '15.19vh','15.19vh','33.75vh', '33.75vh',
+            '47.25vh','47.25vh','47.25vh', '47.25vh', '33.75vh']
         },
         {        
-          left: [
-            '47.25vh', '47.25vh', '33.75vh','33.75vh','15.19vh', '15.19vh', '2.25vh', '2.25vh',
+          left: ['47.25vh', '47.25vh', '33.75vh','33.75vh',
+            '15.19vh', '15.19vh', '2.25vh', '2.25vh',
             '2.25vh', '2.25vh', '15.19vh', '15.19vh',
             '33.75vh', '33.75vh', '47.25vh', '47.25vh','47.25vh'],
-          top: [
-            '15.19vh', '15.19vh', '1.69vh','1.69vh','1.69vh','1.69vh', '15.19vh','15.19vh',
+          top: ['15.19vh', '15.19vh', '1.69vh','1.69vh',
+            '1.69vh','1.69vh', '15.19vh','15.19vh',
             '33.75vh', '33.75vh', '47.25vh','47.25vh',
             '47.25vh', '47.25vh', '33.75vh','33.75vh', '15.19vh']
         },
         {        
-          left: ['33.75vh','33.75vh','15.19vh', '15.19vh', '2.25vh', '2.25vh',
-          '2.25vh', '2.25vh', '15.19vh', '15.19vh',
-          '33.75vh', '33.75vh', '47.25vh', '47.25vh',
-          '47.25vh', '47.25vh', '33.75vh'],
-          top: ['1.69vh','1.69vh','1.69vh','1.69vh', '15.19vh','15.19vh',
-          '33.75vh', '33.75vh', '47.25vh','47.25vh',
-          '47.25vh', '47.25vh', '33.75vh','33.75vh',
-          '15.19vh', '15.19vh', '1.69vh']
+          left: ['33.75vh','33.75vh','15.19vh', '15.19vh',
+            '2.25vh', '2.25vh','2.25vh', '2.25vh',
+            '15.19vh', '15.19vh','33.75vh', '33.75vh',
+            '47.25vh', '47.25vh','47.25vh', '47.25vh', '33.75vh'],
+          top: ['1.69vh','1.69vh','1.69vh','1.69vh',
+            '15.19vh','15.19vh','33.75vh', '33.75vh',
+            '47.25vh','47.25vh','47.25vh', '47.25vh',
+            '33.75vh','33.75vh','15.19vh', '15.19vh', '1.69vh']
         }])
-
-      control1.start({
-        left: ['15.19vh', '15.19vh', '15.19vh', '15.19vh',
-              '33.75vh', '33.75vh', '33.75vh', '33.75vh',
-              '15.19vh', '15.19vh', '2.25vh', '2.25vh',
-              '2.25vh', '2.25vh', '2.25vh','2.25vh', '15.19vh'],
-        top: ['47.25vh','47.25vh', '47.25vh','47.25vh',
-              '47.25vh', '47.25vh', '1.69vh','1.69vh',
-              '1.69vh', '1.69vh', '15.19vh','15.19vh',
-              '33.75vh', '33.75vh', '33.75vh','33.75vh', '47.25vh'],
-        transition: {ease: 'backInOut',repeat:Infinity, delay: 1, duration: 16,
-          times: [0, 0.0625, 0.125, 0.1875,
-            0.25,0.3125, 0.375,0.4375, 0.5,
-            0.5625, 0.625,0.6875, 0.75,
-            0.8125, 0.875,0.9375, 1]}
-      })
-      control2.start({
-        left: ['2.25vh','2.25vh', '2.25vh', '2.25vh',
-          '15.19vh','15.19vh', '15.19vh', '15.19vh',
-          '33.75vh', '33.75vh', '33.75vh', '33.75vh',
-          '15.19vh','15.19vh', '2.25vh', '2.25vh', '2.25vh'],
-        top: ['33.75vh', '33.75vh','33.75vh', '33.75vh',
-          '47.25vh', '47.25vh', '47.25vh', '47.25vh',
-          '47.25vh', '47.25vh', '1.69vh', '1.69vh',
-          '1.69vh', '1.69vh', '15.19vh', '15.19vh', '33.75vh'],
-        transition: {ease: 'backInOut',repeat:Infinity, delay: 1, duration: 16,
-          times: [0, 0.0625, 0.125, 0.1875,
-            0.25,0.3125, 0.375,0.4375,
-            0.5,0.5625, 0.625,0.6875,
-            0.75,0.8125, 0.875,0.9375, 1]}
-      })
-      control3.start({
-        left: ['15.19vh','15.19vh', '2.25vh', '2.25vh',
-        '2.25vh','2.25vh', '2.25vh', '2.25vh',
-        '15.19vh','15.19vh', '15.19vh', '15.19vh',
-        '33.75vh', '33.75vh', '33.75vh', '33.75vh', '15.19vh'],
-        top: ['1.69vh','1.69vh', '15.19vh','15.19vh',
-        '33.75vh', '33.75vh','33.75vh', '33.75vh',
-        '47.25vh', '47.25vh', '47.25vh', '47.25vh',
-        '47.25vh', '47.25vh', '1.69vh', '1.69vh', '1.69vh'],
-        transition: {ease: 'backInOut',repeat:Infinity, delay: 1, duration: 16,
-          times: [0, 0.0625, 0.125, 0.1875,
-            0.25,0.3125, 0.375,0.4375,
-            0.5,0.5625, 0.625,0.6875,
-            0.75,0.8125, 0.875,0.9375, 1]}
-      })
-      control4.start({
-        left: ['33.75vh','33.75vh', '33.75vh', '33.75vh',
-        '15.19vh','15.19vh', '2.25vh', '2.25vh',
-        '2.25vh','2.25vh', '2.25vh', '2.25vh',
-        '15.19vh','15.19vh', '15.19vh', '15.19vh', '33.75vh'],
-        top: ['47.25vh','47.25vh', '1.69vh', '1.69vh',
-        '1.69vh','1.69vh', '15.19vh','15.19vh',
-        '33.75vh', '33.75vh','33.75vh', '33.75vh',
-        '47.25vh', '47.25vh', '47.25vh', '47.25vh', '47.25vh'],
-        transition: {ease: 'backInOut',repeat:Infinity, delay: 1, duration: 16,
-          times: [0, 0.0625, 0.125, 0.1875,
-            0.25,0.3125, 0.375,0.4375,
-            0.5,0.5625, 0.625,0.6875,
-            0.75,0.8125, 0.875,0.9375, 1]}
-      })
-      control5.start({
-        left: ['15.19vh','15.19vh', '2.25vh', '2.25vh',
-          '2.25vh', '2.25vh', '47.25vh', '47.25vh',
-          '47.25vh', '47.25vh', '47.25vh', '47.25vh',
-          '33.75vh','33.75vh', '15.19vh', '15.19vh', '15.19vh'],
-        top: ['47.25vh','47.25vh', '15.19vh', '15.19vh',
-          '15.19vh', '15.19vh', '15.19vh', '15.19vh',
-          '15.19vh', '15.19vh', '33.75vh', '33.75vh',
-          '47.25vh', '47.25vh', '47.25vh', '47.25vh', '47.25vh'],
-        transition: {ease: 'backInOut',repeat:Infinity, delay: 1, duration: 16,
-          times: [0, 0.0625, 0.125, 0.1875,
-            0.25,0.3125, 0.375,0.4375,
-            0.5,0.5625, 0.625,0.6875,
-            0.75,0.8125, 0.875,0.9375, 1]}
-      })
-      control6.start({
-        left: ['33.75vh','33.75vh', '15.19vh', '15.19vh',
-        '15.19vh','15.19vh', '2.25vh', '2.25vh',
-        '2.25vh', '2.25vh', '47.25vh', '47.25vh',
-        '47.25vh', '47.25vh', '47.25vh', '47.25vh','33.75vh'],
-        top: ['47.25vh', '47.25vh', '47.25vh', '47.25vh',
-        '47.25vh','47.25vh', '15.19vh', '15.19vh',
-        '15.19vh', '15.19vh', '15.19vh', '15.19vh',
-        '15.19vh', '15.19vh', '33.75vh', '33.75vh', '47.25vh'],
-        transition: {ease: 'backInOut',repeat:Infinity, delay: 1, duration: 16,
-          times: [0, 0.0625, 0.125, 0.1875,
-            0.25,0.3125, 0.375,0.4375,
-            0.5,0.5625, 0.625,0.6875,
-            0.75,0.8125, 0.875,0.9375, 1]}
-      })
-      control7.start({
-        left: ['47.25vh', '47.25vh', '47.25vh', '47.25vh',
-        '33.75vh','33.75vh', '15.19vh', '15.19vh',
-        '15.19vh','15.19vh', '2.25vh', '2.25vh',
-        '2.25vh', '2.25vh', '47.25vh', '47.25vh', '47.25vh'],
-        top: ['15.19vh', '15.19vh', '33.75vh', '33.75vh',
-        '47.25vh', '47.25vh', '47.25vh', '47.25vh',
-        '47.25vh','47.25vh', '15.19vh', '15.19vh',
-        '15.19vh', '15.19vh', '15.19vh', '15.19vh', '15.19vh'],
-        transition: {ease: 'backInOut',repeat:Infinity, delay: 1, duration: 16,
-          times: [0, 0.0625, 0.125, 0.1875,
-            0.25,0.3125, 0.375,0.4375,
-            0.5,0.5625, 0.625,0.6875,
-            0.75,0.8125, 0.875,0.9375, 1]}
-      })
-      control8.start({
-        left: ['2.25vh', '2.25vh', '47.25vh', '47.25vh',
-        '47.25vh', '47.25vh', '47.25vh', '47.25vh',
-        '33.75vh','33.75vh', '15.19vh', '15.19vh',
-        '15.19vh','15.19vh', '2.25vh', '2.25vh', '2.25vh'],
-        top: ['15.19vh', '15.19vh', '15.19vh', '15.19vh',
-        '15.19vh', '15.19vh', '33.75vh', '33.75vh',
-        '47.25vh', '47.25vh', '47.25vh', '47.25vh',
-        '47.25vh','47.25vh', '15.19vh', '15.19vh', '15.19vh'],
-        transition: {ease: 'backInOut',repeat:Infinity, delay: 1, duration: 16,
-          times: [0, 0.0625, 0.125, 0.1875,
-            0.25,0.3125, 0.375,0.4375,
-            0.5,0.5625, 0.625,0.6875,
-            0.75,0.8125, 0.875,0.9375, 1]}
-      })
     } 
   },[])
 
@@ -474,49 +349,64 @@ function Sholder() {
         <div className={styles.landing}
           style={{height: `${normalizedwidth*16/9}vw`,
           width: `${normalizedwidth}vw`}}>
-          <motion.div className={styles.navSliderFrame}>
-            <NavSlider colorCode={colorCode} />
-          </motion.div>
           <div className={styles.wheelHolder}>
             <div className={styles.wheelOne}>
               <motion.div className={styles.quoteArrowHolder}>
                 <Image className={styles.quoteArrows} src={activeTheme === 'light' ? linkArrowPalette[colorCode] : linkArrowPalette[7]} layout='fill' />
                 <motion.div className={styles.quote}>
-                <p style={{color: lightColorPalette[colorCode]}}>{sholderRanking[sholderRank].heads.length > 4 ? 'Spin sholder!' :
-                  `Carry ${5 - sholderRanking[sholderRank].heads.length} more ${sholderRanking[sholderRank].heads.length == 4 ? 'head': 'heads'} to see them spin!`}</p>
-    
+                  <p style={{color: lightColorPalette[colorCode]}}>{sholderRanking[sholderRank].heads.length > 4 ? 'Spin sholder!' :
+                    `Carry ${5 - sholderRanking[sholderRank].heads.length} more ${sholderRanking[sholderRank].heads.length == 4 ? 'head': 'heads'} to see them spin!`}
+                  </p>
                 </motion.div>
               </motion.div>
               <SholderHolder top={44} left={0} rank={sholderRank} />
             </div>
             <div className={styles.wheelTwo}>
-              <motion.div className={styles.arrowHolder}>
+              <motion.div animate={arrowControl} className={styles.arrowHolder}>
                 <Image className={styles.arrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
               </motion.div>
               {sholderRanking[sholderRank].heads.map((head, index) => {
-                return (
-                  <HeadHolder control={controlIndex[index]} head={head} key={index} />
-                )
+                if (index < 8) {
+                  return (
+                    <HeadHolder control={controlIndex[index]} head={head} key={index} />
+                  )
+                }
               })}
               {controlIndex.map((control, index) => {
                 return (
                   <HeadHolder head={null} control={control} key={index} />
                 )
-              })}
-              
+              })} 
             </div>
-            <div className={styles.wheelThree}>
-            <motion.div onClick={() => router.push('/sholders')} className={styles.announceArrowHolder}>
+            {sholderRanking[sholderRank].heads.length > 8 ? 
+              <div className={styles.wheelThree}>
+                <motion.div animate={arrowControl} className={styles.arrowHolder}>
+                  <Image className={styles.arrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
+                </motion.div>
+                {sholderRanking[sholderRank].heads.map((head, index) => {
+                  if (index < 8 && index > 1) {
+                    return (
+                      <HeadHolder control={controlIndex[index]} head={head} key={index} />
+                    )
+                  } 
+                  if (index >= 8) {
+                    return (
+                      <HeadHolder control={controlIndex[index-8]} head={head} key={index} />
+                    )
+                  } 
+                })}
+                {controlIndex.map((control, index) => {
+                  return (
+                    <HeadHolder head={null} control={control} key={index} />
+                  )
+                })} 
+              </div>
+             : null}
+             <div className={styles.wheelFour}>
+              <motion.div onClick={() => router.push('/sholders')} className={styles.announceArrowHolder}>
                 <Image className={styles.announceArrows} src={activeTheme === 'light' ? linkArrowPalette[colorCode] : linkArrowPalette[7]} layout='fill' />
-                <motion.div className={styles.announce}>
-                <p>AHS (Algo Head Spin)</p>
-                <h2>coming soon...</h2>
-                </motion.div>
               </motion.div>
-                <motion.div className={styles.headSpinHolder}>
-                  <Image className={styles.headSpin} src='/headSpinDemo.gif' layout='fill' />
-                </motion.div>
-            </div>
+             </div>
           </div>
         </div>
         )
@@ -529,9 +419,6 @@ function Sholder() {
       <div className={styles.landing}
         style={{height: `${normalizedwidth*16/9}vw`,
         width: `${normalizedwidth}vw`}}>
-        <motion.div className={styles.navSliderFrame}>
-          <NavSlider colorCode={colorCode} />
-        </motion.div>
         <div className={styles.wheelHolder}>
           <div className={styles.wheelOne}>
             <motion.div className={styles.quoteArrowHolder}>

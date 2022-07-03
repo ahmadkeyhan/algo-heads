@@ -38,12 +38,12 @@
   
   .wheelTwo {
     left: 32.06vh;
-    top:15.75vh;
+    top:7.88vh;
   }
   
   .wheelThree {
     left: -24.75vh;
-    top: 42.19vh;
+    top: 40.5vh;
   }
   
   .wheelFour {
@@ -97,38 +97,14 @@
     position: absolute;
     width: 30.94vh;
     height: 30.94vh;
-    top: 40.5vh;
-    left: 60.75vh;
-    /* left: 116vw; */
+    top: 12.38vh;
+    left: 19.13vh;
   }
 
   .announceArrows {
     transform: scaleY(-1) rotate(67.5deg);
   }
-  .announce {
-    position: absolute;
-    top: 9vh;
-    left: -31.5vh;
-    width: 22.5vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-
-  .announce p {
-    color: var(--color-text-secondary);
-    font-family: 'Gluten', cursive;
-    font-size: 0.9rem;
-    line-height: 1.2rem;
-  }
-
-  .announce h2 {
-    color: var(--color-text-secondary);
-    font-family: 'Gluten', cursive;
-    font-size: 0.8rem;
-    line-height: 1.2rem;
-  }
-
+  
 
 .sholderCard {
     position: absolute;

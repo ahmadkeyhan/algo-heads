@@ -38,12 +38,12 @@
   
   .wheelTwo {
     left: 57vw;
-    top:28vw;
+    top:14vw;
   }
   
   .wheelThree {
     left: -44vw;
-    top: 75vw;
+    top: 72vw;
   }
   
   .wheelFour {
@@ -72,39 +72,14 @@
     position: absolute;
     width: 55vw;
     height: 55vw;
-    top: 72vw;
-    left: 108vw;
+    top: 22vw;
+    left: 34vw;
     /* left: 116vw; */
   }
   .announceArrows {
     transform: scaleY(-1) rotate(67.5deg);
   }
 
-.announce {
-    position: absolute;
-    top: 16vw;
-    left: -56vw;
-    width: 40vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-
-  .announce p {
-    color: var(--color-text-secondary);
-    font-family: 'Gluten', cursive;
-    font-size: 0.9rem;
-    line-height: 1.2rem;
-    margin: 0;
-  }
-
-  .announce h2 {
-    margin: 0;
-    color: var(--color-text-secondary);
-    font-family: 'Gluten', cursive;
-    font-size: 0.8rem;
-    line-height: 1.2rem;
-  }
 
   .headSpinHolder {
     position: absolute;
