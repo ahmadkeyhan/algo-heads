@@ -2,7 +2,6 @@ import narrowStyles from '../styles/roadmap.module.css'
 import wideStyles from '../styles/roadmapWide.module.css'
 import { useState, useEffect } from 'react'
 import { motion } from "framer-motion"
-import NavSlider from '../components/NavSlider'
 import {lightColorPalette, darkColorPalette} from '../components/colorPalette'
 
 function Roadmap() {
@@ -52,12 +51,6 @@ function Roadmap() {
                 style={{height: `${normalizedwidth*16/9}vw`,
                 width: `${normalizedwidth}vw`
                 }}>
-            <motion.div className={styles.navSliderFrame}>
-                <NavSlider colorCode={colorCode} />
-            </motion.div>
-            <motion.div className={styles.navSliderFrame2}>
-                <NavSlider colorCode={colorCode} />
-            </motion.div>
                 <motion.div className={styles.wheelHolder}>
                     <motion.div className={styles.wheel9}>
                         <motion.div
@@ -271,12 +264,6 @@ function Roadmap() {
                 style={{height: `${normalizedwidth*16/9}vw`,
                 width: `${normalizedwidth}vw`
                 }}>
-            <motion.div className={styles.navSliderFrame}>
-                <NavSlider colorCode={colorCode} />
-            </motion.div>
-            <motion.div className={styles.navSliderFrame2}>
-                <NavSlider colorCode={colorCode} />
-            </motion.div>
                 <motion.div className={styles.wheelHolder}>
                     <motion.div className={styles.wheel9}>
                         {tasks.filter((task) => task.date < 7).map((task) => {

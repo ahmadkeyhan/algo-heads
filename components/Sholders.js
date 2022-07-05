@@ -8,7 +8,6 @@ import * as SiIcon from 'react-icons/si'
 import * as BsIcons from 'react-icons/bs'
 import * as CgIcons from 'react-icons/cg'
 import { motion, useAnimation } from "framer-motion"
-import NavSlider from './NavSlider'
 import { useRouter } from 'next/router'
 import { lightColorPalette, darkColorPalette } from '../components/colorPalette'
 import { arrowPalette, linkArrowPalette, scrollArrowPalette } from './Assets'
@@ -102,9 +101,6 @@ function Sholders() {
         <div className={styles.landing}
           style={{height: `${normalizedwidth*16/9}vw`,
           width: `${normalizedwidth}vw`}}>
-          <motion.div className={styles.navSliderFrame}>
-            <NavSlider colorCode={colorCode} />
-          </motion.div>
           <div className={styles.wheelHolder}>
             <div className={styles.wheelOne}>
               <motion.div className={styles.arrowHolder}>
@@ -195,9 +191,6 @@ function Sholders() {
         <div className={styles.landing}
           style={{height: `${normalizedwidth*16/9}vw`,
           width: `${normalizedwidth}vw`}}>
-          <motion.div className={styles.navSliderFrame}>
-            <NavSlider colorCode={colorCode} />
-          </motion.div>
           <div className={styles.wheelHolder}>
             <div className={styles.wheelOne}>
               <motion.div className={styles.arrowHolder}>

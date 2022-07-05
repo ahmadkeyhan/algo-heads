@@ -4,7 +4,6 @@ import wideStyles from '../styles/headlistWide.module.css'
 import { useState, useEffect } from 'react'
 import * as MdIcons from 'react-icons/md'
 import { motion } from "framer-motion"
-import NavSlider from './NavSlider'
 import { useRouter } from 'next/router'
 import { lightColorPalette, darkColorPalette } from './colorPalette'
 import {arrowPalette, scrollArrowPalette} from './Assets'
@@ -370,9 +369,6 @@ function Headlist() {
       <div className={styles.headList}
         style={{height: `${normalizedwidth*16/9}vw`,
         width: `${normalizedwidth}vw`}}>
-        <motion.div className={styles.navSliderFrame}>
-          <NavSlider colorCode={colorCode} />
-        </motion.div>
         <motion.div className={styles.wheelHolder}>
           <motion.div className={styles.wheelFive}>
           {step == 0 ?          
@@ -553,9 +549,6 @@ function Headlist() {
       <div className={styles.headList}
         style={{height: `${normalizedwidth*16/9}vw`,
         width: `${normalizedwidth}vw`}}>
-        <motion.div className={styles.navSliderFrame}>
-          <NavSlider colorCode={colorCode} />
-        </motion.div>
         <motion.div className={styles.wheelHolder}>
           <motion.div className={styles.wheelFive}>
           {step == 0 ?          
