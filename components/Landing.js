@@ -497,7 +497,7 @@ function Landing() {
             style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
             animate={control5}
             className={styles.headCard}>
-            <p>{heads[1].slice(1,12)}</p>
+            <p>{heads[1][1] === 'a' ? heads[1].slice(1,12) : null}</p>
           </motion.div>
           <motion.div 
             className={styles.headHolder}
@@ -508,7 +508,7 @@ function Landing() {
             style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
             animate={control6}
             className={styles.headCard}>
-            <p>{heads[3].slice(1,12)}</p>
+            <p>{heads[3][1] === 'a' ? heads[3].slice(1,12) : null}</p>
           </motion.div>
           <motion.div 
             className={styles.headHolder}
@@ -519,7 +519,7 @@ function Landing() {
             style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
             animate={control7}
             className={styles.headCard}>
-            <p>{heads[5].slice(1,12)}</p>
+            <p>{heads[5][1] === 'a' ? heads[5].slice(1,12) : null}</p>
           </motion.div>
           <motion.div 
             className={styles.headHolder}
@@ -530,7 +530,7 @@ function Landing() {
             style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
             animate={control8}
             className={styles.headCard}>
-            <p>{heads[7].slice(1,12)}</p>
+            <p>{heads[7][1] === 'a' ? heads[7].slice(1,12) : null}</p>
           </motion.div>
         </div>
         <div className={styles.wheelTwo}>
@@ -658,7 +658,7 @@ function Landing() {
             style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
             animate={control1}
             className={styles.headCard}>
-            <p>{heads[0].slice(1,12)}</p>
+            <p>{heads[0][1] === 'a' ? heads[0].slice(1,12) : null}</p>
           </motion.div>
           <motion.div 
             className={styles.headHolder}
@@ -669,7 +669,7 @@ function Landing() {
             style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
             animate={control2}
             className={styles.headCard}>
-            <p>{heads[2].slice(1,12)}</p>
+            <p>{heads[2][1] === 'a' ? heads[2].slice(1,12) : null}</p>
           </motion.div>
           <motion.div 
             className={styles.headHolder}
@@ -680,7 +680,7 @@ function Landing() {
             style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
             animate={control3}
             className={styles.headCard}>
-            <p>{heads[4].slice(1,12)}</p>
+            <p>{heads[4][1] === 'a' ? heads[4].slice(1,12) : null}</p>
           </motion.div>
           <motion.div 
             className={styles.headHolder}
@@ -691,7 +691,7 @@ function Landing() {
             style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
             animate={control4}
             className={styles.headCard}>
-            <p>{heads[6].slice(1,12)}</p>
+            <p>{heads[6][1] === 'a' ? heads[6].slice(1,12) : null}</p>
           </motion.div>
           <motion.div className={styles.social}>
             <Link href='https://discord.gg/NECZgDreUq'>
