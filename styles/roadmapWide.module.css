@@ -80,6 +80,7 @@
     position: absolute;
     width: 48.94vh;
     height: 24.19vh;
+    top: 2.25vh;
     left: 1.69vh;
     border-radius: 0 0 25vh 25vh;
     padding: 2.25vh 6.19vh 6.75vh 0.56vh;
@@ -104,7 +105,8 @@
     align-items: center;
     text-align: center;
     width: 14.06vh;
-    height: 15.19vh;
+    height: 17.44vh;
+    margin-top: -2.25vh;
     padding: 0;
     z-index: 10;
   }
@@ -119,6 +121,7 @@
   .wheel1 .task p {
     margin: 0 0.25rem;
     font-family: 'Gluten', cursive;
+    line-height: 0.9rem;
     font-size: 0.6rem;
     font-weight: 300;
     color: var(--color-text-primary);
@@ -144,9 +147,9 @@
     width: 24.19vh;
     height: 48.94vh;
     border-radius: 25vh 0 0 25vh;
-    padding: 5.63vh 0.56vh 7.88vh 6.75vh;
-    top: 18.56vh;
-    left: 30.38vh;
+    padding: 5.63vh 0.56vh 6.19vh 6.75vh;
+    top: 24.19vh;
+    left: 27.56vh;
   }
   
   .wheel2 h3 {
@@ -163,8 +166,9 @@
     align-items:flex-end;
     justify-content: center;
     text-align: right;
-    width: 16.88vh;
-    height: 11.81vh;
+    width: 19.69vh;
+    height: 12.37vh;
+    margin-right: -2.5vh;
     padding: 0;
     z-index: 10;
   }
@@ -180,6 +184,7 @@
     margin: 0;
     font-family: 'Gluten', cursive;
     font-size: 0.6rem;
+    line-height: 0.9rem;
     font-weight: 300;
     color: var(--color-text-primary);
   }
@@ -204,9 +209,9 @@
     width: 24.19vh;
     height: 48.94vh;
     border-radius: 0 25vh 25vh 0;
-    top: 31.5vh;
-    left: 1.69vh;
-    padding: 9vh 6.75vh 4.5vh 0.56vh;
+    top: 46.69vh;
+    left: 3.94vh;
+    padding: 8.44vh 6.75vh 3.37vh 0.56vh;
   }
   
   .wheel3 .task {
@@ -215,8 +220,9 @@
     align-items:flex-start;
     justify-content: center;
     text-align: left;
-    width: 16.88vh;
-    height: 11.81vh;
+    width: 19.69vh;
+    height: 12.37vh;
+    margin-right: -2.5vh;
     padding: 0;
     z-index: 10;
   }
@@ -232,6 +238,7 @@
     margin: 0;
     font-family: 'Gluten', cursive;
     font-size: 0.6rem;
+    line-height: 0.9rem;
     font-weight: 300;
     color: var(--color-text-primary);
   }
@@ -276,8 +283,8 @@
     transform: translate(-50%, -50%);
     width: 13.5vh;
     height: 13.5vh;
-    top: 4.5vh;
-    left: 27vh;
+    top: 11.81vh;
+    left: 33.75vh;
   }
   
   .loadHolder h3 {
