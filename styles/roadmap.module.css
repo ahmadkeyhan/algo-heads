@@ -76,7 +76,7 @@ font-weight: 300;
   z-index: 4;
 }
 
-.wheel9 {
+.wheel1 {
   position: absolute;
   width: 87vw;
   height: 43vw;
@@ -88,7 +88,7 @@ font-weight: 300;
   padding: 4vw 11vw 12vw 1vw;
 }
 
-.wheel9 h3 {
+.wheel1 h3 {
   position: absolute;
   font-size: 0.8rem;
   font-weight: 600;
@@ -96,7 +96,7 @@ font-weight: 300;
   left: 12vw;
 }
 
-.wheel9 .task {
+.wheel1 .task {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -109,14 +109,14 @@ font-weight: 300;
   z-index: 10;
 }
 
-.wheel9 .task h2 {
+.wheel1 .task h2 {
   margin: 0 0 0.25rem 0 ;
   font-family: 'Gluten', cursive;
   font-size: 0.6rem;
   font-weight: 600;
 }
 
-.wheel9 .task p {
+.wheel1 .task p {
   margin: 0 0.25rem;
   font-family: 'Gluten', cursive;
   font-size: 0.6rem;
@@ -124,7 +124,7 @@ font-weight: 300;
   color: var(--color-text-primary);
 }
 
-.wheel9 .done {
+.wheel1 .done {
   height: 8vw;
   display: flex;
   width: 24vw;
@@ -135,7 +135,7 @@ font-weight: 300;
   font-weight: 600;
 }
   
-.wheel10 {
+.wheel2 {
   position: absolute;
   width: 43vw;
   height: 87vw;
@@ -149,7 +149,7 @@ font-weight: 300;
   left: 54vw;
 }
 
-.wheel10 h3 {
+.wheel2 h3 {
   position: absolute;
   font-size: 0.8rem;
   font-weight: 600;
@@ -171,7 +171,7 @@ font-weight: 300;
   top: 231vw;
 }
 
-.wheel10 .task, .wheel14 .task {
+.wheel2 .task, .wheel14 .task {
   display: flex;
   flex-direction: column;
   align-items:flex-end;
@@ -183,14 +183,14 @@ font-weight: 300;
   z-index: 10;
 }
 
-.wheel10 .task h2, .wheel14 .task h2 {
+.wheel2 .task h2, .wheel14 .task h2 {
   margin: 0 0 0.25rem 0;
   font-family: 'Gluten', cursive;
   font-size: 0.6rem;
   font-weight: 600;
 }
 
-.wheel10 .task p, .wheel14 .task p {
+.wheel2 .task p, .wheel14 .task p {
   margin: 0;
   font-family: 'Gluten', cursive;
   font-size: 0.6rem;
@@ -199,7 +199,7 @@ font-weight: 300;
 }
 
 
-.wheel10 .done, .wheel14 .done {
+.wheel2 .done, .wheel14 .done {
   height: 5vw;
   display: flex;
   width: 20vw;
@@ -210,7 +210,7 @@ font-weight: 300;
   font-weight: 600;
 }
 
-.wheel11 {
+.wheel3 {
   position: absolute;
   width: 44vw;
   height: 87vw;
@@ -246,7 +246,7 @@ font-weight: 300;
   left: 12vw;
 }
 
-.wheel11 .task, .wheel13 .task {
+.wheel3 .task, .wheel13 .task {
   display: flex;
   flex-direction: column;
   align-items:flex-start;
@@ -258,14 +258,14 @@ font-weight: 300;
   z-index: 10;
 }
 
-.wheel11 .task h2, .wheel13 .task h2 {
+.wheel3 .task h2, .wheel13 .task h2 {
   margin: 0 0 0.25rem 0;
   font-family: 'Gluten', cursive;
   font-size: 0.6rem;
   font-weight: 600;
 }
 
-.wheel11 .task p, .wheel13 .task p {
+.wheel3 .task p, .wheel13 .task p {
   margin: 0;
   font-family: 'Gluten', cursive;
   font-size: 0.6rem;
@@ -274,7 +274,7 @@ font-weight: 300;
 }
 
 
-.wheel11 .done, .whee13 .done {
+.wheel3 .done, .whee13 .done {
   height: 5vw;
   display: flex;
   width: 20vw;
@@ -285,11 +285,11 @@ font-weight: 300;
   font-weight: 600;
 }
 
-.wheel12 {
+.wheel4 {
   position: absolute;
   width: 87vw;
-  height: 87vw;
-  border-radius: 44vw;
+  height: 43vw;
+  border-radius: 43vw 43vw 0 0;
   top: 132vw;
   left: 10vw;
   display: flex;
@@ -298,13 +298,14 @@ font-weight: 300;
   justify-content: space-evenly;
   align-content: space-between;
   padding: 12vw 1vw 12vw 11vw;
+  border-top: 2px dashed #666;
 }
 
 .tasksPrime {
   display: flex;
 }
 
-.wheel12 h3 {
+.wheel4 h3 {
   position: absolute;
   font-size: 0.8rem;
   font-weight: 600;
@@ -339,7 +340,7 @@ font-weight: 300;
   z-index: 10;
 }
 
-.wheel12 .task {
+.wheel4 .task {
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
@@ -352,7 +353,7 @@ font-weight: 300;
   z-index: 10;
 }
 
-.wheel12 .taskPrime {
+.wheel4 .taskPrime {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -364,14 +365,14 @@ font-weight: 300;
   z-index: 10;
 }
 
-.wheel12 .task h2, .wheel15 .task h2 {
+.wheel4 .task h2, .wheel15 .task h2 {
   margin: 0.25rem 0 0 0;
   font-family: 'Gluten', cursive;
   font-size: 0.6rem;
   font-weight: 600;
 }
 
-.wheel12 .taskPrime h2 {
+.wheel4 .taskPrime h2 {
   margin: 0.25rem 0 0 0 ;
   font-family: 'Gluten', cursive;
   font-size: 0.6rem;
@@ -379,7 +380,7 @@ font-weight: 300;
 }
 
 
-.wheel12 .task p, .wheel12 .taskPrime p, .wheel15 .task p {
+.wheel4 .task p, .wheel4 .taskPrime p, .wheel15 .task p {
   margin: 0.25rem 0 0 0;
   font-family: 'Gluten', cursive;
   font-size: 0.6rem;
@@ -387,7 +388,7 @@ font-weight: 300;
   color: var(--color-text-primary);
 }
 
-.wheel12 .done, .wheel15 .done {
+.wheel4 .done, .wheel15 .done {
   height: 8vw;
   display: flex;
   width: 24vw;
