@@ -3,6 +3,7 @@ import wideStyles from '../styles/roadmapWide.module.css'
 import { useState, useEffect } from 'react'
 import { motion } from "framer-motion"
 import {lightColorPalette, darkColorPalette} from '../components/colorPalette'
+import Image from 'next/image'
 
 function Roadmap() {
     const [activeTheme, setActiveTheme] = useState('light')
@@ -52,7 +53,11 @@ function Roadmap() {
                 width: `${normalizedwidth}vw`
                 }}>
                 <motion.div className={styles.wheelHolder}>
-                    <motion.div className={styles.wheel1}>
+                    <motion.div className={styles.wheel1}
+                    // initial={{rotate: 0}}
+                    // animate= {{rotate: 360}}
+                    // transition={{repeat:Infinity, duration: 1}}
+                    >
                         <motion.div
                             style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/10)}vw` : `${24.47*Math.sin(Math.PI/10)}vh`,
                                 left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10))}vw` : `${24.47*(1+Math.cos(Math.PI/10))}vh`,
@@ -123,7 +128,12 @@ function Roadmap() {
                         })}
                     </motion.div>
                     <motion.div className={styles.wheel4}>
-
+                        <motion.div className={styles.loadHolder}
+                            style={{color: lightColorPalette[colorCode]}}>
+                            <h3>wait...</h3>
+                            <Image src='/headSpinDemo.gif' layout='fill'/>
+                            <p>till the head is gettin' heavy!</p>
+                        </motion.div>
                     </motion.div>
                 </motion.div>
             </div>

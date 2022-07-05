@@ -299,6 +299,8 @@
     left: 5.63vh;
     padding: 6.75vh 0.56vh 6.75vh 6.19vh;
   }
+
+ 
   
   .tasksPrime {
     display: flex;
@@ -310,6 +312,35 @@
     font-weight: 600;
     top: 47.25vh;
     right: 6.75vh;
+  }
+
+  .loadHolder {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 13.5vh;
+    height: 13.5vh;
+    top: 4.5vh;
+    left: 27vh;
+  }
+  
+  .loadHolder h3 {
+    position: absolute;
+    font-size: 0.8rem;
+    font-weight: 600;
+    top: -3.94vh;
+    left: 1.12vh;
+  }
+  
+  .loadHolder p {
+    position: absolute;
+    font-size: 0.8rem;
+    font-weight: 300;
+    top: 11.81vh;
+    left: -14.06vh;
+    width: 28ch;
+    text-align: right;
+    line-height: 1rem;
+    color: var(--color-text-secondary);
   }
   
   .wheel15 {

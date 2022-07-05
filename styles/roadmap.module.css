@@ -297,8 +297,7 @@ font-weight: 300;
   flex-direction: row-reverse;
   justify-content: space-evenly;
   align-content: space-between;
-  padding: 12vw 1vw 12vw 11vw;
-  border-top: 2px dashed #666;
+  /* border-top: 2px dashed #666; */
 }
 
 .tasksPrime {
@@ -311,6 +310,35 @@ font-weight: 300;
   font-weight: 600;
   top: 84vw;
   right: 12vw;
+}
+
+.loadHolder {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 24vw;
+  height: 24vw;
+  top: 8vw;
+  left: 48vw;
+}
+
+.loadHolder h3 {
+  position: absolute;
+  font-size: 0.8rem;
+  font-weight: 600;
+  top: -7vw;
+  left: 2vw;
+}
+
+.loadHolder p {
+  position: absolute;
+  font-size: 0.8rem;
+  font-weight: 300;
+  top: 21vw;
+  left: -25vw;
+  width: 28ch;
+  text-align: right;
+  line-height: 1rem;
+  color: var(--color-text-secondary);
 }
 
 .wheel15 {
