@@ -325,6 +325,25 @@
     color: var(--color-text-secondary);
   }
 
+  .stepHolder {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 13.5vh;
+    height: 13.5vh;
+    top: 11.81vh;
+    left: 33.75vh;
+  }
+  
+  .stepHolder p {
+    position: absolute;
+    font-size: 0.7rem;
+    font-weight: 300;
+    top: 11.81vh;
+    left: 1.12vh;
+    line-height: 1rem;
+    color: var(--color-text-secondary);
+  }
+
   .done p {
     margin: 0;
     font-size: 0.8rem;
