@@ -11,6 +11,7 @@ function Roadmap() {
     const [step, setStep] = useState(1)
 
     const [tasks, setTasks] = useState()
+    const [weekTasks, setWeekTasks] = useState()
     const [isLoading, setLoading] = useState()
     useEffect(() => {
         setLoading(true)
@@ -183,6 +184,92 @@ function Roadmap() {
                 </motion.div>
             </div>
     )}
+
+    function WeekHolder1({step, tasks}) {
+        // var weekTasks = []
+        // tasks.map((task) => task.date < 7 + 23*step && task.date > 23*step - 1 ? weekTasks.push(task) : null)
+        return (
+            <motion.div className={styles.wheel1}>
+            {tasks.map((task) => {
+                if (task.date < 7 + 23*step && task.date > 23*step - 1) {
+                    console.log(task)
+                average += task.done/3
+                return(
+                    <motion.div key={task.id} className={styles.task}>
+                        <h2 style={{color: lightColorPalette[(colorCode+task.type+1)%7]}}>
+                            {task.title}
+                        </h2>
+                        <p style={{color: activeTheme==='light'? darkColorPalette[(colorCode+task.type+1)%7] : '#dfdfdf'}}>
+                            {task.brief}
+                        </p>
+                        <motion.div className={styles.done}>
+                            <p style={{color: lightColorPalette[(colorCode+task.type+1)%7]}}>
+                                {!task.done ? '~' : task.done < 100 ? `${task.done}%` : '✓✓'}
+                            </p>
+                            <motion.div className={styles.doneSlider}
+                                style={task.done%100==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
+                                <motion.div
+                                    className={styles.doneSlide} 
+                                    style={{width: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${task.done*0.1}vw` : `${task.done*0.06}vh` ,
+                                    backgroundColor: lightColorPalette[(colorCode+task.type+1)%7]}} />
+                            </motion.div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            })}
+            {tasks.map((task) => {
+                if(task.type != 2 && task.date < 7 + 23*step && task.date > 23*step - 1) {
+                    return(
+                        <motion.div key={task.id} className={styles.dateCatcher}
+                            style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                                    `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(7+23*step-task.date))}vw` :
+                                    `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(7+23*step-task.date))}vh`,
+                                left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                                    `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(7+23*step-task.date)))}vw` :
+                                    `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(7+23*step-task.date)))}vh`,
+                                borderColor: lightColorPalette[colorCode+task.type+1]}}>
+                        </motion.div>
+                    )
+                }
+            })}
+            <motion.div
+                style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/10)}vw` : `${24.47*Math.sin(Math.PI/10)}vh`,
+                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10))}vw` : `${24.47*(1+Math.cos(Math.PI/10))}vh`,
+                    borderColor: darkColorPalette[colorCode],
+                    color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
+                className={styles.phaseHolder}>
+                <h2>Week {1+step*3}</h2>
+                <motion.div className={styles.doneAverage}>
+                    <motion.div className={styles.doneSlider}
+                        style={Math.floor(average)==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode)%7]}}>
+                        <motion.div
+                            className={styles.doneSlide}
+                            style={{width:  window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${average*0.1}vw` : `${average*0.06}vh`,
+                            backgroundColor: lightColorPalette[(colorCode)%7]}} />
+                    </motion.div>
+                    <p style={{color:activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}>
+                        {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓✓'}
+                    </p>
+                </motion.div>
+            </motion.div>
+            {angles.map((index) => {
+                average = 0
+                var date = new Date(weekStart*1 + (6 + step*23 - index)*24*3600000)
+                return(
+                    <motion.div key={index}
+                        style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+1))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+1))}vh`,
+                            left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
+                            color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
+                            backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
+                        className={styles.dateHolder}>
+                        <p>{date.getDate()}</p>
+                    </motion.div>
+                )
+            })}
+            {step===0 && <h3 style={{color: lightColorPalette[colorCode]}}>June</h3>}
+        </motion.div>
+        )
+    }
     
     var average = 0
     if (tasks) {
@@ -194,6 +281,7 @@ function Roadmap() {
         tasks.sort(function(a,b) {
             return b.date - a.date
         })
+
         return (
             <div className={styles.roadmap}
                 style={{height: `${normalizedwidth*16/9}vw`,
@@ -201,82 +289,22 @@ function Roadmap() {
                 }}>
                 <motion.div className={styles.wheelHolder}>
                     <motion.div className={styles.wheel1}>
-                        {tasks.filter((task) => task.date < 7 + 23*step && task.date > 23*step - 1).map((task) => {
-                            average += task.done/3
-                            return(
-                                <motion.div key={task.id} className={styles.task}>
-                                    <h2 style={{color: lightColorPalette[(colorCode+task.type+1)%7]}}>
-                                        {task.title}
-                                    </h2>
-                                    <p style={{color: activeTheme==='light'? darkColorPalette[(colorCode+task.type+1)%7] : '#dfdfdf'}}>
-                                        {task.brief}
-                                    </p>
-                                    <motion.div className={styles.done}>
-                                        <p style={{color: lightColorPalette[(colorCode+task.type+1)%7]}}>
-                                            {!task.done ? '~' : task.done < 100 ? `${task.done}%` : '✓✓'}
-                                        </p>
-                                        <motion.div className={styles.doneSlider}
-                                            style={task.done%100==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode+task.type+1)%7]}}>
-                                            <motion.div
-                                                className={styles.doneSlide} 
-                                                style={{width: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${task.done*0.1}vw` : `${task.done*0.06}vh` ,
-                                                backgroundColor: lightColorPalette[(colorCode+task.type+1)%7]}} />
-                                        </motion.div>
-                                    </motion.div>
-                                </motion.div>
-                            )
-                        })}
-                        {tasks.filter(task => task.date < 7 + 23*step && task.date > 23*step - 1).map((task) => {
-                            if(task.type != 2) {
-                                return(
-                                    <motion.div key={task.id} className={styles.dateCatcher}
-                                        style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
-                                                `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(7+23*step-task.date))}vw` :
-                                                `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(7+23*step-task.date))}vh`,
-                                            left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
-                                                `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(7+23*step-task.date)))}vw` :
-                                                `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(7+23*step-task.date)))}vh`,
-                                            borderColor: lightColorPalette[colorCode+task.type+1]}}>
-                                    </motion.div>
-                                )
-                            }
-                        })}
-                        <motion.div
-                            style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/10)}vw` : `${24.47*Math.sin(Math.PI/10)}vh`,
-                                left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/10))}vw` : `${24.47*(1+Math.cos(Math.PI/10))}vh`,
-                                borderColor: darkColorPalette[colorCode],
-                                color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
-                            className={styles.phaseHolder}>
-                            <h2>Week {1+step*3}</h2>
-                            <motion.div className={styles.doneAverage}>
-                                <motion.div className={styles.doneSlider}
-                                    style={Math.floor(average)==0 ? {display: 'none'}:{borderColor: lightColorPalette[(colorCode)%7]}}>
-                                    <motion.div
-                                        className={styles.doneSlide}
-                                        style={{width:  window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${average*0.1}vw` : `${average*0.06}vh`,
-                                        backgroundColor: lightColorPalette[(colorCode)%7]}} />
-                                </motion.div>
-                                <p style={{color:activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}>
-                                    {!average ? '~' : average < 100 ? `${Math.floor(average)}%` : '✓✓'}
-                                </p>
-                            </motion.div>
+                        <motion.div className={styles.previousStep}
+                            style={{color: darkColorPalette[colorCode],
+                                border: `2px solid ${darkColorPalette[colorCode]}`}}
+                            onClick={() => setStep(step-1)}
+                            animate={step > 0 ? null : {display: 'none'}}>
+                            <p>prev. weeks</p>
                         </motion.div>
-                        {angles.map((index) => {
-                            average = 0
-                            var date = new Date(weekStart*1 + (6 + step*23 - index)*24*3600000)
-                            return(
-                                <motion.div key={index}
-                                    style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+1))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+1))}vh`,
-                                        left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+1)))}vh`,
-                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
-                                        backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
-                                    className={styles.dateHolder}>
-                                    <p>{date.getDate()}</p>
-                                </motion.div>
-                            )
-                        })}
-                        {step===0 && <h3 style={{color: lightColorPalette[colorCode]}}>June</h3>}
+                        <motion.div className={styles.nextStep}
+                            style={{color: darkColorPalette[colorCode],
+                                border: `2px solid ${darkColorPalette[colorCode]}`}}
+                            onClick={() => setStep(step+1)}
+                            animate={step < 2 ? null : {display: 'none'}}>
+                            <p>next weeks</p>
+                        </motion.div>
                     </motion.div>
+                    <WeekHolder1 step={step} tasks={tasks} />
                     <motion.div className={styles.wheel2}>
                         {tasks.filter(task => task.date < 15 + step*23 && task.date > 6 + step*23).map((task) => {
                             average += task.done/3
@@ -474,6 +502,13 @@ function Roadmap() {
                             <h3 style={{color: lightColorPalette[colorCode]}}>August</h3>
                         </motion.div>
                     }
+                    <motion.div className={styles.wheel4}>
+                        <motion.div className={styles.stepHolder}
+                            style={{color: lightColorPalette[colorCode]}}>
+                            <Image src='/headSpinSteel.png' layout='fill'/>
+                            <p>27 Jun - 19 Jul</p>
+                        </motion.div>
+                    </motion.div>
                 </motion.div>
             </div>
     )

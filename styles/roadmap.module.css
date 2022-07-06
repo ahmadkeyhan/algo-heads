@@ -302,6 +302,25 @@ font-weight: 300;
   left: 60vw;
 }
 
+.stepHolder {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 24vw;
+  height: 24vw;
+  top: 21vw;
+  left: 60vw;
+}
+
+.stepHolder p {
+  position: absolute;
+  font-size: 0.7rem;
+  font-weight: 300;
+  top: 21vw;
+  left: 2vw;
+  line-height: 1rem;
+  color: var(--color-text-secondary);
+}
+
 .loadHolder h3 {
   position: absolute;
   font-size: 0.8rem;
@@ -356,5 +375,35 @@ font-weight: 300;
   align-items: center;
   justify-content: center;
   font-family: 'Gluten', cursive;
+  font-weight: 600;
+}
+
+.previousStep {
+  position: absolute;
+  top: 40vw;
+  left: -8vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 4vw;
+  width: 28vw;
+  height: 9vw;
+  border-radius: 4.5vw;
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+
+.nextStep {
+  position: absolute;
+  top: 72vw;
+  left: -8vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 4vw;
+  width: 28vw;
+  height: 9vw;
+  border-radius: 4.5vw;
+  font-size: 0.6rem;
   font-weight: 600;
 }

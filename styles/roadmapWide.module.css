@@ -361,3 +361,33 @@
     height: 4.5vh;
     width: 11.25vh;
   }
+
+.previousStep {
+  position: absolute;
+  top: 22.5vh;
+  left: -4.5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 2.25vh;
+  width: 15.75vh;
+  height: 5.06vh;
+  border-radius: 2.53vh;
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+
+.nextStep {
+  position: absolute;
+  top: 40.5vh;
+  left: -4.5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 2.25vh;
+  width: 15.75vh;
+  height: 5.06vh;
+  border-radius: 2.53vh;
+  font-size: 0.6rem;
+  font-weight: 600;
+}
