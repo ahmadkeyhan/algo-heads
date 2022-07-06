@@ -48,6 +48,13 @@ background-color: var(--color-bg-primary);
     font-size: 0.6rem;
 }
 
+.phaseHolder h1 {
+  margin: 0;
+  font-family: 'Gluten', cursive;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
 .dateHolder {
     position: absolute;
     transform: translate(-50%, -50%);
@@ -55,6 +62,7 @@ background-color: var(--color-bg-primary);
     height: 8vw;
     border-radius: 4vw;
     background-color: var(--color-bg-primary);
+    color: var(--color-text-secondary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -156,7 +164,7 @@ font-weight: 300;
   position: absolute;
   font-size: 0.8rem;
   font-weight: 600;
-  top: 86vw;
+  top: 6vw;
   left: 0vw;
 }
 
@@ -252,6 +260,14 @@ font-weight: 300;
   font-family: 'Gluten', cursive;
   font-size: 0.5rem;
   font-weight: 600;
+}
+
+.wheel3 h3 {
+  position: absolute;
+  font-size: 0.8rem;
+  font-weight: 600;
+  top: 4vw;
+  left: 24vw;
 }
 
 .wheel4 {

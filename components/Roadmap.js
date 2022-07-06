@@ -8,7 +8,7 @@ import Image from 'next/image'
 function Roadmap() {
     const [activeTheme, setActiveTheme] = useState('light')
 
-    const [step, setStep] = useState(2)
+    const [step, setStep] = useState(1)
 
     const [tasks, setTasks] = useState()
     const [isLoading, setLoading] = useState()
@@ -62,10 +62,10 @@ function Roadmap() {
                                 borderColor: darkColorPalette[colorCode],
                                 color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
-                            <h2>Week 1</h2>
+                            <h2>Week {step*3+1}</h2>
                         </motion.div>
                         {angles.map((index) => {
-                            var date = new Date(weekStart*1 + (6-index)*24*3600000)
+                            var date = new Date(weekStart*1 + (6+step*23-index)*24*3600000)
                             return(
                                 <motion.div key={index}
                                     style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+1))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+1))}vh`,
@@ -77,7 +77,7 @@ function Roadmap() {
                                 </motion.div>
                             )
                         })}
-                        <h3 style={{color: lightColorPalette[colorCode]}}>June</h3>
+                        {step==0 && <h3 style={{color: lightColorPalette[colorCode]}}>June</h3>}
                     </motion.div>
                     <motion.div className={styles.wheel2}>
                         <motion.div
@@ -86,10 +86,10 @@ function Roadmap() {
                                 borderColor: darkColorPalette[colorCode],
                                 color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
                             className={styles.phaseHolder}>
-                            <h2>Week 2</h2>
+                            <h2>Week {2+step*3}</h2>
                         </motion.div>
                         {moreAngles.map((index) => {
-                            var date = new Date(weekStart*1 + (14-index)*24*3600000)
+                            var date = new Date(weekStart*1 + (14+step*23-index)*24*3600000)
                             return(
                                 <motion.div key={index}
                                     style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
@@ -101,30 +101,77 @@ function Roadmap() {
                                 </motion.div>
                             )
                         })}
+                        {step == 1 && <h3 style={{color: lightColorPalette[colorCode]}}>July</h3>}
                     </motion.div>
-                    <motion.div className={styles.wheel3}>
-                        <motion.div
-                            style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.cos(Math.PI/10+Math.PI/12))}vh`,
-                                left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/10+Math.PI/12)}vw` : `${24.47*Math.sin(Math.PI/10+Math.PI/12)}vh`,
-                                borderColor: darkColorPalette[colorCode],
-                                color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
-                            className={styles.phaseHolder}>
-                            <h2 >Week 3</h2>
+                    {step != 2 ?
+                        <motion.div className={styles.wheel3}>
+                            
+                            <motion.div
+                                style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/10+Math.PI/12))}vw` : `${24.47*(1-Math.cos(Math.PI/10+Math.PI/12))}vh`,
+                                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/10+Math.PI/12)}vw` : `${24.47*Math.sin(Math.PI/10+Math.PI/12)}vh`,
+                                    borderColor: darkColorPalette[colorCode],
+                                    color: activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
+                                className={styles.phaseHolder}>
+                                <h2 >Week {3+step*3}</h2>
+                            </motion.div>
+                            {moreAngles.map((index) => {
+                                average = 0
+                                var date = new Date(weekStart*1 + (index+15+step*23)*24*3600000)
+                                return(
+                                    <motion.div key={index}
+                                        style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
+                                            left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vh`,
+                                            color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
+                                            backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
+                                        className={styles.dateHolder}>
+                                        <p>{date.getDate()}</p>
+                                    </motion.div>
+                                )
+                            })}
+                        </motion.div> : 
+                        <motion.div className={styles.wheel3}>
+                            <motion.div
+                                style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                                        `${43.5*(1-Math.cos(Math.PI/10+10.5*Math.PI/12))}vw` :
+                                        `${24.47*(1-Math.cos(Math.PI/10+10.5*Math.PI/12))}vh`,
+                                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                                        `${43.5*Math.sin(Math.PI/10+10.5*Math.PI/12)}vw` :
+                                        `${24.47*Math.sin(Math.PI/10+10.5*Math.PI/12)}vh`,
+                                    border: 'none',
+                                    color: activeTheme==='light'?
+                                        darkColorPalette[colorCode] : lightColorPalette[colorCode]}}
+                                className={styles.phaseHolder}>
+                                <h1>Vision</h1>
+                            </motion.div>
+                            {moreAngles.map((index) => {
+                                average = 0
+                                var date = new Date(weekStart*1 + (index+15+step*23)*24*3600000)
+                                if (index<4) {
+                                    return(
+                                        <motion.div key={index}
+                                            style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
+                                                left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vh`,
+                                                color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',}}
+                                            className={styles.dateHolder}>
+                                            <p>{date.getDate()}</p>
+                                        </motion.div>
+                                    )
+                                } else {
+                                    return(
+                                        <motion.div key={index}
+                                            style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
+                                                left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vh`,
+                                                color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
+                                                backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
+                                            className={styles.dateHolder}>
+                                            <p>{'AHS!'[index-4]}</p>
+                                        </motion.div>
+                                    )
+                                }
+                            })}
+                            <h3 style={{color: lightColorPalette[colorCode]}}>August</h3>
                         </motion.div>
-                        {moreAngles.map((index) => {
-                            var date = new Date(weekStart*1 + (index-16)*24*3600000)
-                            return(
-                                <motion.div key={index}
-                                    style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vw` : `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(index+2)))}vh`,
-                                        left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vw` : `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(index+2))}vh`,
-                                        color: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? '#fff' : activeTheme==='light'? darkColorPalette[colorCode] : '#dfdfdf',
-                                        backgroundColor: date.getDate()==now.getUTCDate() && date.getMonth()==now.getUTCMonth() ? lightColorPalette[colorCode] : null}}
-                                    className={styles.dateHolder}>
-                                    <p>{date.getDate()}</p>
-                                </motion.div>
-                            )
-                        })}
-                    </motion.div>
+                    }
                     <motion.div className={styles.wheel4}>
                         <motion.div className={styles.loadHolder}
                             style={{color: lightColorPalette[colorCode]}}>

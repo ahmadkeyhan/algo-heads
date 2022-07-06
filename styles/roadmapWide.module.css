@@ -47,6 +47,13 @@
       font-weight: 600;
       font-size: 0.6rem;
   }
+
+  .phaseHolder h1 {
+    margin: 0;
+    font-family: 'Gluten', cursive;
+      font-weight: 600;
+      font-size: 0.8rem;
+  }
   
   .dateHolder {
       position: absolute;
@@ -55,6 +62,7 @@
       height: 4.5vh;
       border-radius: 2.25vh;
       background-color: var(--color-bg-primary);
+      color: var(--color-text-secondary);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -156,7 +164,7 @@
     position: absolute;
     font-size: 0.8rem;
     font-weight: 600;
-    top: 48.38vh;
+    top: 3.38vh;
     left: 0;
   }
 
@@ -254,6 +262,16 @@
     height: 2.81vh;
     width: 11.25vh;
   }
+
+  
+.wheel3 h3 {
+  position: absolute;
+  font-size: 0.8rem;
+  font-weight: 600;
+  top: 2.25vh;
+  left: 13.5vh;
+}
+
   
   .wheel4 {
     position: absolute;
