@@ -61,8 +61,6 @@ function Landing() {
         if (sholders.indexOf(fetchedAccount[0].address) !== -1) {
           setSholderOrNot(true)
           setSholderShuffleOrNot(true)
-          setColorCode(5)
-          setActiveTheme('light')
           headlist.map((head) => {
             if (head.sholder.address === fetchedAccount[0].address) {
               // head.sholder.name = fetchedAccount[0].name
@@ -100,8 +98,8 @@ function Landing() {
   }, [account])
 
 
-  var shuffleDate = new Date('Fri Jul 1 2022 19:30:00')
-  var sholderShuffleDate = new Date('Thu Jun 30 2022 19:30:00')
+  var shuffleDate = new Date('Fri Jul 8 2022 19:30:00')
+  var sholderShuffleDate = new Date('Thu Jul 7 2022 19:30:00')
 
   const router = useRouter()
 
@@ -538,10 +536,10 @@ function Landing() {
             <Image className={styles.arrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
           </motion.div>
           <h2 style={{color:activeTheme === 'light' ? darkColorPalette[6-colorCode]: null}} className={styles.title}>
-            Watch the  <span style={{marginLeft: male ? '0.5rem' : '0.1rem',color: sholderShuffleOrNot ? '#ffa7ff' : lightColorPalette[6-colorCode]}}>{sholderShuffleOrNot ? 'proud' : male ? 'male' : 'female '}</span> heads spin!
+            Watch the  <span style={{marginLeft: male ? '0.5rem' : '0.1rem',color: sholderShuffleOrNot ? lightColorPalette[2-colorCode] : lightColorPalette[6-colorCode]}}>{sholderShuffleOrNot ? 'fresh' : male ? 'male' : 'female '}</span> heads spin!
           </h2>
           <motion.div className={styles.subTitle}>
-            <h2 style={{color: activeTheme==='light' ? darkColorPalette[6-colorCode]: lightColorPalette[6-colorCode]}}>on Algorand blockchain</h2>
+            <h2 style={{color: activeTheme==='light' ? darkColorPalette[6-colorCode]: lightColorPalette[2-colorCode]}}>on Algorand blockchain</h2>
             <motion.div className={styles.mintPrice}>
             <p style={{color:activeTheme === 'light' ? darkColorPalette[6-colorCode]: null}}>Mint price: 25</p>
             <motion.div className={styles.algoLogo}>
@@ -549,7 +547,7 @@ function Landing() {
                 <path d="M18.0006 19.0109H15.1785L13.3456 12.193L9.40508
                   19.0116H6.25445L12.345 8.45714L11.3648 4.79298L3.15215
                   19.0139H0L10.408 0.986084H13.1674L14.3757 5.46509H17.2228L15.2789
-                  8.8453L18.0006 19.0109Z" fill={sholderShuffleOrNot ? '#ffa7ff' : lightColorPalette[6-colorCode]} />
+                  8.8453L18.0006 19.0109Z" fill={sholderShuffleOrNot ? lightColorPalette[2-colorCode] : lightColorPalette[6-colorCode]} />
               </svg>
             </motion.div>
             </motion.div>
@@ -572,13 +570,7 @@ function Landing() {
                   className={styles.genderCatcher}
                   onClick={() => setMale(!male)} />
                 </motion.div> : 
-                <motion.div className={styles.genderSlider}>
-                  <motion.div 
-                  animate={{left: '0.3125rem'}}
-                  style={{borderColor:activeTheme === 'light' ? darkColorPalette[6-colorCode] : null,
-                    backgroundColor: sholderShuffleOrNot ? '#ffa7ff' : lightColorPalette[6-colorCode]}}
-                  className={styles.genderCatcher} />
-                </motion.div>  
+                null
         }
           {/* <motion.div className={styles.colorSlider}
             style={{borderColor: darkColorPalette[colorCode]}}
@@ -620,35 +612,33 @@ function Landing() {
                 style={{color: activeTheme==='light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}/>
             </button>
           </motion.div> */}
-          {sholderOrNot ? null :
-              <motion.div className={styles.themeSlider}>
-                <div className={styles.themeBearing}
-                  onClick={() => setActiveTheme(activeTheme === "light" ? "dark" : "light")}
-                  aria-label={`Change to ${inactiveTheme} mode`}
-                  title={`Change to ${inactiveTheme} mode`}>
-                  <svg width="36" height="26" viewBox="0 0 36 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="4.00098" y="3.99939" width="32" height="18" rx="9" fill={darkColorPalette[3]} />
-                    <rect y="11.9999" width="4" height="2" rx="1" fill={darkColorPalette[3]} opacity={activeTheme==='light' ? 1 : 0} />
-                    <rect x="12" width="2" height="4" rx="1" fill={darkColorPalette[3]} opacity={activeTheme==='light' ? 1 : 0} />
-                    <rect x="12" y="22" width="2" height="4" rx="1" fill={darkColorPalette[3]} opacity={activeTheme==='light' ? 1 : 0} />
-                    <rect x="22" y="11.9999" width="4" height="2" rx="1" fill={lightColorPalette[colorCode]} opacity={activeTheme==='light' ? 1 : 0} />
-                    <rect x="4.93164" y="19.0702" width="2" height="2" rx="1" fill={darkColorPalette[3]} opacity={activeTheme==='light' ? 1 : 0} />
-                    <rect x="4.93262" y="4.93005" width="2" height="2" rx="1" fill={darkColorPalette[3]} opacity={activeTheme==='light' ? 1 : 0} />
-                    <rect x="19.0713" y="19.0705" width="2" height="2" rx="1" fill={lightColorPalette[colorCode]} opacity={activeTheme==='light' ? 1 : 0} />
-                    <rect x="19.0713" y="4.92889" width="2" height="2" rx="1" fill={lightColorPalette[colorCode]} opacity={activeTheme==='light' ? 1 : 0} />
-                  </svg>
-                </div>
-                <motion.div className={styles.themeCatcher}
-                  style={{borderColor: darkColorPalette[3],backgroundColor: lightColorPalette[colorCode]}}
-                  animate={activeTheme === "light" ? {left:'0.125rem'} : {left: '1rem'}}
-                  onClick={() => setActiveTheme(activeTheme === "light" ? "dark" : "light")}>
-                  <motion.div 
-                    animate={activeTheme === "light" ? {left:'-1.13rem', top: '-1.13rem'} : null}
-                    style={{backgroundColor: darkColorPalette[3]}}
-                    className={styles.shadowCatcher} />
-                </motion.div>
-              </motion.div>
-          }
+          <motion.div className={styles.themeSlider}>
+            <div className={styles.themeBearing}
+              onClick={() => setActiveTheme(activeTheme === "light" ? "dark" : "light")}
+              aria-label={`Change to ${inactiveTheme} mode`}
+              title={`Change to ${inactiveTheme} mode`}>
+              <svg width="36" height="26" viewBox="0 0 36 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="4.00098" y="3.99939" width="32" height="18" rx="9" fill={darkColorPalette[3]} />
+                <rect y="11.9999" width="4" height="2" rx="1" fill={darkColorPalette[3]} opacity={activeTheme==='light' ? 1 : 0} />
+                <rect x="12" width="2" height="4" rx="1" fill={darkColorPalette[3]} opacity={activeTheme==='light' ? 1 : 0} />
+                <rect x="12" y="22" width="2" height="4" rx="1" fill={darkColorPalette[3]} opacity={activeTheme==='light' ? 1 : 0} />
+                <rect x="22" y="11.9999" width="4" height="2" rx="1" fill={lightColorPalette[colorCode]} opacity={activeTheme==='light' ? 1 : 0} />
+                <rect x="4.93164" y="19.0702" width="2" height="2" rx="1" fill={darkColorPalette[3]} opacity={activeTheme==='light' ? 1 : 0} />
+                <rect x="4.93262" y="4.93005" width="2" height="2" rx="1" fill={darkColorPalette[3]} opacity={activeTheme==='light' ? 1 : 0} />
+                <rect x="19.0713" y="19.0705" width="2" height="2" rx="1" fill={lightColorPalette[colorCode]} opacity={activeTheme==='light' ? 1 : 0} />
+                <rect x="19.0713" y="4.92889" width="2" height="2" rx="1" fill={lightColorPalette[colorCode]} opacity={activeTheme==='light' ? 1 : 0} />
+              </svg>
+            </div>
+            <motion.div className={styles.themeCatcher}
+              style={{borderColor: darkColorPalette[3],backgroundColor: lightColorPalette[colorCode]}}
+              animate={activeTheme === "light" ? {left:'0.125rem'} : {left: '1rem'}}
+              onClick={() => setActiveTheme(activeTheme === "light" ? "dark" : "light")}>
+              <motion.div 
+                animate={activeTheme === "light" ? {left:'-1.13rem', top: '-1.13rem'} : null}
+                style={{backgroundColor: darkColorPalette[3]}}
+                className={styles.shadowCatcher} />
+            </motion.div>
+          </motion.div>
           <motion.div
             className={styles.headHolder}
             animate={control1}>
@@ -740,19 +730,19 @@ function Landing() {
         </div>
         <div className={styles.wheelThree}>
           <div className={styles.bannerHolder}>
-            <Image className={styles.buyBanner} src={activeTheme === 'dark' ? buyBannerPalette[7] : sholderOrNot ? '/buyBannerProudLight.gif' : buyBannerPalette[6-colorCode]} layout='fill' />
+            <Image className={styles.buyBanner} src={activeTheme === 'dark' ? buyBannerPalette[7] : buyBannerPalette[6]} layout='fill' />
           </div>
           <motion.div className={styles.shuffleButtons}>
           {sholdOut && sholderOrNot ?
             <div
-              style={{backgroundImage: 'linear-gradient(to right, #ffa7ff , #ffafc5)'}}
+              style={{backgroundColor: lightColorPalette[2-colorCode]}}
               onClick={() => setSholderShuffleOrNot(true)}
               className={sholderShuffleOrNot ? styles.mainCountDown : styles.secondaryCountDown}>
               <p>Sholder shuffle in <span>{sholderShuffleDays}</span> d <span>{sholderShuffleHours}</span> h <span>{sholderShuffleMinutes}</span> m</p>
             </div> : !sholdOut && sholderOrNot ?
             <Link href={process.env.NEXT_PUBLIC_SHOLDER_SHUFFLE_LINK}>          
               <button
-                style={{backgroundImage: 'linear-gradient(to right, #ffa7ff , #ffafc5)'}}
+                style={{backgroundColor: lightColorPalette[2-colorCode]}}
                 className={sholderShuffleOrNot ? styles.mainButton : styles.secondaryButton}>
                 <p>Enter shuffle!</p>
               </button>
@@ -764,7 +754,7 @@ function Landing() {
               onClick={() => setSholderShuffleOrNot(false)}
               className={sholderShuffleOrNot && sholderOrNot ?  styles.secondaryCountDown : styles.mainCountDown}>
               <p>
-                Public shuffle in <span>{shuffleDays}</span> d <span>{shuffleHours}</span> h <span>{shuffleMinutes}</span> m
+                Public shuffle in : <span>{shuffleDays}</span> d <span>{shuffleHours}</span> h <span>{shuffleMinutes}</span> m
               </p>
             </div> :  
             <Link href={process.env.NEXT_PUBLIC_SHUFFLE_LINK}>          
