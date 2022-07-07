@@ -27,22 +27,25 @@ function Landing() {
     window.localStorage.setItem("theme", activeTheme)
   }, [activeTheme])
 
-  const [headlist, setHeadlist] = useState([])
   const [sholders, setSholders]=useState(['HFI4MIFJEV6X35EJRGLI3XGYH42ZQBNR4ZRBARAUVCSJN6EMKIJWGCTEGA','5DYIZMX7N4SAB44HLVRUGLYBPSN4UMPDZVTX7V73AIRMJQA3LKTENTLFZ4','DS6WZQE5S5SACIUW33DFTFMGI3NBTQZF6KCJUUYZLED66E4NLIT6N7TX7I'])
-  const [fetchedHeads, setFetchedHeads] = useState()
+  const [avatarBook, setAvatarBook]=useState(['/algoHead010.png','/algoHead015.png','/algoHead013.png'])
+  const [fetchedsholders, setFetchedsholders] = useState()
+  const [isLoading, setLoading] = useState()
 
   useEffect(() => {
-    fetch('api/headlist')
+    setLoading(true)
+    fetch('/api/sholders')
       .then((res) => res.json())
       .then((data) => {
-        setFetchedHeads(data.message)
-        data.message.map((head) => {
-          if (sholders.indexOf(head.sholder.address) === -1 && head.sholder.address) {
-            sholders.push(head.sholder.address)
+        setFetchedsholders(data.message)
+        data.message.map((sholder) => {
+          if (sholders.indexOf(sholder.address) == -1) {
+            sholders.push(sholder.address)
+            avatarBook.push(sholder.heads[0].src)
           }
-          headlist.push(head)
         })
-        console.log(sholders, headlist)
+        setLoading(false)
+        console.log(sholders,avatarBook)
       })
   },[])
 
@@ -61,19 +64,8 @@ function Landing() {
         if (sholders.indexOf(fetchedAccount[0].address) !== -1) {
           setSholderOrNot(true)
           setSholderShuffleOrNot(true)
-          headlist.map((head) => {
-            if (head.sholder.address === fetchedAccount[0].address) {
-              // head.sholder.name = fetchedAccount[0].name
-              // console.log(head)
-              setAvatar(head.src)
-              // fetch('api/headlist' , {
-              //   method: 'POST',
-              //   body: JSON.stringify(head)
-              // }).then((res) => {
-              //   res.json()
-              // })
-            }
-          })
+          setAvatar(avatarBook[sholders.indexOf(fetchedAccount[0].address)])
+          console.log(avatar)
         }
       })
     } catch (error) {
@@ -81,21 +73,21 @@ function Landing() {
     }
   }
 
-  useEffect(() => {
-    headlist.map((head) => {
-      if (head.sholder.address === account[0].address) {
-        head.sholder.name = account[0].name
-        console.log('found head')
-        // setAvatar(head.src)
-        fetch('api/headlist' , {
-          method: 'POST',
-          body: JSON.stringify(head)
-        }).then((res) => {
-          res.json()
-        })
-      }
-    })
-  }, [account])
+  // useEffect(() => {
+  //   headlist.map((head) => {
+  //     if (head.sholder.address === account[0].address) {
+  //       head.sholder.name = account[0].name
+  //       console.log('found head')
+  //       // setAvatar(head.src)
+  //       fetch('api/headlist' , {
+  //         method: 'POST',
+  //         body: JSON.stringify(head)
+  //       }).then((res) => {
+  //         res.json()
+  //       })
+  //     }
+  //   })
+  // }, [account])
 
 
   var shuffleDate = new Date('Fri Jul 8 2022 19:30:00')
@@ -696,7 +688,7 @@ function Landing() {
             </Link>
             {!account ? 
               <motion.div className={styles.wallet}>
-                <motion.button onClick={() => fetchedHeads && connectWallet()}
+                <motion.button onClick={() => fetchedsholders && connectWallet()}
                   style={{backgroundColor: activeTheme==='light' ? lightColorPalette[6-colorCode]: null,
                   color:activeTheme==='light' ? darkColorPalette[6-colorCode]: lightColorPalette[6-colorCode],
                   fontSize: '1.2rem',
