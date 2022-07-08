@@ -186,12 +186,13 @@ function Roadmap() {
     )}
 
     function WeekHolder1({step, tasks}) {
+        console.log(tasks)
         return (
             <>
             {tasks.map((task) => {
                 average += task.done/3
                 return(
-                    <motion.div key={task.id} className={styles.task}>
+                    <motion.div key={task.title} className={styles.task}>
                         <h2 style={{color: lightColorPalette[(colorCode+task.type+1)%7]}}>
                             {task.title}
                         </h2>
@@ -215,9 +216,8 @@ function Roadmap() {
             })}
             {tasks.map((task) => {
                 if(task.type != 2) {
-                    console.log(7+23*step-task.date, task.date)
                     return(
-                        <motion.div key={task.id} className={styles.dateCatcher}
+                        <motion.div key={task.title} className={styles.dateCatcher}
                             style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
                                     `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(7+23*step-task.date))}vw` :
                                     `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(7+23*step-task.date))}vh`,
@@ -274,7 +274,7 @@ function Roadmap() {
             {tasks.map((task) => {
                 average += task.done/3
                     return(
-                        <motion.div key={task.id} className={styles.task}>
+                        <motion.div key={task.title} className={styles.task}>
                             <h2 style={{color: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                 {task.title}
                             </h2>
@@ -299,7 +299,7 @@ function Roadmap() {
             {tasks.map((task) => {
                 if (task.type != 2) {
                     return(
-                        <motion.div key={task.id} className={styles.dateCatcher}
+                        <motion.div key={task.title} className={styles.dateCatcher}
                             style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
                                     `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(16+step*23-task.date)))}vw` :
                                     `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(16+step*23-task.date)))}vh`,
@@ -358,7 +358,7 @@ function Roadmap() {
                 {tasks.map((task) => {
                     average += task.done/3
                         return(
-                            <motion.div key={task.id} className={styles.task}>
+                            <motion.div key={task.title} className={styles.task}>
                                 <h2 style={{color: lightColorPalette[(colorCode+task.type+1)%7]}}>
                                     {task.title}
                                 </h2>
@@ -383,7 +383,7 @@ function Roadmap() {
                 {tasks.map((task) => {
                     if (task.type != 2) {
                         return(
-                            <motion.div key={task.id} className={styles.dateCatcher}
+                            <motion.div key={task.title} className={styles.dateCatcher}
                                 style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
                                         `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(task.date-(13+step*23))))}vw` :
                                         `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(task.date-(13+step*23))))}vh`,
@@ -491,6 +491,7 @@ function Roadmap() {
         tasks.sort(function(a,b) {
             return a.date - b.date
         })
+        console.log(tasks)
 
         return (
             <div className={styles.roadmap}
