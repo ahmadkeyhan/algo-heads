@@ -526,7 +526,9 @@ function Roadmap() {
                         <motion.div className={styles.stepHolder}
                             style={{color: lightColorPalette[colorCode]}}>
                             <Image src='/headSpinSteel.png' layout='fill'/>
-                            <p>27 Jun - 19 Jul</p>
+                            {step == 0 ? <p>04 Jun - 26 Jul</p> :
+                                step == 1 ? <p>27 Jun - 19 Jul</p> :
+                                <p>20 Jul - 03 Aug</p>}
                         </motion.div>
                     </motion.div>
                 </motion.div>
