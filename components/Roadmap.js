@@ -219,11 +219,11 @@ function Roadmap() {
                     return(
                         <motion.div key={task.title} className={styles.dateCatcher}
                             style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
-                                    `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(7+23*step-task.date))}vw` :
-                                    `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(7+23*step-task.date))}vh`,
+                                    `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(7+23*step-task.day))}vw` :
+                                    `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(7+23*step-task.day))}vh`,
                                 left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
-                                    `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(7+23*step-task.date)))}vw` :
-                                    `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(7+23*step-task.date)))}vh`,
+                                    `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(7+23*step-task.day)))}vw` :
+                                    `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(7+23*step-task.day)))}vh`,
                                 borderColor: lightColorPalette[colorCode+task.type+1]}}>
                         </motion.div>
                     )
@@ -301,11 +301,11 @@ function Roadmap() {
                     return(
                         <motion.div key={task.title} className={styles.dateCatcher}
                             style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
-                                    `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(16+step*23-task.date)))}vw` :
-                                    `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(16+step*23-task.date)))}vh`,
+                                    `${43.5*(1+Math.cos(Math.PI/8+(Math.PI/12)*(16+step*23-task.day)))}vw` :
+                                    `${24.47*(1+Math.cos(Math.PI/8+(Math.PI/12)*(16+step*23-task.day)))}vh`,
                                 left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
-                                    `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(16+step*23-task.date)))}vw` :
-                                    `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(16+step*23-task.date)))}vh`,
+                                    `${43.5*(1-Math.sin(Math.PI/8+(Math.PI/12)*(16+step*23-task.day)))}vw` :
+                                    `${24.47*(1-Math.sin(Math.PI/8+(Math.PI/12)*(16+step*23-task.day)))}vh`,
                                 borderColor: lightColorPalette[colorCode+task.type+1]}}>
                         </motion.div>
                     )
@@ -385,11 +385,11 @@ function Roadmap() {
                         return(
                             <motion.div key={task.title} className={styles.dateCatcher}
                                 style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
-                                        `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(task.date-(13+step*23))))}vw` :
-                                        `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(task.date-(13+step*23))))}vh`,
+                                        `${43.5*(1-Math.cos(Math.PI/8+(Math.PI/12)*(task.day-(13+step*23))))}vw` :
+                                        `${24.47*(1-Math.cos(Math.PI/8+(Math.PI/12)*(task.day-(13+step*23))))}vh`,
                                     left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
-                                        `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(task.date-(13+step*23)))}vw` :
-                                        `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(task.date-(13+step*23)))}vh`,
+                                        `${43.5*Math.sin(Math.PI/8+(Math.PI/12)*(task.day-(13+step*23)))}vw` :
+                                        `${24.47*Math.sin(Math.PI/8+(Math.PI/12)*(task.day-(13+step*23)))}vh`,
                                     borderColor: lightColorPalette[colorCode+task.type+1]}}>
                             </motion.div>
                         )
@@ -486,10 +486,10 @@ function Roadmap() {
         var weekStart = new Date('Sat Jun 04 2022 01:00:00')
         tasks.map((task) => {
             var date = new Date(task.date)  
-            task.date = Math.floor((date - weekStart)/(24*3600000))      
+            task.day = Math.floor((date - weekStart)/(24*3600000))      
         })
         tasks.sort(function(a,b) {
-            return a.date - b.date
+            return a.day - b.day
         })
         console.log(tasks)
 
