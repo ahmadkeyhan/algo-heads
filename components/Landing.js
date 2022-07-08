@@ -27,8 +27,20 @@ function Landing() {
     window.localStorage.setItem("theme", activeTheme)
   }, [activeTheme])
 
-  const [sholders, setSholders]=useState(['HFI4MIFJEV6X35EJRGLI3XGYH42ZQBNR4ZRBARAUVCSJN6EMKIJWGCTEGA','5DYIZMX7N4SAB44HLVRUGLYBPSN4UMPDZVTX7V73AIRMJQA3LKTENTLFZ4','DS6WZQE5S5SACIUW33DFTFMGI3NBTQZF6KCJUUYZLED66E4NLIT6N7TX7I'])
-  const [avatarBook, setAvatarBook]=useState(['/algoHead010.png','/algoHead015.png','/algoHead013.png'])
+  const [sholders, setSholders]=useState([
+    'RZN4HMWEEFBLFFJDCKXNDTEMXJIBBCGAJE5Y3BLSZTCXGT3PBZFHKQVES4',
+    'E6MGXZ52LDGHNU65AMFH6UQSFWANT5GJJ77WFYTHNJUSOD66G3BGTPYJQM',
+    'CMO4APSCJFHWI6O42OBDZ4M7OESBYOQIR7FLIP5DYX2CLSYBA4QVRJYAZE',
+    'HFI4MIFJEV6X35EJRGLI3XGYH42ZQBNR4ZRBARAUVCSJN6EMKIJWGCTEGA',
+    '5DYIZMX7N4SAB44HLVRUGLYBPSN4UMPDZVTX7V73AIRMJQA3LKTENTLFZ4',
+    'DS6WZQE5S5SACIUW33DFTFMGI3NBTQZF6KCJUUYZLED66E4NLIT6N7TX7I'])
+  const [avatarBook, setAvatarBook]=useState([
+    '/algoHead051.png',
+    '/algoHead052.png',
+    '/algoHead053.png',
+    '/algoHead010.png',
+    '/algoHead015.png',
+    '/algoHead013.png'])
   const [fetchedsholders, setFetchedsholders] = useState()
   const [isLoading, setLoading] = useState()
 
