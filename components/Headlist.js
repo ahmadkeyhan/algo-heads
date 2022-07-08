@@ -84,6 +84,30 @@ function Headlist() {
   const [isLoading, setLoading] = useState()
   const [sholders, setSholders] = useState([])
 
+//   useEffect(() => {
+//     setLoading(true)
+//     fetch('api/headlist')
+//     .then((res) => res.json())
+//     .then((headData) => {
+//       headData.message.sort((a,b) => a.assetId-b.assetId)
+//       setSortedHeads(headData.message)
+//       headData.message.map((head) => {
+//         listedHeads.push(head)
+//         fetch(`api/algoXasset/?id=${head.assetId}`).then((res) => res.json())
+//         .then((data) => {
+//           if (sholders.indexOf(data.message) === -1) {
+//             sholders.push(data.message)
+//           }
+//         })
+//       })
+      
+      
+//       console.log(sholders)
+
+//     })
+    
+// }, [])
+
   useEffect(() => {
       setLoading(true)
       fetch('api/headlist')
