@@ -68,6 +68,12 @@ function Landing() {
   const [avatar, setAvatar] = useState()
   const [sholderOrNot, setSholderOrNot] = useState(false)
 
+  const [sholdOut, setSholdOut] = useState(true)
+  const [sholderSholdOut, setSholderSholdOut] = useState(true)
+
+  const [shuffleLive, setShuffleLive] = useState(false)
+  const [sholderShuffleLive, setSholderShuffleLive] = useState(false)
+
   const connectWallet = async () => {
     try {
       let fetchedAccount = await myAlgoConnect.connect(settings).then(fetchedAccount => {
@@ -118,9 +124,6 @@ function Landing() {
   const control9 = useAnimation()
   const control10 = useAnimation()
 
-  const [soldOut, setSoldOut] = useState(true)
-  const [sholdOut, setSholdOut] = useState(true)
-
   const [sholderShuffleOrNot, setSholderShuffleOrNot] = useState(false)
 
   const [shuffleDays, setShuffleDays] = useState()
@@ -164,14 +167,14 @@ function Landing() {
       var now = new Date()
       var nowUTC = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds())
       if (nowUTC >= shuffleDate) {
-        setSoldOut(false)
+        setShuffleLive(true)
       } else {
         setShuffleDays(Math.floor((shuffleDate- nowUTC)/(3600000*24)))
         setShuffleHours(Math.floor((shuffleDate - nowUTC)%(3600000*24)/3600000))
         setShuffleMinutes(Math.floor((shuffleDate - nowUTC)%3600000/60000))
       }
       if (nowUTC >= sholderShuffleDate) {
-        setSholdOut(false)
+        setSholderShuffleLive(true)
       } else {
         setSholderShuffleDays(Math.floor((sholderShuffleDate- nowUTC)/(3600000*24)))
         setSholderShuffleHours(Math.floor((sholderShuffleDate - nowUTC)%(3600000*24)/3600000))
@@ -543,7 +546,7 @@ function Landing() {
             Watch the  <span style={{marginLeft: male ? '0.5rem' : '0.1rem',color: sholderShuffleOrNot ? lightColorPalette[2-colorCode] : lightColorPalette[6-colorCode]}}>{sholderShuffleOrNot ? 'fresh' : male ? 'male' : 'female '}</span> heads spin!
           </h2>
           <motion.div className={styles.subTitle}>
-            <h2 style={{color: activeTheme==='light' ? darkColorPalette[6-colorCode]: lightColorPalette[2-colorCode]}}>on Algorand blockchain</h2>
+            <h2 style={{color: sholderShuffleOrNot ? lightColorPalette[2-colorCode] : lightColorPalette[6-colorCode]}}>on Algorand blockchain</h2>
             <motion.div className={styles.mintPrice}>
             <p style={{color:activeTheme === 'light' ? darkColorPalette[6-colorCode]: null}}>Mint price: 25</p>
             <motion.div className={styles.algoLogo}>
@@ -776,22 +779,32 @@ function Landing() {
             <Image className={styles.buyBanner} src={activeTheme === 'dark' ? buyBannerPalette[7] : buyBannerPalette[6]} layout='fill' />
           </div>
           <motion.div className={styles.shuffleButtons}>
-          {sholdOut && sholderOrNot ?
+          {!sholderShuffleLive && sholderOrNot ?
             <div
               style={{backgroundColor: lightColorPalette[2-colorCode]}}
               onClick={() => setSholderShuffleOrNot(true)}
               className={sholderShuffleOrNot ? styles.mainCountDown : styles.secondaryCountDown}>
               <p>Sholder shuffle in <span>{sholderShuffleDays}</span> d <span>{sholderShuffleHours}</span> h <span>{sholderShuffleMinutes}</span> m</p>
-            </div> : !sholdOut && sholderOrNot ?
+            </div> :
+          sholderShuffleLive && !sholderSholdOut && sholderOrNot ?
             <Link href={process.env.NEXT_PUBLIC_SHOLDER_SHUFFLE_LINK}>          
               <button
                 style={{backgroundColor: lightColorPalette[2-colorCode]}}
                 className={sholderShuffleOrNot ? styles.mainButton : styles.secondaryButton}>
-                <p>Enter shuffle!</p>
+                <p>Sholder shuffle!</p>
               </button>
-            </Link> : null
+            </Link> : 
+          sholderSholdOut && sholderOrNot ?
+            <div
+              style={{backgroundColor: lightColorPalette[2-colorCode]}}
+              onClick={() => setSholderShuffleOrNot(true)}
+              className={sholderShuffleOrNot ? styles.mainCountDown : styles.secondaryCountDown}>
+              <p>
+                Shold out!
+              </p>
+            </div> : null
           }
-          {soldOut ?
+          {!shuffleLive ?
             <div
               style={{backgroundColor: lightColorPalette[6 - colorCode]}}
               onClick={() => setSholderShuffleOrNot(false)}
@@ -800,13 +813,22 @@ function Landing() {
                 Public shuffle in : <span>{shuffleDays}</span> d <span>{shuffleHours}</span> h <span>{shuffleMinutes}</span> m
               </p>
             </div> :  
+          shuffleLive && !sholdOut ?
             <Link href={process.env.NEXT_PUBLIC_SHUFFLE_LINK}>          
               <button
                 style={{backgroundColor: lightColorPalette[6 - colorCode]}}
                 className={sholderShuffleOrNot ? styles.secondaryButton : styles.mainButton}>
-                Enter shuffle!
+                Public shuffle!
               </button>
-            </Link>
+            </Link> :
+            <div
+              onClick={() => setSholderShuffleOrNot(false)}
+              style={{backgroundColor: lightColorPalette[6 - colorCode]}}
+              className={sholderShuffleOrNot && sholderOrNot ?  styles.secondaryCountDown : styles.mainCountDown}>
+              <p>
+                Shold out!
+              </p>
+            </div>
           }
           </motion.div>
         </div>
