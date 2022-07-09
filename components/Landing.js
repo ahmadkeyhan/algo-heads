@@ -616,26 +616,65 @@ function Landing() {
                 style={{color: activeTheme==='light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}/>
             </button>
           </motion.div> */}
-          <motion.div className={styles.themeSlider}>
-            <div className={styles.themeBearing}
+          <motion.div
+            style={{backgroundColor: darkColorPalette[3]}} 
+            className={styles.themeSlider}>
+            <motion.div className={styles.themeBearing}
+              animate={{marginLeft: activeTheme==='light' ? '-4px' : '10px'}}
+              transition={{ease: 'easeInOut', duration: 0.2}}
               onClick={() => setActiveTheme(activeTheme === "light" ? "dark" : "light")}
               aria-label={`Change to ${inactiveTheme} mode`}
               title={`Change to ${inactiveTheme} mode`}>
-              <svg width="36" height="26" viewBox="0 0 36 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="4.00098" y="3.99939" width="32" height="18" rx="9" fill={darkColorPalette[3]} />
-                <rect y="11.9999" width="4" height="2" rx="1" fill={darkColorPalette[3]} opacity={activeTheme==='light' ? 1 : 0} />
-                <rect x="12" width="2" height="4" rx="1" fill={darkColorPalette[3]} opacity={activeTheme==='light' ? 1 : 0} />
-                <rect x="12" y="22" width="2" height="4" rx="1" fill={darkColorPalette[3]} opacity={activeTheme==='light' ? 1 : 0} />
-                <rect x="22" y="11.9999" width="4" height="2" rx="1" fill={lightColorPalette[colorCode]} opacity={activeTheme==='light' ? 1 : 0} />
-                <rect x="4.93164" y="19.0702" width="2" height="2" rx="1" fill={darkColorPalette[3]} opacity={activeTheme==='light' ? 1 : 0} />
-                <rect x="4.93262" y="4.93005" width="2" height="2" rx="1" fill={darkColorPalette[3]} opacity={activeTheme==='light' ? 1 : 0} />
-                <rect x="19.0713" y="19.0705" width="2" height="2" rx="1" fill={lightColorPalette[colorCode]} opacity={activeTheme==='light' ? 1 : 0} />
-                <rect x="19.0713" y="4.92889" width="2" height="2" rx="1" fill={lightColorPalette[colorCode]} opacity={activeTheme==='light' ? 1 : 0} />
-              </svg>
-            </div>
+              <motion.svg width="40" height="26" viewBox="0 0 40 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <motion.circle cx='13' cy="13" r="7" fill="#FCDA50"
+                  animate={activeTheme==='light' ? 
+                    {fill: "#FCDA50"} : {fill: "#fefefe"}}
+                  transition={{ease: 'linear', duration:0.2}} />
+                <motion.rect x="0.18457" y="15.3987" fill="#FCDA50" 
+                  animate={activeTheme==='light' ? 
+                    {rx: 1, width: 4, height: 2,opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                    {rx: 2.5, width: 5, height: 5,opacity: 1, x: 7, y: -7, ratate: 0, fill: '#cccccc'}}
+                  transition={{ease: 'backInOut', duration:0.3}} />
+                <motion.rect x="8.66895" y="0.701782" fill="#FCDA50" 
+                  animate={activeTheme==='light' ? 
+                    {rx: 1, width: 2, height: 4,opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                    {rx: 1.5, width: 3, height: 3,opacity: 1, x: 6, y: 11, rotate: '-90deg', fill: '#cccccc'}}
+                  transition={{ease: 'backInOut', duration:0.3}} />
+                <motion.rect x="14.3633" y="21.9521" fill="#FCDA50" 
+                  animate={activeTheme==='light' ? 
+                    {rx: 1, width: 2, height: 4, opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                    {rx: 1.5, width: 3, height: 3, opacity: 1, x: -3.5, y: -3, rotate: '-90deg', fill: '#cccccc'}}
+                  transition={{ease: 'backInOut', duration:0.3}} />
+                <motion.rect x="21.4346" y="9.70465" fill="#FCDA50" 
+                  animate={activeTheme==='light' ? 
+                    {rx: 1, width: 4, height: 2, opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                    {rx: 1.5, width: 3, height: 3, opacity: 1, x: -7, y: 5, ratate: '-15eg', fill: '#cccccc'}}
+                  transition={{ease: 'backInOut', duration:0.3}} />
+                <motion.rect x="6.13379" y="22.8923" width="2" height="2" rx="1" fill="#FCDA50" 
+                  animate={activeTheme==='light' ? 
+                    {opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                    {opacity: 1, x: 2, y: -8, ratate: '-15deg', fill: '#cccccc'}}
+                  transition={{ease: 'backInOut', duration:0.3}} />
+                <motion.rect x="2.10742" y="7.86603" width="2" height="2" rx="1" fill="#FCDA50" 
+                  animate={activeTheme==='light' ? 
+                    {opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                    {opacity: 1, x: 10, y: -1, ratate: '-15deg', fill: '#cccccc'}}
+                  transition={{ease: 'backInOut', duration:0.3}} />
+                <motion.rect x="21.1602" y="18.866" width="2" height="2" rx="1" fill="#FCDA50" 
+                  animate={activeTheme==='light' ? 
+                    {opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                    {opacity: 1, x: -8, y: -7, ratate: '-15deg', fill: '#cccccc'}}
+                  transition={{ease: 'backInOut', duration:0.3}} />
+                <motion.rect x="17.1338" y="3.83966" width="2" height="2" rx="1" fill="#FCDA50" 
+                  animate={activeTheme==='light' ? 
+                    {opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                    {opacity: 1, x: 0, y: 8, ratate: '-15deg', fill: '#cccccc'}}
+                  transition={{ease: 'backInOut', duration:0.3}} />
+              </motion.svg>
+            </motion.div>
             <motion.div className={styles.themeCatcher}
               style={{borderColor: darkColorPalette[3],backgroundColor: lightColorPalette[colorCode]}}
-              animate={activeTheme === "light" ? {left:'0.125rem'} : {left: '1rem'}}
+              animate={activeTheme === "light" ? {left:'1px'} : {left: '1rem'}}
               onClick={() => setActiveTheme(activeTheme === "light" ? "dark" : "light")}>
               <motion.div 
                 animate={activeTheme === "light" ? {left:'-1.13rem', top: '-1.13rem'} : null}

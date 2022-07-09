@@ -466,13 +466,14 @@
   top: 40vw;
   left: 32vw;
   padding: 0;
+  width: 2rem;
+  height: 1.125rem;
+  border-radius: 0.5625rem;
+  background-color: #212121;
 }
 
   .themeCatcher {
-    width: 0.875rem;
-    height: 0.875rem;
     border-radius: 0.5rem;
-    background-color: var(--color-text-secondary);
     overflow: hidden;
     position: absolute;
     left: 0.125rem;
