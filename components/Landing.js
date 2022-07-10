@@ -560,25 +560,39 @@ function Landing() {
             </motion.div>
           </motion.div>
           {!sholderShuffleOrNot ? 
-                <motion.div className={styles.genderSlider}>
-                  <div className={styles.genderBearing} onClick={() => setMale(!male)}>
-                    <svg width="36" height="29" viewBox="0 0 36 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M9.00195 28.0015C8.44967 28.0015 8.00195 27.5538 8.00195 27.0015V20.0015L10.002 20.0015V27.0015C10.002 27.5538 9.55424 28.0015 9.00195 28.0015Z" fill={activeTheme==='light' ? darkColorPalette[6-colorCode] : '#dfdfdf'} opacity={male ? 0.3 : 1} />
-                      <path d="M7.00195 26.0015C6.44967 26.0015 6.00195 25.5538 6.00195 25.0015C6.00195 24.4492 6.44967 24.0015 7.00195 24.0015H11.002C11.5542 24.0015 12.002 24.4492 12.002 25.0015C12.002 25.5538 11.5542 26.0015 11.002 26.0015H7.00195Z" fill={activeTheme==='light' ? darkColorPalette[6-colorCode] : '#dfdfdf'} opacity={male ? 0.3 : 1} />
-                      <path d="M33.6068 2.39346C33.9973 2.78398 33.9973 3.41714 33.6068 3.80767L28.6571 8.75742L27.2429 7.3432L32.1926 2.39346C32.5831 2.00293 33.2163 2.00293 33.6068 2.39346Z" fill={activeTheme==='light' ? darkColorPalette[6-colorCode] : '#fdfdfd'} opacity={!male ? 0.3 : 1} />
-                      <path d="M33.6068 5.22188C33.9973 5.61241 33.9973 6.24557 33.6068 6.6361C33.2163 7.02662 32.5831 7.02662 32.1926 6.6361L29.3642 3.80767C28.9737 3.41715 28.9737 2.78398 29.3642 2.39346C29.7547 2.00293 30.3879 2.00293 30.7784 2.39346L33.6068 5.22188Z" fill={activeTheme==='light' ? darkColorPalette[6-colorCode] : '#fdfdfd'} opacity={!male ? 0.3 : 1} />
-                      <rect x="1" y="5" width="30" height="16" rx="8" stroke={activeTheme === 'light' ? darkColorPalette[6-colorCode] : '#dfdfdf'} fill={activeTheme === 'light' ? darkColorPalette[6-colorCode] : '#dfdfdf'} strokeWidth="0.125rem" />
-                    </svg>
-                  </div>
-                  <motion.div 
-                  animate={{left: !male ? '-0.125rem' : '0.75rem'}}
-                  style={{borderColor:activeTheme === 'light' ? darkColorPalette[6-colorCode] : null,
-                    backgroundColor: lightColorPalette[6-colorCode]}}
-                  className={styles.genderCatcher}
-                  onClick={() => setMale(!male)} />
-                </motion.div> : 
-                null
-        }
+            <motion.div className={styles.genderSlider}
+            style={{backgroundColor: darkColorPalette[3]}}
+>
+              <div className={styles.genderBearing}
+                            transition={{ease: 'easeInOut', duration: 0.2}}
+                            onClick={() => setMale(!male)}>
+                <svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <motion.rect x="6" y="28" width="6" height="2" rx="1" fill={lightColorPalette[4]}
+                    animate={male ? 
+                      {rotate: '-135deg', originX:0.5, originY: '17px', x: 14, y:0} :
+                      {rotate: 0, x: 0, y:0}}
+                      transition={{duration: 0.3, ease:'backInOut'}} />
+                  <motion.rect x="8" y="25" width="2" height="7" rx="1" fill={lightColorPalette[4]}
+                    animate={male ? 
+                      {rotate: '-135deg', originX:0.5, originY: '17px', x: 14, y:0} :
+                      {rotate: 0, x: 0, y:0}}
+                      transition={{duration: 0.2, ease:'backInOut'}} />
+
+                  <motion.circle cx='9' cy="17" r="7" fill={lightColorPalette[4]}
+                    animate={male ? 
+                      {x: 14, y: 0} :
+                      {x: 0, y: 0}}
+                       transition={{duration: 0.2, ease:'easeIn'}} />
+                  <motion.circle cx='9' cy="17" r="5" fill={darkColorPalette[3]}
+                    animate={male ? 
+                      {x: 14, y: 0} :
+                      {x: 0, y: 0}}
+                       transition={{duration: 0.3, ease:'easeIn'}} />
+                </svg>
+              </div>
+            </motion.div> : 
+            null
+          }
           {/* <motion.div className={styles.colorSlider}
             style={{borderColor: darkColorPalette[colorCode]}}
             animate={colorSliderOpen ? {height: '7.875rem'}: {height: 0, opacity:0}}>
@@ -674,15 +688,6 @@ function Landing() {
                     {opacity: 1, x: 0, y: 8, ratate: '-15deg', fill: '#cccccc'}}
                   transition={{ease: 'backInOut', duration:0.3}} />
               </motion.svg>
-            </motion.div>
-            <motion.div className={styles.themeCatcher}
-              style={{borderColor: darkColorPalette[3],backgroundColor: lightColorPalette[colorCode]}}
-              animate={activeTheme === "light" ? {left:'1px'} : {left: '1rem'}}
-              onClick={() => setActiveTheme(activeTheme === "light" ? "dark" : "light")}>
-              <motion.div 
-                animate={activeTheme === "light" ? {left:'-1.13rem', top: '-1.13rem'} : null}
-                style={{backgroundColor: darkColorPalette[3]}}
-                className={styles.shadowCatcher} />
             </motion.div>
           </motion.div>
           <motion.div

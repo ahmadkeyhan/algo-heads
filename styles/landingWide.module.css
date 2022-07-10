@@ -178,28 +178,21 @@
     width:13ch;
     text-align: end;
   }
-  
-  .genderCatcher {
-    position: absolute;
-    left: 0;
-    top: -0.125rem;
-    width: 1.125rem;
-    height: 1.125rem;
-    border: 0.125rem solid var(--color-text-secondary);
-    border-radius: 1rem;
-  }
-  
+
   .genderSlider {
     position: absolute;
-    top: 32.06vh;
-    left: -15.75vh;
+    top: 67vw;
+    left: -28vw;
     padding: 0;
     z-index: 11;
+    width: 2rem;
+    height: 1.125rem;
+    border-radius: 0.5625rem;
+    background-color: #212121;
   }
   
   .genderBearing {
-    margin-left: -2px;
-    margin-top: -6px;
+    margin-top: -0.5rem;
   }
   
   .colorSlider {
@@ -247,7 +240,7 @@
     text-align: start;
     width: 14ch;
     left: -27vh;
-    top: 27vh;
+    top: 58vw;
     font-size: 2.81vh;
     line-height: 3.94vh;
     z-index: 10;
@@ -257,7 +250,7 @@
   .subTitle {
     position: absolute;
     left: -27vh;
-    top: 36vh;
+    top: 74vw;
     z-index: 4;
     color: var(--color-text-secondary);
   }
@@ -302,7 +295,7 @@
   
   .wheelThree {
     left: -11.81vh;
-    top: 42.75vh;
+    top: 86vw;
   }
   
   .wheelFour {
