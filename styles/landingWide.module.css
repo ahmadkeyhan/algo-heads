@@ -57,12 +57,12 @@
   
   .mainButton {
     position: absolute;
-    left: 3.38vh;
+    left: -2.25vh;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 6.75vh;
-    width: 20.25vh;
+    width: 22.5vh;
     border-radius: 3.94vh;
     overflow: hidden;
     font-size: 0.8rem;
@@ -74,12 +74,12 @@
   
   .mainCountDown {
     position: absolute;
-    left: 3.38vh;
+    left: -2.25vh;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 6.75vh;
-    width: 19.13vh;
+    width: 22.5vh;
     border-radius: 3.94vh;
     overflow: hidden;
     color: #212121;
@@ -94,8 +94,8 @@
   
   .secondaryButton {
     position: absolute;
-    top: 13.5vh;
-    left: 20.25vh;
+    top: 7.88vh;
+    left: 18vh;
     padding: 3rem 1rem 0 1rem;
     display: flex;
     align-items: center;
@@ -113,8 +113,8 @@
   
   .secondaryCountDown {
     position: absolute;
-    top: 13.5vh;
-    left: 20.25vh;
+    top: 7.88vh;
+    left: 18vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -181,8 +181,8 @@
 
   .genderSlider {
     position: absolute;
-    top: 67vw;
-    left: -28vw;
+    top: 37.69vh;
+    left: -15.75vh;
     padding: 0;
     z-index: 11;
     width: 2rem;
@@ -240,7 +240,7 @@
     text-align: start;
     width: 14ch;
     left: -27vh;
-    top: 58vw;
+    top: 32.63vh;
     font-size: 2.81vh;
     line-height: 3.94vh;
     z-index: 10;
@@ -250,7 +250,7 @@
   .subTitle {
     position: absolute;
     left: -27vh;
-    top: 74vw;
+    top: 41.63vh;
     z-index: 4;
     color: var(--color-text-secondary);
   }
@@ -295,7 +295,7 @@
   
   .wheelThree {
     left: -11.81vh;
-    top: 86vw;
+    top: 48.38vh;
   }
   
   .wheelFour {
@@ -385,8 +385,8 @@
   .social {
     position: absolute;
     display: flex;
-    top:66.38vh;
-    left: 1.13vh;
+    top:68.63vh;
+    left: 0;
     height: calc(15.19vh + 1rem);
     width: calc(14.06vh + 0.5rem);
     flex-direction: column;

@@ -735,16 +735,6 @@ function Landing() {
             <p>{heads[6][1] === 'a' ? heads[6].slice(1,12) : null}</p>
           </motion.div>
           <motion.div className={styles.social}>
-            <Link href='https://discord.gg/NECZgDreUq'>
-              <motion.button style={activeTheme==='light' ? {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} : {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}} className={styles.socialButton}>
-                <SiIcon.SiDiscord />
-              </motion.button>
-            </Link>
-            <Link href='https://twitter.com/algoheads'>
-              <motion.button style={activeTheme==='light' ? {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} : {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}} className={styles.socialButton}>
-                <SiIcon.SiTwitter />
-              </motion.button>
-            </Link>
             {!account ? 
               <motion.div className={styles.wallet}>
                 <motion.button onClick={() => fetchedsholders && connectWallet()}
@@ -777,6 +767,16 @@ function Landing() {
                 <p style={{color:activeTheme==='light' ? darkColorPalette[6-colorCode] : lightColorPalette[6-colorCode]}}>Become a sholder!</p>
               </motion.div>
             }
+            <Link href='https://discord.gg/NECZgDreUq'>
+              <motion.button style={activeTheme==='light' ? {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} : {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}} className={styles.socialButton}>
+                <SiIcon.SiDiscord />
+              </motion.button>
+            </Link>
+            <Link href='https://twitter.com/algoheads'>
+              <motion.button style={activeTheme==='light' ? {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} : {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}} className={styles.socialButton}>
+                <SiIcon.SiTwitter />
+              </motion.button>
+            </Link>
           </motion.div>
         </div>
         <div className={styles.wheelThree}>
