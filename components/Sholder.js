@@ -38,7 +38,7 @@ function Sholder() {
         data.message.map((sh, index) => {
           if (sholder == sh.address) {
             setSholderRank(index)
-            setColorCode(sh.heads[0].bgColorCode)
+            setColorCode(sh.heads[sh.heads.length-1].bgColorCode)
           }
         })
         setLoading(false)
@@ -52,8 +52,8 @@ function Sholder() {
 
   const arrowControl = useAnimation()
 
-  const topIndex = ['3vw', '27vw', '60vw', '84vw', '84vw', '60vw', '27vw', '3vw']
-  const leftIndex = ['27vw', '4vw', '4vw', '27vw', '60vw', '84vw', '84vw', '60vw']
+  // const topIndex = ['3vw', '27vw', '60vw', '84vw', '84vw', '60vw', '27vw', '3vw']
+  // const leftIndex = ['27vw', '4vw', '4vw', '27vw', '60vw', '84vw', '84vw', '60vw']
   
   const [controlIndex, setControlIndex] = useState()
    
@@ -319,12 +319,12 @@ function Sholder() {
   function SholderHolder({top, left, rank}) {
     return (
         <motion.div className={styles.sholderCard}
-            style={{color: activeTheme==='light' ? darkColorPalette[sholderRanking[rank].heads[0].bgColorCode] : null,
-            backgroundColor: lightColorPalette[sholderRanking[rank].heads[0].bgColorCode],
+            style={{color: activeTheme==='light' ? darkColorPalette[sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].bgColorCode] : null,
+            backgroundColor: lightColorPalette[sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].bgColorCode],
             top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${top}vw` : `${top*9/16}vh`,
             left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${left}vw` : `${left*9/16}vh`}}>
             <motion.div className={styles.sholderHolder}>
-                <Image src={sholderRanking[rank].heads[0].src} layout='fill' />
+                <Image src={sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].src} layout='fill' />
             </motion.div>
             <motion.div className={styles.sholderCol}>
                 <p>Sholder:</p>
@@ -335,8 +335,8 @@ function Sholder() {
                 <h1>{sholderRanking[rank].heads.length} <span>{sholderRanking[rank].heads.length>1 ? 'heads' : 'head'}</span></h1>
             </motion.div>
             <motion.div className={styles.rank}
-                style={{borderColor: lightColorPalette[sholderRanking[rank].heads[0].bgColorCode],
-                color: activeTheme==='light'? darkColorPalette[sholderRanking[rank].heads[0].bgColorCode] : lightColorPalette[sholderRanking[rank].heads[0].bgColorCode]}}>
+                style={{borderColor: lightColorPalette[sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].bgColorCode],
+                color: activeTheme==='light'? darkColorPalette[sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].bgColorCode] : lightColorPalette[sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].bgColorCode]}}>
                 <p>{rank + 1}</p>
             </motion.div>
         </motion.div>
@@ -352,10 +352,13 @@ function Sholder() {
           <div className={styles.wheelHolder}>
             <div className={styles.wheelOne}>
               <motion.div className={styles.quoteArrowHolder}>
-                <Image className={styles.quoteArrows} src={activeTheme === 'light' ? linkArrowPalette[colorCode] : linkArrowPalette[7]} layout='fill' />
+                {/* <Image className={styles.quoteArrows} src={activeTheme === 'light' ? linkArrowPalette[colorCode] : linkArrowPalette[7]} layout='fill' /> */}
                 <motion.div className={styles.quote}>
-                  <p style={{color: lightColorPalette[colorCode]}}>{sholderRanking[sholderRank].heads.length > 4 ? 'Spin sholder!' :
-                    `Carry ${5 - sholderRanking[sholderRank].heads.length} more ${sholderRanking[sholderRank].heads.length == 4 ? 'head': 'heads'} to see them spin!`}
+                  <p style={{color: activeTheme==='light' ? darkColorPalette[colorCode] : lightColorPalette[colorCode]}}>
+                    {sholderRanking[sholderRank].heads.length > 16 ? 'Triple spin sholder!' :
+                    sholderRanking[sholderRank].heads.length > 8 ? 'Double spin sholder!' :
+                    sholderRanking[sholderRank].heads.length > 4 ? 'Spin sholder!' :
+                      `Carry ${5 - sholderRanking[sholderRank].heads.length} more ${sholderRanking[sholderRank].heads.length == 4 ? 'head': 'heads'} to see them spin!`}
                   </p>
                 </motion.div>
               </motion.div>
@@ -384,11 +387,6 @@ function Sholder() {
                   <Image className={styles.arrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
                 </motion.div>
                 {sholderRanking[sholderRank].heads.map((head, index) => {
-                  if (index < 8 && index > 1) {
-                    return (
-                      <HeadHolder control={controlIndex[index]} head={head} key={index} />
-                    )
-                  } 
                   if (index >= 8) {
                     return (
                       <HeadHolder control={controlIndex[index-8]} head={head} key={index} />
@@ -402,11 +400,25 @@ function Sholder() {
                 })} 
               </div>
              : null}
-             <div className={styles.wheelFour}>
-              <motion.div onClick={() => router.push('/sholders')} className={styles.announceArrowHolder}>
-                <Image className={styles.announceArrows} src={activeTheme === 'light' ? linkArrowPalette[colorCode] : linkArrowPalette[7]} layout='fill' />
-              </motion.div>
-             </div>
+            {sholderRanking[sholderRank].heads.length > 16 ? 
+              <div className={styles.wheelFour}>
+                <motion.div animate={arrowControl} className={styles.arrowHolder}>
+                  <Image className={styles.arrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
+                </motion.div>
+                {sholderRanking[sholderRank].heads.map((head, index) => {
+                  if (index >= 16) {
+                    return (
+                      <HeadHolder control={controlIndex[index-16]} head={head} key={index} />
+                    )
+                  } 
+                })}
+                {controlIndex.map((control, index) => {
+                  return (
+                    <HeadHolder head={null} control={control} key={index} />
+                  )
+                })} 
+              </div>
+             : null}
           </div>
         </div>
         )

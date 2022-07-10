@@ -43,12 +43,12 @@
   
   .wheelThree {
     left: -24.75vh;
-    top: 40.5vh;
+    top: 39.94vh;
   }
   
   .wheelFour {
-    top: 71.44vh;
-    left: 20.25vh;
+    top: 73.13vh;
+    left: 32.06vh;
   }
 
   .arrowHolder {
@@ -63,7 +63,7 @@
     position: absolute;
     width: 30.94vh;
     height: 30.94vh;
-    top: 18vh;
+    top: 13.5vh;
     left: -9vh;
   }
 
