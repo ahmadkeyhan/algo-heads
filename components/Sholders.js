@@ -103,9 +103,6 @@ function Sholders() {
           width: `${normalizedwidth}vw`}}>
           <div className={styles.wheelHolder}>
             <div className={styles.wheelOne}>
-              <motion.div className={styles.arrowHolder}>
-                <Image className={styles.logoArrows} src={activeTheme === 'light' ? scrollArrowPalette[colorCode] : scrollArrowPalette[7]} layout='fill' />
-              </motion.div>
               <motion.div style={{color: validAddress? lightColorPalette[colorCode] : null,
                 borderColor: validAddress? lightColorPalette[colorCode] : null,
                 fontSize: '1.1rem'}} className={styles.searchBox}>
@@ -193,9 +190,6 @@ function Sholders() {
           width: `${normalizedwidth}vw`}}>
           <div className={styles.wheelHolder}>
             <div className={styles.wheelOne}>
-              <motion.div className={styles.arrowHolder}>
-                <Image className={styles.logoArrows} src={activeTheme === 'light' ? scrollArrowPalette[colorCode] : scrollArrowPalette[7]} layout='fill' />
-              </motion.div>
               <motion.div style={{color: validAddress? lightColorPalette[colorCode] : null,
                 borderColor: validAddress? lightColorPalette[colorCode] : null,
                 fontSize: '1.1rem'}} className={styles.searchBox}>

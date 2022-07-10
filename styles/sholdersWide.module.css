@@ -43,18 +43,18 @@
 
 .wheelThree {
   left: -24.75vh;
-  top: 42.19vh;
+  top: 31.5vh;
 }
 
 .wheelFour {
-  top: 71.44vh;
+  top: 60.75vh;
   left: 20.25vh;
 }
 
 .searchBox {
   position: absolute;
-  left: 11.25vh;
-  top: 43.88vh;
+  left: 18vh;
+  top: 33.75vh;
   width: 33.75vh;
   height: 5.06vh;
   border-radius:2.81vh;
@@ -245,7 +245,7 @@ text-align: center;
   position: absolute;
   width: 15.75vh;
   height: 15.75vh;
-  top: 24.75;
+  top: 24.75vh;
   z-index: 1000;
   border-radius: 0 0 8vh 8vh;
   background-color: var(--color-bg-primary);
