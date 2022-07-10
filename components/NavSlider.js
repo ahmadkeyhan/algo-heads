@@ -47,13 +47,18 @@ export default function NavSlider({colorCode}) {
 
   return(
     <div>
-        <div className={styles.navSlider}
-          style={{backgroundColor: darkColorPalette[3], marginLeft: `${offset}vw`}}>
+        <motion.div className={styles.navSlider}
+          style={{
+            backgroundColor: darkColorPalette[3],
+            marginLeft: `${offset}vw`}}
+          animate={routes.indexOf(router.route.slice(0,9)) === 2 && router.route !== routes[2] ?
+          {bottom: normalizedwidth === 100 ? '110vw' : '61.88vh'} : {bottom: normalizedwidth === 100 ? '10vw' : '5.63vh'}}>
           <motion.div className={styles.routeIcon}
             style={{color: darkColorPalette[colorCodes[routes.indexOf(router.route.slice(0,9))]]}}>
             {routes.indexOf(router.route.slice(0,9)) == 0 ? <MdIcons.MdHome />:
             routes.indexOf(router.route.slice(0,9)) == 1 ? <MdIcons.MdFace />:
-            routes.indexOf(router.route.slice(0,9)) == 2 ? <CgIcons.CgTrophy />:
+            routes.indexOf(router.route.slice(0,9)) == 2 && router.route == routes[2] ? <CgIcons.CgTrophy />:
+            routes.indexOf(router.route.slice(0,9)) == 2 ? null :
             <RiIcons.RiRouteFill />}
           </motion.div>
           <div className={styles.navLinks}>
@@ -74,7 +79,7 @@ export default function NavSlider({colorCode}) {
                 transition={{duration: 0.1}} />
             </svg>
           </div>
-        </div>
+        </motion.div>
     </div>
   )
 }

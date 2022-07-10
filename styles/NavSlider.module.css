@@ -1,8 +1,7 @@
 .navSlider {
   position: absolute;
-  z-index: 100;
+  z-index: 1;
   height: 5.625rem;
-  bottom: 10vw;
   left: 91vw;
   width: 1.125rem;
   padding: 0;
