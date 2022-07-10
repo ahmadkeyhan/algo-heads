@@ -47,26 +47,33 @@ export default function NavSlider({colorCode}) {
 
   return(
     <div>
-        <div
-          style={{marginLeft: `${offset}vw`,
-            borderColor: darkColorPalette[3],
-            backgroundColor: darkColorPalette[3]}}
-          className={styles.navSlider}>
-          <motion.div style={{color: darkColorPalette[colorCodes[routes.indexOf(router.route.slice(0,9))]]}} className={styles.routeIcon}>
+        <div className={styles.navSlider}
+          style={{backgroundColor: darkColorPalette[3], marginLeft: `${offset}vw`}}>
+          <motion.div className={styles.routeIcon}
+            style={{color: darkColorPalette[colorCodes[routes.indexOf(router.route.slice(0,9))]]}}>
             {routes.indexOf(router.route.slice(0,9)) == 0 ? <MdIcons.MdHome />:
             routes.indexOf(router.route.slice(0,9)) == 1 ? <MdIcons.MdFace />:
             routes.indexOf(router.route.slice(0,9)) == 2 ? <CgIcons.CgTrophy />:
             <RiIcons.RiRouteFill />}
           </motion.div>
-          <motion.div 
-            style={{color: darkColorPalette[colorCodes[routes.indexOf(router.route.slice(0,9))]],borderColor: darkColorPalette[3],backgroundColor: lightColorPalette[colorCodes[routes.indexOf(router.route.slice(0,9))]]}}
-            animate={{top: `${routes.indexOf(router.route.slice(0,9))*1.5 - 0.0125}rem`}}
-            transition={{duration: 0.2}}
-            className={styles.routeCatcher} />
-          <NavDot routeIndex={0} />
-          <NavDot routeIndex={1} />
-          <NavDot routeIndex={2} />
-          <NavDot routeIndex={3} />
+          <div className={styles.navLinks}>
+            <NavDot routeIndex={0} />
+            <NavDot routeIndex={1} />
+            <NavDot routeIndex={2} />
+            <NavDot routeIndex={3} />
+          </div>
+          <div className={styles.navBearing}
+            onClick={() => router.reload()}>
+            <svg width="18" height="90" viewBox="0 0 18 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <motion.circle cx='9' cy="9" r="7" 
+                animate={{y: routes.indexOf(router.route.slice(0,9))*23 + 2 ,
+                  fill: lightColorPalette[colorCodes[routes.indexOf(router.route.slice(0,9))]]}}
+                transition={{duration: 0.2}} />
+              <motion.circle cx='9' cy="9" r="5" fill={darkColorPalette[3]}
+                animate={{y: routes.indexOf(router.route.slice(0,9))*23 + 2}}
+                transition={{duration: 0.1}} />
+            </svg>
+          </div>
         </div>
     </div>
   )
