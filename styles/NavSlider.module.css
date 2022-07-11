@@ -2,6 +2,7 @@
   position: absolute;
   z-index: 1;
   height: 5.625rem;
+  bottom: 5.625vh;
   left: 91vw;
   width: 1.125rem;
   padding: 0;

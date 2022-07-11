@@ -51,8 +51,14 @@ export default function NavSlider({colorCode}) {
           style={{
             backgroundColor: darkColorPalette[3],
             marginLeft: `${offset}vw`}}
-          animate={routes.indexOf(router.route.slice(0,9)) === 2 && router.route !== routes[2] ?
-          {bottom: normalizedwidth === 100 ? '110vw' : '61.88vh'} : {bottom: normalizedwidth === 100 ? '10vw' : '5.63vh'}}>
+          animate={routes.indexOf(router.route.slice(0,9)) !== 2 ? 
+            {bottom: normalizedwidth === 100 ? '10vw' : '5.625vh'} :
+            router.route === routes[2] ?
+            {bottom: normalizedwidth === 100 ? '64vw' : '36vh'} :
+            {bottom: normalizedwidth === 100 ? '112vw' : '63vh',
+            left: normalizedwidth === 100 ? '16vw' : '9vh',
+            rotate: '90deg'}}
+          transition={{type: 'spring', mass: 0.5}}>
           <motion.div className={styles.routeIcon}
             style={{color: darkColorPalette[colorCodes[routes.indexOf(router.route.slice(0,9))]]}}>
             {routes.indexOf(router.route.slice(0,9)) == 0 ? <MdIcons.MdHome />:
