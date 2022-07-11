@@ -38,7 +38,7 @@ function Sholder() {
         data.message.map((sh, index) => {
           if (sholder == sh.address) {
             setSholderRank(index)
-            setColorCode(sh.heads[sh.heads.length-1].bgColorCode)
+            setColorCode(sh.heads[sh.heads.length-1].bgColorCode > -1 ? sh.heads[sh.heads.length-1].bgColorCode : 5)
           }
         })
         setLoading(false)
@@ -319,8 +319,13 @@ function Sholder() {
   function SholderHolder({top, left, rank}) {
     return (
         <motion.div className={styles.sholderCard}
-            style={{color: activeTheme==='light' ? darkColorPalette[sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].bgColorCode] : null,
-            backgroundColor: lightColorPalette[sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].bgColorCode],
+            style={{color: activeTheme==='light' &&  sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
+              darkColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] : 
+              activeTheme=== 'dark' && sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
+              null : darkColorPalette[5],
+            backgroundColor: sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
+              lightColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
+              '#ffa7ff',
             top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${top}vw` : `${top*9/16}vh`,
             left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${left}vw` : `${left*9/16}vh`}}>
             <motion.div className={styles.sholderHolder}>
@@ -331,12 +336,18 @@ function Sholder() {
                 <h1>{sholderRanking[rank].address.slice(0,8)+'...'}</h1>
             </motion.div>
             <motion.div className={styles.sholderCol}>
-                <p>carrying:</p>
+                {/* <p>carrying:</p> */}
                 <h1>{sholderRanking[rank].heads.length} <span>{sholderRanking[rank].heads.length>1 ? 'heads' : 'head'}</span></h1>
             </motion.div>
             <motion.div className={styles.rank}
-                style={{borderColor: lightColorPalette[sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].bgColorCode],
-                color: activeTheme==='light'? darkColorPalette[sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].bgColorCode] : lightColorPalette[sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].bgColorCode]}}>
+              style={{borderColor: sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
+                lightColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
+                lightColorPalette[5],
+              color: activeTheme==='light' && sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
+                darkColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
+                activeTheme === 'dark' && sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
+                lightColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
+                lightColorPalette[5]}}>
                 <p>{rank + 1}</p>
             </motion.div>
         </motion.div>
