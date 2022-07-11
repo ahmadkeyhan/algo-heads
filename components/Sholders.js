@@ -94,7 +94,8 @@ function Sholders() {
                 {/* <p>carrying:</p> */}
                 <h1>{sholders[rank].heads.length} <span>{sholders[rank].heads.length>1 ? 'heads' : 'head'}</span></h1>
             </motion.div>
-            <motion.div className={styles.rank}
+            {sholders[rank].heads.length > 4 ? 
+              <motion.div className={styles.type}
                 style={{borderColor: sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
                     lightColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
                     lightColorPalette[5],
@@ -103,8 +104,34 @@ function Sholders() {
                     activeTheme === 'dark' && sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
                     lightColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
                     lightColorPalette[5]}}>
-                <p>{rank + 1}</p>
-            </motion.div>
+                <motion.div className={styles.spin}
+                  style={{backgroundColor: activeTheme==='light' && sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
+                    darkColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
+                    activeTheme === 'dark' && sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
+                    lightColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
+                    lightColorPalette[5]}} 
+                  animate={{rotate: [0,360,360]}}
+                  transition={{ease: 'easeInOut' ,duration: 2, repeat: Infinity, times: [0,0.75,1]}} />
+                {sholders[rank].heads.length > 8 && 
+                  <motion.div className={styles.spin}
+                    style={{backgroundColor: activeTheme==='light' && sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
+                      darkColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
+                      activeTheme === 'dark' && sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
+                      lightColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
+                      lightColorPalette[5]}} 
+                    animate={{rotate: [30,390,390]}}
+                    transition={{ease: 'easeInOut' ,duration: 2, repeat: Infinity, times: [0,0.65,1]}} />}
+                {sholders[rank].heads.length > 16 && 
+                  <motion.div className={styles.spin}
+                    style={{backgroundColor: activeTheme==='light' && sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
+                      darkColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
+                      activeTheme === 'dark' && sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
+                      lightColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
+                      lightColorPalette[5]}} 
+                    animate={{rotate: [60,420,420]}}
+                    transition={{ease: 'easeInOut' ,duration: 2, repeat: Infinity, times: [0,0.55,1]}} />}
+                <CgIcons.CgTrophy />
+              </motion.div> : null}
         </motion.div>
       )
   }
@@ -136,26 +163,7 @@ function Sholders() {
             <div className={styles.wheelThree}>
                 <motion.div className={styles.arrowHolder}>
                 <Image className={styles.arrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
-                <motion.div className={styles.stepsForward}>
-                    <motion.div
-                        style={activeTheme==='light'?
-                        {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} :
-                        {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}}
-                        animate={step+4 < sholders.length ? null : {display: 'none'}}
-                        onClick={() => setStep(step+1)}
-                        className={styles.step}>
-                        <p>+<span>1</span></p>
-                    </motion.div>
-                    <motion.div
-                        style={activeTheme==='light'?
-                        {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} :
-                        {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}}
-                        animate={step+7 < sholders.length ? null : {display: 'none'}}
-                        onClick={() => setStep(step+4)}
-                        className={styles.step}>
-                        <p>+<span>4</span></p>
-                    </motion.div>
-                </motion.div>
+
                 </motion.div>
                 <motion.div className={styles.counterArrowHolder}>
                 <Image className={styles.counterArrows} src={activeTheme === 'light' ? scrollArrowPalette[colorCode] : scrollArrowPalette[7]} layout='fill' />
@@ -164,19 +172,19 @@ function Sholders() {
                         style={activeTheme==='light'?
                         {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} :
                         {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}}
-                        animate={step > 0 ? null : {display: 'none'}}
-                        onClick={() => setStep(step-1)}
-                        className={styles.step}>
-                        <p>-<span>1</span></p>
+                        animate={step > 3 ? null : {display: 'none'}}
+                        onClick={() => setStep(step-4)}
+                        className={styles.bigStep}>
+                        <p>-<span>4</span></p>
                     </motion.div>
                     <motion.div
                         style={activeTheme==='light'?
                         {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} :
                         {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}}
-                        animate={step > 3 ? null : {display: 'none'}}
-                        onClick={() => setStep(step-4)}
+                        animate={step > 0 ? null : {display: 'none'}}
+                        onClick={() => setStep(step-1)}
                         className={styles.step}>
-                        <p>-<span>4</span></p>
+                        <p>-<span>1</span></p>
                     </motion.div>
                 </motion.div>
                 </motion.div>
@@ -191,6 +199,28 @@ function Sholders() {
             <div className={styles.wheelFour}>
             <motion.div className={styles.arrowHolder}>
                 <Image className={styles.lastArrows} src={activeTheme === 'light' ? scrollArrowPalette[colorCode] : scrollArrowPalette[7]} layout='fill' />
+                <motion.div className={styles.stepsForward}>
+                    <motion.div
+                        style={activeTheme==='light'?
+                        {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} :
+                        {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}}
+                        animate={step+4 < sholders.length ? null : {display: 'none'}}
+                        onClick={() => setStep(step+1)}
+                        className={styles.step}>
+                        <p>+<span>1</span></p>
+                    </motion.div>
+                    <motion.div
+                        style={activeTheme==='light'?
+                        {backgroundColor: lightColorPalette[colorCode],
+                          color: darkColorPalette[colorCode]} :
+                        {color: lightColorPalette[colorCode],
+                          border: `2px solid ${darkColorPalette[colorCode]}`}}
+                        animate={step+7 < sholders.length ? null : {display: 'none'}}
+                        onClick={() => setStep(step+4)}
+                        className={styles.bigStep}>
+                        <p>+<span>4</span></p>
+                    </motion.div>
+                </motion.div>
               </motion.div>
             </div>
           </div>
