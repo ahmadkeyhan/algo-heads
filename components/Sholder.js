@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import narrowStyles from '../styles/sholder.module.css'
 import wideStyles from '../styles/sholderWide.module.css'
+import * as CgIcons from 'react-icons/cg'
 import { useState, useEffect } from 'react'
 import { motion, useAnimation } from "framer-motion"
 import { useRouter } from 'next/router'
@@ -339,7 +340,7 @@ function Sholder() {
                 {/* <p>carrying:</p> */}
                 <h1>{sholderRanking[rank].heads.length} <span>{sholderRanking[rank].heads.length>1 ? 'heads' : 'head'}</span></h1>
             </motion.div>
-            <motion.div className={styles.rank}
+            {/* <motion.div className={styles.rank}
               style={{borderColor: sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
                 lightColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
                 lightColorPalette[5],
@@ -349,7 +350,45 @@ function Sholder() {
                 lightColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
                 lightColorPalette[5]}}>
                 <p>{rank + 1}</p>
-            </motion.div>
+            </motion.div> */}
+            {sholders[rank].heads.length > 4 ? 
+              <motion.div className={styles.type}
+                style={{borderColor: sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
+                    lightColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
+                    lightColorPalette[5],
+                  color: activeTheme==='light' && sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
+                    darkColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
+                    activeTheme === 'dark' && sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
+                    lightColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
+                    lightColorPalette[5]}}>
+                <motion.div className={styles.spin}
+                  style={{backgroundColor: activeTheme==='light' && sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
+                    darkColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
+                    activeTheme === 'dark' && sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
+                    lightColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
+                    lightColorPalette[5]}} 
+                  animate={{rotate: [0,-360,-360]}}
+                  transition={{ease: 'backInOut' ,duration: 2, repeat: Infinity, times: [0,0.75,1]}} />
+                {sholders[rank].heads.length > 8 && 
+                  <motion.div className={styles.spin}
+                    style={{backgroundColor: activeTheme==='light' && sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
+                      darkColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
+                      activeTheme === 'dark' && sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
+                      lightColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
+                      lightColorPalette[5]}} 
+                    animate={{rotate: [-30,-390,-390]}}
+                    transition={{ease: 'backInOut' ,duration: 2, repeat: Infinity, times: [0,0.65,1]}} />}
+                {sholders[rank].heads.length > 16 && 
+                  <motion.div className={styles.spin}
+                    style={{backgroundColor: activeTheme==='light' && sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
+                      darkColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
+                      activeTheme === 'dark' && sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
+                      lightColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
+                      lightColorPalette[5]}} 
+                    animate={{rotate: [-60,-420,-420]}}
+                    transition={{ease: 'backInOut' ,duration: 2, repeat: Infinity, times: [0,0.55,1]}} />}
+                <CgIcons.CgTrophy />
+              </motion.div> : null}
         </motion.div>
       )
   }

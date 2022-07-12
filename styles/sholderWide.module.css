@@ -143,6 +143,33 @@
     z-index: 10000;
 }
 
+.type {
+  position: absolute;
+  top: 9vh;
+  left: 23.625vh;
+  width: 4.5vh;
+  height: 4.5vh;
+  border-radius: 2.25vh;
+  background-color: var(--color-bg-primary);
+  font-family: 'Gluten', cursive;
+  font-size: 1rem;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* z-index: 10000; */
+}
+
+.spin {
+position: absolute;
+top: 0.25vh;
+width: 0.125rem;
+height: 0.125rem;
+border-radius: 50%;
+transform-origin: 0.0625rem 2vh;
+}
+
+
 .sholderCard p {
     font-size: 0.7rem;
     font-weight: 300;
