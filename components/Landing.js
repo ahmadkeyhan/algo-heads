@@ -27,6 +27,20 @@ function Landing() {
     window.localStorage.setItem("theme", activeTheme)
   }, [activeTheme])
 
+  const [shuffles, setShuffles] = useState()
+  const [shuffleLoading, setShuffleLoading] = useState()
+  useEffect(() => {
+      setShuffleLoading(true)
+      console.log('loading')
+      fetch('api/shuffles')
+        .then((res) => res.json())
+        .then((data) => {
+          setShuffles(data.message)
+          setLoading(false)
+          console.log(shuffles)
+        })
+  }, [])
+
   const [sholders, setSholders]=useState([
     'RZN4HMWEEFBLFFJDCKXNDTEMXJIBBCGAJE5Y3BLSZTCXGT3PBZFHKQVES4',
     'E6MGXZ52LDGHNU65AMFH6UQSFWANT5GJJ77WFYTHNJUSOD66G3BGTPYJQM',
@@ -57,7 +71,7 @@ function Landing() {
           }
         })
         setLoading(false)
-        console.log(sholders,avatarBook)
+        // console.log(sholders,avatarBook)
       })
   },[])
 
@@ -83,11 +97,11 @@ function Landing() {
           setSholderOrNot(true)
           setSholderShuffleOrNot(true)
           setAvatar(avatarBook[sholders.indexOf(fetchedAccount[0].address)])
-          console.log(avatar)
+          // console.log(avatar)
         }
       })
     } catch (error) {
-      console.log(error)
+      // console.log(error)
     }
   }
 
