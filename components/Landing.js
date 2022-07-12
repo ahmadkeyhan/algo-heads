@@ -561,11 +561,9 @@ function Landing() {
           </motion.div>
           {!sholderShuffleOrNot ? 
             <motion.div className={styles.genderSlider}
-            style={{backgroundColor: darkColorPalette[3]}}
->
+              style={{backgroundColor: darkColorPalette[3]}}>
               <div className={styles.genderBearing}
-                            transition={{ease: 'easeInOut', duration: 0.2}}
-                            onClick={() => setMale(!male)}>
+                onClick={() => setMale(!male)}>
                 <svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <motion.rect x="6" y="28" width="6" height="2" rx="1" fill={lightColorPalette[4]}
                     animate={male ? 

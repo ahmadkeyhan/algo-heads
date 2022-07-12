@@ -346,48 +346,6 @@ function Headlist() {
     }
   }
 
-  // function Shoulder({top, left, shoulder, rank, rotation}) {
-  //   const shoulders = [styles.wheelFive, styles.wheelSix, styles.wheelSeven, styles.wheelEight]
-  //   return (
-  //       <motion.div className={styles.headHolder}
-  //         animate={{top: `${rank - step < 4 ? position[6][0] :
-  //                           rank - step <= 10 ? position[10 - rank + step][0] :
-  //                                              position[0][0]}vw`,
-  //                   left: `${rank - step < 4 ? position[6][1] :
-  //                           rank - step <= 10 ? position[10 - rank + step][1] :
-  //                                             position[0][1]}vw`}}>
-  //         <div className={styles.priceTag}>
-  //           <p className={styles.price}>{sortedHeads[rank].price}</p>
-  //           <div className={styles.algoLogo}>
-  //             <motion.svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-  //               <path d="M18.0006 19.0109H15.1785L13.3456 12.193L9.40508
-  //                 19.0116H6.25445L12.345 8.45714L11.3648 4.79298L3.15215
-  //                 19.0139H0L10.408 0.986084H13.1674L14.3757 5.46509H17.2228L15.2789
-  //                 8.8453L18.0006 19.0109Z" fill={lightColorPalette[sortedHeads[rank].bgColorCode]} />
-  //             </motion.svg>
-  //           </div>
-  //         </div>
-  //         <motion.div animate={{borderColor: lightColorPalette[sortedHeads[rank].bgColorCode]}} className={styles.rank}>
-  //           <p>{rank + 1}</p>
-  //         </motion.div>
-  //         <motion.div
-  //           animate={{backgroundColor: lightColorPalette[sortedHeads[rank].bgColorCode],
-  //             transform: `rotate(${rank - step < 4 ? position[6][3] :
-  //                                 rank - step <= 10 ? position[10 - rank + step][3] :
-  //                                                   position[0][3]}deg)`}}
-  //           className={styles.frame}>
-  //           <Image style={{margin: '2vw',
-  //                   transform: `rotate(${rank - step < 4 ? position[6][3]* -1 :
-  //                                       rank - step <= 10 ? position[10 - rank + step][3] * -1 :
-  //                                                         position[0][3] * -1}deg)`}} src={heads[rank].src} alt={sortedHeads[rank].src.slice(1, 12)} layout='fill' />
-  //         </motion.div>
-  //         <div className={styles.headCard}>
-  //           <p>{sortedHeads[rank].src.slice(1, 12)}</p>
-  //         </div>
-  //       </motion.div>
-  //   )
-  // }
-
   if(sortedHeads) {
     return (
       <div className={styles.headList}

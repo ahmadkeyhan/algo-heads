@@ -1,43 +1,42 @@
 export const metaData = [
-    {
         // ['blue', 'green', 'yellow', 'orange', 'red', 'purple',
         // 'grey', 'proudPink', 'paleBlue', 'paleOrange', 'palePurple']
-        backgroundColor: '',
+        // backgroundColor: '',
         
         // ['blue', 'green', 'yellow', 'orange', 'red', 'purple',
         // 'grey', 'proudWhite', 'paleBlue', 'paleOrange', 'palePurple']
-        frameColor: '',
+        // frameColor: '',
 
                 // ['blue', 'green', 'yellow', 'orange', 'red', 'purple',
         // 'grey', 'proudPink', 'paleBlue', 'paleOrange', 'palePurple']
-        skinColor: '',
+        // skinColor: '',
 
                 // ['blue', 'green', 'yellow', 'orange', 'red', 'purple',
         // 'grey', 'proudPink', 'paleBlue', 'paleOrange', 'palePurple']
-        hairColor: '',
+        // hairColor: '',
 
         // ['codeHead', 'cartoonHead', 'radioHead', 'slivioHead', 'abbyHead',
         // 'coconutHead', 'mohawkHead', 'creamHead', 'masculineSkull', 'feminineSkull',
         // 'pentagonalHead', 'abrahamHead', 'maskulineHead', 'femaskHead', 'femmeFatale',
         // 'umbrellaHead', 'puffHead', 'ponyHead', 'logoHead', 'scheherazadeHead',
         // 'catHatter1', 'catHatter2', 'catHatter3']
-        head:'',
+        // head:'',
 
         //['10/10', '20/20', '10/20', '0/20', '30/30',
         //'']
-        eyesight: '',
+        // eyesight: '',
 
         // ['open', 'close']
-        mouth: '',
+        // mouth: '',
 
         //['earing', 'mask', 'crown', 'piercing', 'glasses',
         // 'none']
-        accessory1: '',
+        // accessory1: '',
 
         //['earing', 'mask', 'crown', 'piercing', 'glasses',
         // 'none']
-        accessory2: ''
-    },
+        // accessory2: ''
+
     {
         assetName: 'ah001',
         backgroundColor: 'orange',
@@ -246,7 +245,7 @@ export const metaData = [
         mouth: 'closed',
         accessory1: 'none',
         accessory2: 'crown/hat',
-        accessory3: 'cat'
+        accessory3: 'none'
     },
     {
         assetName: 'ah016',
