@@ -43,11 +43,11 @@
 
 .wheelThree {
   left: -24.75vh;
-  top: 31.5vh;
+  top: 33.75vh;
 }
 
 .wheelFour {
-  top: 60.75vh;
+  top: 63vh;
   left: 20.25vh;
 }
 
@@ -117,22 +117,30 @@
   margin: 0;
 }
 
-.rank {
+.type {
   position: absolute;
-  top: 10.13vh;
-  left:1.12vh;
-  width: 3.94vh;
-  height: 3.94vh;
-  border-radius:2.81vh;
+  top: 9vh;
+  left:23.625vh;
+  width: 4.5vh;
+  height: 4.5vh;
+  border-radius:2.25vh;
   background-color: var(--color-bg-primary);
-  border: 2px solid var(--color-text-secondary);
   font-family: 'Gluten', cursive;
-  font-size: 0.7rem;
+  font-size: 1rem;
   font-weight: 300;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 10000;
+}
+
+.spin {
+  position: absolute;
+  top: 0.25vh;
+  width: 0.125rem;
+  height: 0.125rem;
+  border-radius: 50%;
+  transform-origin: 0.0625rem 2vh;
 }
 
 .sholderCard p {
@@ -141,7 +149,7 @@
   margin: 0 0 0 0.5rem;
 }
 
-.rank p {
+.type p {
   margin: 0;
 }
 
@@ -184,7 +192,7 @@
 }
 
 .lastArrows {
-  transform: rotate(120deg);
+  transform: rotate(167.5deg);
 }
 
 .counterArrowHolder {
@@ -197,27 +205,36 @@
 
 .stepsBackward {
   position: absolute;
-  transform: rotate(-45deg);
-  height: calc(10.13vh + 1rem);
-  top: 11.25vh;
+  transform: rotate(-55deg);
+  height: calc(11.25vh + 1rem);
+  top: 10.125vh;
   left: 11.25vh;
   z-index: 10;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
   justify-content: space-between;
 }
 
+.stepsBackward .step, .stepsBackward .bigStep {
+  transform: rotate(55deg);
+}
+
 .stepsForward {
   position: absolute;
-    height: calc(10.13vh + 1rem);
-    top: calc(10.41vh - 0.5rem);
-    left: calc(15.47vh + 1rem);
+  transform: rotate(55deg);
+    height: calc(11.25vh + 1rem);
+    top: 7.875vh;
+    left: 11.25vh;
     z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+}
+
+.stepsForward .step, .stepsForward .bigStep {
+  transform: rotate(-55deg);
 }
 
 .step {
@@ -239,6 +256,28 @@ margin-left: 0.1rem;
 font-size: 0.7rem;
 font-weight: 600;
 text-align: center;
+}
+
+
+.bigStep {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 6.19vh;
+  height: 6.19vh;
+  border-radius: 3.1vh;
+}
+
+.bigStep p {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.bigStep span {
+  margin-left: 0.1rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-align: center;
 }
 
 .logoHolder {

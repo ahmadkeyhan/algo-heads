@@ -43,11 +43,11 @@
   
   .wheelThree {
     left: -44vw;
-    top: 56vw;
+    top: 60vw;
   }
   
   .wheelFour {
-    top: 108vw;
+    top: 112vw;
     left: 36vw;
   }
 
@@ -117,22 +117,30 @@
     margin: 0;
 }
 
-.rank {
+.type {
     position: absolute;
-    top: 18vw;
-    left: 2vw;
-    width: 7vw;
-    height: 7vw;
-    border-radius: 5vw;
+    top: 16vw;
+    left: 42vw;
+    width: 8vw;
+    height: 8vw;
+    border-radius: 4vw;
     background-color: var(--color-bg-primary);
-    border: 2px solid var(--color-text-secondary);
     font-family: 'Gluten', cursive;
-    font-size: 0.7rem;
+    font-size: 1rem;
     font-weight: 300;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10000;
+    /* z-index: 10000; */
+}
+
+.spin {
+  position: absolute;
+  top: 0.5vw;
+  width: 0.125rem;
+  height: 0.125rem;
+  border-radius: 50%;
+  transform-origin: 0.0625rem 3.5vw;
 }
 
 .sholderCard p {
@@ -141,7 +149,7 @@
     margin: 0 0 0 0.5rem;
 }
 
-.rank p {
+.type p {
     margin: 0;
 }
 
@@ -184,7 +192,7 @@
   }
 
   .lastArrows {
-    transform: rotate(120deg);
+    transform: rotate(167.5deg);
   }
 
   .counterArrowHolder {
@@ -197,27 +205,36 @@
 
   .stepsBackward {
     position: absolute;
-    transform: rotate(-45deg);
-    height: calc(18vw + 1rem);
-    top: 20vw;
+    transform: rotate(-55deg);
+    height: calc(20vw + 1rem);
+    top: 18vw;
     left: 20vw;
     z-index: 10;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     justify-content: space-between;
 }
 
+.stepsBackward .step, .stepsBackward .bigStep {
+  transform: rotate(55deg);
+}
+
   .stepsForward {
     position: absolute;
-      height: calc(18vw + 1rem);
-      top: calc(18.5vw - 0.5rem);
-      left: calc(27.5vw + 1rem);
+    transform: rotate(55deg);
+      height: calc(20vw + 1rem);
+      top: 14vw;
+      left: 20vw;
       z-index: 10;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
+  }
+
+  .stepsForward .step, .stepsForward .bigStep {
+    transform: rotate(-55deg);
   }
 
   .step {
@@ -235,6 +252,27 @@
 }
 
 .step span {
+  margin-left: 0.1rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.bigStep {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 11vw;
+  height: 11vw;
+  border-radius: 5.5vw;
+}
+
+.bigStep p {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.bigStep span {
   margin-left: 0.1rem;
   font-size: 0.7rem;
   font-weight: 600;
