@@ -85,22 +85,29 @@ function Landing() {
   }, [])
 
   useEffect(() => {
-    setShuffleDays(0)
-    setShuffleHours(0)
-    setShuffleMinutes(0)
+    if (shuffles) {
+      setShuffleDays(0)
+      setShuffleHours(0)
+      setShuffleMinutes(0)
+      setInterval(() => {
+        var now = new Date()
+        var nowUTC = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds())
+        
+        if (nowUTC >= shufflesArray[selectedSuffle].date) {
+          setShuffleLive(true)
+        } else {
+          setShuffleDays(Math.floor((shufflesArray[selectedSuffle].date- nowUTC)/(3600000*24)))
+          setShuffleHours(Math.floor((shufflesArray[selectedSuffle].date - nowUTC)%(3600000*24)/3600000))
+          setShuffleMinutes(Math.floor((shufflesArray[selectedSuffle].date - nowUTC)%3600000/60000))
+        }
+      },1000)
   
-    setInterval(() => {
-      var now = new Date()
-      var nowUTC = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds())
-      
-      if (nowUTC >= shufflesArray[selectedSuffle].date) {
-        setShuffleLive(true)
-      } else {
-        setShuffleDays(Math.floor((shufflesArray[selectedSuffle].date- nowUTC)/(3600000*24)))
-        setShuffleHours(Math.floor((shufflesArray[selectedSuffle].date - nowUTC)%(3600000*24)/3600000))
-        setShuffleMinutes(Math.floor((shufflesArray[selectedSuffle].date - nowUTC)%3600000/60000))
-      }
-    },1000)
+      setMaleHeads(shufflesArray[selectedSuffle].maleAssets)
+      setFemaleHeads(shufflesArray[selectedSuffle].femaleAssets)
+      setHeads(male? maleHeads : femaleHeads)
+  
+      setColorCode(shufflesArray[selectedSuffle].colorCode)
+    }
   }, [selectedSuffle])
 
   const [sholders, setSholders]=useState([
