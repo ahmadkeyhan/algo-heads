@@ -35,7 +35,7 @@ function Landing() {
   const [shuffleHours, setShuffleHours] = useState()
   const [shuffleMinutes, setShuffleMinutes] = useState()
   const [colorCode, setColorCode] = useState()
-  const [male, setMale] = useState(true)
+  const [male, setMale] = useState(false)
   const [maleHeads, setMaleHeads] = useState() 
   const [femaleHeads, setFemaleHeads] = useState()
   const [heads, setHeads] = useState() //has to change
@@ -488,7 +488,6 @@ function Landing() {
                 layout='fill' />
             </motion.div>
             <motion.div
-              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
               animate={control5}
               className={styles.headCard}>
               <p>
@@ -510,7 +509,6 @@ function Landing() {
                 layout='fill' />
             </motion.div>
             <motion.div
-              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
               animate={control6}
               className={styles.headCard}>
               <p>
@@ -532,7 +530,6 @@ function Landing() {
                 layout='fill' />
             </motion.div>
             <motion.div
-              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
               animate={control7}
               className={styles.headCard}>
               <p>
@@ -554,7 +551,6 @@ function Landing() {
                 layout='fill' />
             </motion.div>
             <motion.div
-              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
               animate={control8}
               className={styles.headCard}>
               <p>
@@ -684,7 +680,6 @@ function Landing() {
                 layout='fill' />
             </motion.div>
             <motion.div
-              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
               animate={control1}
               className={styles.headCard}>
               <p>
@@ -706,7 +701,6 @@ function Landing() {
                 layout='fill' />
             </motion.div>
             <motion.div
-              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
               animate={control2}
               className={styles.headCard}>
               <p>
@@ -728,7 +722,6 @@ function Landing() {
                 layout='fill' />
             </motion.div>
             <motion.div
-              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
               animate={control3}
               className={styles.headCard}>
               <p>
@@ -750,7 +743,6 @@ function Landing() {
                 layout='fill' />
             </motion.div>
             <motion.div
-              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
               animate={control4}
               className={styles.headCard}>
               <p>
