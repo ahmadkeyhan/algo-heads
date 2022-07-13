@@ -46,6 +46,9 @@ function Landing() {
     fetch('api/shuffles')
       .then((res) => res.json())
       .then((data) => {
+        setMaleHeads(data.message[selectedSuffle].maleAssets)
+        setFemaleHeads(data.message[selectedSuffle].femaleAssets)
+        setHeads(male? maleHeads : femaleHeads)
         setShuffles(data.message)
         data.message.map((shuffle, index) => {
           shufflesArray.push(shuffle)
@@ -73,9 +76,7 @@ function Landing() {
           }
         },1000)
 
-        setMaleHeads(shufflesArray[selectedSuffle].maleAssets)
-        setFemaleHeads(shufflesArray[selectedSuffle].femaleAssets)
-        setHeads(male? maleHeads : femaleHeads)
+
 
         setColorCode(shufflesArray[selectedSuffle].colorCode)
 
@@ -109,6 +110,10 @@ function Landing() {
       setColorCode(shufflesArray[selectedSuffle].colorCode)
     }
   }, [selectedSuffle])
+
+  useEffect(() => {
+    setHeads(male ? maleHeads : femaleHeads)
+  }, [male])
 
   const [sholders, setSholders]=useState([
     'RZN4HMWEEFBLFFJDCKXNDTEMXJIBBCGAJE5Y3BLSZTCXGT3PBZFHKQVES4',
@@ -457,12 +462,6 @@ function Landing() {
     })  
     
   },[])
-  
-  useEffect(() => {
-    setHeads(male ? maleHeads : femaleHeads)
-  }, [male])
-
-
 
   if(shuffles) {
     return (
@@ -480,7 +479,387 @@ function Landing() {
             <motion.div 
               className={styles.headHolder}
               animate={control5}>
-              {/* <Image className={styles.head} src={heads[1]} layout='fill' /> */}
+              <Image className={styles.head}
+                src={male && shufflesArray[selectedSuffle].maleAssets[1] ? 
+                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[1].assetName.slice(2,5)+'.png' :
+                  !male && shufflesArray[selectedSuffle].femaleAssets[1] ?
+                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[1].assetName.slice(2,5)+'.png' :
+                  activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
+                layout='fill' />
+            </motion.div>
+            <motion.div
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
+              animate={control5}
+              className={styles.headCard}>
+              <p>
+                {male && shufflesArray[selectedSuffle].maleAssets[1] ?
+                  shufflesArray[selectedSuffle].maleAssets[1].assetName :
+                  !male && shufflesArray[selectedSuffle].femaleAssets[1] ? 
+                  shufflesArray[selectedSuffle].femaleAssets[1].assetName : null }
+              </p>
+            </motion.div>
+            <motion.div 
+              className={styles.headHolder}
+              animate={control6}>
+              <Image className={styles.head}
+                src={male && shufflesArray[selectedSuffle].maleAssets[3] ? 
+                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[3].assetName.slice(2,5)+'.png' :
+                  !male && shufflesArray[selectedSuffle].femaleAssets[3] ?
+                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[3].assetName.slice(2,5)+'.png' :
+                  activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
+                layout='fill' />
+            </motion.div>
+            <motion.div
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
+              animate={control6}
+              className={styles.headCard}>
+              <p>
+                {male && shufflesArray[selectedSuffle].maleAssets[3] ?
+                  shufflesArray[selectedSuffle].maleAssets[3].assetName :
+                  !male && shufflesArray[selectedSuffle].femaleAssets[3] ? 
+                  shufflesArray[selectedSuffle].femaleAssets[3].assetName : null }
+              </p>
+            </motion.div>
+            <motion.div 
+              className={styles.headHolder}
+              animate={control7}>
+              <Image className={styles.head}
+                src={male && shufflesArray[selectedSuffle].maleAssets[5] ? 
+                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[5].assetName.slice(2,5)+'.png' :
+                  !male && shufflesArray[selectedSuffle].femaleAssets[5] ?
+                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[5].assetName.slice(2,5)+'.png' :
+                  activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
+                layout='fill' />
+            </motion.div>
+            <motion.div
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
+              animate={control7}
+              className={styles.headCard}>
+              <p>
+                {male && shufflesArray[selectedSuffle].maleAssets[5] ?
+                  shufflesArray[selectedSuffle].maleAssets[5].assetName :
+                  !male && shufflesArray[selectedSuffle].femaleAssets[5] ? 
+                  shufflesArray[selectedSuffle].femaleAssets[5].assetName : null }
+              </p>
+            </motion.div>
+            <motion.div 
+              className={styles.headHolder}
+              animate={control8}>
+              <Image className={styles.head}
+                src={male && shufflesArray[selectedSuffle].maleAssets[7] ? 
+                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[7].assetName.slice(2,5)+'.png' :
+                  !male && shufflesArray[selectedSuffle].femaleAssets[7] ?
+                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[7].assetName.slice(2,5)+'.png' :
+                  activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
+                layout='fill' />
+            </motion.div>
+            <motion.div
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
+              animate={control8}
+              className={styles.headCard}>
+              <p>
+                {male && shufflesArray[selectedSuffle].maleAssets[7] ?
+                  shufflesArray[selectedSuffle].maleAssets[7].assetName :
+                  !male && shufflesArray[selectedSuffle].femaleAssets[7] ? 
+                  shufflesArray[selectedSuffle].femaleAssets[7].assetName : null }
+              </p>
+            </motion.div>
+          </div>
+          <div className={styles.wheelTwo}>
+            <motion.div animate={control9} className={styles.arrowHolder}>
+              <Image className={styles.arrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
+            </motion.div>
+            <h2 style={{color:activeTheme === 'light' ? darkColorPalette[6-colorCode]: null}} className={styles.title}>
+              Watch the  <span style={{marginLeft: male ? '0.5rem' : '0.1rem',color: lightColorPalette[2-colorCode]}}>{male ? 'male' : 'female '}</span> heads spin!
+            </h2>
+            <motion.div className={styles.subTitle}>
+              <h2 style={{color: lightColorPalette[2-colorCode]}}>on Algorand blockchain</h2>
+              <motion.div className={styles.mintPrice}>
+              <p style={{color:activeTheme === 'light' ? darkColorPalette[6-colorCode]: null}}>Mint price: 25</p>
+              <motion.div className={styles.algoLogo}>
+                <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18.0006 19.0109H15.1785L13.3456 12.193L9.40508
+                    19.0116H6.25445L12.345 8.45714L11.3648 4.79298L3.15215
+                    19.0139H0L10.408 0.986084H13.1674L14.3757 5.46509H17.2228L15.2789
+                    8.8453L18.0006 19.0109Z" fill={lightColorPalette[2-colorCode]} />
+                </svg>
+              </motion.div>
+              </motion.div>
+            </motion.div>
+            <motion.div className={styles.genderSlider}
+              style={{backgroundColor: darkColorPalette[3]}}>
+              <div className={styles.genderBearing}
+                onClick={() => setMale(!male)}>
+                <svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <motion.rect x="6" y="28" width="6" height="2" rx="1" fill={lightColorPalette[4]}
+                    animate={male ? 
+                      {rotate: '-135deg', originX:0.5, originY: '17px', x: 14, y:0} :
+                      {rotate: 0, x: 0, y:0}}
+                      transition={{duration: 0.3, ease:'backInOut'}} />
+                  <motion.rect x="8" y="25" width="2" height="7" rx="1" fill={lightColorPalette[4]}
+                    animate={male ? 
+                      {rotate: '-135deg', originX:0.5, originY: '17px', x: 14, y:0} :
+                      {rotate: 0, x: 0, y:0}}
+                      transition={{duration: 0.2, ease:'backInOut'}} />
+  
+                  <motion.circle cx='9' cy="17" r="7" fill={lightColorPalette[4]}
+                    animate={male ? 
+                      {x: 14, y: 0} :
+                      {x: 0, y: 0}}
+                        transition={{duration: 0.2, ease:'easeIn'}} />
+                  <motion.circle cx='9' cy="17" r="5" fill={darkColorPalette[3]}
+                    animate={male ? 
+                      {x: 14, y: 0} :
+                      {x: 0, y: 0}}
+                        transition={{duration: 0.3, ease:'easeIn'}} />
+                </svg>
+              </div>
+            </motion.div>
+            <motion.div
+              style={{backgroundColor: darkColorPalette[3]}} 
+              className={styles.themeSlider}>
+              <motion.div className={styles.themeBearing}
+                animate={{marginLeft: activeTheme==='light' ? '-4px' : '10px'}}
+                transition={{ease: 'easeInOut', duration: 0.2}}
+                onClick={() => setActiveTheme(activeTheme === "light" ? "dark" : "light")}
+                aria-label={`Change to ${inactiveTheme} mode`}
+                title={`Change to ${inactiveTheme} mode`}>
+                <motion.svg width="40" height="26" viewBox="0 0 40 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <motion.circle cx='13' cy="13" r="7" fill="#FCDA50"
+                    animate={activeTheme==='light' ? 
+                      {fill: "#FCDA50"} : {fill: "#fefefe"}}
+                    transition={{ease: 'linear', duration:0.2}} />
+                  <motion.rect x="0.18457" y="15.3987" fill="#FCDA50" 
+                    animate={activeTheme==='light' ? 
+                      {rx: 1, width: 4, height: 2,opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                      {rx: 2.5, width: 5, height: 5,opacity: 1, x: 7, y: -7, ratate: 0, fill: '#cccccc'}}
+                    transition={{ease: 'backInOut', duration:0.3}} />
+                  <motion.rect x="8.66895" y="0.701782" fill="#FCDA50" 
+                    animate={activeTheme==='light' ? 
+                      {rx: 1, width: 2, height: 4,opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                      {rx: 1.5, width: 3, height: 3,opacity: 1, x: 6, y: 11, rotate: '-90deg', fill: '#cccccc'}}
+                    transition={{ease: 'backInOut', duration:0.3}} />
+                  <motion.rect x="14.3633" y="21.9521" fill="#FCDA50" 
+                    animate={activeTheme==='light' ? 
+                      {rx: 1, width: 2, height: 4, opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                      {rx: 1.5, width: 3, height: 3, opacity: 1, x: -3.5, y: -3, rotate: '-90deg', fill: '#cccccc'}}
+                    transition={{ease: 'backInOut', duration:0.3}} />
+                  <motion.rect x="21.4346" y="9.70465" fill="#FCDA50" 
+                    animate={activeTheme==='light' ? 
+                      {rx: 1, width: 4, height: 2, opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                      {rx: 1.5, width: 3, height: 3, opacity: 1, x: -7, y: 5, ratate: '-15eg', fill: '#cccccc'}}
+                    transition={{ease: 'backInOut', duration:0.3}} />
+                  <motion.rect x="6.13379" y="22.8923" width="2" height="2" rx="1" fill="#FCDA50" 
+                    animate={activeTheme==='light' ? 
+                      {opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                      {opacity: 1, x: 2, y: -8, ratate: '-15deg', fill: '#cccccc'}}
+                    transition={{ease: 'backInOut', duration:0.3}} />
+                  <motion.rect x="2.10742" y="7.86603" width="2" height="2" rx="1" fill="#FCDA50" 
+                    animate={activeTheme==='light' ? 
+                      {opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                      {opacity: 1, x: 10, y: -1, ratate: '-15deg', fill: '#cccccc'}}
+                    transition={{ease: 'backInOut', duration:0.3}} />
+                  <motion.rect x="21.1602" y="18.866" width="2" height="2" rx="1" fill="#FCDA50" 
+                    animate={activeTheme==='light' ? 
+                      {opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                      {opacity: 1, x: -8, y: -7, ratate: '-15deg', fill: '#cccccc'}}
+                    transition={{ease: 'backInOut', duration:0.3}} />
+                  <motion.rect x="17.1338" y="3.83966" width="2" height="2" rx="1" fill="#FCDA50" 
+                    animate={activeTheme==='light' ? 
+                      {opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                      {opacity: 1, x: 0, y: 8, ratate: '-15deg', fill: '#cccccc'}}
+                    transition={{ease: 'backInOut', duration:0.3}} />
+                </motion.svg>
+              </motion.div>
+            </motion.div>
+            <motion.div
+              className={styles.headHolder}
+              animate={control1}>
+              <Image className={styles.head}
+                src={male && shufflesArray[selectedSuffle].maleAssets[0] ? 
+                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[0].assetName.slice(2,5)+'.png' :
+                  !male && shufflesArray[selectedSuffle].femaleAssets[0] ?
+                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[0].assetName.slice(2,5)+'.png' :
+                  activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
+                layout='fill' />
+            </motion.div>
+            <motion.div
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
+              animate={control1}
+              className={styles.headCard}>
+              <p>
+                {male && shufflesArray[selectedSuffle].maleAssets[0] ?
+                  shufflesArray[selectedSuffle].maleAssets[0].assetName :
+                  !male && shufflesArray[selectedSuffle].femaleAssets[0] ? 
+                  shufflesArray[selectedSuffle].femaleAssets[0].assetName : null }
+              </p>
+            </motion.div>
+            <motion.div 
+              className={styles.headHolder}
+              animate={control2}>
+              <Image className={styles.head}
+                src={male && shufflesArray[selectedSuffle].maleAssets[2] ? 
+                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[2].assetName.slice(2,5)+'.png' :
+                  !male && shufflesArray[selectedSuffle].femaleAssets[2] ?
+                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[2].assetName.slice(2,5)+'.png' :
+                  activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
+                layout='fill' />
+            </motion.div>
+            <motion.div
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
+              animate={control2}
+              className={styles.headCard}>
+              <p>
+                {male && shufflesArray[selectedSuffle].maleAssets[2] ?
+                  shufflesArray[selectedSuffle].maleAssets[2].assetName :
+                  !male && shufflesArray[selectedSuffle].femaleAssets[2] ? 
+                  shufflesArray[selectedSuffle].femaleAssets[2].assetName : null }
+              </p>
+            </motion.div>
+            <motion.div 
+              className={styles.headHolder}
+              animate={control3}>
+              <Image className={styles.head}
+                src={male && shufflesArray[selectedSuffle].maleAssets[4] ? 
+                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[4].assetName.slice(2,5)+'.png' :
+                  !male && shufflesArray[selectedSuffle].femaleAssets[4] ?
+                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[4].assetName.slice(2,5)+'.png' :
+                  activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
+                layout='fill' />
+            </motion.div>
+            <motion.div
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
+              animate={control3}
+              className={styles.headCard}>
+              <p>
+                {male && shufflesArray[selectedSuffle].maleAssets[4] ?
+                  shufflesArray[selectedSuffle].maleAssets[4].assetName :
+                  !male && shufflesArray[selectedSuffle].femaleAssets[4] ? 
+                  shufflesArray[selectedSuffle].femaleAssets[4].assetName : null }
+              </p>
+            </motion.div>
+            <motion.div 
+              className={styles.headHolder}
+              animate={control4}>
+              <Image className={styles.head}
+                src={male && shufflesArray[selectedSuffle].maleAssets[6] ? 
+                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[6].assetName.slice(2,5)+'.png' :
+                  !male && shufflesArray[selectedSuffle].femaleAssets[6] ?
+                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[6].assetName.slice(2,5)+'.png' :
+                  activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
+                layout='fill' />
+            </motion.div>
+            <motion.div
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
+              animate={control4}
+              className={styles.headCard}>
+              <p>
+                {male && shufflesArray[selectedSuffle].maleAssets[6] ?
+                  shufflesArray[selectedSuffle].maleAssets[6].assetName :
+                  !male && shufflesArray[selectedSuffle].femaleAssets[6] ? 
+                  shufflesArray[selectedSuffle].femaleAssets[6].assetName : null }
+              </p>
+            </motion.div>
+            <motion.div className={styles.social}>
+              {!account ? 
+                <motion.div className={styles.wallet}>
+                  <motion.button onClick={() => fetchedsholders && connectWallet()}
+                    style={{backgroundColor: activeTheme==='light' ? lightColorPalette[6-colorCode]: null,
+                    color:activeTheme==='light' ? darkColorPalette[6-colorCode]: lightColorPalette[6-colorCode],
+                    fontSize: '1.2rem',
+                    border: activeTheme==='light' ? null:`2px solid ${darkColorPalette[6-colorCode]}`}}
+                    className={styles.walletButton}>
+                    <MdIcons.MdAccountBalanceWallet />
+                  </motion.button>
+                  <p style={{color: activeTheme==='light' ? darkColorPalette[6-colorCode] : lightColorPalette[6-colorCode]}}>Connect</p>
+                </motion.div> : sholderOrNot ?
+                <motion.div className={styles.wallet} onClick={() => router.push(`/sholders/${account[0].address}`)}>
+                  <motion.button className={styles.avatar}
+                    style={{backgroundColor: activeTheme==='light' ? lightColorPalette[6-colorCode]: null,
+                    color:activeTheme==='light' ? darkColorPalette[6-colorCode]: lightColorPalette[6-colorCode],
+                    fontSize: '1.2rem'}}>
+                    <Image src={avatar} layout='fill' />
+                  </motion.button> 
+                  <p style={{color:activeTheme==='light' ? darkColorPalette[6-colorCode] : null}}>{account[0].name.length > 8 ? account[0].name.slice(0,7)+'...' : account[0].name}</p>
+                </motion.div> :
+                <motion.div className={styles.wallet} onClick={() => router.push('https://www.nftexplorer.app/sellers/algo-heads')}>
+                  <motion.button className={styles.walletButton}
+                    style={{backgroundColor: activeTheme==='light' ? lightColorPalette[6-colorCode]: null,
+                    color:activeTheme==='light' ? darkColorPalette[6-colorCode]: lightColorPalette[6-colorCode],
+                    fontSize: '1.2rem',
+                    border: activeTheme==='light' ? null:`2px solid ${darkColorPalette[6-colorCode]}`}}>
+                    <BsIcons.BsFillEmojiDizzyFill />
+                  </motion.button> 
+                  <p style={{color:activeTheme==='light' ? darkColorPalette[6-colorCode] : lightColorPalette[6-colorCode]}}>Become a sholder!</p>
+                </motion.div>
+              }
+              <Link href='https://discord.gg/NECZgDreUq'>
+                <motion.button style={activeTheme==='light' ? {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} : {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}} className={styles.socialButton}>
+                  <SiIcon.SiDiscord />
+                </motion.button>
+              </Link>
+              <Link href='https://twitter.com/algoheads'>
+                <motion.button style={activeTheme==='light' ? {backgroundColor: lightColorPalette[colorCode], color: darkColorPalette[colorCode]} : {color: lightColorPalette[colorCode], border: `2px solid ${darkColorPalette[colorCode]}`}} className={styles.socialButton}>
+                  <SiIcon.SiTwitter />
+                </motion.button>
+              </Link>
+            </motion.div>
+          </div>
+          <div className={styles.wheelThree}>
+            <div className={styles.bannerHolder}>
+              <Image className={styles.buyBanner} src={activeTheme === 'dark' ? buyBannerPalette[7] : buyBannerPalette[6]} layout='fill' />
+            </div>
+            <motion.div className={styles.shuffleButtons}>
+            {!shuffleLive ?
+              <div
+                style={{backgroundColor: lightColorPalette[6 - colorCode]}}
+                onClick={() => setSholderShuffleOrNot(false)}
+                className={styles.mainCountDown}>
+                <p>
+                  Public shuffle in : <span>{shuffleDays}</span> d <span>{shuffleHours}</span> h <span>{shuffleMinutes}</span> m
+                </p>
+              </div> :  
+            shuffleLive && !sholdOut ?
+              <Link href={process.env.NEXT_PUBLIC_SHUFFLE_LINK}>          
+                <button
+                  style={{backgroundColor: lightColorPalette[6 - colorCode]}}
+                  className={styles.mainButton}>
+                  Public shuffle!
+                </button>
+              </Link> :
+              <div
+                onClick={() => setSholderShuffleOrNot(false)}
+                style={{backgroundColor: lightColorPalette[6 - colorCode]}}
+                className={styles.mainCountDown}>
+                <p>
+                  Shold out!
+                </p>
+              </div>
+            }
+            </motion.div>
+          </div>
+          <div className={styles.wheelFour}>
+          </div>
+        </div>
+      </div>
+      )
+  } else {
+    return (
+      <div className={styles.landing}
+        style={{height: `${normalizedwidth*16/9}vw`,
+        width: `${normalizedwidth}vw`}}>
+        <div className={styles.wheelHolder}>
+        <div className={styles.wheelOne}>
+            <motion.div animate={control10} className={styles.arrowHolder}>
+              <Image className={styles.counterArrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
+            </motion.div>
+            <div className={styles.logoHolder}>
+              <Image className={styles.logo} src={activeTheme==='light'? '/logo.png' : '/darkLogo.png'} layout='fill' />
+            </div>
+            <motion.div 
+              className={styles.headHolder}
+              animate={control5}>
+              {/* <Image className={styles.head} src={'/algoHead'+shufflesArray[selectedSuffle].maleAssets[1].assetName.slice(2,4)+'.png'} layout='fill' /> */}
             </motion.div>
             <motion.div
               style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}
@@ -756,10 +1135,6 @@ function Landing() {
         </div>
       </div>
       )
-  } else {
-    return (
-      <p>loading</p>
-    )
   }
  }
  
