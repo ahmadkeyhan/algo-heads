@@ -78,65 +78,57 @@
   position: absolute;
   left: -4vw;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   height: 12vw;
-  width: 40vw;
+  width: 46vw;
   border-radius: 7vw;
   overflow: hidden;
   color: #212121;
   font-size: 0.6rem;
   font-weight: 600;
   font-family: 'Gluten', cursive;
-  text-align: center;
+  text-align: left;
   line-height: 1rem;
   z-index: 5;
   background-color: var(--color-bg-primary);
 }
 
-.secondaryButton {
-  position: absolute;
-  top: 14vw;
-  left: 32vw;
-  padding: 3rem 1rem 0 1rem;
+.shuffleType {
+  width: 12vw;
+  height: 12vw;
+  border-radius: 6vw;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 12vw;
-  width: 16vw;
-  border-radius: 9vw;
-  overflow: hidden;
-  font-size: 0.8rem;
-  font-family: 'Gluten', cursive;
-  font-weight: bold;
-  z-index: 5;
+  font-size: 1.3rem;
+  color: var(--color-bg-primary);
+}
+
+.spin {
+  position: absolute;
+  top: 2vw;
+  width: 0.16rem;
+  height: 0.16rem;
+  border-radius: 50%;
+  transform-origin: 0.0625rem 4vw;
   background-color: var(--color-bg-primary);
 }
 
-.secondaryCountDown {
-  position: absolute;
-  top: 14vw;
-  left: 32vw;
+.countDownCard {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 12vw;
-  width: 16vw;
-  border-radius: 9vw;
-  overflow: hidden;
-  color: #212121;
-  font-size: 0.6rem;
-  font-weight: 600;
-  font-family: 'Gluten', cursive;
-  text-align: center;
-  line-height: 0.9rem;
-  z-index: 5;
-  background-color: var(--color-bg-primary);
+  width: 34vw;
 }
+
 
 .mainCountDown p {
-  width: 19ch;
+  width: 18ch;
   z-index: 2;
+  margin: 0;
 }
 
 .mainCountDown span {
@@ -144,17 +136,6 @@
   font-weight: 500;
 }
 
-.secondaryCountDown p {
-  width: 8ch;
-  height: 1.8rem;
-  overflow: hidden;
-  z-index: 2;
-}
-
-.secondaryCountDown span {
-  font-size: 1rem;
-  font-weight: 500;
-}
 
 .scrollButton {
     position: absolute;
@@ -275,6 +256,11 @@
   margin: 0;
 }
 
+.subTitle span {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
 .algoLogo {
   display: flex;
   align-items: center;
@@ -330,7 +316,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   font-weight: 300;
   color: var(--color-text-secondary);
 }

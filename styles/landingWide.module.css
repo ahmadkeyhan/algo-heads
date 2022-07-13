@@ -76,83 +76,65 @@
     position: absolute;
     left: -2.25vh;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     height: 6.75vh;
-    width: 22.5vh;
-    border-radius: 3.94vh;
+    width: 25.88vh;
+    border-radius: 4vh;
     overflow: hidden;
     color: #212121;
     font-size: 0.6rem;
     font-weight: 600;
     font-family: 'Gluten', cursive;
-    text-align: center;
+    text-align: left;
     line-height: 1rem;
     z-index: 5;
     background-color: var(--color-bg-primary);
   }
   
-  .secondaryButton {
-    position: absolute;
-    top: 7.88vh;
-    left: 18vh;
-    padding: 3rem 1rem 0 1rem;
+  .shuffleType {
+    width: 6.75vh;
+    height: 6.75vh;
+    border-radius: 4vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 6.75vh;
-    width: 10.13vh;
-    border-radius: 5.06vh;
-    overflow: hidden;
-    font-size: 0.8rem;
-    font-family: 'Gluten', cursive;
-    font-weight: bold;
-    z-index: 5;
+    font-size: 1.3rem;
+    color: var(--color-bg-primary);
+  }
+  
+  .spin {
+    position: absolute;
+    top: 1.125vh;
+    width: 0.16rem;
+    height: 0.16rem;
+    border-radius: 50%;
+    transform-origin: 0.0625rem 2.25vh;
     background-color: var(--color-bg-primary);
   }
   
-  .secondaryCountDown {
-    position: absolute;
-    top: 7.88vh;
-    left: 18vh;
+  .countDownCard {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 6.75vh;
-    width: 10.13vh;
-    border-radius: 5.06vh;
-    overflow: hidden;
-    color: #212121;
-    font-size: 0.6rem;
-    font-weight: 600;
-    font-family: 'Gluten', cursive;
-    text-align: center;
-    line-height: 0.9rem;
-    z-index: 5;
-    background-color: var(--color-bg-primary);
+    width: 19.125vh;
   }
+  
   
   .mainCountDown p {
-    width: 19ch;
+    width: 18ch;
     z-index: 2;
+    margin: 0;
   }
+  
   
   .mainCountDown span {
     font-size: 1rem;
     font-weight: 500;
   }
   
-  .secondaryCountDown p {
-    width: 8ch;
-    height: 1.8rem;
-    overflow: hidden;
-    z-index: 2;
-  }
-  
-  .secondaryCountDown span {
-    font-size: 1rem;
-    font-weight: 500;
-  }
   
   .scrollButton {
       position: absolute;
@@ -271,6 +253,11 @@
     font-size: 0.7rem;
     margin: 0;
   }
+
+  .subTitle span {
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
   
   .algoLogo {
     display: flex;
@@ -327,7 +314,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     font-weight: 300;
     color: var(--color-text-secondary);
   }
