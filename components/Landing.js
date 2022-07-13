@@ -28,7 +28,12 @@ function Landing() {
   }, [activeTheme])
 
   const [shuffles, setShuffles] = useState()
+  const [shufflesArray, setShufflesArray] = useState([])
   const [shuffleLoading, setShuffleLoading] = useState()
+  const [selectedSuffle, setSelectedShuffle] = useState(0)
+  const [shuffleLive, setShuffleLive] = useState(false)
+  const [sholdOut, setSholdOut] = useState(false)
+
   useEffect(() => {
       setShuffleLoading(true)
       console.log('loading')
@@ -36,8 +41,18 @@ function Landing() {
         .then((res) => res.json())
         .then((data) => {
           setShuffles(data.message)
+          data.message.map((shuffle, index) => {
+            shufflesArray.push(shuffle)
+            shufflesArray[index].date = new Date(shufflesArray[index].date)
+            shufflesArray[index].date = new Date(shufflesArray[index].date.getUTCFullYear(),
+            shufflesArray[index].date.getUTCMonth(),
+            shufflesArray[index].date.getUTCDate(),
+            shufflesArray[index].date.getUTCHours(),
+            shufflesArray[index].date.getUTCMinutes(),
+            shufflesArray[index].date.getUTCSeconds())
+          })
           setLoading(false)
-          console.log(shuffles)
+          console.log(shufflesArray)
         })
   }, [])
 
@@ -75,18 +90,9 @@ function Landing() {
       })
   },[])
 
-  
-  
-
   const [account, setAccount] = useState()
   const [avatar, setAvatar] = useState()
   const [sholderOrNot, setSholderOrNot] = useState(false)
-
-  const [sholdOut, setSholdOut] = useState(true)
-  const [sholderSholdOut, setSholderSholdOut] = useState(true)
-
-  const [shuffleLive, setShuffleLive] = useState(false)
-  const [sholderShuffleLive, setSholderShuffleLive] = useState(false)
 
   const connectWallet = async () => {
     try {
@@ -95,35 +101,18 @@ function Landing() {
         // let sholderOrNot = true
         if (sholders.indexOf(fetchedAccount[0].address) !== -1) {
           setSholderOrNot(true)
-          setSholderShuffleOrNot(true)
+          // setSholderShuffleOrNot(true)
           setAvatar(avatarBook[sholders.indexOf(fetchedAccount[0].address)])
-          // console.log(avatar)
+          console.log(avatar)
         }
       })
     } catch (error) {
-      // console.log(error)
+      console.log(error)
     }
   }
 
-  // useEffect(() => {
-  //   headlist.map((head) => {
-  //     if (head.sholder.address === account[0].address) {
-  //       head.sholder.name = account[0].name
-  //       console.log('found head')
-  //       // setAvatar(head.src)
-  //       fetch('api/headlist' , {
-  //         method: 'POST',
-  //         body: JSON.stringify(head)
-  //       }).then((res) => {
-  //         res.json()
-  //       })
-  //     }
-  //   })
-  // }, [account])
-
-
-  var shuffleDate = new Date('Fri Jul 8 2022 19:30:00')
-  var sholderShuffleDate = new Date('Thu Jul 7 2022 19:30:00')
+  // var shuffleDate = new Date('Fri Jul 8 2022 19:30:00')
+  // var sholderShuffleDate = new Date('Thu Jul 7 2022 19:30:00')
 
   const router = useRouter()
 
@@ -138,27 +127,7 @@ function Landing() {
   const control9 = useAnimation()
   const control10 = useAnimation()
 
-  const [sholderShuffleOrNot, setSholderShuffleOrNot] = useState(false)
-
-  const [shuffleDays, setShuffleDays] = useState()
-  const [shuffleHours, setShuffleHours] = useState()
-  const [shuffleMinutes, setShuffleMinutes] = useState()
-
-  const [sholderShuffleDays, setSholderShuffleDays] = useState()
-  const [sholderShuffleHours, setSholderShuffleHours] = useState()
-  const [sholderShuffleMinutes, setSholderShuffleMinutes] = useState()
-
-
   const [colorCode, setColorCode] = useState(2)
-  
-  const [colorSliderOpen, setColorSliderOpen] = useState(false)
-  const [tout, setTout] = useState(null)
-
-  const [arrows, setArrows] = useState(arrowPalette[0])
-  const [buyBanner, setBuyBanner] = useState(buyBannerPalette[6])
-  const [linkArrows, setLinkArrows] = useState(linkArrowPalette[6])
-  const [scrollArrows, setScrollArrows] = useState(scrollArrowPalette[0])
-
   const [male, setMale] = useState(true)
   const [heads, setHeads] = useState(maleHeads)
 
@@ -166,33 +135,24 @@ function Landing() {
   const [height, setHeight] = useState()
   const [normalizedwidth, setNormalizedWidth] = useState()
   const [styles, setStyles] = useState(narrowStyles)
+
    
   useEffect(() => {
 
     setShuffleDays(0)
     setShuffleHours(0)
     setShuffleMinutes(0)
-
-    setSholderShuffleDays(0)
-    setSholderShuffleHours(0)
-    setSholderShuffleMinutes(0)
-
+  
     setInterval(() => {
       var now = new Date()
       var nowUTC = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds())
-      if (nowUTC >= shuffleDate) {
+      
+      if (nowUTC >= 0) {
         setShuffleLive(true)
       } else {
         setShuffleDays(Math.floor((shuffleDate- nowUTC)/(3600000*24)))
         setShuffleHours(Math.floor((shuffleDate - nowUTC)%(3600000*24)/3600000))
         setShuffleMinutes(Math.floor((shuffleDate - nowUTC)%3600000/60000))
-      }
-      if (nowUTC >= sholderShuffleDate) {
-        setSholderShuffleLive(true)
-      } else {
-        setSholderShuffleDays(Math.floor((sholderShuffleDate- nowUTC)/(3600000*24)))
-        setSholderShuffleHours(Math.floor((sholderShuffleDate - nowUTC)%(3600000*24)/3600000))
-        setSholderShuffleMinutes(Math.floor((sholderShuffleDate - nowUTC)%3600000/60000))
       }
     },1000)
 
@@ -469,31 +429,15 @@ function Landing() {
           0.75,0.8125, 0.875,0.9375, 1]}
     })  
     
-    if (colorSliderOpen) {
-      setTout(setTimeout(() => setColorSliderOpen(false),5000))
-    } 
   },[])
-    
-  useEffect(() => {
-    clearTimeout(tout)
-    setTout(setTimeout(() => setColorSliderOpen(false),5000))
-  },[colorCode])
   
   useEffect(() => {
     setHeads(male ? maleHeads : femaleHeads)
   }, [male])
 
-  useEffect(() => {
-    setHeads(sholderShuffleOrNot ? proudHeads : maleHeads)
-  }, [sholderShuffleOrNot])
-  
-  function ColorSlide(x) {
-    setColorCode(x)
-    setArrows(arrowPalette[x])
-    setLinkArrows(linkArrowPalette[6 - x])
-    setScrollArrows(scrollArrowPalette[x])
-    setBuyBanner(buyBannerPalette[6 - x])
-  }
+  const [shuffleDays, setShuffleDays] = useState()
+  const [shuffleHours, setShuffleHours] = useState()
+  const [shuffleMinutes, setShuffleMinutes] = useState()
 
   return (
     <div className={styles.landing}
@@ -557,10 +501,10 @@ function Landing() {
             <Image className={styles.arrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
           </motion.div>
           <h2 style={{color:activeTheme === 'light' ? darkColorPalette[6-colorCode]: null}} className={styles.title}>
-            Watch the  <span style={{marginLeft: male ? '0.5rem' : '0.1rem',color: sholderShuffleOrNot ? lightColorPalette[2-colorCode] : lightColorPalette[6-colorCode]}}>{sholderShuffleOrNot ? 'fresh' : male ? 'male' : 'female '}</span> heads spin!
+            Watch the  <span style={{marginLeft: male ? '0.5rem' : '0.1rem',color: lightColorPalette[2-colorCode]}}>{male ? 'male' : 'female '}</span> heads spin!
           </h2>
           <motion.div className={styles.subTitle}>
-            <h2 style={{color: sholderShuffleOrNot ? lightColorPalette[2-colorCode] : lightColorPalette[6-colorCode]}}>on Algorand blockchain</h2>
+            <h2 style={{color: lightColorPalette[2-colorCode]}}>on Algorand blockchain</h2>
             <motion.div className={styles.mintPrice}>
             <p style={{color:activeTheme === 'light' ? darkColorPalette[6-colorCode]: null}}>Mint price: 25</p>
             <motion.div className={styles.algoLogo}>
@@ -568,83 +512,40 @@ function Landing() {
                 <path d="M18.0006 19.0109H15.1785L13.3456 12.193L9.40508
                   19.0116H6.25445L12.345 8.45714L11.3648 4.79298L3.15215
                   19.0139H0L10.408 0.986084H13.1674L14.3757 5.46509H17.2228L15.2789
-                  8.8453L18.0006 19.0109Z" fill={sholderShuffleOrNot ? lightColorPalette[2-colorCode] : lightColorPalette[6-colorCode]} />
+                  8.8453L18.0006 19.0109Z" fill={lightColorPalette[2-colorCode]} />
               </svg>
             </motion.div>
             </motion.div>
           </motion.div>
-          {!sholderShuffleOrNot ? 
-            <motion.div className={styles.genderSlider}
-              style={{backgroundColor: darkColorPalette[3]}}>
-              <div className={styles.genderBearing}
-                onClick={() => setMale(!male)}>
-                <svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <motion.rect x="6" y="28" width="6" height="2" rx="1" fill={lightColorPalette[4]}
-                    animate={male ? 
-                      {rotate: '-135deg', originX:0.5, originY: '17px', x: 14, y:0} :
-                      {rotate: 0, x: 0, y:0}}
-                      transition={{duration: 0.3, ease:'backInOut'}} />
-                  <motion.rect x="8" y="25" width="2" height="7" rx="1" fill={lightColorPalette[4]}
-                    animate={male ? 
-                      {rotate: '-135deg', originX:0.5, originY: '17px', x: 14, y:0} :
-                      {rotate: 0, x: 0, y:0}}
-                      transition={{duration: 0.2, ease:'backInOut'}} />
+          <motion.div className={styles.genderSlider}
+            style={{backgroundColor: darkColorPalette[3]}}>
+            <div className={styles.genderBearing}
+              onClick={() => setMale(!male)}>
+              <svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <motion.rect x="6" y="28" width="6" height="2" rx="1" fill={lightColorPalette[4]}
+                  animate={male ? 
+                    {rotate: '-135deg', originX:0.5, originY: '17px', x: 14, y:0} :
+                    {rotate: 0, x: 0, y:0}}
+                    transition={{duration: 0.3, ease:'backInOut'}} />
+                <motion.rect x="8" y="25" width="2" height="7" rx="1" fill={lightColorPalette[4]}
+                  animate={male ? 
+                    {rotate: '-135deg', originX:0.5, originY: '17px', x: 14, y:0} :
+                    {rotate: 0, x: 0, y:0}}
+                    transition={{duration: 0.2, ease:'backInOut'}} />
 
-                  <motion.circle cx='9' cy="17" r="7" fill={lightColorPalette[4]}
-                    animate={male ? 
-                      {x: 14, y: 0} :
-                      {x: 0, y: 0}}
-                       transition={{duration: 0.2, ease:'easeIn'}} />
-                  <motion.circle cx='9' cy="17" r="5" fill={darkColorPalette[3]}
-                    animate={male ? 
-                      {x: 14, y: 0} :
-                      {x: 0, y: 0}}
-                       transition={{duration: 0.3, ease:'easeIn'}} />
-                </svg>
-              </div>
-            </motion.div> : 
-            null
-          }
-          {/* <motion.div className={styles.colorSlider}
-            style={{borderColor: darkColorPalette[colorCode]}}
-            animate={colorSliderOpen ? {height: '7.875rem'}: {height: 0, opacity:0}}>
-            <motion.div
-              animate={{borderColor: darkColorPalette[colorCode],
-                backgroundColor: lightColorPalette[colorCode],
-                top: colorSliderOpen? `${colorCode*1.125 - 0.125}rem` : '-0.125rem'}} 
-              className={styles.colorCatcher} />
-            <button 
-                style={{backgroundColor: lightColorPalette[0]}}
-                className={styles.colorSlide} onClick={()=> ColorSlide(0)}/>
-            <button 
-                style={{backgroundColor: lightColorPalette[1]}}
-                className={styles.colorSlide} onClick={()=> ColorSlide(1)}/>
-            <button 
-                style={{backgroundColor: lightColorPalette[2]}}
-                className={styles.colorSlide} onClick={()=> ColorSlide(2)}/>
-            <button 
-                style={{backgroundColor: lightColorPalette[3]}}
-                className={styles.colorSlide} onClick={()=> ColorSlide(3)}/>
-            <button 
-                style={{backgroundColor: lightColorPalette[4]}}
-                className={styles.colorSlide} onClick={()=> ColorSlide(4)}/>
-            <button 
-                style={{backgroundColor: lightColorPalette[5]}}
-                className={styles.colorSlide} onClick={()=> ColorSlide(5)}/>
-            <button 
-                style={{backgroundColor: lightColorPalette[6]}}
-                className={styles.colorSlide} onClick={()=> ColorSlide(6)}/>
+                <motion.circle cx='9' cy="17" r="7" fill={lightColorPalette[4]}
+                  animate={male ? 
+                    {x: 14, y: 0} :
+                    {x: 0, y: 0}}
+                      transition={{duration: 0.2, ease:'easeIn'}} />
+                <motion.circle cx='9' cy="17" r="5" fill={darkColorPalette[3]}
+                  animate={male ? 
+                    {x: 14, y: 0} :
+                    {x: 0, y: 0}}
+                      transition={{duration: 0.3, ease:'easeIn'}} />
+              </svg>
+            </div>
           </motion.div>
-          <motion.div 
-            animate={colorSliderOpen? {left: '26vw'} : null}
-            className={styles.wheelButtons}>
-            <button
-              style={activeTheme==='light' ? {backgroundColor: lightColorPalette[colorCode]} : {border: `2px solid ${darkColorPalette[colorCode]}`}}
-              className={styles.wheelButton} onClick={()=> setColorSliderOpen(true)}>
-              <MdIcons.MdColorize
-                style={{color: activeTheme==='light' ? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}/>
-            </button>
-          </motion.div> */}
           <motion.div
             style={{backgroundColor: darkColorPalette[3]}} 
             className={styles.themeSlider}>
@@ -796,36 +697,11 @@ function Landing() {
             <Image className={styles.buyBanner} src={activeTheme === 'dark' ? buyBannerPalette[7] : buyBannerPalette[6]} layout='fill' />
           </div>
           <motion.div className={styles.shuffleButtons}>
-          {!sholderShuffleLive && sholderOrNot ?
-            <div
-              style={{backgroundColor: lightColorPalette[2-colorCode]}}
-              onClick={() => setSholderShuffleOrNot(true)}
-              className={sholderShuffleOrNot ? styles.mainCountDown : styles.secondaryCountDown}>
-              <p>Sholder shuffle in <span>{sholderShuffleDays}</span> d <span>{sholderShuffleHours}</span> h <span>{sholderShuffleMinutes}</span> m</p>
-            </div> :
-          sholderShuffleLive && !sholderSholdOut && sholderOrNot ?
-            <Link href={process.env.NEXT_PUBLIC_SHOLDER_SHUFFLE_LINK}>          
-              <button
-                style={{backgroundColor: lightColorPalette[2-colorCode]}}
-                className={sholderShuffleOrNot ? styles.mainButton : styles.secondaryButton}>
-                <p>Sholder shuffle!</p>
-              </button>
-            </Link> : 
-          sholderSholdOut && sholderOrNot ?
-            <div
-              style={{backgroundColor: lightColorPalette[2-colorCode]}}
-              onClick={() => setSholderShuffleOrNot(true)}
-              className={sholderShuffleOrNot ? styles.mainCountDown : styles.secondaryCountDown}>
-              <p>
-                Shold out!
-              </p>
-            </div> : null
-          }
           {!shuffleLive ?
             <div
               style={{backgroundColor: lightColorPalette[6 - colorCode]}}
               onClick={() => setSholderShuffleOrNot(false)}
-              className={sholderShuffleOrNot && sholderOrNot ?  styles.secondaryCountDown : styles.mainCountDown}>
+              className={styles.mainCountDown}>
               <p>
                 Public shuffle in : <span>{shuffleDays}</span> d <span>{shuffleHours}</span> h <span>{shuffleMinutes}</span> m
               </p>
@@ -834,14 +710,14 @@ function Landing() {
             <Link href={process.env.NEXT_PUBLIC_SHUFFLE_LINK}>          
               <button
                 style={{backgroundColor: lightColorPalette[6 - colorCode]}}
-                className={sholderShuffleOrNot ? styles.secondaryButton : styles.mainButton}>
+                className={styles.mainButton}>
                 Public shuffle!
               </button>
             </Link> :
             <div
               onClick={() => setSholderShuffleOrNot(false)}
               style={{backgroundColor: lightColorPalette[6 - colorCode]}}
-              className={sholderShuffleOrNot && sholderOrNot ?  styles.secondaryCountDown : styles.mainCountDown}>
+              className={styles.mainCountDown}>
               <p>
                 Shold out!
               </p>
@@ -850,22 +726,16 @@ function Landing() {
           </motion.div>
         </div>
         <div className={styles.wheelFour}>
-            {/* <motion.div
-              className={styles.scrollArrowHolder}>
-              <Image className={styles.counterScrollArrows} src={activeTheme === 'light' ? scrollArrowPalette[colorCode] : scrollArrowPalette[7]} layout='fill' />
-            </motion.div>
-            <button
-              style={{color: darkColorPalette[colorCode]}}
-              className={styles.scrollButton}
-              onClick={() => router.push('/headlist')}>
-              <MdIcons.MdFace
-                style={{fontSize: '1rem', color: lightColorPalette[colorCode]}}/>
-                <p>Tap to see minted heads!</p>
-            </button> */}
         </div>
       </div>
     </div>
     )
+
+  if(shuffles) {
+    console.log(shuffles)
+
+
+  }
  }
  
  export default Landing
