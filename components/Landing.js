@@ -884,7 +884,7 @@ function Landing() {
                 setShuffleMinutes(0)
                 setShuffleDays(0)
                 setSelectedShuffle((selectedSuffle+2)%shufflesArray.length)}}
-              style={{backgroundColor: lightColorPalette[shufflesArray[(selectedSuffle+2)%shufflesArray.length].colorCode]}}>
+              style={{scale: 2/3,backgroundColor: lightColorPalette[shufflesArray[(selectedSuffle+2)%shufflesArray.length].colorCode]}}>
               <div className={styles.shuffleType}>
                 {shufflesArray[(selectedSuffle+2)%shufflesArray.length].auth == 2 ? <CgTrophy /> :
                 shufflesArray[(selectedSuffle+2)%shufflesArray.length].auth == 3 ? 
@@ -896,6 +896,14 @@ function Landing() {
                   </> :
                   <MdIcons.MdShuffle />}
               </div>
+            </motion.div>
+            <motion.div className={styles.shuffleBubble1} 
+              style={{scale: 0.5}}>
+                <Image src={activeTheme==='light' ? '/HappyPride!.png' : '/darkSphere.png'} layout='fill' />
+            </motion.div>
+            <motion.div className={styles.shuffleBubble2} 
+              style={{scale: 1}}>
+                <Image src={activeTheme==='light' ? '/HappyPride!.png' : '/darkSphere.png'} layout='fill' />
             </motion.div>
           </div>
           <div className={styles.wheelFour}>
