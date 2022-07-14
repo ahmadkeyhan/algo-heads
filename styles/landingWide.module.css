@@ -55,32 +55,16 @@
     top: 7.88vh;
   }
   
-  .mainButton {
+  .mainShuffle {
     position: absolute;
-    left: -2.25vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 6.75vh;
-    width: 22.5vh;
-    border-radius: 3.94vh;
-    overflow: hidden;
-    font-size: 0.8rem;
-    font-family: 'Gluten', cursive;
-    font-weight: bold;
-    z-index: 5;
-    background-color: var(--color-bg-primary);
-  }
-  
-  .mainCountDown {
-    position: absolute;
-    left: -2.25vh;
-    display: flex;
+    left: 16.88vh;
+    top: 7.31vh;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     height: 6.75vh;
-    width: 25.88vh;
+    width: 23.625vh;
     border-radius: 4vh;
     overflow: hidden;
     color: #212121;
@@ -91,6 +75,81 @@
     line-height: 1rem;
     z-index: 5;
     background-color: var(--color-bg-primary);
+  }
+
+  .shuffle2 {
+    position: absolute;
+    left: 38.81vh;
+    top: 14.63vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 6.75vh;
+    width: 6.75vh;
+    border-radius: 4vh;
+    overflow: hidden;
+    color: #212121;
+    font-size: 0.6rem;
+    font-weight: 600;
+    font-family: 'Gluten', cursive;
+    text-align: left;
+    line-height: 1rem;
+    z-index: 5;
+    background-color: var(--color-bg-primary);
+  }
+  
+  .shuffle3 {
+    position: absolute;
+    left: 39.94vh;
+    top: 21.94vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 6.75vh;
+    width: 6.75vh;
+    border-radius: 4vh;
+    overflow: hidden;
+    color: #212121;
+    font-size: 0.6rem;
+    font-weight: 600;
+    font-family: 'Gluten', cursive;
+    text-align: left;
+    line-height: 1rem;
+    z-index: 5;
+    background-color: var(--color-bg-primary);
+    border: 2px solid var(--color-text-secondary);
+  }
+  
+  .shuffleBubble1 {
+    position: absolute;
+    left: 38.81vh;
+    top: 27.56vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 6.75vh;
+    width: 6.75vh;
+    border-radius: 4vh;
+    z-index: 5;
+    border: 3px solid var(--color-text-secondary);
+  }
+  
+  .shuffleBubble2 {
+    position: absolute;
+    left: 36vh;
+    top: 31.5vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 6.75vh;
+    width: 6.75vh;
+    border-radius: 4vh;
+    z-index: 5;
+    border: 4px solid var(--color-text-secondary);
   }
   
   .shuffleType {
@@ -119,18 +178,23 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 19.125vh;
+    width: 16.88vh;
+    height: 6.75vh;
   }
   
-  
-  .mainCountDown p {
+  .mainShuffle h1 {
+    font-size: 2.11vh;
+    font-weight: 600;
+  }
+
+  .mainShuffle p {
     width: 18ch;
     z-index: 2;
     margin: 0;
   }
   
   
-  .mainCountDown span {
+  .mainShuffle span {
     font-size: 1rem;
     font-weight: 500;
   }
@@ -290,7 +354,7 @@
     left: 20.25vh;
   }
   
-  .headHolder {
+  .headHolder, .notMinted {
     position: absolute;
     transform: translate(-50%, -50%);
     padding: 0;
@@ -301,6 +365,18 @@
     z-index: 6;
     display: flex;
     justify-content: center;
+    align-items: center;
+  }
+
+  .notMinted {
+    z-index: 100;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-align: center;
+    line-height: 1.2rem;
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-primary);
+    opacity: 65%;
   }
   
   .headCard {
