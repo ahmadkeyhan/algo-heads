@@ -478,6 +478,13 @@ function Landing() {
             <div className={styles.logoHolder}>
               <Image className={styles.logo} src={activeTheme==='light'? '/logo.png' : '/darkLogo.png'} layout='fill' />
             </div>
+            {/* <motion.div
+              style={{display: male && shufflesArray[selectedSuffle].maleAssets[1] && shufflesArray[selectedSuffle].maleAssets[1].assetId === 0 ? null :
+                !male && shufflesArray[selectedSuffle].femaleAssets[1] && shufflesArray[selectedSuffle].femaleAssets[1].assetId === 0 ? null : 'none'}}
+              className={styles.notMinted}
+              animate={control5}>
+                <p>Not Minted Yet!</p>
+            </motion.div> */}
             <motion.div 
               className={styles.headHolder}
               animate={control5}>
@@ -499,6 +506,13 @@ function Landing() {
                   shufflesArray[selectedSuffle].femaleAssets[1].assetName : null }
               </p>
             </motion.div>
+            {/* <motion.div
+              style={{display: male && shufflesArray[selectedSuffle].maleAssets[3] && shufflesArray[selectedSuffle].maleAssets[3].assetId === 0 ? null :
+                !male && shufflesArray[selectedSuffle].femaleAssets[3] && shufflesArray[selectedSuffle].femaleAssets[3].assetId === 0 ? null : 'none'}}
+              className={styles.notMinted}
+              animate={control6}>
+                <p>Not Minted Yet!</p>
+            </motion.div> */}
             <motion.div 
               className={styles.headHolder}
               animate={control6}>
@@ -520,6 +534,13 @@ function Landing() {
                   shufflesArray[selectedSuffle].femaleAssets[3].assetName : null }
               </p>
             </motion.div>
+            {/* <motion.div
+              style={{display: male && shufflesArray[selectedSuffle].maleAssets[5] && shufflesArray[selectedSuffle].maleAssets[5].assetId === 0 ? null :
+                !male && shufflesArray[selectedSuffle].femaleAssets[5] && shufflesArray[selectedSuffle].femaleAssets[5].assetId === 0 ? null : 'none'}}
+              className={styles.notMinted}
+              animate={control7}>
+                <p>Not Minted Yet!</p>
+            </motion.div> */}
             <motion.div 
               className={styles.headHolder}
               animate={control7}>
@@ -541,6 +562,13 @@ function Landing() {
                   shufflesArray[selectedSuffle].femaleAssets[5].assetName : null }
               </p>
             </motion.div>
+            {/* <motion.div
+              style={{display: male && shufflesArray[selectedSuffle].maleAssets[7] && shufflesArray[selectedSuffle].maleAssets[7].assetId === 0 ? null :
+                !male && shufflesArray[selectedSuffle].femaleAssets[7] && shufflesArray[selectedSuffle].femaleAssets[7].assetId === 0 ? null : 'none'}}
+              className={styles.notMinted}
+              animate={control8}>
+                <p>Not Minted Yet!</p>
+            </motion.div> */}
             <motion.div 
               className={styles.headHolder}
               animate={control8}>
@@ -672,6 +700,13 @@ function Landing() {
                 </motion.svg>
               </motion.div>
             </motion.div>
+            {/* <motion.div
+              style={{display: male && shufflesArray[selectedSuffle].maleAssets[0] && shufflesArray[selectedSuffle].maleAssets[0].assetId === 0 ? null :
+                !male && shufflesArray[selectedSuffle].femaleAssets[0] && shufflesArray[selectedSuffle].femaleAssets[0].assetId === 0 ? null : 'none'}}
+              className={styles.notMinted}
+              animate={control1}>
+                <p>Not Minted Yet!</p>
+            </motion.div> */}
             <motion.div
               className={styles.headHolder}
               animate={control1}>
@@ -693,6 +728,13 @@ function Landing() {
                   shufflesArray[selectedSuffle].femaleAssets[0].assetName : null }
               </p>
             </motion.div>
+            {/* <motion.div
+              style={{display: male && shufflesArray[selectedSuffle].maleAssets[2] && shufflesArray[selectedSuffle].maleAssets[2].assetId === 0 ? null :
+                !male && shufflesArray[selectedSuffle].femaleAssets[2] && shufflesArray[selectedSuffle].femaleAssets[2].assetId === 0 ? null : 'none'}}
+              className={styles.notMinted}
+              animate={control2}>
+                <p>Not Minted Yet!</p>
+            </motion.div> */}
             <motion.div 
               className={styles.headHolder}
               animate={control2}>
@@ -714,6 +756,13 @@ function Landing() {
                   shufflesArray[selectedSuffle].femaleAssets[2].assetName : null }
               </p>
             </motion.div>
+            {/* <motion.div
+              style={{display: male && shufflesArray[selectedSuffle].maleAssets[4] && shufflesArray[selectedSuffle].maleAssets[4].assetId === 0 ? null :
+                !male && shufflesArray[selectedSuffle].femaleAssets[4] && shufflesArray[selectedSuffle].femaleAssets[4].assetId === 0 ? null : 'none'}}
+              className={styles.notMinted}
+              animate={control3}>
+                <p>Not Minted Yet!</p>
+            </motion.div> */}
             <motion.div 
               className={styles.headHolder}
               animate={control3}>
@@ -735,6 +784,13 @@ function Landing() {
                   shufflesArray[selectedSuffle].femaleAssets[4].assetName : null }
               </p>
             </motion.div>
+            {/* <motion.div
+              style={{display: male && shufflesArray[selectedSuffle].maleAssets[6] && shufflesArray[selectedSuffle].maleAssets[6].assetId === 0 ? null :
+                !male && shufflesArray[selectedSuffle].femaleAssets[6] && shufflesArray[selectedSuffle].femaleAssets[6].assetId === 0 ? null : 'none'}}
+              className={styles.notMinted}
+              animate={control4}>
+                <p>Not Minted Yet!</p>
+            </motion.div> */}
             <motion.div 
               className={styles.headHolder}
               animate={control4}>
@@ -902,7 +958,7 @@ function Landing() {
                 <Image src={activeTheme==='light' ? '/HappyPride!.png' : '/darkSphere.png'} layout='fill' />
             </motion.div>
             <motion.div className={styles.shuffleBubble2} 
-              style={{scale: 1}}>
+              style={{scale: 1/3}}>
                 <Image src={activeTheme==='light' ? '/HappyPride!.png' : '/darkSphere.png'} layout='fill' />
             </motion.div>
           </div>
