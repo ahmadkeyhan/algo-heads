@@ -805,67 +805,97 @@ function Landing() {
             <div className={styles.bannerHolder}>
               <Image className={styles.buyBanner} src={activeTheme === 'dark' ? buyBannerPalette[7] : buyBannerPalette[6]} layout='fill' />
             </div>
-            <motion.div className={styles.shuffleButtons}>
-            <div style={{backgroundColor: lightColorPalette[colorCode]}}
-              className={styles.mainCountDown}>
+            <motion.div className={styles.mainShuffle} 
+              style={{backgroundColor: lightColorPalette[colorCode]}}>
               <div className={styles.shuffleType}>
-              {shufflesArray[selectedSuffle].auth == 2 ? <CgTrophy /> :
+                {shufflesArray[selectedSuffle].auth == 2 ? <CgTrophy /> :
                 shufflesArray[selectedSuffle].auth == 3 ? 
-                <>
-                <motion.div className={styles.spin}
-                  animate={{rotate: [0,-360,-360]}}
-                  transition={{ease: 'backInOut' ,duration: 2, repeat: Infinity, times: [0,0.75,1]}} />
-                <CgTrophy /></> :
-                <MdIcons.MdShuffle />}
+                  <>
+                    <motion.div className={styles.spin}
+                      animate={{rotate: [0,-360,-360]}}
+                      transition={{ease: 'backInOut' ,duration: 2, repeat: Infinity, times: [0,0.75,1]}} />
+                    <CgTrophy />
+                  </> :
+                  <MdIcons.MdShuffle />}
               </div>
-            {!shuffleLive && shufflesArray[selectedSuffle].auth <= authLevel ?
-                <div className={styles.countDownCard}>
-                  <p>
-                    Shuffle starts in
-                  </p>
-                  <p><span>{shuffleDays}</span> d <span>{shuffleHours}</span> h <span>{shuffleMinutes}</span> m</p>
-                </div> :
-             !shuffleLive && shufflesArray[selectedSuffle].auth > authLevel && authLevel==1 ?
-                <div className={styles.countDownCard}>
+              <div className={styles.countDownCard}>
+                {!shuffleLive && shufflesArray[selectedSuffle].auth <= authLevel ?
+                  <>
+                    <p>
+                      Shuffle starts in
+                    </p>
+                    <p><span>{shuffleDays}</span> d <span>{shuffleHours}</span> h <span>{shuffleMinutes}</span> m</p>
+                  </> :
+                !shuffleLive && shufflesArray[selectedSuffle].auth > authLevel && authLevel==1 ?
                   <p>
                     Sholders only!
-                  </p>
-                </div> :
-             !shuffleLive && shufflesArray[selectedSuffle].auth > authLevel && authLevel==2 ?
-                <div className={styles.countDownCard}>
+                  </p> :
+                !shuffleLive && shufflesArray[selectedSuffle].auth > authLevel && authLevel==2 ?
                   <p>
                     Spin sholders only!
-                  </p>
-                </div> :
-             !shuffleLive && shufflesArray[selectedSuffle].auth > authLevel ?
-                <div className={styles.countDownCard}>
+                  </p> :
+                !shuffleLive && shufflesArray[selectedSuffle].auth > authLevel ?
                   <p>
                     Connect your wallet first!
-                  </p>
-                </div> :
-            shuffleLive && !shufflesArray[selectedSuffle].sholdOut && shufflesArray[selectedSuffle].auth <= authLevel ?
-              <Link href={shufflesArray[selectedSuffle].link}>          
-                <button
+                  </p> :
+                shuffleLive && !shufflesArray[selectedSuffle].sholdOut && shufflesArray[selectedSuffle].auth <= authLevel ?
+                  <Link href={shufflesArray[selectedSuffle].link}>          
+                    <h1>
+                      Enter shuffle!
+                    </h1>
+                  </Link> :
+                shuffleLive && !shufflesArray[selectedSuffle].sholdOut && shufflesArray[selectedSuffle].auth > authLevel ?
+                  <>
+                    <p>
+                      Sholders only!
+                    </p>
+                  </> :
+                <div
                   style={{backgroundColor: lightColorPalette[colorCode]}}
-                  className={styles.mainButton}>
-                  Enter shuffle!
-                </button>
-              </Link> :
-              shuffleLive && !shufflesArray[selectedSuffle].sholdOut && shufflesArray[selectedSuffle].auth > authLevel ?
-              <div className={styles.countDownCard}>
-              <p>
-                Sholders only!
-              </p>
-            </div> :
-              <div
-                style={{backgroundColor: lightColorPalette[colorCode]}}
-                className={styles.mainCountDown}>
-                <p>
-                  Shold out!
-                </p>
+                  className={styles.mainCountDown}>
+                  <p>
+                    Shold out!
+                  </p>
+                </div>}
               </div>
-            }
-            </div>
+            </motion.div>
+            <motion.div className={styles.shuffle2} 
+              onClick={() => {
+                setShuffleHours(0)
+                setShuffleMinutes(0)
+                setShuffleDays(0)
+                setSelectedShuffle((selectedSuffle+1)%shufflesArray.length)}}
+              style={{backgroundColor: lightColorPalette[shufflesArray[(selectedSuffle+1)%shufflesArray.length].colorCode]}}>
+              <div className={styles.shuffleType}>
+                {shufflesArray[(selectedSuffle+1)%shufflesArray.length].auth == 2 ? <CgTrophy /> :
+                shufflesArray[(selectedSuffle+1)%shufflesArray.length].auth == 3 ? 
+                  <>
+                    <motion.div className={styles.spin}
+                      animate={{rotate: [0,-360,-360]}}
+                      transition={{ease: 'backInOut' ,duration: 2, repeat: Infinity, times: [0,0.75,1]}} />
+                    <CgTrophy />
+                  </> :
+                  <MdIcons.MdShuffle />}
+              </div>
+            </motion.div>
+            <motion.div className={styles.shuffle3} 
+              onClick={() => {
+                setShuffleHours(0)
+                setShuffleMinutes(0)
+                setShuffleDays(0)
+                setSelectedShuffle((selectedSuffle+2)%shufflesArray.length)}}
+              style={{backgroundColor: lightColorPalette[shufflesArray[(selectedSuffle+2)%shufflesArray.length].colorCode]}}>
+              <div className={styles.shuffleType}>
+                {shufflesArray[(selectedSuffle+2)%shufflesArray.length].auth == 2 ? <CgTrophy /> :
+                shufflesArray[(selectedSuffle+2)%shufflesArray.length].auth == 3 ? 
+                  <>
+                    <motion.div className={styles.spin}
+                      animate={{rotate: [0,-360,-360]}}
+                      transition={{ease: 'backInOut' ,duration: 2, repeat: Infinity, times: [0,0.75,1]}} />
+                    <CgTrophy />
+                  </> :
+                  <MdIcons.MdShuffle />}
+              </div>
             </motion.div>
           </div>
           <div className={styles.wheelFour}>
