@@ -27,7 +27,7 @@ function Landing() {
   const [shuffles, setShuffles] = useState()
   const [shufflesArray, setShufflesArray] = useState([])
   const [shuffleLoading, setShuffleLoading] = useState()
-  const [selectedSuffle, setSelectedShuffle] = useState(0)
+  const [selectedSuffle, setSelectedShuffle] = useState(1)
   const [shuffleLive, setShuffleLive] = useState(false)
   const [sholdOut, setSholdOut] = useState(false)
   const [shuffleDays, setShuffleDays] = useState()
@@ -77,8 +77,6 @@ function Landing() {
           }
         },1000)
 
-
-
         setColorCode(shufflesArray[selectedSuffle].colorCode)
 
         setLoading(false)
@@ -91,6 +89,9 @@ function Landing() {
       setShuffleDays(0)
       setShuffleHours(0)
       setShuffleMinutes(0)
+      for (var i = 1; i < 99999; i++) {
+        clearInterval(i)
+      }
       setInterval(() => {
         var now = new Date()
         var nowUTC = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds())
@@ -916,11 +917,7 @@ function Landing() {
               </div>
             </motion.div>
             <motion.div className={styles.shuffle2} 
-              onClick={() => {
-                setShuffleHours(0)
-                setShuffleMinutes(0)
-                setShuffleDays(0)
-                setSelectedShuffle((selectedSuffle+1)%shufflesArray.length)}}
+              onClick={() => setSelectedShuffle((selectedSuffle+1)%shufflesArray.length)}
               style={{backgroundColor: lightColorPalette[shufflesArray[(selectedSuffle+1)%shufflesArray.length].colorCode]}}>
               <div className={styles.shuffleType}>
                 {shufflesArray[(selectedSuffle+1)%shufflesArray.length].auth == 2 ? <CgTrophy /> :
@@ -935,11 +932,7 @@ function Landing() {
               </div>
             </motion.div>
             <motion.div className={styles.shuffle3} 
-              onClick={() => {
-                setShuffleHours(0)
-                setShuffleMinutes(0)
-                setShuffleDays(0)
-                setSelectedShuffle((selectedSuffle+2)%shufflesArray.length)}}
+              onClick={() => setSelectedShuffle((selectedSuffle+2)%shufflesArray.length)}
               style={{scale: 2/3,backgroundColor: lightColorPalette[shufflesArray[(selectedSuffle+2)%shufflesArray.length].colorCode]}}>
               <div className={styles.shuffleType}>
                 {shufflesArray[(selectedSuffle+2)%shufflesArray.length].auth == 2 ? <CgTrophy /> :
