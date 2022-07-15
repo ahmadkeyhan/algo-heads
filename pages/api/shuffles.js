@@ -6,7 +6,7 @@ export default async function getTasks(req, res) {
         let shuffles = await db
             .collection('shuffles')
             .find({})
-            .sort({ date: -1 })
+            .sort({ date: 1 })
             .toArray()
         return res.json({
             message: JSON.parse(JSON.stringify(shuffles))
