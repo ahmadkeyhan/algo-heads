@@ -27,7 +27,7 @@ function Landing() {
   const [shuffles, setShuffles] = useState()
   const [shufflesArray, setShufflesArray] = useState([])
   const [shuffleLoading, setShuffleLoading] = useState()
-  const [selectedSuffle, setSelectedShuffle] = useState(1)
+  const [selectedSuffle, setSelectedShuffle] = useState(0)
   const [shuffleLive, setShuffleLive] = useState(false)
   const [sholdOut, setSholdOut] = useState(false)
   const [shuffleDays, setShuffleDays] = useState()
@@ -122,8 +122,7 @@ function Landing() {
     'E6MGXZ52LDGHNU65AMFH6UQSFWANT5GJJ77WFYTHNJUSOD66G3BGTPYJQM',
     'CMO4APSCJFHWI6O42OBDZ4M7OESBYOQIR7FLIP5DYX2CLSYBA4QVRJYAZE',
     'HFI4MIFJEV6X35EJRGLI3XGYH42ZQBNR4ZRBARAUVCSJN6EMKIJWGCTEGA',
-    '5DYIZMX7N4SAB44HLVRUGLYBPSN4UMPDZVTX7V73AIRMJQA3LKTENTLFZ4',
-    'DS6WZQE5S5SACIUW33DFTFMGI3NBTQZF6KCJUUYZLED66E4NLIT6N7TX7I'])
+    '5DYIZMX7N4SAB44HLVRUGLYBPSN4UMPDZVTX7V73AIRMJQA3LKTENTLFZ4'])
   const [avatarBook, setAvatarBook]=useState([
     '/algoHead051.png',
     '/algoHead052.png',
@@ -146,6 +145,7 @@ function Landing() {
             avatarBook.push(sholder.heads[0].src)
           }
         })
+        console.log(sholders)
         setLoading(false)
       })
   },[])
@@ -492,8 +492,10 @@ function Landing() {
               <Image className={styles.head}
                 src={male && shufflesArray[selectedSuffle].maleAssets[1] ? 
                   '/algoHead'+shufflesArray[selectedSuffle].maleAssets[1].assetName.slice(2,5)+'.png' :
-                  !male && shufflesArray[selectedSuffle].femaleAssets[1] ?
+                  !male && shufflesArray[selectedSuffle].femaleAssets[1] && shufflesArray[selectedSuffle].femaleAssets[1].rank ?
                   '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[1].assetName.slice(2,5)+'.png' :
+                  !male && shufflesArray[selectedSuffle].femaleAssets[1] && !shufflesArray[selectedSuffle].femaleAssets[1].rank ?
+                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[1].assetName.slice(2,5)+'.gif' :
                   activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
                 layout='fill' />
             </motion.div>
@@ -740,8 +742,10 @@ function Landing() {
               className={styles.headHolder}
               animate={control2}>
               <Image className={styles.head}
-                src={male && shufflesArray[selectedSuffle].maleAssets[2] ? 
+                src={male && shufflesArray[selectedSuffle].maleAssets[2] && shufflesArray[selectedSuffle].maleAssets[2].rank ? 
                   '/algoHead'+shufflesArray[selectedSuffle].maleAssets[2].assetName.slice(2,5)+'.png' :
+                  male && shufflesArray[selectedSuffle].maleAssets[2] && !shufflesArray[selectedSuffle].maleAssets[2].rank ? 
+                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[2].assetName.slice(2,5)+'.gif' :
                   !male && shufflesArray[selectedSuffle].femaleAssets[2] ?
                   '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[2].assetName.slice(2,5)+'.png' :
                   activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
