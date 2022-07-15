@@ -1,7 +1,8 @@
 export default async function getSales(req, res) {
     try {
-        
-        let sales = await fetch('https://api.nftexplorer.app/v1/collections/salesHistory/?collectionId=algo-heads',{method: 'GET', headers: {authorization: process.env.NEXT_PUBLIC_NFTX_TOKEN}}).then(res => res.json())
+        const query = req.query
+        const { token } = query
+        let sales = await fetch(`https://api.nftexplorer.app/v1/collections/salesHistory/?collectionId=algo-heads&nextToken=${token}`,{method: 'GET', headers: {authorization: process.env.NEXT_PUBLIC_NFTX_TOKEN}}).then(res => res.json())
         return res.json({
             message: sales
         })
