@@ -118,18 +118,12 @@ function Landing() {
   }, [male])
 
   const [sholders, setSholders]=useState([
-    'RZN4HMWEEFBLFFJDCKXNDTEMXJIBBCGAJE5Y3BLSZTCXGT3PBZFHKQVES4',
-    'E6MGXZ52LDGHNU65AMFH6UQSFWANT5GJJ77WFYTHNJUSOD66G3BGTPYJQM',
-    'CMO4APSCJFHWI6O42OBDZ4M7OESBYOQIR7FLIP5DYX2CLSYBA4QVRJYAZE',
-    'HFI4MIFJEV6X35EJRGLI3XGYH42ZQBNR4ZRBARAUVCSJN6EMKIJWGCTEGA',
-    '5DYIZMX7N4SAB44HLVRUGLYBPSN4UMPDZVTX7V73AIRMJQA3LKTENTLFZ4'])
-  const [avatarBook, setAvatarBook]=useState([
-    '/algoHead051.png',
-    '/algoHead052.png',
-    '/algoHead053.png',
-    '/algoHead010.png',
-    '/algoHead015.png',
-    '/algoHead013.png'])
+    // 'HFI4MIFJEV6X35EJRGLI3XGYH42ZQBNR4ZRBARAUVCSJN6EMKIJWGCTEGA'
+  ])
+
+  const [sholderRank, setSholderRank] = useState(-1)
+    
+
   const [fetchedsholders, setFetchedsholders] = useState()
   const [isLoading, setLoading] = useState()
 
@@ -138,12 +132,10 @@ function Landing() {
     fetch('/api/sholders')
       .then((res) => res.json())
       .then((data) => {
+        data.message.sort((a,b) => b.heads.length - a.heads.length)
         setFetchedsholders(data.message)
         data.message.map((sholder) => {
-          if (sholders.indexOf(sholder.address) == -1) {
-            sholders.push(sholder.address)
-            avatarBook.push(sholder.heads[0].src)
-          }
+          sholders.push(sholder)
         })
         console.log(sholders)
         setLoading(false)
@@ -159,11 +151,18 @@ function Landing() {
       let fetchedAccount = await myAlgoConnect.connect(settings).then(fetchedAccount => {
         setAccount(fetchedAccount)
         setAuthLevel(1)
-        if (sholders.indexOf(fetchedAccount[0].address) !== -1) {
-          setAuthLevel(2)
-          setAvatar(avatarBook[sholders.indexOf(fetchedAccount[0].address)])
-          console.log(avatar)
-        }
+        sholders.map((sholder, index) => {
+          if(sholder.address == fetchedAccount[0].address) {
+            setSholderRank(index)
+            setAuthLevel(2)
+            setAvatar(sholder.heads[sholder.heads.length-1].src)
+            if (sholder.heads.length >= 5) {
+              setAuthLevel(3)
+            }
+            
+          }
+        })
+
       })
     } catch (error) {
       console.log(error)
@@ -837,7 +836,10 @@ function Landing() {
                     fontSize: '1.2rem'}}>
                     <Image src={avatar} layout='fill' />
                   </motion.button> 
-                  <p style={{color:activeTheme==='light' ? darkColorPalette[6-colorCode] : null}}>{account[0].name.length > 8 ? account[0].name.slice(0,7)+'...' : account[0].name}</p>
+                  <p style={{color:activeTheme==='light' ? darkColorPalette[6-colorCode] : null}}>
+                    {account[0].name.length > 8 ? account[0].name.slice(0,7)+'...' : account[0].name}
+                    {/* {authLevel} */}
+                    </p>
                 </motion.div> :
                 <motion.div className={styles.wallet} onClick={() => router.push('https://www.nftexplorer.app/sellers/algo-heads')}>
                   <motion.button className={styles.walletButton}
@@ -887,11 +889,11 @@ function Landing() {
                     </p>
                     <p><span>{shuffleDays}</span> d <span>{shuffleHours}</span> h <span>{shuffleMinutes}</span> m</p>
                   </> :
-                !shuffleLive && shufflesArray[selectedSuffle].auth > authLevel && authLevel==1 ?
+                !shuffleLive && shufflesArray[selectedSuffle].auth > authLevel && shufflesArray[selectedSuffle].auth==2 ?
                   <p>
                     Sholders only!
                   </p> :
-                !shuffleLive && shufflesArray[selectedSuffle].auth > authLevel && authLevel==2 ?
+                !shuffleLive && shufflesArray[selectedSuffle].auth > authLevel && shufflesArray[selectedSuffle].auth==3 ?
                   <p>
                     Spin sholders only!
                   </p> :
