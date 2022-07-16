@@ -136,8 +136,8 @@ function Headlist() {
               }
             }), 1500)
           }
-          console.log(data)
           data.message.sales.reverse()
+          console.log(data)
           for (var j=0; j < data.message.sales.length; j++) {
             for (var i=0; i < listedHeads.length; i++) {
               if (data.message.sales[j].asset == listedHeads[i].assetId) {
@@ -157,6 +157,7 @@ function Headlist() {
             if (!sholderCatcher) {
               sholders.push({address: head.sholder.address, heads: [{assetId: head.assetId, bgColorCode: head.bgColorCode, src: head.src}]})
             }
+            console.log(`head${head.assetId} listed for ${head.price}A`)
             fetch('api/headlist' , {
               method: 'POST',
               body: JSON.stringify(head)
