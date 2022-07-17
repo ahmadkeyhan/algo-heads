@@ -1,4 +1,4 @@
-import styles from '../../styles/sholders.module.css'
+import styles from '../../styles/sholder.module.css'
 import dynamic from "next/dynamic"
 
 const Sholder = dynamic(() => import("../../components/Sholder"), {ssr: false})
