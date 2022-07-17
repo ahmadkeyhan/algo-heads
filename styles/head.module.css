@@ -1,0 +1,498 @@
+.container {
+    display: flex;
+    width: 100vw;
+    justify-content: space-evenly;
+    height: 100vh;
+  align-items: center;
+  background-color: var(--color-bg-primary);
+  }
+  
+  .headList {
+    position: relative;
+    background-color: var(--color-bg-primary);
+    overflow-y: scroll;
+    }
+  
+    .headList::-webkit-scrollbar {
+      height: 0.125rem;
+      width: 0.125rem;
+    }
+    
+    .headList::-webkit-scrollbar-track {
+      background: var(--color-bg-primary);
+    }
+    
+    .headList::-webkit-scrollbar-thumb {
+      background: var(--color-bg-primary);
+      border-radius: 0.0625;
+    }
+    
+    .wheelFive, .wheelSix, .wheelSeven, .wheelEight {
+      position: absolute;
+    }
+  
+    .wheelFive {
+      top: -44vw;
+      left: 0;
+    }
+    
+    .wheelSix {
+      left: 57vw;
+      top: 13vw;
+    }
+  
+    .wheelSeven {
+      left: -44vw;
+      top: 70vw;
+    }
+  
+    .wheelEight {
+      top: 127vw;
+      left: 13vw;
+    }
+  
+    .firstStepTitle {
+      position: absolute;
+      left: 16vw;
+      top: 42vw;
+      width: 11ch;
+      text-align: right;
+    }
+  
+    .nextStepsTitle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      position: absolute;
+      transform: translate(0, 0);
+      left: 35vw;
+      top: calc(44vw + 1rem);
+    }
+  
+    .title {
+      display: flex;
+      align-items: center;
+    }
+  
+    .stepCounter {
+      font-family: 'Gluten', cursive;
+      font-size: 0.6rem;
+      font-weight: 300;
+      color: var(--color-text-primary);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      height: 8vw;
+      border-radius: 4.5vw;
+    }
+  
+    .stepCounter p {
+      margin: 0;
+    }
+  
+    .firstStepTitle h1 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      line-height:110%;
+      margin: 0;
+    }
+  
+    .nextStepsTitle h1 {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin: 0;
+    }
+  
+    .firstStepTitle h2 {
+      font-family: 'Gluten', cursive;
+      font-size: 0.7rem;
+      font-weight: 300;
+      margin: 0.5rem 0 0 0;
+      color: var(--color-text-primary);
+    }
+  
+    .nextStepsTitle h2 {
+      font-family: 'Gluten', cursive;
+      font-size: 0.6rem;
+      font-weight: 600;
+      margin: 0 0 0 0.2rem;
+    }
+  
+    .arrowHolder {
+        position: absolute;
+        width: 55vw;
+        height: 55vw;
+        top: 16vw;
+        left: 16vw;
+    }
+  
+    .scrollButton {
+      position: absolute;
+      left: 26vw;
+      top: 38vw;
+      height: 8vw;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-around;
+      border-radius: 5.5vw;
+      border: none;
+      background-color: var(--color-bg-primary);
+      font-size: 0.6rem;
+      font-family: 'Gluten', cursive;
+      color: var(--color-text-secondary);
+  }
+  
+    .stepsBackward {
+        position: absolute;
+        height: calc(18vw + 1rem);
+        top: calc(18.5vw - 0.5rem);
+        left: calc(18.5vw - 1rem);
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+  
+    .stepsForward {
+      position: absolute;
+        height: calc(18vw + 1rem);
+        top: calc(18.5vw - 0.5rem);
+        left: calc(27.5vw + 1rem);
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+  
+    .step {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 9vw;
+        height: 9vw;
+        border-radius: 4.5vw;
+    }
+  
+    .step p {
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+  
+    .step span {
+      margin-left: 0.1rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-align: center;
+    }
+  
+    .counterArrows {
+      transform: rotate(87.5deg);  
+    }
+  
+    .headHolder {
+      position: absolute;
+      width: 28vw;
+      height: 28vw;
+      border-radius: 14vw;
+      display: flex;
+      justify-content: center;
+      color: var(--color-text-secondary);
+    }
+  
+    .bigHeadHolder {
+      position: absolute;
+      width: 24vw;
+      height: 24vw;
+      border-radius: 12vw;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      justify-content: space-around;
+      align-items: center;
+      color: var(--color-text-secondary);
+    }
+  
+    .bigHeadHolder .bigPriceTag div {
+      display: flex;
+      align-items: center;
+    }
+  
+    .bigPriceTag {
+      margin-top: 1rem;
+      font-family: 'Gluten', cursive;
+      font-size: 0.6rem;
+      font-weight: 300;
+      display: flex;
+      width: 20vw;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+  
+    .nftxLink {
+      margin-left: -2rem;
+      font-family: 'Gluten', cursive;
+      font-size: 0.6rem;
+      font-weight: 300;
+      display: flex;
+      height: 7vw;
+      padding: 0 0.7rem;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 10vw;
+      background-color: var(--color-bg-primary);
+      border-width: 3px;
+      z-index: 10;
+    }
+  
+    .sholderTag {
+      font-family: 'Gluten', cursive;
+      font-size: 0.6rem;
+      font-weight: 300;
+      display: flex;
+      width: 23vw;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+  
+    .sholderTag a p {
+      text-decoration: underline;
+    }
+  
+    .bigPriceTag p, .nftxLink p {
+      margin: 0;
+    }
+  
+    .headHolder .rank {
+      position: absolute;
+      top: 20vw;
+      left: 20vw;
+      width: 7vw;
+      height: 7vw;
+      border-radius: 5vw;
+      background-color: var(--color-bg-primary);
+      border: 2px solid var(--color-text-secondary);
+      font-family: 'Gluten', cursive;
+      font-size: 0.7rem;
+      font-weight: 300;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+  
+    .headHolder .frame {
+        position: absolute;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+      width: 24vw;
+      height: 24vw;
+      top: 2vw;
+      left: 2vw;
+      border-radius: 4vw 12vw 12vw 12vw;
+        overflow: hidden;
+    }
+  
+    .headHolder .bigFrame {
+      position: absolute;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center; 
+    width: 27vw;
+    height: 27vw;
+    top: 2vw;
+    left: 2vw;
+    border-radius: 4vw 14vw 14vw 14vw;
+      overflow: hidden;
+    }
+  
+  
+    .headHolder .headCard {
+        width: 28vw;
+        height: 8vw;
+        border-radius: 5vw;
+        z-index: 3;
+        position: absolute;
+        top: 26vw;
+        font-family: 'Gluten', cursive;
+        font-size: 0.6rem;
+        font-weight: 300;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+  
+    .bigHeadHolder .rank {
+      position: absolute;
+      top: 17vw;
+      left: 25vw;
+      width: 7vw;
+      height: 7vw;
+      border-radius: 5vw;
+      background-color: var(--color-bg-primary);
+      border: 2px solid var(--color-text-secondary);
+      font-family: 'Gluten', cursive;
+      font-size: 0.7rem;
+      font-weight: 300;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+  
+    .bigHeadHolder .frame {
+        position: absolute;
+      width: 27vw;
+      height: 27vw;
+      border-radius: 15vw 5vw 15vw 15vw;
+      overflow: hidden;
+    }
+  
+    .secondFrame {
+      position: absolute;
+      top: 0.1rem;
+      left: 0.1rem;
+      width: calc(27vw - 0.2rem);
+      height: calc(27vw - 0.2rem);
+      border-radius: 14vw;
+      background-color: var(--color-bg-primary);
+      opacity: 1;
+    }
+  
+    .bigHeadHolder .headCard {
+        width: 22vw;
+        height: 9vw;
+        border-radius: 5vw;
+        z-index: 3;
+        position: absolute;
+        top: 30vw;
+        left: 10vw;
+        font-family: 'Gluten', cursive;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+    }
+  
+    .headCard p {
+        margin: 0;
+    }
+  
+    .headHolder .priceTag {
+      position: absolute;
+      top: 20vw;
+      left: 0;
+      width: 12vw;
+      height: 7vw;
+      border-radius: 5vw;
+      background-color: var(--color-bg-primary);
+      font-family: 'Gluten', cursive;
+      font-size: 0.7rem;
+      font-weight: 300;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      z-index: 10;
+      border: 2px solid #FFBC76;
+    }
+  
+    .firstRank, .firstPriceTag {
+      display: none;
+    }
+  
+    .algoLogo {
+        display: flex;
+        align-items: center;
+        height: 2.5vw;
+        width: 2.5vw;
+    }
+  
+    .sortWheel {
+      font-family: 'Gluten', cursive;
+      font-size: 0.6rem;
+      font-weight: 300;
+      color: var(--color-text-secondary);
+      position: absolute;
+      top: 28vw;
+      left: 22vw;
+      width: 50vw;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+  
+    .sortWheel p {
+      margin: 0.1rem 0;
+    }
+  
+    .sortDirection, .sortBy {
+      display: flex;
+      width: 19vw;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+  
+    .sortDirections, .sortBys {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+  
+    .sortDirectionSlider, .sortBySlider {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 2.125rem;
+      width: 1.125rem;
+      padding: 0;
+      border-radius: 1rem;
+      background-color: var(--color-bg-primary);
+      border: 0.125rem solid var(--color-text-secondary);
+    }
+  
+    .sortDirectionCatcher, .sortByCatcher {
+      margin: -0.125rem 0;
+      width: 1.125rem;
+      height: 1.125rem;
+      border: 0.125rem solid var(--color-text-secondary);
+      border-radius: 1rem;
+    }
+  
+    .nftxCollection {
+      font-family: 'Gluten', cursive;
+      font-size: 0.6rem;
+      font-weight: 300;
+      color: var(--color-text-secondary);
+      position: absolute;
+      top: 39vw;
+      left: 22vw;
+      width: 50vw;
+      text-align: right;
+    }
+  
+    .nftxCollection span {
+      margin: 0 0.1rem 0 0;
+    }
+  
+    .goBack {
+      font-size: 0.9rem;
+      width: 20vw;
+      text-align: center;
+      line-height: 1.2rem;
+    }
+  
+    .navSliderFrame {
+      position: absolute;
+      top: 145vw;
+      left: 91vw;
+    }
