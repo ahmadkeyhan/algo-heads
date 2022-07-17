@@ -20,11 +20,12 @@ function Head() {
   }, [activeTheme])
 
   const [headIndex, setHeadIndex] = useState(-1)
-  const [fetchedheads, setFetchedHead] = useState()
+  const [fetchedheads, setFetchedHeads] = useState()
   const [isLoading, setLoading] = useState()
-
   const [headArray, setHeadArray] = useState([])
   const [colorCode, setColorCode] = useState(3)
+
+  const [metaData, setMetaData] = useState()
 
   useEffect(() => {
     setLoading(true)
@@ -32,12 +33,20 @@ function Head() {
       .then((res) => res.json())
       .then((data) => {
         data.message.sort((a,b) => a.assetId*1 - b.assetId*1)
-        setFetchedHead(data.message)
+        setFetchedHeads(data.message)
+        console.log(head, headIndex)
         data.message.map((h, index) => {
           headArray.push(h)
           if (head == h.assetId) {
             setHeadIndex(index)
+            console.log(headIndex)
             setColorCode(h.bgColorCode > -1 ? h.bgColorCode : 5)
+            fetch(`/api/asset/?assetId=${h.assetId}`)
+              .then((res) => res.json())
+              .then((data) => {
+                setMetaData(data.message)
+                console.log(data.message)
+              })
           }
         })
         setLoading(false)
@@ -85,7 +94,7 @@ function Head() {
   if(fetchedheads) {
     if(headIndex !== -1) {
       return (
-        <div className={styles.landing}
+        <div className={styles.headlist}
           style={{height: `${normalizedwidth*16/9}vw`,
           width: `${normalizedwidth}vw`}}>
           <div className={styles.wheelHolder}>
@@ -96,12 +105,14 @@ function Head() {
         </div>
         )
     } else {
-      router.push('/headlist')
+      return (
+        <p>ids dont match</p>
+      )
     }
     
   } else {
     return (
-      <div className={styles.landing}
+      <div className={styles.headlist}
         style={{height: `${normalizedwidth*16/9}vw`,
         width: `${normalizedwidth}vw`}}>
         <div className={styles.wheelHolder}>
