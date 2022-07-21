@@ -8,10 +8,9 @@ import Image from 'next/image'
 function Roadmap() {
     const [activeTheme, setActiveTheme] = useState('light')
 
-    const [step, setStep] = useState(1)
+    const [step, setStep] = useState(2)
 
     const [tasks, setTasks] = useState()
-    const [weekTasks, setWeekTasks] = useState()
     const [isLoading, setLoading] = useState()
     useEffect(() => {
         setLoading(true)
