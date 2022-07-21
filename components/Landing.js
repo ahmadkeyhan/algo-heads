@@ -490,9 +490,9 @@ function Landing() {
               animate={control5}>
               <Image className={styles.head}
                 src={male && shufflesArray[selectedSuffle].maleAssets[1] ? 
-                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[1].assetName.slice(2,5)+'.png' :
+                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[1].assetName.slice(2,5)+'.gif' :
                   !male && shufflesArray[selectedSuffle].femaleAssets[1] && shufflesArray[selectedSuffle].femaleAssets[1].rank ?
-                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[1].assetName.slice(2,5)+'.png' :
+                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[1].assetName.slice(2,5)+'.gif' :
                   !male && shufflesArray[selectedSuffle].femaleAssets[1] && !shufflesArray[selectedSuffle].femaleAssets[1].rank ?
                   '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[1].assetName.slice(2,5)+'.gif' :
                   activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
@@ -520,9 +520,9 @@ function Landing() {
               animate={control6}>
               <Image className={styles.head}
                 src={male && shufflesArray[selectedSuffle].maleAssets[3] ? 
-                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[3].assetName.slice(2,5)+'.png' :
+                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[3].assetName.slice(2,5)+'.gif' :
                   !male && shufflesArray[selectedSuffle].femaleAssets[3] ?
-                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[3].assetName.slice(2,5)+'.png' :
+                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[3].assetName.slice(2,5)+'.gif' :
                   activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
                 layout='fill' />
             </motion.div>
@@ -548,9 +548,9 @@ function Landing() {
               animate={control7}>
               <Image className={styles.head}
                 src={male && shufflesArray[selectedSuffle].maleAssets[5] ? 
-                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[5].assetName.slice(2,5)+'.png' :
+                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[5].assetName.slice(2,5)+'.gif' :
                   !male && shufflesArray[selectedSuffle].femaleAssets[5] ?
-                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[5].assetName.slice(2,5)+'.png' :
+                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[5].assetName.slice(2,5)+'.gif' :
                   activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
                 layout='fill' />
             </motion.div>
@@ -576,9 +576,9 @@ function Landing() {
               animate={control8}>
               <Image className={styles.head}
                 src={male && shufflesArray[selectedSuffle].maleAssets[7] ? 
-                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[7].assetName.slice(2,5)+'.png' :
+                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[7].assetName.slice(2,5)+'.gif' :
                   !male && shufflesArray[selectedSuffle].femaleAssets[7] ?
-                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[7].assetName.slice(2,5)+'.png' :
+                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[7].assetName.slice(2,5)+'.gif' :
                   activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
                 layout='fill' />
             </motion.div>
@@ -714,9 +714,9 @@ function Landing() {
               animate={control1}>
               <Image className={styles.head}
                 src={male && shufflesArray[selectedSuffle].maleAssets[0] ? 
-                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[0].assetName.slice(2,5)+'.png' :
+                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[0].assetName.slice(2,5)+'.gif' :
                   !male && shufflesArray[selectedSuffle].femaleAssets[0] ?
-                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[0].assetName.slice(2,5)+'.png' :
+                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[0].assetName.slice(2,5)+'.gif' :
                   activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
                 layout='fill' />
             </motion.div>
@@ -742,11 +742,11 @@ function Landing() {
               animate={control2}>
               <Image className={styles.head}
                 src={male && shufflesArray[selectedSuffle].maleAssets[2] && shufflesArray[selectedSuffle].maleAssets[2].rank ? 
-                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[2].assetName.slice(2,5)+'.png' :
+                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[2].assetName.slice(2,5)+'.gif' :
                   male && shufflesArray[selectedSuffle].maleAssets[2] && !shufflesArray[selectedSuffle].maleAssets[2].rank ? 
                   '/algoHead'+shufflesArray[selectedSuffle].maleAssets[2].assetName.slice(2,5)+'.gif' :
                   !male && shufflesArray[selectedSuffle].femaleAssets[2] ?
-                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[2].assetName.slice(2,5)+'.png' :
+                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[2].assetName.slice(2,5)+'.gif' :
                   activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
                 layout='fill' />
             </motion.div>
@@ -772,9 +772,9 @@ function Landing() {
               animate={control3}>
               <Image className={styles.head}
                 src={male && shufflesArray[selectedSuffle].maleAssets[4] ? 
-                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[4].assetName.slice(2,5)+'.png' :
+                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[4].assetName.slice(2,5)+'.gif' :
                   !male && shufflesArray[selectedSuffle].femaleAssets[4] ?
-                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[4].assetName.slice(2,5)+'.png' :
+                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[4].assetName.slice(2,5)+'.gif' :
                   activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
                 layout='fill' />
             </motion.div>
@@ -800,9 +800,9 @@ function Landing() {
               animate={control4}>
               <Image className={styles.head}
                 src={male && shufflesArray[selectedSuffle].maleAssets[6] ? 
-                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[6].assetName.slice(2,5)+'.png' :
+                  '/algoHead'+shufflesArray[selectedSuffle].maleAssets[6].assetName.slice(2,5)+'.gif' :
                   !male && shufflesArray[selectedSuffle].femaleAssets[6] ?
-                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[6].assetName.slice(2,5)+'.png' :
+                  '/algoHead'+shufflesArray[selectedSuffle].femaleAssets[6].assetName.slice(2,5)+'.gif' :
                   activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
                 layout='fill' />
             </motion.div>
