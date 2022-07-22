@@ -310,10 +310,13 @@ function Headlist() {
             <motion.div className={styles.nftxLink}
               style={{color: activeTheme==='light' && sortedHeads[rank+1].bgColorCode !== -1 ? null : activeTheme=== 'dark' && sortedHeads[rank+1].bgColorCode !== -1 ? lightColorPalette[sortedHeads[rank+1].bgColorCode] : '#ffa7ff',
                 border: `0.125rem solid ${activeTheme==='light' && sortedHeads[rank+1].bgColorCode === -1 ? '#ffa7ff' : activeTheme==='light' && sortedHeads[rank+1].bgColorCode !== -1 ? lightColorPalette[sortedHeads[rank+1].bgColorCode] : sortedHeads[rank+1].bgColorCode !== -1 ? darkColorPalette[sortedHeads[rank+1].bgColorCode] : lightColorPalette[5]}`}}>
-              <Link href={'https://www.nftexplorer.app/asset/'+sortedHeads[rank+1].assetId} passHref>
-                <a target='_blank'>
+              <Link href={
+                `/headlist/${sortedHeads[rank+1].assetId}`
+                // 'https://www.nftexplorer.app/asset/'+sortedHeads[rank+1].assetId
+                } passHref>
+                {/* <a target='_blank'> */}
                   <p>see more</p>
-                </a>
+                {/* </a> */}
               </Link>
             </motion.div>
             <motion.div className={styles.rank}
