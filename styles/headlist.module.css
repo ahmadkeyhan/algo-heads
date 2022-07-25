@@ -55,7 +55,7 @@ background-color: var(--color-bg-primary);
     position: absolute;
     left: 16vw;
     top: 42vw;
-    width: 11ch;
+    width: 16vw;
     text-align: right;
   }
 
@@ -85,7 +85,7 @@ background-color: var(--color-bg-primary);
     justify-content: space-around;
     align-items: center;
     height: 8vw;
-    border-radius: 4.5vw;
+    width: 24vw;
   }
 
   .stepCounter p {
@@ -298,7 +298,6 @@ background-color: var(--color-bg-primary);
     top: 2vw;
     left: 2vw;
     border-radius: 4vw 12vw 12vw 12vw;
-      overflow: hidden;
   }
 
   .headHolder .bigFrame {
@@ -312,7 +311,6 @@ background-color: var(--color-bg-primary);
   top: 2vw;
   left: 2vw;
   border-radius: 4vw 14vw 14vw 14vw;
-    overflow: hidden;
   }
 
 
@@ -354,7 +352,6 @@ background-color: var(--color-bg-primary);
     width: 27vw;
     height: 27vw;
     border-radius: 15vw 5vw 15vw 15vw;
-    overflow: hidden;
   }
 
   .secondFrame {
