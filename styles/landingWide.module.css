@@ -98,6 +98,30 @@
     z-index: 5;
     background-color: var(--color-bg-primary);
   }
+
+  .winners {
+    position: absolute;
+    left: 16.88vh;
+    top: 22.5vh;
+    width: 27vh;
+    height: 20.25vh;
+    border-radius: 3.38vh;
+    background-color: aliceblue;
+    list-style-type: none;
+    margin: 0;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 0.7rem;
+    z-index: 100;
+  }
+  
+  .winners li {
+    width: calc(27vh - 2rem);
+    overflow: hidden;
+  }
+  
   
   .shuffle3 {
     position: absolute;
