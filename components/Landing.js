@@ -129,8 +129,15 @@ function Landing() {
           fetch(`api/escrowTxns/?wallet=${auction.escrowWallet}`)
             .then((res) => res.json())
             .then((data) => {
-              // let txns = data.message.filter((txn) => txn["tx-type"] == "pay" && txn["payment-transaction"].receiver == auction.escrowWallet)
+              data.message.sort((txna, txnb) => txna["confirmed-round"] - txnb["confirmed-round"])
               console.log(data.message)
+              data.message.map((txn, index) => {
+                index && auction.bidHistory.push({bid: txn["payment-transaction"].amount, bidder: txn.sender})
+              })
+              fetch('api/auctions' , {
+                method: 'POST',
+                body: JSON.stringify(auction)
+              }).then((res) => res.json())
             })
         })
       })

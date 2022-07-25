@@ -5,7 +5,7 @@ async function updateAuction(req, res) {
         let { db } = await connectToDatabase();
         let auction = req.body;
         auction = JSON.parse(auction);
-        await db.collection('auctions').updateOne({_id: auction._id}, {$set:auction}, {upsert: true})
+        await db.collection('auctions').updateOne({escrowWallet: auction.escrowWallet}, {$set:{bidHistory: auction.bidHistory}}, {upsert: true})
         return res.json({
             message: 'Auction updated!'
         })
