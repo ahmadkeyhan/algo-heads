@@ -145,6 +145,8 @@ function Landing() {
   const [account, setAccount] = useState()
   const [avatar, setAvatar] = useState()
 
+  const [totalEntries, setTotalEntries] = useState(0)
+  const [shuffleArray, setShuffleArray] = useState([])
 
   const connectWallet = async () => {
     try {
@@ -158,11 +160,27 @@ function Landing() {
             setAvatar(sholder.heads[sholder.heads.length-1].src)
             if (sholder.heads.length >= 5) {
               setAuthLevel(3)
+            } 
+            if (sholder.heads.length >= 8) {
+              setAuthLevel(4)
+            }
+            if (sholder.heads.length >= 16) {
+              setAuthLevel(5)
             }
             
           }
         })
-
+        fetch('api/shuffleEntry')
+        .then((res) => res.json())
+        .then((data) => {
+          data.message.map((participant) => {
+            for (var i = 0; i < participant.points; i++) {
+              shuffleArray.push(participant.sholder)
+            }
+            setTotalEntries(totalEntries + participant.points)
+            console.log(shuffleArray)
+          })
+        })
       })
     } catch (error) {
       console.log(error)
@@ -465,6 +483,39 @@ function Landing() {
     
   },[])
 
+  const [registered, setRegistered] = useState(false)
+  const [loadingEntries, setLoadingEntries] = useState(false)
+
+  function registerSholder({sholder, points}) {
+    setLoadingEntries(true)
+    fetch('api/shuffleEntry' , {
+      method: 'POST',
+      body: JSON.stringify({sholder: sholder, points: points})
+    }).then((res) => res.json())
+    .then(() => {
+      setRegistered(true)
+      setLoadingEntries(false)
+    })
+  }
+
+  const [winners, setWinners] = useState()
+
+  function getWinners() {
+    fetch('api/winners')
+    .then((res) => res.json())
+    .then((data) => {
+      setWinners(data.message)
+      // data.message.map((winner) => {
+      //   for (var i = 0; i < participant.points; i++) {
+      //     shuffleArray.push(participant.sholder)
+      //   }
+      //   setTotalEntries(totalEntries + participant.points)
+      //   console.log(shuffleArray)
+      // })
+    })
+  }
+
+
   if(shuffles) {
     return (
       <div className={styles.landing}
@@ -597,7 +648,8 @@ function Landing() {
             <motion.div animate={control9} className={styles.arrowHolder}>
               <Image className={styles.arrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
             </motion.div>
-            <h2 style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: null}} className={styles.title}>
+            <h2 className={styles.title}
+              style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: null}}>
               Watch the  <span style={{marginLeft: male ? '0.5rem' : '0.1rem',color: lightColorPalette[colorCode]}}>{male ? 'male' : 'female '}</span> heads spin!
             </h2>
             <motion.div className={styles.subTitle}>
@@ -901,12 +953,24 @@ function Landing() {
                   <p>
                     Connect your wallet first!
                   </p> :
-                shuffleLive && !shufflesArray[selectedSuffle].sholdOut && shufflesArray[selectedSuffle].auth <= authLevel ?
-                  <Link href={shufflesArray[selectedSuffle].link}>          
-                    <h1>
-                      Enter shuffle!
-                    </h1>
-                  </Link> :
+                shuffleLive && !shufflesArray[selectedSuffle].sholdOut && shufflesArray[selectedSuffle].auth <= authLevel && !registered ?       
+                  <div onClick={() => registerSholder({sholder: sholders[sholderRank].address, points: authLevel-1})}>
+                    <p>
+                      Register at shuffle!
+                    </p>
+                  </div> :
+                shuffleLive && !shufflesArray[selectedSuffle].sholdOut && shufflesArray[selectedSuffle].auth <= authLevel && loadingEntries ?       
+                  <div>
+                    <p>
+                      Please wait...
+                    </p>
+                  </div> :
+                shuffleLive && !shufflesArray[selectedSuffle].sholdOut && shufflesArray[selectedSuffle].auth <= authLevel && registered && totalEntries ?       
+                  <div>
+                    <p>
+                      Registered with {((authLevel-1)/totalEntries)*100}% chance!
+                    </p>
+                  </div> :
                 shuffleLive && !shufflesArray[selectedSuffle].sholdOut && shufflesArray[selectedSuffle].auth > authLevel ?
                   <>
                     <p>
@@ -916,42 +980,29 @@ function Landing() {
                 <div
                   style={{backgroundColor: lightColorPalette[colorCode]}}
                   className={styles.mainCountDown}>
-                  <p>
-                    Shold out!
-                  </p>
+                    <p>
+                      Shold out!
+                    </p>
                 </div>}
               </div>
             </motion.div>
             <motion.div className={styles.shuffle2} 
-              onClick={() => setSelectedShuffle((selectedSuffle+1)%shufflesArray.length)}
+              // onClick={() => setSelectedShuffle((selectedSuffle+1)%shufflesArray.length)}
+              onClick={() => getWinners()}
               style={{backgroundColor: lightColorPalette[shufflesArray[(selectedSuffle+1)%shufflesArray.length].colorCode]}}>
               <div className={styles.shuffleType}>
-                {shufflesArray[(selectedSuffle+1)%shufflesArray.length].auth == 2 ? <CgTrophy /> :
-                shufflesArray[(selectedSuffle+1)%shufflesArray.length].auth == 3 ? 
-                  <>
-                    <motion.div className={styles.spin}
-                      animate={{rotate: [0,-360,-360]}}
-                      transition={{ease: 'backInOut' ,duration: 2, repeat: Infinity, times: [0,0.75,1]}} />
-                    <CgTrophy />
-                  </> :
-                  <MdIcons.MdShuffle />}
+                <MdIcons.MdInfoOutline />
               </div>
             </motion.div>
-            <motion.div className={styles.shuffle3} 
-              onClick={() => setSelectedShuffle((selectedSuffle+2)%shufflesArray.length)}
-              style={{scale: 2/3,backgroundColor: lightColorPalette[shufflesArray[(selectedSuffle+2)%shufflesArray.length].colorCode]}}>
-              <div className={styles.shuffleType}>
-                {shufflesArray[(selectedSuffle+2)%shufflesArray.length].auth == 2 ? <CgTrophy /> :
-                shufflesArray[(selectedSuffle+2)%shufflesArray.length].auth == 3 ? 
-                  <>
-                    <motion.div className={styles.spin}
-                      animate={{rotate: [0,-360,-360]}}
-                      transition={{ease: 'backInOut' ,duration: 2, repeat: Infinity, times: [0,0.75,1]}} />
-                    <CgTrophy />
-                  </> :
-                  <MdIcons.MdShuffle />}
-              </div>
-            </motion.div>
+            {winners && <motion.ul className={styles.winners} style={{backgroundColor: lightColorPalette[colorCode]}}>
+                {winners.map((winner, index) => {
+                  return (
+                    <li key={index}>
+                      AH10{index+1} goes to {winner.winner[0].slice(0,8)}...
+                    </li>
+                  )
+                })}
+            </motion.ul>}
             <motion.div className={styles.shuffleBubble1} 
               style={{scale: 0.5}}>
                 <Image src={activeTheme==='light' ? '/HappyPride!.png' : '/darkSphere.png'} layout='fill' />
@@ -1178,7 +1229,7 @@ function Landing() {
                     <MdIcons.MdAccountBalanceWallet />
                   </motion.button>
                   <p style={{color: activeTheme==='light' ? darkColorPalette[6-colorCode] : lightColorPalette[6-colorCode]}}>Connect</p>
-                </motion.div> : sholderOrNot ?
+                </motion.div> : authLevel >= 2 ?
                 <motion.div className={styles.wallet} onClick={() => router.push(`/sholders/${account[0].address}`)}>
                   <motion.button className={styles.avatar}
                     style={{backgroundColor: activeTheme==='light' ? lightColorPalette[6-colorCode]: null,
