@@ -243,8 +243,8 @@ function Headlist() {
             <p>{rank + 1}</p>
           </motion.div>
           <motion.div
-            style={{backgroundColor: sortedHeads[rank].bgColorCode !== -1 ? lightColorPalette[sortedHeads[rank].bgColorCode] : '#ffa7ff', transform: `rotate(${rotation}deg)`,
-                    }}
+            style={{backgroundColor: sortedHeads[rank].bgColorCode !== -1 ? lightColorPalette[sortedHeads[rank].bgColorCode] : '#ffa7ff',
+              transform: `rotate(${rotation}deg)`}}
             onClick={() => setStep(rank)}
             className={rank == step ? styles.bigFrame : styles.frame}>
             <Image style={{transform: `rotate(${rotation*-1}deg)`}} src={sortedHeads[rank].src} alt={sortedHeads[rank].src.slice(1,12)} layout='fill' />
@@ -385,7 +385,7 @@ function Headlist() {
             </motion.div> : 
             <motion.div className={styles.nextStepsTitle}>
               <motion.div className={styles.title}>
-                <h1 style={{color:activeTheme==='light'? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}>Homosapien heads</h1>
+
               </motion.div>
               <motion.div className={styles.stepCounter}>
                 <p>( Phase 1 )</p>
@@ -442,7 +442,6 @@ function Headlist() {
                 <Image className={styles.counterArrows} src={activeTheme==='light'? arrowPalette[colorCode] : arrowPalette[7]} alt="" layout='fill' />
               </motion.div> :
               <motion.div className={styles.firstStepTitle}>
-                <h1 style={{color:activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}} >Homosapien heads</h1>
                 <h2>( Phase 1 )</h2>
                 <motion.div style={{border: 'none', marginRight: '-2rem'}} className={styles.stepCounter}>
                   <p>{step+1} to {step+10}</p>
@@ -565,7 +564,6 @@ function Headlist() {
             </motion.div> : 
             <motion.div className={styles.nextStepsTitle}>
               <motion.div className={styles.title}>
-                <h1 style={{color:activeTheme==='light'? darkColorPalette[colorCode]: lightColorPalette[colorCode]}}>Homosapien heads</h1>
               </motion.div>
               <motion.div className={styles.stepCounter}>
                 <p>( Phase 1 )</p>
@@ -618,7 +616,6 @@ function Headlist() {
                 {/* <Image className={styles.counterArrows} src={activeTheme==='light'? arrowPalette[colorCode] : arrowPalette[7]} alt="" layout='fill' /> */}
               </motion.div> :
               <motion.div className={styles.firstStepTitle}>
-                <h1 style={{color:activeTheme==='light'? darkColorPalette[colorCode] : lightColorPalette[colorCode]}} >Homosapien heads</h1>
                 <h2>( Phase 1 )</h2>
                 <motion.div style={{border: 'none', marginRight: '-2rem'}} className={styles.stepCounter}>
                   <p>{step+1} to {step+10}</p>
