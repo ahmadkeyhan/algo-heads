@@ -120,22 +120,6 @@ function Headlist() {
         fetch('api/nftx')
         .then((res) => res.json())
         .then((data) => {
-          if (data.message.nextToken) {
-            setTimeout(fetch(`api/nftx?token=${data.message.nextToken}`)
-            .then((res) => res.json())
-            .then((nextData) => {
-              console.log(nextData)
-              nextData.message.sales.map((sale) => data.message.sales.push(sale))
-              if (nextData.message.nextToken) {
-                console.log(nextData.message.nextToken)
-                setTimeout(fetch(`api/nftx?token=${nextData.message.nextToken}`)
-                .then((res) => res.json())
-                .then((lastData) => {
-                  lastData.message.sales.map((sale) => data.message.sales.push(sale))
-                }),1500)
-              }
-            }), 1500)
-          }
           data.message.sales.reverse()
           console.log(data)
           for (var j=0; j < data.message.sales.length; j++) {
@@ -157,7 +141,6 @@ function Headlist() {
             if (!sholderCatcher) {
               sholders.push({address: head.sholder.address, heads: [{assetId: head.assetId, bgColorCode: head.bgColorCode, src: head.src}]})
             }
-            console.log(`head${head.assetId} listed for ${head.price}A`)
             fetch('api/headlist' , {
               method: 'POST',
               body: JSON.stringify(head)

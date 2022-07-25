@@ -5,7 +5,7 @@ async function listHeads(req, res) {
         let { db } = await connectToDatabase();
         let head = req.body;
         head = JSON.parse(head);
-        await db.collection('heads').updateOne({assetId: head.assetId}, {$set:head}, {upsert: true})
+        await db.collection('heads').updateOne({assetId: head.assetId}, {$set:{price: head.price, sholder: head.sholder}}, {upsert: true})
         return res.json({
             message: 'head listed!'
         })
