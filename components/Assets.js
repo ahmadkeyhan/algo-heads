@@ -5,6 +5,7 @@ export const arrowPalette = ['/tealArrows.png',
                             '/redArrows.png',
                             '/purpleArrows.png',
                             '/orangeArrows.png',
+                            '/darkArrows.png',
                             '/darkArrows.png']
 
 export const buyBannerPalette = ['/buyBannerLight.png',
@@ -23,6 +24,7 @@ export const linkArrowPalette = ['/tealLinkArrows.png',
                                 '/redLinkArrows.png',
                                 '/purpleLinkArrows.png',
                                 '/orangeLinkArrows.png',
+                                '/darkLinkArrows.png',
                                 '/darkLinkArrows.png']                                
 
 export const scrollArrowPalette = ['/tealScrollArrows.png',
@@ -32,4 +34,5 @@ export const scrollArrowPalette = ['/tealScrollArrows.png',
                                 '/redScrollArrows.png',
                                 '/purpleScrollArrows.png',
                                 '/orangeScrollArrows.png',
+                                '/darkScrollArrows.png',
                                 '/darkScrollArrows.png']
