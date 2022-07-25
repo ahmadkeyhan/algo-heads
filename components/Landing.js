@@ -38,7 +38,6 @@ function Landing() {
   const [maleHeads, setMaleHeads] = useState() 
   const [femaleHeads, setFemaleHeads] = useState()
   const [heads, setHeads] = useState() 
-
   const [authLevel, setAuthLevel] = useState(0)
 
   useEffect(() => {
@@ -117,13 +116,29 @@ function Landing() {
     setHeads(male ? maleHeads : femaleHeads)
   }, [male])
 
-  const [sholders, setSholders]=useState([
-    // 'HFI4MIFJEV6X35EJRGLI3XGYH42ZQBNR4ZRBARAUVCSJN6EMKIJWGCTEGA'
-  ])
+  const [auctions, setAuctions] = useState()
+  const [aucsLoading, setAucsLoading] = useState()
+  const [selectedAuc, setSelectedAuc] = useState(0)
 
+  useEffect(() => {
+    fetch('api/auctions')
+      .then((res) => res.json())
+      .then((data) => {
+        setAuctions(data.message)
+        data.message.map((auction) => {
+          fetch(`api/escrowTxns/?wallet=${auction.escrowWallet}`)
+            .then((res) => res.json())
+            .then((data) => {
+              // let txns = data.message.filter((txn) => txn["tx-type"] == "pay" && txn["payment-transaction"].receiver == auction.escrowWallet)
+              console.log(data.message)
+            })
+        })
+      })
+  }, [])
+
+
+  const [sholders, setSholders]=useState([])
   const [sholderRank, setSholderRank] = useState(-1)
-    
-
   const [fetchedsholders, setFetchedsholders] = useState()
   const [isLoading, setLoading] = useState()
 
@@ -205,7 +220,6 @@ function Landing() {
   const [normalizedwidth, setNormalizedWidth] = useState()
   const [styles, setStyles] = useState(narrowStyles)
 
-   
   useEffect(() => {
 
     setWidth(window.visualViewport.width)
@@ -505,13 +519,6 @@ function Landing() {
     .then((res) => res.json())
     .then((data) => {
       setWinners(data.message)
-      // data.message.map((winner) => {
-      //   for (var i = 0; i < participant.points; i++) {
-      //     shuffleArray.push(participant.sholder)
-      //   }
-      //   setTotalEntries(totalEntries + participant.points)
-      //   console.log(shuffleArray)
-      // })
     })
   }
 
