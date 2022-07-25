@@ -5,7 +5,7 @@ async function listSholders(req, res) {
         let { db } = await connectToDatabase();
         let sholder = req.body;
         sholder = JSON.parse(sholder);
-        await db.collection('sholders').updateOne({address: sholder.address}, {$set:sholder}, {upsert: true})
+        await db.collection('sholders').updateOne({address: sholder.address}, {$set:{heads: sholder.heads}}, {upsert: true})
         return res.json({
             message: 'sholder listed!'
         })
