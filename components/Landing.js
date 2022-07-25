@@ -126,6 +126,18 @@ function Landing() {
       .then((data) => {
         setAuctions(data.message)
         data.message.map((auction) => {
+          var now = new Date()
+          var nowUTC = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds())
+          auction.UTCStart = new Date(auction.UTCStart)
+          auction.UTCEnd = new Date(auction.UTCEnd)
+          auction.lifeCycle = 0
+          console.log((auction.UTCStart- now)/3600000)
+          if (now > auction.UTCStart) {
+            auction.lifeCycle = 1
+          }
+          if (now > auction.UTCEnd) {
+            auction.lifeCycle = 2
+          }
           fetch(`api/escrowTxns/?wallet=${auction.escrowWallet}`)
             .then((res) => res.json())
             .then((data) => {
