@@ -80,7 +80,7 @@
 .startingBid {
   position: absolute;
   left: 33vw;
-  top: -27vw;
+  top: -19vw;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -95,7 +95,7 @@
 .highestBid {
   position: absolute;
   left: 32vw;
-  top: -18vw;
+  top: -10vw;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -122,7 +122,7 @@
 .highestBidder {
   position: absolute;
   left: 32vw;
-  top: -12vw;
+  top: -4vw;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -134,10 +134,25 @@
   font-family: 'Gluten', cursive;
 }
 
+.auctionCountDown {
+  position: absolute;
+  left: 34vw;
+  top: 5vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 28vw;
+  font-size: 0.7rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  font-family: 'Gluten', cursive;
+}
+
 .mainAuction {
   position: absolute;
   left: 30vw;
-  top: 13vw;
+  top: 14vw;
   display: flex;
   flex-direction: row;
   align-items: center;
