@@ -1230,22 +1230,24 @@ function Landing() {
                       <MdIcons.MdTimerOff style={{fontSize : '1rem', color: auctionsArray[auctionIndex].color }} />
                       <p>Auction ended!</p>
                     </motion.div>}
-              <Link href={auctionsArray[auctionIndex].link} passHref>
-                <motion.a className={styles.mainAuction} 
-                  target="_blank"
-                  style={{backgroundColor: auctionsArray[auctionIndex].color}}>
-                  <div className={styles.auctionType}>
-                    <MdIcons.MdGavel />
-                  </div>
-                  <div className={styles.auctionCard}>
-                    <div className={styles.mainCountDown}>
-                        <p>
-                          Bid on AH{auctionsArray[auctionIndex].asset.slice(9,12)}
-                        </p>
-                    </div>
-                  </div>
-                </motion.a>
-              </Link>
+                  {auctionsArray[auctionIndex].lifeCycle < 2 ?
+                    <Link href={auctionsArray[auctionIndex].link} passHref>
+                      <motion.a className={styles.mainAuction} 
+                        target="_blank"
+                        style={{backgroundColor: auctionsArray[auctionIndex].color}}>
+                        <div className={styles.auctionType}>
+                          <MdIcons.MdGavel />
+                        </div>
+                        <div className={styles.auctionCard}>
+                          <div className={styles.mainCountDown}>
+                              <p>
+                                Bid on AH{auctionsArray[auctionIndex].asset.slice(9,12)}
+                              </p>
+                          </div>
+                        </div>
+                      </motion.a>
+                    </Link> : null
+                  } 
             </>
             }
             <motion.div className={styles.shuffleBubble1} 
