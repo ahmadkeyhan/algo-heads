@@ -77,6 +77,86 @@
     background-color: var(--color-bg-primary);
   }
 
+  .startingBid {
+    position: absolute;
+    left: 18.56vh;
+    top: -15.19vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 16.88vh;
+    font-size: 0.7rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    font-family: 'Gluten', cursive;
+  }
+  
+  .highestBid {
+    position: absolute;
+    left: 18vh;
+    top: -10.13vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 18vh;
+    font-size: 0.7rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    font-family: 'Gluten', cursive;
+  }
+  
+  .highBid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 5.63vh;
+    font-size: 0.7rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    font-family: 'Gluten', cursive;
+  }
+  
+  .highestBidder {
+    position: absolute;
+    left: 18vh;
+    top: -6.75vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 18vh;
+    font-size: 0.7rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    font-family: 'Gluten', cursive;
+  }
+  
+  .mainAuction {
+    position: absolute;
+    left: 16.88vh;
+    top: 7.31vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 6.75vh;
+    width: 20.25vh;
+    border-radius: 3.38vh;
+    overflow: hidden;
+    color: #212121;
+    font-size: 0.6rem;
+    font-weight: 600;
+    font-family: 'Gluten', cursive;
+    text-align: center;
+    line-height: 1rem;
+    z-index: 5;
+    background-color: var(--color-bg-primary);
+  }
+  
+
   .shuffle2 {
     position: absolute;
     left: 38.81vh;
@@ -186,6 +266,17 @@
     font-size: 1.3rem;
     color: var(--color-bg-primary);
   }
+
+  .auctionType {
+    width: 5.06vh;
+    height: 5.06vh;
+    border-radius: 3.375vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: var(--color-bg-primary);
+  }
   
   .spin {
     position: absolute;
@@ -203,6 +294,15 @@
     align-items: center;
     justify-content: center;
     width: 16.88vh;
+    height: 6.75vh;
+  }
+
+  .auctionCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 12.38vh;
     height: 6.75vh;
   }
   
@@ -405,8 +505,8 @@
   .headCard {
     z-index: 13;
     position: absolute;
-    width: 15.75vh;
-    height: 5vh;
+    width: 12.38vh;
+    height: 2.81vh;
     border-radius: 2.5vh;
     transform: translate(-50%, 7.88vh);
       font-family: 'Gluten', cursive;

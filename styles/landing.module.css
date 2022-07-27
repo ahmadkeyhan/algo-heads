@@ -77,6 +77,85 @@
   background-color: var(--color-bg-primary);
 }
 
+.startingBid {
+  position: absolute;
+  left: 33vw;
+  top: -27vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 30vw;
+  font-size: 0.7rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  font-family: 'Gluten', cursive;
+}
+
+.highestBid {
+  position: absolute;
+  left: 32vw;
+  top: -18vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 32vw;
+  font-size: 0.7rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  font-family: 'Gluten', cursive;
+}
+
+.highBid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 10vw;
+  font-size: 0.7rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  font-family: 'Gluten', cursive;
+}
+
+.highestBidder {
+  position: absolute;
+  left: 32vw;
+  top: -12vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 32vw;
+  font-size: 0.7rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  font-family: 'Gluten', cursive;
+}
+
+.mainAuction {
+  position: absolute;
+  left: 30vw;
+  top: 13vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 12vw;
+  width: 36vw;
+  border-radius: 6vw;
+  overflow: hidden;
+  color: #212121;
+  font-size: 0.6rem;
+  font-weight: 600;
+  font-family: 'Gluten', cursive;
+  text-align: center;
+  line-height: 1rem;
+  z-index: 5;
+  background-color: var(--color-bg-primary);
+}
+
 .shuffle2 {
   position: absolute;
   left: 69vw;
@@ -186,6 +265,17 @@
   color: var(--color-bg-primary);
 }
 
+.auctionType {
+  width: 9vw;
+  height: 9vw;
+  border-radius: 6vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: var(--color-bg-primary);
+}
+
 .spin {
   position: absolute;
   top: 2vw;
@@ -202,6 +292,15 @@
   align-items: center;
   justify-content: center;
   width: 30vw;
+  height: 12vw;
+}
+
+.auctionCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 22vw;
   height: 12vw;
 }
 
@@ -403,9 +502,8 @@
 }
 
 .headCard {
-  width: 28vw;
-  height: 9vw;
-  border-radius: 5vw;
+  width: 22vw;
+  height: 5vw;
   z-index: 13;
   position: absolute;
   transform: translate(-50%, 14vw);
