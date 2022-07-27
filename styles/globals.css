@@ -8,7 +8,7 @@ body {
 body,
 body[data-theme="light"] {
   --color-text-primary: #212121;
-  --color-text-secondary: #6a6a6a;
+  --color-text-secondary: #404040;
   --color-bg-primary: #f3f8f2;
 }
 
