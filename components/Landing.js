@@ -138,6 +138,21 @@ function Landing() {
           auction.lifeCycle = 0
           if (now > auction.UTCStart) {
             auction.lifeCycle = 1
+            setAucHours(0)
+            setAucMins(0)
+            setAucSecs(0)
+            for (var i = 1; i < 99999; i++) {
+              clearInterval(i)
+            }
+            setInterval(() => {
+              var now = new Date()
+              
+              if (now >= auctionsArray[0].UTCStart) {
+                setAucHours(Math.floor((auctionsArray[0].UTCEnd - now)/3600000))
+                setAucMins(Math.floor((auctionsArray[0].UTCEnd - now)%3600000/60000))
+                setAucSecs(Math.floor((auctionsArray[0].UTCEnd - now)%60000/1000))
+              }
+            },1000)
           }
           if (now > auction.UTCEnd) {
             auction.lifeCycle = 2
@@ -181,7 +196,6 @@ function Landing() {
           setAucSecs(Math.floor((auctionsArray[0].UTCEnd - now)%60000/1000))
         }
       },1000)
-  
     }
   }, [auctionIndex])
 
@@ -1205,12 +1219,17 @@ function Landing() {
                 style={{borderBottom: `2px solid ${auctionsArray[auctionIndex].color}`}}>
                 <p>bidder : {auctionsArray[auctionIndex].bidHistory.length ? auctionsArray[auctionIndex].bidHistory[auctionsArray[auctionIndex].bidHistory.length-1].bidder.slice(0,9) : ''}...</p>
               </motion.div>
-              <motion.div className={styles.auctionCountDown}>
-                <MdIcons.MdTimer style={{fontSize : '1rem', color: auctionsArray[auctionIndex].color }} />
-                <p>{aucHours} h</p>
-                <p>{aucMins} m</p>
-                <p>{aucSecs} s</p>
-              </motion.div>
+                  {auctionsArray[auctionIndex].lifeCycle < 2 ? 
+                    <motion.div className={styles.auctionCountDown}>
+                      <MdIcons.MdTimer style={{fontSize : '1rem', color: auctionsArray[auctionIndex].color }} />
+                      <p>{aucHours} h</p>
+                      <p>{aucMins} m</p>
+                      <p>{aucSecs} s</p>
+                    </motion.div> : 
+                    <motion.div className={styles.auctionCountDown}>
+                      <MdIcons.MdTimerOff style={{fontSize : '1rem', color: auctionsArray[auctionIndex].color }} />
+                      <p>Auction ended!</p>
+                    </motion.div>}
               <Link href={auctionsArray[auctionIndex].link} passHref>
                 <motion.a className={styles.mainAuction} 
                   target="_blank"
