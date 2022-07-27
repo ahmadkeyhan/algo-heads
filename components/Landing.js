@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import narrowStyles from '../styles/landing.module.css'
 import wideStyles from '../styles/landingWide.module.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import * as MdIcons from 'react-icons/md'
 import * as SiIcon from 'react-icons/si'
 import * as BsIcons from 'react-icons/bs'
@@ -120,7 +120,11 @@ function Landing() {
   const [auctions, setAuctions] = useState()
   const [auctionsArray, setAuctionsArray] = useState([])
   const [aucsLoading, setAucsLoading] = useState()
-  const [selectedAuc, setSelectedAuc] = useState(0)
+  const [shufflesOrAuctions, setShufflesOrAuctions] = useState(false)
+  const [auctionIndex, setAuctionIndex] = useState(0)
+  const [aucHours, setAucHours] = useState(0)
+  const [aucMins, setAucMins] = useState(0)
+  const [aucSecs, setAucSecs] = useState(0)
 
   useEffect(() => {
     setAucsLoading(true)
@@ -129,11 +133,9 @@ function Landing() {
       .then((data) => {
         data.message.map((auction) => {
           var now = new Date()
-          var nowUTC = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds())
           auction.UTCStart = new Date(auction.UTCStart)
           auction.UTCEnd = new Date(auction.UTCEnd)
           auction.lifeCycle = 0
-          console.log((auction.UTCStart- now)/3600000)
           if (now > auction.UTCStart) {
             auction.lifeCycle = 1
           }
@@ -161,6 +163,27 @@ function Landing() {
         console.log(auctionsArray)
       })
   }, [])
+
+  useEffect(() => {
+    if (auctions) {
+      setAucHours(0)
+      setAucMins(0)
+      setAucSecs(0)
+      for (var i = 1; i < 99999; i++) {
+        clearInterval(i)
+      }
+      setInterval(() => {
+        var now = new Date()
+        
+        if (now >= auctionsArray[0].UTCStart) {
+          setAucHours(Math.floor((auctionsArray[0].UTCEnd - now)/3600000))
+          setAucMins(Math.floor((auctionsArray[0].UTCEnd - now)%3600000/60000))
+          setAucSecs(Math.floor((auctionsArray[0].UTCEnd - now)%60000/1000))
+        }
+      },1000)
+  
+    }
+  }, [auctionIndex])
 
 
   const [sholders, setSholders]=useState([])
@@ -548,9 +571,6 @@ function Landing() {
     })
   }
 
-  const [shufflesOrAuctions, setShufflesOrAuctions] = useState(false)
-  const [auctionIndex, setAuctionIndex] = useState(0)
-
   if(shuffles && auctions) {
     return (
       <div className={styles.landing}
@@ -647,14 +667,16 @@ function Landing() {
               </> : 
               <>
                 <motion.div className={styles.headHolder}
-                  style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh',
+                  style={{width:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '32vw' : '18vh',
+                    height:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '32vw' : '18vh',
+                    top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '88vw' : '49.5vh',
                     left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? '27vw' : '15.19vh'}}>
                   <Image className={styles.head}
                     src={auctionsArray[auctionIndex].asset}
                     layout='fill' />
                 </motion.div>
                 <motion.div className={styles.headCard}
-                  style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh',
+                  style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '92vw' : '51.75vh',
                     left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? '27vw' : '15.19vh',
                     borderBottom: `2px solid ${auctionsArray[auctionIndex].color}`}}>
                   <p>
@@ -1182,6 +1204,12 @@ function Landing() {
               <motion.div className={styles.highestBidder}
                 style={{borderBottom: `2px solid ${auctionsArray[auctionIndex].color}`}}>
                 <p>bidder : {auctionsArray[auctionIndex].bidHistory.length ? auctionsArray[auctionIndex].bidHistory[auctionsArray[auctionIndex].bidHistory.length-1].bidder.slice(0,9) : ''}...</p>
+              </motion.div>
+              <motion.div className={styles.auctionCountDown}>
+                <MdIcons.MdTimer style={{fontSize : '1rem', color: auctionsArray[auctionIndex].color }} />
+                <p>{aucHours} h</p>
+                <p>{aucMins} m</p>
+                <p>{aucSecs} s</p>
               </motion.div>
               <Link href={auctionsArray[auctionIndex].link} passHref>
                 <motion.a className={styles.mainAuction} 
