@@ -35,11 +35,9 @@ function Landing() {
   const [shufflesArray, setShufflesArray] = useState([])
   const [shufflesLoading, setShufflesLoading] = useState()
   const [shuffleIndex, setShuffleIndex] = useState(0)
-  const [shuffleLive, setShuffleLive] = useState(false)
   const [shuffleHours, setShuffleHours] = useState()
   const [shuffleMins, setShuffleMins] = useState()
   const [shuffleSecs, setShuffleSecs] = useState()
-  const [authLevel, setAuthLevel] = useState(0)
   useEffect(() => {
     setShufflesLoading(true)
     console.log('shuffles are loading...')
@@ -69,7 +67,6 @@ function Landing() {
       })    
   }, [])
 
-  
   // read and react to auction object(s)
   const [auctions, setAuctions] = useState()
   const [auctionsArray, setAuctionsArray] = useState([])
@@ -78,7 +75,6 @@ function Landing() {
   const [aucHours, setAucHours] = useState(0)
   const [aucMins, setAucMins] = useState(0)
   const [aucSecs, setAucSecs] = useState(0)
-
   useEffect(() => {
     setAucsLoading(true)
     fetch('api/auctions')
@@ -131,7 +127,7 @@ function Landing() {
         console.log(auctionsArray)
       })
   }, [])
-
+  // reset the auction timer every time auctionIndex changes
   useEffect(() => {
     if (auctions) {
       setAucHours(0)
@@ -152,40 +148,39 @@ function Landing() {
     }
   }, [auctionIndex])
 
-
-  const [sholders, setSholders]=useState([])
-  const [sholderRank, setSholderRank] = useState(-1)
-  const [fetchedsholders, setFetchedsholders] = useState()
-  const [isLoading, setLoading] = useState()
-
+  // read and react to sholders
+  const [sholdersArray, setSholdersArray]=useState([])
+  const [sholders, setSholders] = useState()
+  const [sholdersLoading, setSholdersLoading] = useState()
+  const [sholderIndex, setSholderIndex] = useState()
   useEffect(() => {
-    setLoading(true)
+    setSholdersLoading(true)
     fetch('/api/sholders')
       .then((res) => res.json())
       .then((data) => {
         data.message.sort((a,b) => b.heads.length - a.heads.length)
-        setFetchedsholders(data.message)
+        setSholders(data.message)
         data.message.map((sholder) => {
-          sholders.push(sholder)
+          sholdersArray.push(sholder)
         })
-        console.log(sholders)
-        setLoading(false)
+        console.log(sholdersArray)
+        setSholdersLoading(false)
       })
   },[])
 
+  // handle connection and auth
   const [account, setAccount] = useState()
   const [avatar, setAvatar] = useState()
-  const [totalEntries, setTotalEntries] = useState(0)
-  const [shuffleArray, setShuffleArray] = useState([])
+  const [authLevel, setAuthLevel] = useState(0)
 
   const connectWallet = async () => {
     try {
-      let fetchedAccount = await myAlgoConnect.connect(settings).then(fetchedAccount => {
+      let fetchedAccount = await myAlgoConnect.connect(settings).then((fetchedAccount) => {
         setAccount(fetchedAccount)
         setAuthLevel(1)
-        sholders.map((sholder, index) => {
+        sholdersArray.map((sholder, index) => {
           if(sholder.address == fetchedAccount[0].address) {
-            setSholderRank(index)
+            setSholderIndex(index)
             setAuthLevel(2)
             setAvatar(sholder.heads[sholder.heads.length-1].src)
             if (sholder.heads.length >= 5) {
@@ -197,20 +192,19 @@ function Landing() {
             if (sholder.heads.length >= 16) {
               setAuthLevel(5)
             }
-            
           }
         })
-        fetch('api/shuffleEntry')
-        .then((res) => res.json())
-        .then((data) => {
-          data.message.map((participant) => {
-            for (var i = 0; i < participant.points; i++) {
-              shuffleArray.push(participant.sholder)
-            }
-            setTotalEntries(totalEntries + participant.points)
-            console.log(shuffleArray)
-          })
-        })
+        // fetch('api/shuffleEntry')
+        // .then((res) => res.json())
+        // .then((data) => {
+        //   data.message.map((participant) => {
+        //     for (var i = 0; i < participant.points; i++) {
+        //       shuffleArray.push(participant.sholder)
+        //     }
+        //     setTotalEntries(totalEntries + participant.points)
+        //     console.log(shuffleArray)
+        //   })
+        // })
       })
     } catch (error) {
       console.log(error)
@@ -230,16 +224,14 @@ function Landing() {
   const control9 = useAnimation()
   const control10 = useAnimation()
 
+  // handle style in response to device metrics 
   const [width, setWidth] = useState()
   const [height, setHeight] = useState()
   const [normalizedwidth, setNormalizedWidth] = useState()
   const [styles, setStyles] = useState(narrowStyles)
-
   useEffect(() => {
-
     setWidth(window.visualViewport.width)
     setHeight(window.visualViewport.height)
-
     if (window.visualViewport.height/window.visualViewport.width >= 16/9) {
       setNormalizedWidth(100)
       control1.start({
@@ -485,8 +477,7 @@ function Landing() {
             0.5,0.5625, 0.625,0.6875,
             0.75,0.8125, 0.875,0.9375, 1]}
       })
-    }
-    
+    } 
     control9.start({
       rotate: [-5, -5, -5, -5,
         -185, -185, -185, -185,
@@ -508,8 +499,7 @@ function Landing() {
           0.25,0.3125, 0.375,0.4375,
           0.5,0.5625, 0.625,0.6875,
           0.75,0.8125, 0.875,0.9375, 1]}
-    })  
-    
+    })
   },[])
 
   const [registered, setRegistered] = useState(false)
@@ -911,7 +901,7 @@ function Landing() {
             <motion.div className={styles.social}>
               {!account ? 
                 <motion.div className={styles.wallet}>
-                  <motion.button onClick={() => fetchedsholders && connectWallet()}
+                  <motion.button onClick={() => sholders && connectWallet()}
                     style={{backgroundColor: activeTheme==='light' ? lightColorPalette[6-colorCode]: null,
                     color:activeTheme==='light' ? darkColorPalette[6-colorCode]: lightColorPalette[6-colorCode],
                     fontSize: '1.2rem',
@@ -1002,7 +992,7 @@ function Landing() {
                     </p> :
                   // shuffleLive && 
                   !shufflesArray[shuffleIndex].sholdOut && shufflesArray[shuffleIndex].auth <= authLevel && !registered ?       
-                    <div onClick={() => registerSholder({sholder: sholders[sholderRank].address, points: authLevel-1})}>
+                    <div onClick={() => registerSholder({sholder: sholdersArray[sholderIndex].address, points: authLevel-1})}>
                       <p>
                         Register at shuffle!
                       </p>
@@ -1015,10 +1005,10 @@ function Landing() {
                       </p>
                     </div> :
                   // shuffleLive &&
-                   !shufflesArray[shuffleIndex].sholdOut && shufflesArray[shuffleIndex].auth <= authLevel && registered && totalEntries ?       
+                   !shufflesArray[shuffleIndex].sholdOut && shufflesArray[shuffleIndex].auth <= authLevel && registered ?       
                     <div>
                       <p>
-                        Registered with {((authLevel-1)/totalEntries)*100}% chance!
+                        Registered with {((authLevel-1))*100}% chance!
                       </p>
                     </div> :
                   // shuffleLive &&
@@ -1302,7 +1292,7 @@ function Landing() {
             <motion.div className={styles.social}>
               {!account ? 
                 <motion.div className={styles.wallet}>
-                  <motion.button onClick={() => fetchedsholders && connectWallet()}
+                  <motion.button onClick={() => sholders && connectWallet()}
                     style={{backgroundColor: activeTheme==='light' ? lightColorPalette[6-colorCode]: null,
                     color:activeTheme==='light' ? darkColorPalette[6-colorCode]: lightColorPalette[6-colorCode],
                     fontSize: '1.2rem',
