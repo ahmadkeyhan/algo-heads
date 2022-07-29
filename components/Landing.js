@@ -172,7 +172,7 @@ function Landing() {
   const [account, setAccount] = useState()
   const [avatar, setAvatar] = useState()
   const [authLevel, setAuthLevel] = useState(0)
-
+  const [registered, setRegistered] = useState(false)
   const connectWallet = async () => {
     try {
       let fetchedAccount = await myAlgoConnect.connect(settings).then((fetchedAccount) => {
@@ -194,17 +194,11 @@ function Landing() {
             }
           }
         })
-        // fetch('api/shuffleEntry')
-        // .then((res) => res.json())
-        // .then((data) => {
-        //   data.message.map((participant) => {
-        //     for (var i = 0; i < participant.points; i++) {
-        //       shuffleArray.push(participant.sholder)
-        //     }
-        //     setTotalEntries(totalEntries + participant.points)
-        //     console.log(shuffleArray)
-        //   })
-        // })
+        shuffles.registery.map((registerant) => {
+          if (registerant.sholder == fetchedAccount[0].address) {
+            setRegistered(true)
+          }
+        })
       })
     } catch (error) {
       console.log(error)
@@ -212,7 +206,6 @@ function Landing() {
   }
 
   const router = useRouter()
-
   const control1 = useAnimation()
   const control2 = useAnimation()
   const control3 = useAnimation()
@@ -502,28 +495,15 @@ function Landing() {
     })
   },[])
 
-  const [registered, setRegistered] = useState(false)
-  const [loadingEntries, setLoadingEntries] = useState(false)
-
-  function registerSholder({sholder, points}) {
-    setLoadingEntries(true)
-    fetch('api/shuffleEntry' , {
+  //handle registery 
+  function registerSholder(sholder) {
+    shuffles[0].registery.push({sholder: sholder, points: authLevel-1})
+    fetch('api/shuffles' , {
       method: 'POST',
-      body: JSON.stringify({sholder: sholder, points: points})
+      body: JSON.stringify(shuffles[0])
     }).then((res) => res.json())
     .then(() => {
       setRegistered(true)
-      setLoadingEntries(false)
-    })
-  }
-
-  const [winners, setWinners] = useState()
-
-  function getWinners() {
-    fetch('api/winners')
-    .then((res) => res.json())
-    .then((data) => {
-      setWinners(data.message)
     })
   }
 
@@ -992,7 +972,7 @@ function Landing() {
                     </p> :
                   // shuffleLive && 
                   !shufflesArray[shuffleIndex].sholdOut && shufflesArray[shuffleIndex].auth <= authLevel && !registered ?       
-                    <div onClick={() => registerSholder({sholder: sholdersArray[sholderIndex].address, points: authLevel-1})}>
+                    <div onClick={() => registerSholder(sholdersArray[sholderIndex].address)}>
                       <p>
                         Register at shuffle!
                       </p>
