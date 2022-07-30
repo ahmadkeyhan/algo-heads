@@ -28,7 +28,7 @@ function Landing() {
   const [colorCode, setColorCode] = useState(3)
 
   // true: shuffles, false: auctions
-  const [shufflesOrAuctions, setShufflesOrAuctions] = useState(false)
+  const [shufflesOrAuctions, setShufflesOrAuctions] = useState(true)
 
   // read and react to shuffle object(s)
   const [shuffles, setShuffles] = useState()
@@ -38,6 +38,7 @@ function Landing() {
   const [shuffleHours, setShuffleHours] = useState()
   const [shuffleMins, setShuffleMins] = useState()
   const [shuffleSecs, setShuffleSecs] = useState()
+  const [registeryArray, setRegisteryArray] = useState([])
   useEffect(() => {
     setShufflesLoading(true)
     console.log('shuffles are loading...')
@@ -47,22 +48,34 @@ function Landing() {
         var now = new Date()
         data.message[0].UTC = new Date(data.message[0].UTC)
         if (now < data.message[0].UTC) {
+          console.log(data.message)
           data.message[0].lifeCycle = 0
           setShuffleHours(0)
           setShuffleMins(0)
           setShuffleSecs(0)
+          for (var i = 1; i < 99999; i++) {
+            clearInterval(i)
+          }
           setInterval(() => {
             var now = new Date()  
-            setShuffleHours(Math.floor((data.message[0].UTC - now)/3600000))
+            if (now < data.message[0].UTC) {
+              setShuffleHours(Math.floor((data.message[0].UTC - now)/3600000))
             setShuffleMins(Math.floor((data.message[0].UTC - now)%3600000/60000))
             setShuffleSecs(Math.floor((data.message[0].UTC - now)%60000/1000))
+            }
           },1000)
         } else {
           data.message[0].lifeCycle = 1
         }
+
+        data.message[0].registery.map((registerant) => {
+          for (var i=0; i<registerant.points; i++) {
+            registeryArray.push(registerant.sholder)
+          }
+        })
         setShuffles(data.message)
         shufflesArray.push(data.message[0])
-        console.log(shufflesArray)
+        console.log(registeryArray)
         setShufflesLoading(false)
       })    
   }, [])
@@ -194,7 +207,7 @@ function Landing() {
             }
           }
         })
-        shuffles.registery.map((registerant) => {
+        shuffles[0].registery.map((registerant) => {
           if (registerant.sholder == fetchedAccount[0].address) {
             setRegistered(true)
           }
@@ -503,6 +516,9 @@ function Landing() {
       body: JSON.stringify(shuffles[0])
     }).then((res) => res.json())
     .then(() => {
+      for (var i=0; i< authLevel-1; i++) {
+        registeryArray.push(sholder)
+      }
       setRegistered(true)
     })
   }
@@ -523,47 +539,50 @@ function Landing() {
             {shufflesOrAuctions ? 
               <>
                 <motion.div className={styles.headHolder}
-                  animate={control5}>
+                  style={{width:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '32vw' : '18vh',
+                    height:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '32vw' : '18vh',
+                    top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '88vw' : '49.5vh',
+                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? '27vw' : '15.19vh'}}>
                   <Image className={styles.head}
-                    src={activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
+                    src={shufflesArray[0].assets[shuffleIndex].src}
                     layout='fill' />
                 </motion.div>
                 <motion.div className={styles.headCard}
-                  animate={control5}>
+                  style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '92vw' : '51.75vh',
+                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? '27vw' : '15.19vh',
+                    borderBottom: `2px solid ${shufflesArray[0].assets[shuffleIndex].color}`}}>
                   <p>
+                    AlgoHead{shufflesArray[0].assets[shuffleIndex].src.slice(9,12)}
                   </p>
                 </motion.div>
                 <motion.div className={styles.headHolder}
-                  animate={control6}>
+                  style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh',
+                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh'}}
+                  onClick={() => setShuffleIndex((shuffleIndex+1)%5)}>
                   <Image className={styles.head}
-                    src={activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
+                    src={shufflesArray[0].assets[(shuffleIndex+1)%5].src}
                     layout='fill' />
                 </motion.div>
                 <motion.div className={styles.headCard}
-                  animate={control6}>
+                  style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh',
+                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh'}}>
                   <p>
+                    AH{shufflesArray[0].assets[(shuffleIndex+1)%5].src.slice(9,12)}
                   </p>
                 </motion.div>
                 <motion.div className={styles.headHolder}
-                  animate={control7}>
+                  style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh',
+                    left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh'}}
+                  onClick={() => setShuffleIndex((shuffleIndex+2)%5)}>
                   <Image className={styles.head}
-                    src={activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
+                    src={shufflesArray[0].assets[(shuffleIndex+2)%5].src}
                     layout='fill' />
                 </motion.div>
                 <motion.div className={styles.headCard}
-                  animate={control7}>
+                  style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh',
+                    left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh'}}>
                   <p>
-                  </p>
-                </motion.div>
-                <motion.div className={styles.headHolder}
-                  animate={control8}>
-                  <Image className={styles.head}
-                    src={activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
-                    layout='fill' />
-                </motion.div>
-                <motion.div className={styles.headCard}
-                  animate={control8}>
-                  <p>
+                    AH{shufflesArray[0].assets[(shuffleIndex+2)%5].src.slice(9,12)}
                   </p>
                 </motion.div>
               </> : 
@@ -644,186 +663,96 @@ function Landing() {
             <motion.div animate={control9} className={styles.arrowHolder}>
               <Image className={styles.arrows} src={activeTheme === 'light' ? arrowPalette[colorCode] : arrowPalette[7]} layout='fill' />
             </motion.div>
+            <motion.div className={styles.themeSlider}
+              style={{backgroundColor: darkColorPalette[3]}}>
+              <motion.div className={styles.themeBearing}
+                animate={{marginLeft: activeTheme==='light' ? '-4px' : '10px'}}
+                transition={{ease: 'easeInOut', duration: 0.2}}
+                onClick={() => setActiveTheme(activeTheme === "light" ? "dark" : "light")}
+                aria-label={`Change to ${inactiveTheme} mode`}
+                title={`Change to ${inactiveTheme} mode`}>
+                <motion.svg width="40" height="26" viewBox="0 0 40 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <motion.circle cx='13' cy="13" r="7" fill="#FCDA50"
+                    animate={activeTheme==='light' ? 
+                      {fill: "#FCDA50"} : {fill: "#fefefe"}}
+                    transition={{ease: 'linear', duration:0.2}} />
+                  <motion.rect x="0.18457" y="15.3987" fill="#FCDA50" 
+                    animate={activeTheme==='light' ? 
+                      {rx: 1, width: 4, height: 2,opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                      {rx: 2.5, width: 5, height: 5,opacity: 1, x: 7, y: -7, ratate: 0, fill: '#cccccc'}}
+                    transition={{ease: 'backInOut', duration:0.3}} />
+                  <motion.rect x="8.66895" y="0.701782" fill="#FCDA50" 
+                    animate={activeTheme==='light' ? 
+                      {rx: 1, width: 2, height: 4,opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                      {rx: 1.5, width: 3, height: 3,opacity: 1, x: 6, y: 11, rotate: '-90deg', fill: '#cccccc'}}
+                    transition={{ease: 'backInOut', duration:0.3}} />
+                  <motion.rect x="14.3633" y="21.9521" fill="#FCDA50" 
+                    animate={activeTheme==='light' ? 
+                      {rx: 1, width: 2, height: 4, opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                      {rx: 1.5, width: 3, height: 3, opacity: 1, x: -3.5, y: -3, rotate: '-90deg', fill: '#cccccc'}}
+                    transition={{ease: 'backInOut', duration:0.3}} />
+                  <motion.rect x="21.4346" y="9.70465" fill="#FCDA50" 
+                    animate={activeTheme==='light' ? 
+                      {rx: 1, width: 4, height: 2, opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                      {rx: 1.5, width: 3, height: 3, opacity: 1, x: -7, y: 5, ratate: '-15eg', fill: '#cccccc'}}
+                    transition={{ease: 'backInOut', duration:0.3}} />
+                  <motion.rect x="6.13379" y="22.8923" width="2" height="2" rx="1" fill="#FCDA50" 
+                    animate={activeTheme==='light' ? 
+                      {opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                      {opacity: 1, x: 2, y: -8, ratate: '-15deg', fill: '#cccccc'}}
+                    transition={{ease: 'backInOut', duration:0.3}} />
+                  <motion.rect x="2.10742" y="7.86603" width="2" height="2" rx="1" fill="#FCDA50" 
+                    animate={activeTheme==='light' ? 
+                      {opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                      {opacity: 1, x: 10, y: -1, ratate: '-15deg', fill: '#cccccc'}}
+                    transition={{ease: 'backInOut', duration:0.3}} />
+                  <motion.rect x="21.1602" y="18.866" width="2" height="2" rx="1" fill="#FCDA50" 
+                    animate={activeTheme==='light' ? 
+                      {opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                      {opacity: 1, x: -8, y: -7, ratate: '-15deg', fill: '#cccccc'}}
+                    transition={{ease: 'backInOut', duration:0.3}} />
+                  <motion.rect x="17.1338" y="3.83966" width="2" height="2" rx="1" fill="#FCDA50" 
+                    animate={activeTheme==='light' ? 
+                      {opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
+                      {opacity: 1, x: 0, y: 8, ratate: '-15deg', fill: '#cccccc'}}
+                    transition={{ease: 'backInOut', duration:0.3}} />
+                </motion.svg>
+              </motion.div>
+            </motion.div>
             {shufflesOrAuctions ? 
-              <>
-                <h2 className={styles.title}
-                  style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: null}}>
-                  Watch the  <span style={{marginLeft: male ? '0.5rem' : '0.1rem',color: lightColorPalette[colorCode]}}>heavy</span> heads spin!
-                </h2>
-                <motion.div className={styles.subTitle}>
-                  <h2 style={{color: lightColorPalette[colorCode]}}>on Algorand blockchain</h2>
-                  <motion.div className={styles.mintPrice}>
-                  <p style={{color:activeTheme === 'light' ? darkColorPalette[colorCode]: null}}>
-                    Mint price: <span>{shufflesArray[shuffleIndex].price/1000000}</span>
-                  </p>
-                  <motion.div className={styles.algoLogo}>
-                    <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M18.0006 19.0109H15.1785L13.3456 12.193L9.40508
-                        19.0116H6.25445L12.345 8.45714L11.3648 4.79298L3.15215
-                        19.0139H0L10.408 0.986084H13.1674L14.3757 5.46509H17.2228L15.2789
-                        8.8453L18.0006 19.0109Z" fill={lightColorPalette[colorCode]} />
-                    </svg>
-                  </motion.div>
-                  </motion.div>
-                </motion.div>
-                <motion.div className={styles.themeSlider}
-                  style={{backgroundColor: darkColorPalette[3]}}>
-                  <motion.div className={styles.themeBearing}
-                    animate={{marginLeft: activeTheme==='light' ? '-4px' : '10px'}}
-                    transition={{ease: 'easeInOut', duration: 0.2}}
-                    onClick={() => setActiveTheme(activeTheme === "light" ? "dark" : "light")}
-                    aria-label={`Change to ${inactiveTheme} mode`}
-                    title={`Change to ${inactiveTheme} mode`}>
-                    <motion.svg width="40" height="26" viewBox="0 0 40 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <motion.circle cx='13' cy="13" r="7" fill="#FCDA50"
-                        animate={activeTheme==='light' ? 
-                          {fill: "#FCDA50"} : {fill: "#fefefe"}}
-                        transition={{ease: 'linear', duration:0.2}} />
-                      <motion.rect x="0.18457" y="15.3987" fill="#FCDA50" 
-                        animate={activeTheme==='light' ? 
-                          {rx: 1, width: 4, height: 2,opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
-                          {rx: 2.5, width: 5, height: 5,opacity: 1, x: 7, y: -7, ratate: 0, fill: '#cccccc'}}
-                        transition={{ease: 'backInOut', duration:0.3}} />
-                      <motion.rect x="8.66895" y="0.701782" fill="#FCDA50" 
-                        animate={activeTheme==='light' ? 
-                          {rx: 1, width: 2, height: 4,opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
-                          {rx: 1.5, width: 3, height: 3,opacity: 1, x: 6, y: 11, rotate: '-90deg', fill: '#cccccc'}}
-                        transition={{ease: 'backInOut', duration:0.3}} />
-                      <motion.rect x="14.3633" y="21.9521" fill="#FCDA50" 
-                        animate={activeTheme==='light' ? 
-                          {rx: 1, width: 2, height: 4, opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
-                          {rx: 1.5, width: 3, height: 3, opacity: 1, x: -3.5, y: -3, rotate: '-90deg', fill: '#cccccc'}}
-                        transition={{ease: 'backInOut', duration:0.3}} />
-                      <motion.rect x="21.4346" y="9.70465" fill="#FCDA50" 
-                        animate={activeTheme==='light' ? 
-                          {rx: 1, width: 4, height: 2, opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
-                          {rx: 1.5, width: 3, height: 3, opacity: 1, x: -7, y: 5, ratate: '-15eg', fill: '#cccccc'}}
-                        transition={{ease: 'backInOut', duration:0.3}} />
-                      <motion.rect x="6.13379" y="22.8923" width="2" height="2" rx="1" fill="#FCDA50" 
-                        animate={activeTheme==='light' ? 
-                          {opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
-                          {opacity: 1, x: 2, y: -8, ratate: '-15deg', fill: '#cccccc'}}
-                        transition={{ease: 'backInOut', duration:0.3}} />
-                      <motion.rect x="2.10742" y="7.86603" width="2" height="2" rx="1" fill="#FCDA50" 
-                        animate={activeTheme==='light' ? 
-                          {opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
-                          {opacity: 1, x: 10, y: -1, ratate: '-15deg', fill: '#cccccc'}}
-                        transition={{ease: 'backInOut', duration:0.3}} />
-                      <motion.rect x="21.1602" y="18.866" width="2" height="2" rx="1" fill="#FCDA50" 
-                        animate={activeTheme==='light' ? 
-                          {opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
-                          {opacity: 1, x: -8, y: -7, ratate: '-15deg', fill: '#cccccc'}}
-                        transition={{ease: 'backInOut', duration:0.3}} />
-                      <motion.rect x="17.1338" y="3.83966" width="2" height="2" rx="1" fill="#FCDA50" 
-                        animate={activeTheme==='light' ? 
-                          {opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
-                          {opacity: 1, x: 0, y: 8, ratate: '-15deg', fill: '#cccccc'}}
-                        transition={{ease: 'backInOut', duration:0.3}} />
-                    </motion.svg>
-                  </motion.div>
-                </motion.div>
-                <motion.div className={styles.headHolder}
-                  animate={control1}>
-                  <Image className={styles.head}
-                    src={activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
-                    layout='fill' />
-                </motion.div>
-                <motion.div className={styles.headCard}
-                  animate={control1}>
-                  <p>
-                  </p>
-                </motion.div>
-                <motion.div className={styles.headHolder}
-                  animate={control2}>
-                  <Image className={styles.head}
-                    src={activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
-                    layout='fill' />
-                </motion.div>
-                <motion.div className={styles.headCard}
-                  animate={control2}>
-                  <p>
-                  </p>
-                </motion.div>
-                <motion.div className={styles.headHolder}
-                  animate={control3}>
-                  <Image className={styles.head}
-                    src={activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
-                    layout='fill' />
-                </motion.div>
-                <motion.div className={styles.headCard}
-                  animate={control3}>
-                  <p>
-                  </p>
-                </motion.div>
-                <motion.div className={styles.headHolder}
-                  animate={control4}>
-                  <Image className={styles.head}
-                    src={activeTheme=== 'light' ? '/HappyPride!.png' : '/darkSphere.png'}
-                    layout='fill' />
-                </motion.div>
-                <motion.div className={styles.headCard}
-                  animate={control4}>
-                  <p>
-                  </p>
-                </motion.div>
+            <>
+              <motion.div className={styles.headHolder}
+                style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh',
+                 left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '4vw' : '2.25vh'}}
+                onClick={() => setShuffleIndex((shuffleIndex+3)%5)}>
+                <Image className={styles.head}
+                  src={shufflesArray[0].assets[(shuffleIndex+3)%5].src}
+                  layout='fill' />
+              </motion.div>
+              <motion.div className={styles.headCard}
+                style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh',
+                 left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '4vw' : '2.25vh'}}>
+                <p>
+                  AH{shufflesArray[0].assets[(shuffleIndex+3)%5].src.slice(9,12)}
+                </p>
+              </motion.div>
+              <motion.div className={styles.headHolder}
+                style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh',
+                 left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '27vw' : '15.19vh'}}
+                onClick={() => setShuffleIndex((shuffleIndex+4)%5)}>
+                <Image className={styles.head}
+                  src={shufflesArray[0].assets[(shuffleIndex+4)%5].src}
+                  layout='fill' />
+              </motion.div>
+              <motion.div className={styles.headCard}
+                style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh',
+                 left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '27vw' : '15.19vh'}}>
+                <p>
+                  AH{shufflesArray[0].assets[(shuffleIndex+4)%5].src.slice(9,12)}
+                </p>
+              </motion.div>
             </> :
             <>
-                <motion.div className={styles.themeSlider}
-                  style={{backgroundColor: darkColorPalette[3]}}>
-                  <motion.div className={styles.themeBearing}
-                    animate={{marginLeft: activeTheme==='light' ? '-4px' : '10px'}}
-                    transition={{ease: 'easeInOut', duration: 0.2}}
-                    onClick={() => setActiveTheme(activeTheme === "light" ? "dark" : "light")}
-                    aria-label={`Change to ${inactiveTheme} mode`}
-                    title={`Change to ${inactiveTheme} mode`}>
-                    <motion.svg width="40" height="26" viewBox="0 0 40 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <motion.circle cx='13' cy="13" r="7" fill="#FCDA50"
-                        animate={activeTheme==='light' ? 
-                          {fill: "#FCDA50"} : {fill: "#fefefe"}}
-                        transition={{ease: 'linear', duration:0.2}} />
-                      <motion.rect x="0.18457" y="15.3987" fill="#FCDA50" 
-                        animate={activeTheme==='light' ? 
-                          {rx: 1, width: 4, height: 2,opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
-                          {rx: 2.5, width: 5, height: 5,opacity: 1, x: 7, y: -7, ratate: 0, fill: '#cccccc'}}
-                        transition={{ease: 'backInOut', duration:0.3}} />
-                      <motion.rect x="8.66895" y="0.701782" fill="#FCDA50" 
-                        animate={activeTheme==='light' ? 
-                          {rx: 1, width: 2, height: 4,opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
-                          {rx: 1.5, width: 3, height: 3,opacity: 1, x: 6, y: 11, rotate: '-90deg', fill: '#cccccc'}}
-                        transition={{ease: 'backInOut', duration:0.3}} />
-                      <motion.rect x="14.3633" y="21.9521" fill="#FCDA50" 
-                        animate={activeTheme==='light' ? 
-                          {rx: 1, width: 2, height: 4, opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
-                          {rx: 1.5, width: 3, height: 3, opacity: 1, x: -3.5, y: -3, rotate: '-90deg', fill: '#cccccc'}}
-                        transition={{ease: 'backInOut', duration:0.3}} />
-                      <motion.rect x="21.4346" y="9.70465" fill="#FCDA50" 
-                        animate={activeTheme==='light' ? 
-                          {rx: 1, width: 4, height: 2, opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
-                          {rx: 1.5, width: 3, height: 3, opacity: 1, x: -7, y: 5, ratate: '-15eg', fill: '#cccccc'}}
-                        transition={{ease: 'backInOut', duration:0.3}} />
-                      <motion.rect x="6.13379" y="22.8923" width="2" height="2" rx="1" fill="#FCDA50" 
-                        animate={activeTheme==='light' ? 
-                          {opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
-                          {opacity: 1, x: 2, y: -8, ratate: '-15deg', fill: '#cccccc'}}
-                        transition={{ease: 'backInOut', duration:0.3}} />
-                      <motion.rect x="2.10742" y="7.86603" width="2" height="2" rx="1" fill="#FCDA50" 
-                        animate={activeTheme==='light' ? 
-                          {opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
-                          {opacity: 1, x: 10, y: -1, ratate: '-15deg', fill: '#cccccc'}}
-                        transition={{ease: 'backInOut', duration:0.3}} />
-                      <motion.rect x="21.1602" y="18.866" width="2" height="2" rx="1" fill="#FCDA50" 
-                        animate={activeTheme==='light' ? 
-                          {opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
-                          {opacity: 1, x: -8, y: -7, ratate: '-15deg', fill: '#cccccc'}}
-                        transition={{ease: 'backInOut', duration:0.3}} />
-                      <motion.rect x="17.1338" y="3.83966" width="2" height="2" rx="1" fill="#FCDA50" 
-                        animate={activeTheme==='light' ? 
-                          {opacity: 1, x: 0, y: 0, rotate: '-15deg', fill: '#fcda50'} :
-                          {opacity: 1, x: 0, y: 8, ratate: '-15deg', fill: '#cccccc'}}
-                        transition={{ease: 'backInOut', duration:0.3}} />
-                    </motion.svg>
-                  </motion.div>
-                </motion.div>
               <motion.div className={styles.headHolder}
                 style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh',
                  left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '4vw' : '2.25vh'}}
@@ -932,98 +861,78 @@ function Landing() {
             </div>
             {shufflesOrAuctions ?
             <>
-              <motion.div className={styles.mainShuffle} 
-                style={{backgroundColor: lightColorPalette[colorCode]}}>
-                <div className={styles.shuffleType}>
-                  {shufflesArray[shuffleIndex].auth == 2 ? <CgTrophy /> :
-                  shufflesArray[shuffleIndex].auth == 3 ? 
-                    <>
-                      <motion.div className={styles.spin}
-                        animate={{rotate: [0,-360,-360]}}
-                        transition={{ease: 'backInOut' ,duration: 2, repeat: Infinity, times: [0,0.75,1]}} />
-                      <CgTrophy />
-                    </> :
-                    <MdIcons.MdShuffle />}
-                </div>
-                <div className={styles.countDownCard}>
-                  {
-                  // !shuffleLive && 
-                  shufflesArray[shuffleIndex].auth <= authLevel ?
-                    <>
-                      <p>
-                        Shuffle starts in
-                      </p>
-                      <p><span>{shuffleHours}</span> h <span>{shuffleMins}</span> m</p>
-                    </> :
-                  // !shuffleLive &&
-                   shufflesArray[shuffleIndex].auth > authLevel && shufflesArray[shuffleIndex].auth==2 ?
-                    <p>
-                      Sholders only!
-                    </p> :
-                  // !shuffleLive && 
-                  shufflesArray[shuffleIndex].auth > authLevel && shufflesArray[shuffleIndex].auth==3 ?
-                    <p>
-                      Spin sholders only!
-                    </p> :
-                  // !shuffleLive &&
-                   shufflesArray[shuffleIndex].auth > authLevel ?
-                    <p>
-                      Connect your wallet first!
-                    </p> :
-                  // shuffleLive && 
-                  !shufflesArray[shuffleIndex].sholdOut && shufflesArray[shuffleIndex].auth <= authLevel && !registered ?       
-                    <div onClick={() => registerSholder(sholdersArray[sholderIndex].address)}>
-                      <p>
-                        Register at shuffle!
-                      </p>
-                    </div> :
-                  // shuffleLive && 
-                  !shufflesArray[shuffleIndex].sholdOut && shufflesArray[shuffleIndex].auth <= authLevel && loadingEntries ?       
-                    <div>
-                      <p>
-                        Please wait...
-                      </p>
-                    </div> :
-                  // shuffleLive &&
-                   !shufflesArray[shuffleIndex].sholdOut && shufflesArray[shuffleIndex].auth <= authLevel && registered ?       
-                    <div>
-                      <p>
-                        Registered with {((authLevel-1))*100}% chance!
-                      </p>
-                    </div> :
-                  // shuffleLive &&
-                   !shufflesArray[shuffleIndex].sholdOut && shufflesArray[shuffleIndex].auth > authLevel ?
-                    <>
-                      <p>
-                        Sholders only!
-                      </p>
-                    </> :
-                  <div
-                    style={{backgroundColor: lightColorPalette[colorCode]}}
-                    className={styles.mainCountDown}>
-                      <p>
-                        Shold out!
-                      </p>
-                  </div>}
-                </div>
+              <motion.div className={styles.startingBid}
+                style={{borderBottom: `2px solid ${shufflesArray[0].assets[shuffleIndex].color}`}}>
+                <p>shuffle price : {shufflesArray[0].price/1000000}</p>
+                <motion.div className={styles.algoLogo}>
+                  <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.0006 19.0109H15.1785L13.3456 12.193L9.40508
+                      19.0116H6.25445L12.345 8.45714L11.3648 4.79298L3.15215
+                      19.0139H0L10.408 0.986084H13.1674L14.3757 5.46509H17.2228L15.2789
+                      8.8453L18.0006 19.0109Z" fill={shufflesArray[0].assets[shuffleIndex].color} />
+                  </svg>
+                </motion.div>
               </motion.div>
-              <motion.div className={styles.shuffle2} 
-                // onClick={() => setSelectedShuffle((shuffleIndex+1)%shufflesArray.length)}
-                onClick={() => getWinners()}
-                style={{backgroundColor: lightColorPalette[shufflesArray[(shuffleIndex+1)%shufflesArray.length].colorCode]}}>
-                <div className={styles.shuffleType}>
-                  <MdIcons.MdInfoOutline />
-                </div>
+              <motion.div className={styles.highestBidder}
+                style={{borderBottom: `2px solid ${shufflesArray[0].assets[shuffleIndex].color}`}}>
+                <p>winner : {shufflesArray[0].assets[shuffleIndex].winner ? shufflesArray[0].assets[shuffleIndex].winner : 'TBD'}...</p>
               </motion.div>
-              {winners && <motion.ul className={styles.winners} style={{backgroundColor: lightColorPalette[colorCode]}}>
-                  {winners.map((winner, index) => {
-                    return (
-                      <li key={index}>
-                        AH10{index+1} goes to {winner.winner[0].slice(0,8)}...
-                      </li>
-                    )
-                  })}
-              </motion.ul>}
+              {shufflesArray[0].lifeCycle == 0 ? 
+                <motion.div className={styles.auctionCountDown}>
+                  <MdIcons.MdTimer style={{fontSize : '1rem', color: shufflesArray[0].assets[shuffleIndex].color }} />
+                  <p>{shuffleHours} h</p>
+                  <p>{shuffleMins} m</p>
+                  <p>{shuffleSecs} s</p>
+                </motion.div> : 
+                <motion.div className={styles.auctionCountDown}>
+                  <MdIcons.MdTimerOff style={{fontSize : '1rem', color: shufflesArray[0].assets[shuffleIndex].color }} />
+                  <p>Shuffle ended!</p>
+                </motion.div>
+              }
+              {shufflesArray[0].lifeCycle == 0 && !account ?
+                <motion.div className={styles.mainAuction} 
+                  style={{backgroundColor: shufflesArray[0].assets[shuffleIndex].color}}>
+                  <div className={styles.auctionType}>
+                    <MdIcons.MdShuffle />
+                  </div>
+                  <div className={styles.auctionCard}>
+                    <div className={styles.mainCountDown}>
+                        <p>
+                          connect your wallet first!
+                        </p>
+                    </div>
+                  </div>
+                </motion.div> :
+              shufflesArray[0].lifeCycle == 0 && !registered && account ?
+                <motion.div className={styles.mainAuction} 
+                  style={{backgroundColor: shufflesArray[0].assets[shuffleIndex].color}}
+                  onClick={() => sholderIndex && registerSholder(sholdersArray[sholderIndex].address)}>
+                  <div className={styles.auctionType}>
+                    <MdIcons.MdShuffle />
+                  </div>
+                  <div className={styles.auctionCard}>
+                    <div className={styles.mainCountDown}>
+                        <p>
+                          register with {Math.floor(100*(authLevel-1)/(authLevel-1 + registeryArray.length))/100}% chance!
+                        </p>
+                    </div>
+                  </div>
+                </motion.div> :
+              shufflesArray[0].lifeCycle == 0 && registered && account ?
+                <motion.div className={styles.mainAuction} 
+                  style={{backgroundColor: shufflesArray[0].assets[shuffleIndex].color}}>
+                  <div className={styles.auctionType}>
+                    <MdIcons.MdShuffle />
+                  </div>
+                  <div className={styles.auctionCard}>
+                    <div className={styles.mainCountDown}>
+                        <p>
+                          your chance is {Math.floor(10000*(authLevel-1)/(registeryArray.length))/100}%
+                        </p>
+                    </div>
+                  </div>
+                </motion.div> : null
+              }
             </> :
             <>
               <motion.div className={styles.startingBid}
@@ -1053,35 +962,36 @@ function Landing() {
                 style={{borderBottom: `2px solid ${auctionsArray[auctionIndex].color}`}}>
                 <p>bidder : {auctionsArray[auctionIndex].bidHistory.length ? auctionsArray[auctionIndex].bidHistory[auctionsArray[auctionIndex].bidHistory.length-1].bidder.slice(0,9) : ''}...</p>
               </motion.div>
-                  {auctionsArray[auctionIndex].lifeCycle < 2 ? 
-                    <motion.div className={styles.auctionCountDown}>
-                      <MdIcons.MdTimer style={{fontSize : '1rem', color: auctionsArray[auctionIndex].color }} />
-                      <p>{aucHours} h</p>
-                      <p>{aucMins} m</p>
-                      <p>{aucSecs} s</p>
-                    </motion.div> : 
-                    <motion.div className={styles.auctionCountDown}>
-                      <MdIcons.MdTimerOff style={{fontSize : '1rem', color: auctionsArray[auctionIndex].color }} />
-                      <p>Auction ended!</p>
-                    </motion.div>}
-                  {auctionsArray[auctionIndex].lifeCycle < 2 ?
-                    <Link href={auctionsArray[auctionIndex].link} passHref>
-                      <motion.a className={styles.mainAuction} 
-                        target="_blank"
-                        style={{backgroundColor: auctionsArray[auctionIndex].color}}>
-                        <div className={styles.auctionType}>
-                          <MdIcons.MdGavel />
-                        </div>
-                        <div className={styles.auctionCard}>
-                          <div className={styles.mainCountDown}>
-                              <p>
-                                Bid on AH{auctionsArray[auctionIndex].asset.slice(9,12)}
-                              </p>
-                          </div>
-                        </div>
-                      </motion.a>
-                    </Link> : null
-                  } 
+              {auctionsArray[auctionIndex].lifeCycle < 2 ? 
+                <motion.div className={styles.auctionCountDown}>
+                  <MdIcons.MdTimer style={{fontSize : '1rem', color: auctionsArray[auctionIndex].color }} />
+                  <p>{aucHours} h</p>
+                  <p>{aucMins} m</p>
+                  <p>{aucSecs} s</p>
+                </motion.div> : 
+                <motion.div className={styles.auctionCountDown}>
+                  <MdIcons.MdTimerOff style={{fontSize : '1rem', color: auctionsArray[auctionIndex].color }} />
+                  <p>Auction ended!</p>
+                </motion.div>
+              }
+              {auctionsArray[auctionIndex].lifeCycle < 2 ?
+                <Link href={auctionsArray[auctionIndex].link} passHref>
+                  <motion.a className={styles.mainAuction} 
+                    target="_blank"
+                    style={{backgroundColor: auctionsArray[auctionIndex].color}}>
+                    <div className={styles.auctionType}>
+                      <MdIcons.MdGavel />
+                    </div>
+                    <div className={styles.auctionCard}>
+                      <div className={styles.mainCountDown}>
+                          <p>
+                            Bid on AH{auctionsArray[auctionIndex].asset.slice(9,12)}
+                          </p>
+                      </div>
+                    </div>
+                  </motion.a>
+                </Link> : null
+              } 
             </>
             }
             <motion.div className={styles.shuffleBubble1} 
