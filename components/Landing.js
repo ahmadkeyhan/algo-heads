@@ -81,85 +81,85 @@ function Landing() {
   }, [])
 
   // read and react to auction object(s)
-  const [auctions, setAuctions] = useState()
-  const [auctionsArray, setAuctionsArray] = useState([])
-  const [aucsLoading, setAucsLoading] = useState()
-  const [auctionIndex, setAuctionIndex] = useState(0)
-  const [aucHours, setAucHours] = useState(0)
-  const [aucMins, setAucMins] = useState(0)
-  const [aucSecs, setAucSecs] = useState(0)
-  useEffect(() => {
-    setAucsLoading(true)
-    fetch('api/auctions')
-      .then((res) => res.json())
-      .then((data) => {
-        data.message.map((auction) => {
-          var now = new Date()
-          auction.UTCStart = new Date(auction.UTCStart)
-          auction.UTCEnd = new Date(auction.UTCEnd)
-          auction.lifeCycle = 0
-          if (now > auction.UTCStart) {
-            auction.lifeCycle = 1
-            setAucHours(0)
-            setAucMins(0)
-            setAucSecs(0)
-            for (var i = 1; i < 99999; i++) {
-              clearInterval(i)
-            }
-            setInterval(() => {
-              var now = new Date()
+  // const [auctions, setAuctions] = useState()
+  // const [auctionsArray, setAuctionsArray] = useState([])
+  // const [aucsLoading, setAucsLoading] = useState()
+  // const [auctionIndex, setAuctionIndex] = useState(0)
+  // const [aucHours, setAucHours] = useState(0)
+  // const [aucMins, setAucMins] = useState(0)
+  // const [aucSecs, setAucSecs] = useState(0)
+  // useEffect(() => {
+  //   setAucsLoading(true)
+  //   fetch('api/auctions')
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       data.message.map((auction) => {
+  //         var now = new Date()
+  //         auction.UTCStart = new Date(auction.UTCStart)
+  //         auction.UTCEnd = new Date(auction.UTCEnd)
+  //         auction.lifeCycle = 0
+  //         if (now > auction.UTCStart) {
+  //           auction.lifeCycle = 1
+  //           setAucHours(0)
+  //           setAucMins(0)
+  //           setAucSecs(0)
+  //           for (var i = 1; i < 99999; i++) {
+  //             clearInterval(i)
+  //           }
+  //           setInterval(() => {
+  //             var now = new Date()
               
-              if (now >= auctionsArray[0].UTCStart) {
-                setAucHours(Math.floor((auctionsArray[0].UTCEnd - now)/3600000))
-                setAucMins(Math.floor((auctionsArray[0].UTCEnd - now)%3600000/60000))
-                setAucSecs(Math.floor((auctionsArray[0].UTCEnd - now)%60000/1000))
-              }
-            },1000)
-          }
-          if (now > auction.UTCEnd) {
-            auction.lifeCycle = 2
-          }
-          fetch(`api/escrowTxns/?wallet=${auction.escrowWallet}`)
-            .then((res) => res.json())
-            .then((data) => {
-              data.message.sort((txna, txnb) => txna["confirmed-round"] - txnb["confirmed-round"])
-              console.log(data.message)
-              auction.bidHistory = []
-              data.message.map((txn, index) => {
-                index && auction.bidHistory.push({bid: txn["payment-transaction"].amount, bidder: txn.sender})
-              })
-              fetch('api/auctions' , {
-                method: 'POST',
-                body: JSON.stringify(auction)
-              }).then((res) => res.json())
-            })
-          auctionsArray.push(auction)
-        })
-        setAuctions(data.message)
-        setAucsLoading(false)
-        console.log(auctionsArray)
-      })
-  }, [])
-  // reset the auction timer every time auctionIndex changes
-  useEffect(() => {
-    if (auctions) {
-      setAucHours(0)
-      setAucMins(0)
-      setAucSecs(0)
-      for (var i = 1; i < 99999; i++) {
-        clearInterval(i)
-      }
-      setInterval(() => {
-        var now = new Date()
+  //             if (now >= auctionsArray[0].UTCStart) {
+  //               setAucHours(Math.floor((auctionsArray[0].UTCEnd - now)/3600000))
+  //               setAucMins(Math.floor((auctionsArray[0].UTCEnd - now)%3600000/60000))
+  //               setAucSecs(Math.floor((auctionsArray[0].UTCEnd - now)%60000/1000))
+  //             }
+  //           },1000)
+  //         }
+  //         if (now > auction.UTCEnd) {
+  //           auction.lifeCycle = 2
+  //         }
+  //         fetch(`api/escrowTxns/?wallet=${auction.escrowWallet}`)
+  //           .then((res) => res.json())
+  //           .then((data) => {
+  //             data.message.sort((txna, txnb) => txna["confirmed-round"] - txnb["confirmed-round"])
+  //             console.log(data.message)
+  //             auction.bidHistory = []
+  //             data.message.map((txn, index) => {
+  //               index && auction.bidHistory.push({bid: txn["payment-transaction"].amount, bidder: txn.sender})
+  //             })
+  //             fetch('api/auctions' , {
+  //               method: 'POST',
+  //               body: JSON.stringify(auction)
+  //             }).then((res) => res.json())
+  //           })
+  //         auctionsArray.push(auction)
+  //       })
+  //       setAuctions(data.message)
+  //       setAucsLoading(false)
+  //       console.log(auctionsArray)
+  //     })
+  // }, [])
+  // // reset the auction timer every time auctionIndex changes
+  // useEffect(() => {
+  //   if (auctions) {
+  //     setAucHours(0)
+  //     setAucMins(0)
+  //     setAucSecs(0)
+  //     for (var i = 1; i < 99999; i++) {
+  //       clearInterval(i)
+  //     }
+  //     setInterval(() => {
+  //       var now = new Date()
         
-        if (now >= auctionsArray[0].UTCStart) {
-          setAucHours(Math.floor((auctionsArray[0].UTCEnd - now)/3600000))
-          setAucMins(Math.floor((auctionsArray[0].UTCEnd - now)%3600000/60000))
-          setAucSecs(Math.floor((auctionsArray[0].UTCEnd - now)%60000/1000))
-        }
-      },1000)
-    }
-  }, [auctionIndex])
+  //       if (now >= auctionsArray[0].UTCStart) {
+  //         setAucHours(Math.floor((auctionsArray[0].UTCEnd - now)/3600000))
+  //         setAucMins(Math.floor((auctionsArray[0].UTCEnd - now)%3600000/60000))
+  //         setAucSecs(Math.floor((auctionsArray[0].UTCEnd - now)%60000/1000))
+  //       }
+  //     },1000)
+  //   }
+  // }, [auctionIndex])
 
   // read and react to sholders
   const [sholdersArray, setSholdersArray]=useState([])
@@ -523,7 +523,7 @@ function Landing() {
     })
   }
 
-  if(shuffles && auctions) {
+  if(shuffles) {
     return (
       <div className={styles.landing}
         style={{height: `${normalizedwidth*16/9}vw`,
