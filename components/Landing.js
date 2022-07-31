@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from 'react'
 import * as MdIcons from 'react-icons/md'
 import * as SiIcon from 'react-icons/si'
 import * as BsIcons from 'react-icons/bs'
-import * as RiIcons from 'react-icons/ri'
+import * as CgIcons from 'react-icons/cg'
 import { motion, useAnimation } from "framer-motion"
 import { useRouter } from 'next/router'
 import { lightColorPalette, darkColorPalette } from '../components/colorPalette'
@@ -523,6 +523,8 @@ function Landing() {
     })
   }
 
+  const [possibleWinners, setPossibleWinners] = useState()
+
   if(shuffles) {
     return (
       <div className={styles.landing}
@@ -873,18 +875,37 @@ function Landing() {
                   </svg>
                 </motion.div>
               </motion.div>
-              <motion.div className={styles.highestBidder}
-                style={{borderBottom: `2px solid ${shufflesArray[0].assets[shuffleIndex].color}`}}>
-                <p>winner : {shufflesArray[0].assets[shuffleIndex].winner ? shufflesArray[0].assets[shuffleIndex].winner : 'TBD'}...</p>
+              <motion.div className={styles.winner}>
+                <p>winner : {shufflesArray[0].lifeCycle == 1 ? `${shufflesArray[0].assets[shuffleIndex].winner.slice(0,9)}...` : 'not determined'}</p>
               </motion.div>
               {shufflesArray[0].lifeCycle == 0 ? 
-                <motion.div className={styles.auctionCountDown}>
+                <motion.div className={styles.winners}
+                  onClick={() => setPossibleWinners(!possibleWinners)}
+                  style={{border: `2px solid ${shufflesArray[0].assets[shuffleIndex].color}`}}
+                  animate={possibleWinners ? {height: '28vw'} :
+                    {height: '8vw'}}>
+                  <motion.div className={styles.possibleWinners}>
+                    <CgIcons.CgTrophy style={{fontSize : '1rem', color: shufflesArray[0].assets[shuffleIndex].color }} />
+                    <p>{possibleWinners ? 'chance' :'Possible winners'}</p>
+                  </motion.div>
+                  {possibleWinners && shufflesArray[0].registery.map((registerant, index) => {
+                    return (
+                    <motion.div className={styles.possibleWinners}>
+                      <p>{registerant.sholder.slice(0,9)}...</p>
+                      <p>{registerant.points}</p>
+                    </motion.div>
+                    )
+                  })}
+                </motion.div> : null
+              }
+              {shufflesArray[0].lifeCycle == 0 ? 
+                <motion.div className={styles.shuffleCountDown}>
                   <MdIcons.MdTimer style={{fontSize : '1rem', color: shufflesArray[0].assets[shuffleIndex].color }} />
                   <p>{shuffleHours} h</p>
                   <p>{shuffleMins} m</p>
                   <p>{shuffleSecs} s</p>
                 </motion.div> : 
-                <motion.div className={styles.auctionCountDown}>
+                <motion.div className={styles.shuffleCountDown}>
                   <MdIcons.MdTimerOff style={{fontSize : '1rem', color: shufflesArray[0].assets[shuffleIndex].color }} />
                   <p>Shuffle ended!</p>
                 </motion.div>
@@ -913,7 +934,7 @@ function Landing() {
                   <div className={styles.auctionCard}>
                     <div className={styles.mainCountDown}>
                         <p>
-                          register with {Math.floor(100*(authLevel-1)/(authLevel-1 + registeryArray.length))/100}% chance!
+                          register with the chance of {authLevel-1} / {authLevel-1 + registeryArray.length}
                         </p>
                     </div>
                   </div>
@@ -927,7 +948,7 @@ function Landing() {
                   <div className={styles.auctionCard}>
                     <div className={styles.mainCountDown}>
                         <p>
-                          your chance is {Math.floor(10000*(authLevel-1)/(registeryArray.length))/100}%
+                          your chance of winning is {authLevel-1} / {registeryArray.length}
                         </p>
                     </div>
                   </div>
