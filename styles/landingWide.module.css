@@ -203,7 +203,7 @@
   }
   
 
-  .shuffle2 {
+  .dice {
     position: absolute;
     left: 38.81vh;
     top: 14.63vh;
@@ -215,14 +215,38 @@
     width: 6.75vh;
     border-radius: 4vh;
     overflow: hidden;
-    color: #212121;
-    font-size: 0.6rem;
+    font-size: 1rem;
     font-weight: 600;
     font-family: 'Gluten', cursive;
     text-align: left;
     line-height: 1rem;
     z-index: 5;
+    color: var(--color-bg-primary);
+  }
+
+  .rollRule {
+    position: absolute;
+    left: 18vh;
+    top: 16.88vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 6.75vh;
+    width: 18vh;
+    border-radius: 4vh;
+    overflow: hidden;
+    font-size: 0.6rem;
+    font-weight: 300;
+    font-family: 'Gluten', cursive;
+    text-align: center;
+    line-height: 1rem;
+    z-index: 5;
     background-color: var(--color-bg-primary);
+    color: var(--color-text-secondary);
+  }
+
+  .rollRule p{
+    width: 20ch;
   }
 
   .winners {
@@ -233,6 +257,7 @@
     height: 4.5vh;
     border-radius: 2.25vh;
     margin: 0;
+    padding: 4vh 0 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -248,9 +273,6 @@
     width: 0.125rem;
   }
   
-  .winners::-webkit-scrollbar-track {
-  }
-  
   .winners::-webkit-scrollbar-thumb {
     border-radius: 0.0625rem;
   }
@@ -260,8 +282,10 @@
     align-items: center;
     justify-content: space-evenly;
     width: 19.125vh;
-    height: 4.5vh;
+    height: 4vh;
+    border-radius: 2.25vh;
     margin: 0.5rem 0;
+    background-color: var(--color-bg-primary);
   }
   
   .winners p {

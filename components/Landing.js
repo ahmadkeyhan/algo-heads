@@ -524,6 +524,18 @@ function Landing() {
   }
 
   const [possibleWinners, setPossibleWinners] = useState()
+  const [unAuthRoll, setUnAuthRoll] = useState(false)
+  function diceRoller() {
+    for (var i = 0; i < 5; i++) {
+      var winnerIndex = Math.floor(Math.random()*registeryArray.length)
+      var winner = registeryArray.splice(winnerIndex,1)
+      shuffles[0].assets[i].winner = winner[0]
+    }
+    fetch('api/shuffles', {
+      method: 'POST',
+      body: JSON.stringify(shuffles[0])
+    })
+  }
 
   if(shuffles) {
     return (
@@ -882,15 +894,17 @@ function Landing() {
                 <motion.div className={styles.winners}
                   onClick={() => setPossibleWinners(!possibleWinners)}
                   style={{border: `2px solid ${shufflesArray[0].assets[shuffleIndex].color}`}}
-                  animate={possibleWinners ? {height: '28vw'} :
-                    {height: '8vw'}}>
-                  <motion.div className={styles.possibleWinners}>
+                  animate={possibleWinners ? {height:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '28vw' : '15.75vh'} :
+                    {height:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '8vw' : '4.5vh'}}>
+                  <motion.div className={styles.possibleWinners}
+                    style={{position: 'fixed',
+                      margin: window.visualViewport.height/window.visualViewport.width >= 16/9 ? '-7.11vw 0 0 0' : '-4vh 0 0 0'}}>
                     <CgIcons.CgTrophy style={{fontSize : '1rem', color: shufflesArray[0].assets[shuffleIndex].color }} />
                     <p>{possibleWinners ? 'chance' :'Possible winners'}</p>
                   </motion.div>
                   {possibleWinners && shufflesArray[0].registery.map((registerant, index) => {
                     return (
-                    <motion.div className={styles.possibleWinners}>
+                    <motion.div key={index} className={styles.possibleWinners}>
                       <p>{registerant.sholder.slice(0,9)}...</p>
                       <p>{registerant.points}</p>
                     </motion.div>
@@ -948,12 +962,31 @@ function Landing() {
                   <div className={styles.auctionCard}>
                     <div className={styles.mainCountDown}>
                         <p>
-                          your chance of winning is {authLevel-1} / {registeryArray.length}
+                          your chance of winning is {authLevel-1}/{registeryArray.length}
                         </p>
                     </div>
                   </div>
                 </motion.div> : null
               }
+              <motion.div className={styles.dice}
+                onClick={() => {
+                if (account) {
+                  if (account[0].address == 'E6CH4SDDEROE4BGBWQUM66Y3XR7FDLSL32PILSYMGVVIWJLF6XHU5XW6YA') {
+                    diceRoller()
+                  } else {
+                    setUnAuthRoll(!unAuthRoll)
+                  }
+                } else {
+                    setUnAuthRoll(!unAuthRoll)
+                  }
+                }}
+                style={{backgroundColor: shufflesArray[0].assets[(shuffleIndex+1)%5].color}}>
+                        <BsIcons.BsDice3Fill />
+              </motion.div>
+              <motion.div className={styles.rollRule}
+              animate={{opacity: unAuthRoll ? 1 : 0}}>
+                <p>Only the codeHead can roll the dice!</p>
+              </motion.div>
             </> :
             <>
               <motion.div className={styles.startingBid}
