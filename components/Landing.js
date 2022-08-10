@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import narrowStyles from '../styles/landing.module.css'
 import wideStyles from '../styles/landingWide.module.css'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import * as MdIcons from 'react-icons/md'
 import * as SiIcon from 'react-icons/si'
 import * as BsIcons from 'react-icons/bs'
@@ -12,8 +12,8 @@ import { useRouter } from 'next/router'
 import { lightColorPalette, darkColorPalette } from '../components/colorPalette'
 import { arrowPalette, buyBannerPalette } from './Assets'
 import Link from 'next/link'
-import { myAlgoConnect, settings } from './Connect'
-import { CgTrophy } from 'react-icons/cg'
+import MyAlgoConnect from '@randlabs/myalgo-connect'
+import algosdk from 'algosdk'
 
 function Landing() {
 
@@ -28,138 +28,139 @@ function Landing() {
   const [colorCode, setColorCode] = useState(3)
 
   // true: shuffles, false: auctions
-  const [shufflesOrAuctions, setShufflesOrAuctions] = useState(true)
+  const [shufflesOrAuctions, setShufflesOrAuctions] = useState(false)
 
   // read and react to shuffle object(s)
-  const [shuffles, setShuffles] = useState()
-  const [shufflesArray, setShufflesArray] = useState([])
-  const [shufflesLoading, setShufflesLoading] = useState()
-  const [shuffleIndex, setShuffleIndex] = useState(0)
-  const [shuffleHours, setShuffleHours] = useState()
-  const [shuffleMins, setShuffleMins] = useState()
-  const [shuffleSecs, setShuffleSecs] = useState()
-  const [registeryArray, setRegisteryArray] = useState([])
-  useEffect(() => {
-    setShufflesLoading(true)
-    console.log('shuffles are loading...')
-    fetch('api/shuffles')
-      .then((res) => res.json())
-      .then((data) => {
-        var now = new Date()
-        data.message[0].UTC = new Date(data.message[0].UTC)
-        if (now < data.message[0].UTC) {
-          console.log(data.message)
-          data.message[0].lifeCycle = 0
-          setShuffleHours(0)
-          setShuffleMins(0)
-          setShuffleSecs(0)
-          for (var i = 1; i < 99999; i++) {
-            clearInterval(i)
-          }
-          setInterval(() => {
-            var now = new Date()  
-            if (now < data.message[0].UTC) {
-              setShuffleHours(Math.floor((data.message[0].UTC - now)/3600000))
-            setShuffleMins(Math.floor((data.message[0].UTC - now)%3600000/60000))
-            setShuffleSecs(Math.floor((data.message[0].UTC - now)%60000/1000))
-            }
-          },1000)
-        } else {
-          data.message[0].lifeCycle = 1
-        }
-
-        data.message[0].registery.map((registerant) => {
-          for (var i=0; i<registerant.points; i++) {
-            registeryArray.push(registerant.sholder)
-          }
-        })
-        setShuffles(data.message)
-        shufflesArray.push(data.message[0])
-        console.log(registeryArray)
-        setShufflesLoading(false)
-      })    
-  }, [])
-
-  // read and react to auction object(s)
-  // const [auctions, setAuctions] = useState()
-  // const [auctionsArray, setAuctionsArray] = useState([])
-  // const [aucsLoading, setAucsLoading] = useState()
-  // const [auctionIndex, setAuctionIndex] = useState(0)
-  // const [aucHours, setAucHours] = useState(0)
-  // const [aucMins, setAucMins] = useState(0)
-  // const [aucSecs, setAucSecs] = useState(0)
+  // const [shuffles, setShuffles] = useState()
+  // const [shufflesArray, setShufflesArray] = useState([])
+  // const [shufflesLoading, setShufflesLoading] = useState()
+  // const [shuffleIndex, setShuffleIndex] = useState(0)
+  // const [shuffleHours, setShuffleHours] = useState()
+  // const [shuffleMins, setShuffleMins] = useState()
+  // const [shuffleSecs, setShuffleSecs] = useState()
+  // const [registeryArray, setRegisteryArray] = useState([])
   // useEffect(() => {
-  //   setAucsLoading(true)
-  //   fetch('api/auctions')
+  //   setShufflesLoading(true)
+  //   console.log('shuffles are loading...')
+  //   fetch('api/shuffles')
   //     .then((res) => res.json())
   //     .then((data) => {
-  //       data.message.map((auction) => {
-  //         var now = new Date()
-  //         auction.UTCStart = new Date(auction.UTCStart)
-  //         auction.UTCEnd = new Date(auction.UTCEnd)
-  //         auction.lifeCycle = 0
-  //         if (now > auction.UTCStart) {
-  //           auction.lifeCycle = 1
-  //           setAucHours(0)
-  //           setAucMins(0)
-  //           setAucSecs(0)
-  //           for (var i = 1; i < 99999; i++) {
-  //             clearInterval(i)
-  //           }
-  //           setInterval(() => {
-  //             var now = new Date()
-              
-  //             if (now >= auctionsArray[0].UTCStart) {
-  //               setAucHours(Math.floor((auctionsArray[0].UTCEnd - now)/3600000))
-  //               setAucMins(Math.floor((auctionsArray[0].UTCEnd - now)%3600000/60000))
-  //               setAucSecs(Math.floor((auctionsArray[0].UTCEnd - now)%60000/1000))
-  //             }
-  //           },1000)
-  //         }
-  //         if (now > auction.UTCEnd) {
-  //           auction.lifeCycle = 2
-  //         }
-  //         fetch(`api/escrowTxns/?wallet=${auction.escrowWallet}`)
-  //           .then((res) => res.json())
-  //           .then((data) => {
-  //             data.message.sort((txna, txnb) => txna["confirmed-round"] - txnb["confirmed-round"])
-  //             console.log(data.message)
-  //             auction.bidHistory = []
-  //             data.message.map((txn, index) => {
-  //               index && auction.bidHistory.push({bid: txn["payment-transaction"].amount, bidder: txn.sender})
-  //             })
-  //             fetch('api/auctions' , {
-  //               method: 'POST',
-  //               body: JSON.stringify(auction)
-  //             }).then((res) => res.json())
-  //           })
-  //         auctionsArray.push(auction)
-  //       })
-  //       setAuctions(data.message)
-  //       setAucsLoading(false)
-  //       console.log(auctionsArray)
-  //     })
-  // }, [])
-  // // reset the auction timer every time auctionIndex changes
-  // useEffect(() => {
-  //   if (auctions) {
-  //     setAucHours(0)
-  //     setAucMins(0)
-  //     setAucSecs(0)
-  //     for (var i = 1; i < 99999; i++) {
-  //       clearInterval(i)
-  //     }
-  //     setInterval(() => {
   //       var now = new Date()
-        
-  //       if (now >= auctionsArray[0].UTCStart) {
-  //         setAucHours(Math.floor((auctionsArray[0].UTCEnd - now)/3600000))
-  //         setAucMins(Math.floor((auctionsArray[0].UTCEnd - now)%3600000/60000))
-  //         setAucSecs(Math.floor((auctionsArray[0].UTCEnd - now)%60000/1000))
+  //       data.message[0].UTC = new Date(data.message[0].UTC)
+  //       if (now < data.message[0].UTC) {
+  //         console.log(data.message)
+  //         data.message[0].lifeCycle = 0
+  //         setShuffleHours(0)
+  //         setShuffleMins(0)
+  //         setShuffleSecs(0)
+  //         for (var i = 1; i < 99999; i++) {
+  //           clearInterval(i)
+  //         }
+  //         setInterval(() => {
+  //           var now = new Date()  
+  //           if (now < data.message[0].UTC) {
+  //             setShuffleHours(Math.floor((data.message[0].UTC - now)/3600000))
+  //           setShuffleMins(Math.floor((data.message[0].UTC - now)%3600000/60000))
+  //           setShuffleSecs(Math.floor((data.message[0].UTC - now)%60000/1000))
+  //           }
+  //         },1000)
+  //       } else {
+  //         data.message[0].lifeCycle = 1
   //       }
-  //     },1000)
-  //   }
-  // }, [auctionIndex])
+
+  //       data.message[0].registery.map((registerant) => {
+  //         for (var i=0; i<registerant.points; i++) {
+  //           registeryArray.push(registerant.sholder)
+  //         }
+  //       })
+  //       setShuffles(data.message)
+  //       shufflesArray.push(data.message[0])
+  //       console.log(registeryArray)
+  //       setShufflesLoading(false)
+  //     })    
+  // }, [])
+
+  // read and react to auction object(s)
+  const [auctions, setAuctions] = useState()
+  const [auctionsArray, setAuctionsArray] = useState([])
+  const [aucsLoading, setAucsLoading] = useState()
+  const [auctionIndex, setAuctionIndex] = useState(0)
+  const [aucHours, setAucHours] = useState(0)
+  const [aucMins, setAucMins] = useState(0)
+  const [aucSecs, setAucSecs] = useState(0)
+  useEffect(() => {
+    setAucsLoading(true)
+    fetch('api/auctions')
+      .then((res) => res.json())
+      .then((data) => {
+        data.message.reverse().map((auction) => {
+          var now = new Date()
+          auction.UTCStart = new Date(auction.UTCStart)
+          auction.UTCEnd = new Date(auction.UTCEnd)
+          auction.lifeCycle = 0
+          console.log(now-auction.UTCStart)
+          if (now > auction.UTCStart) {
+            auction.lifeCycle = 1
+            setAucHours(0)
+            setAucMins(0)
+            setAucSecs(0)
+            for (var i = 1; i < 99999; i++) {
+              clearInterval(i)
+            }
+            setInterval(() => {
+              var now = new Date()
+              
+              if (now >= auctionsArray[0].UTCStart) {
+                setAucHours(Math.floor((auctionsArray[0].UTCEnd - now)/3600000))
+                setAucMins(Math.floor((auctionsArray[0].UTCEnd - now)%3600000/60000))
+                setAucSecs(Math.floor((auctionsArray[0].UTCEnd - now)%60000/1000))
+              }
+            },1000)
+          }
+          if (now > auction.UTCEnd) {
+            auction.lifeCycle = 2
+          }
+          fetch(`api/escrowTxns/?wallet=${auction.escrowWallet}`)
+            .then((res) => res.json())
+            .then((data) => {
+              data.message.sort((txna, txnb) => txna["confirmed-round"] - txnb["confirmed-round"])
+              // console.log(data.message)
+              auction.bidHistory = []
+              data.message.map((txn, index) => {
+                index && auction.bidHistory.push({bid: txn["payment-transaction"].amount, bidder: txn.sender})
+              })
+              fetch('api/auctions' , {
+                method: 'POST',
+                body: JSON.stringify(auction)
+              }).then((res) => res.json())
+            })
+          auctionsArray.push(auction)
+        })
+        setAuctions(data.message)
+        setAucsLoading(false)
+        console.log(auctionsArray)
+      })
+  }, [])
+  // reset the auction timer every time auctionIndex changes
+  useEffect(() => {
+    if (auctions) {
+      setAucHours(0)
+      setAucMins(0)
+      setAucSecs(0)
+      for (var i = 1; i < 99999; i++) {
+        clearInterval(i)
+      }
+      setInterval(() => {
+        var now = new Date()
+        
+        if (now >= auctionsArray[auctionIndex].UTCStart) {
+          setAucHours(Math.floor((auctionsArray[auctionIndex].UTCEnd - now)/3600000))
+          setAucMins(Math.floor((auctionsArray[auctionIndex].UTCEnd - now)%3600000/60000))
+          setAucSecs(Math.floor((auctionsArray[auctionIndex].UTCEnd - now)%60000/1000))
+        }
+      },1000)
+    }
+  }, [auctionIndex])
 
   // read and react to sholders
   const [sholdersArray, setSholdersArray]=useState([])
@@ -182,10 +183,17 @@ function Landing() {
   },[])
 
   // handle connection and auth
+  const myAlgoConnect = new MyAlgoConnect({ disableLedgerNano: false })
+  const settings = {
+    shouldSelectOneAccount: true,
+    openManager: true
+  }
+
   const [account, setAccount] = useState()
   const [avatar, setAvatar] = useState()
   const [authLevel, setAuthLevel] = useState(0)
   const [registered, setRegistered] = useState(false)
+
   const connectWallet = async () => {
     try {
       let fetchedAccount = await myAlgoConnect.connect(settings).then((fetchedAccount) => {
@@ -217,6 +225,31 @@ function Landing() {
       console.log(error)
     }
   }
+
+  //handle transaction
+
+  
+  const signTxn = async () => {
+    const algodClient = new algosdk.Algodv2("", 'https://node.algoexplorerapi.io', '')
+    const params = await algodClient.getTransactionParams().do()
+  
+    const txn1 = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
+      suggestedParams: {
+        ...params,
+      },
+      from: account[0].address,
+      to: '37XZFQ3R7XOQ5KRPIDOK3BK5O2N5UNFJOV6H3LAZA6R4KFRHQGKXE45DM4',
+      amount: 50000000,
+      note: new Uint8Array(2)
+    })
+    const myAlgoConnectTxn = new MyAlgoConnect()
+    let signedTxn = await myAlgoConnectTxn.signTransaction(txn.toByte()).then((txn) => {
+      algodClient.sendRawTransaction(txn.blob).do()
+      // console.log(txn)
+    })
+
+  }
+
 
   const router = useRouter()
   const control1 = useAnimation()
@@ -537,7 +570,7 @@ function Landing() {
     })
   }
 
-  if(shuffles) {
+  if(auctions) {
     return (
       <div className={styles.landing}
         style={{height: `${normalizedwidth*16/9}vw`,
@@ -621,25 +654,25 @@ function Landing() {
                 <motion.div className={styles.headHolder}
                   style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh',
                     left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh'}}
-                  onClick={() => setAuctionIndex((auctionIndex+1)%5)}>
+                  onClick={() => setAuctionIndex((auctionIndex+1)%4)}>
                   <Image className={styles.head}
-                    src={auctionsArray[(auctionIndex+1)%5].asset}
+                    src={auctionsArray[(auctionIndex+1)%4].asset}
                     layout='fill' />
                 </motion.div>
                 <motion.div className={styles.headCard}
                   style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh',
                     left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh'}}>
                   <p>
-                    AH{auctionsArray[(auctionIndex+1)%5].asset.slice(9,12)}
+                    AH{auctionsArray[(auctionIndex+1)%4].asset.slice(9,12)}
                   </p>
                   <motion.div className={styles.highBid}>
-                  <p>{auctionsArray[(auctionIndex+1)%5].bidHistory.length>0 ? auctionsArray[(auctionIndex+1)%5].bidHistory[auctionsArray[(auctionIndex+1)%5].bidHistory.length-1].bid/1000000 : '50'}</p>
+                  <p>{auctionsArray[(auctionIndex+1)%4].bidHistory.length>0 ? auctionsArray[(auctionIndex+1)%4].bidHistory[auctionsArray[(auctionIndex+1)%4].bidHistory.length-1].bid/1000000 : '50'}</p>
                   <motion.div className={styles.algoLogo}>
                     <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M18.0006 19.0109H15.1785L13.3456 12.193L9.40508
                         19.0116H6.25445L12.345 8.45714L11.3648 4.79298L3.15215
                         19.0139H0L10.408 0.986084H13.1674L14.3757 5.46509H17.2228L15.2789
-                        8.8453L18.0006 19.0109Z" fill={auctionsArray[(auctionIndex+1)%5].color} />
+                        8.8453L18.0006 19.0109Z" fill={auctionsArray[(auctionIndex+1)%4].color} />
                     </svg>
                   </motion.div>
                 </motion.div>
@@ -647,25 +680,25 @@ function Landing() {
                 <motion.div className={styles.headHolder}
                   style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh',
                     left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh'}}
-                  onClick={() => setAuctionIndex((auctionIndex+2)%5)}>
+                  onClick={() => setAuctionIndex((auctionIndex+2)%4)}>
                   <Image className={styles.head}
-                    src={auctionsArray[(auctionIndex+2)%5].asset}
+                    src={auctionsArray[(auctionIndex+2)%4].asset}
                     layout='fill' />
                 </motion.div>
                 <motion.div className={styles.headCard}
                   style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh',
                     left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh'}}>
                   <p>
-                    AH{auctionsArray[(auctionIndex+2)%5].asset.slice(9,12)}
+                    AH{auctionsArray[(auctionIndex+2)%4].asset.slice(9,12)}
                   </p>
                   <motion.div className={styles.highBid}>
-                  <p>{auctionsArray[(auctionIndex+2)%5].bidHistory.length ? auctionsArray[(auctionIndex+2)%5].bidHistory[auctionsArray[(auctionIndex+2)%5].bidHistory.length-1].bid/1000000 : '50'}</p>
+                  <p>{auctionsArray[(auctionIndex+2)%4].bidHistory.length ? auctionsArray[(auctionIndex+2)%4].bidHistory[auctionsArray[(auctionIndex+2)%4].bidHistory.length-1].bid/1000000 : '50'}</p>
                   <motion.div className={styles.algoLogo}>
                     <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M18.0006 19.0109H15.1785L13.3456 12.193L9.40508
                         19.0116H6.25445L12.345 8.45714L11.3648 4.79298L3.15215
                         19.0139H0L10.408 0.986084H13.1674L14.3757 5.46509H17.2228L15.2789
-                        8.8453L18.0006 19.0109Z" fill={auctionsArray[(auctionIndex+2)%5].color} />
+                        8.8453L18.0006 19.0109Z" fill={auctionsArray[(auctionIndex+2)%4].color} />
                     </svg>
                   </motion.div>
                 </motion.div>
@@ -770,25 +803,25 @@ function Landing() {
               <motion.div className={styles.headHolder}
                 style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh',
                  left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '4vw' : '2.25vh'}}
-                onClick={() => setAuctionIndex((auctionIndex+3)%5)}>
+                onClick={() => setAuctionIndex((auctionIndex+3)%4)}>
                 <Image className={styles.head}
-                  src={auctionsArray[(auctionIndex+3)%5].asset}
+                  src={auctionsArray[(auctionIndex+3)%4].asset}
                   layout='fill' />
               </motion.div>
               <motion.div className={styles.headCard}
                 style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh',
                  left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '4vw' : '2.25vh'}}>
                 <p>
-                  AH{auctionsArray[(auctionIndex+3)%5].asset.slice(9,12)}
+                  AH{auctionsArray[(auctionIndex+3)%4].asset.slice(9,12)}
                 </p>
                 <motion.div className={styles.highBid}>
-                  <p>{auctionsArray[(auctionIndex+3)%5].bidHistory.length ? auctionsArray[(auctionIndex+3)%5].bidHistory[auctionsArray[(auctionIndex+3)%5].bidHistory.length-1].bid/1000000 : '50'}</p>
+                  <p>{auctionsArray[(auctionIndex+3)%4].bidHistory.length ? auctionsArray[(auctionIndex+3)%4].bidHistory[auctionsArray[(auctionIndex+3)%4].bidHistory.length-1].bid/1000000 : '50'}</p>
                   <motion.div className={styles.algoLogo}>
                     <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M18.0006 19.0109H15.1785L13.3456 12.193L9.40508
                         19.0116H6.25445L12.345 8.45714L11.3648 4.79298L3.15215
                         19.0139H0L10.408 0.986084H13.1674L14.3757 5.46509H17.2228L15.2789
-                        8.8453L18.0006 19.0109Z" fill={auctionsArray[(auctionIndex+3)%5].color} />
+                        8.8453L18.0006 19.0109Z" fill={auctionsArray[(auctionIndex+3)%4].color} />
                     </svg>
                   </motion.div>
                 </motion.div>
@@ -796,25 +829,25 @@ function Landing() {
               <motion.div className={styles.headHolder}
                 style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh',
                  left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '27vw' : '15.19vh'}}
-                onClick={() => setAuctionIndex((auctionIndex+4)%5)}>
+                onClick={() => setAuctionIndex((auctionIndex+4)%4)}>
                 <Image className={styles.head}
-                  src={auctionsArray[(auctionIndex+4)%5].asset}
+                  src={auctionsArray[(auctionIndex+4)%4].asset}
                   layout='fill' />
               </motion.div>
               <motion.div className={styles.headCard}
                 style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh',
                  left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '27vw' : '15.19vh'}}>
                 <p>
-                  AH{auctionsArray[(auctionIndex+4)%5].asset.slice(9,12)}
+                  AH{auctionsArray[(auctionIndex+4)%4].asset.slice(9,12)}
                 </p>
                 <motion.div className={styles.highBid}>
-                  <p>{auctionsArray[(auctionIndex+4)%5].bidHistory.length ? auctionsArray[(auctionIndex+4)%5].bidHistory[auctionsArray[(auctionIndex+4)%5].bidHistory.length-1].bid/1000000 : '50'}</p>
+                  <p>{auctionsArray[(auctionIndex+4)%4].bidHistory.length ? auctionsArray[(auctionIndex+4)%4].bidHistory[auctionsArray[(auctionIndex+4)%4].bidHistory.length-1].bid/1000000 : '50'}</p>
                   <motion.div className={styles.algoLogo}>
                     <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M18.0006 19.0109H15.1785L13.3456 12.193L9.40508
                         19.0116H6.25445L12.345 8.45714L11.3648 4.79298L3.15215
                         19.0139H0L10.408 0.986084H13.1674L14.3757 5.46509H17.2228L15.2789
-                        8.8453L18.0006 19.0109Z" fill={auctionsArray[(auctionIndex+4)%5].color} />
+                        8.8453L18.0006 19.0109Z" fill={auctionsArray[(auctionIndex+4)%4].color} />
                     </svg>
                   </motion.div>
                 </motion.div>
@@ -1028,7 +1061,7 @@ function Landing() {
                   <p>Auction ended!</p>
                 </motion.div>
               }
-              {auctionsArray[auctionIndex].lifeCycle < 2 ?
+              {auctionsArray[auctionIndex].lifeCycle == 1 ?
                 <Link href={auctionsArray[auctionIndex].link} passHref>
                   <motion.a className={styles.mainAuction} 
                     target="_blank"
