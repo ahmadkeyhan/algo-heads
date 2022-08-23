@@ -6,7 +6,12 @@ async function updateShuffles(req, res) {
         let { db } = await connectToDatabase();
         let shuffle = req.body;
         shuffle = JSON.parse(shuffle);
-        await db.collection('shuffles').updateOne({"_id": ObjectId(shuffle._id)}, {$set:{registery: shuffle.registery, lifeCycle: shuffle.lifeCycle}}, {upsert: true})
+        await db.collection('shuffles').updateOne({
+            "_id": ObjectId(shuffle._id)},
+            {$set:{registery: shuffle.registery,
+                lifeCycle: shuffle.lifeCycle,
+                assets: shuffle.assets}},
+            {upsert: true})
         return res.json({
             message: 'Shuffle updated!'
         })
