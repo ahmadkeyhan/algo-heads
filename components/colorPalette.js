@@ -1,2 +1,2 @@
-export const lightColorPalette = ['#6BDFCA','#e3ec59','#FFE474','#BAB9B3','#FF9977','#D273DB','#FFBC76', '#EDDFDC','#EDDFDC']
-export const darkColorPalette = ['#006747','#787c3e','#8d7e40','#6a6a6a','#965a46','#7a4380','#8e6230','#5e915e', '#c97020']
+export const lightColorPalette = ['#6BDFCA','#dce839','#FFE474','#BAB9B3','#FF9977','#D273DB','#FFBC76', '#EDDFDC','#EDDFDC']
+export const darkColorPalette = ['#006747','#787c3e','#8d7e40','#6a6a6a','#965a46','#6b3c76','#8e6230','#5e915e', '#c97020']
