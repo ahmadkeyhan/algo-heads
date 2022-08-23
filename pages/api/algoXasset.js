@@ -1,13 +1,13 @@
-export default async function getSholder(req, res) {
+export default async function getAsset(req, res) {
     try {
 
         const query = req.query
-        const { id } = query
+        const { assetId } = query
         
-        let data = await fetch(`https://algoindexer.algoexplorerapi.io/v2/assets/${id}/balances?currency-greater-than=0`)
+        let data = await fetch(`https://algoindexer.algoexplorerapi.io/v2/assets/${assetId}`)
             .then(res => res.json())
         return res.json({
-            message: data.balances[0].address
+            message: data.asset.params
         })
     } catch (error) {
         return res.json({
