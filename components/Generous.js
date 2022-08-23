@@ -350,21 +350,24 @@ function Generous() {
                 onClick={() => connectWallet()}
                 style={{color: lightColorPalette[giveAwaysArray[index].colorCode],
                   backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
-                <MdIcons.MdAccountBalanceWallet style={{fontSize: '1rem'}} />
+                <MdIcons.MdAccountBalanceWallet />
               </motion.button> :
               address === giveAwaysArray[index].diceRoller ?
               <motion.button className={styles.getTicket}
                 // onClick={() => connectWallet()}
                 style={{color: lightColorPalette[giveAwaysArray[index].colorCode],
                   backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
-                <BsIcons.BsDice3Fill style={{fontSize: '1rem'}} />
+                <BsIcons.BsDice3Fill />
               </motion.button> :
               frenRegistered ? 
               <motion.button className={styles.getTicket}
-                style={{color: lightColorPalette[giveAwaysArray[index].colorCode],
+                style={{top: normalizedwidth === 100 ? '16vw' : '9vh',
+                  left: normalizedwidth === 100 ? '24vw' : '13.5vh',
+                  width: normalizedwidth === 100 ? '28vw' : '15.75vh',
+                  color: lightColorPalette[giveAwaysArray[index].colorCode],
                   backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
-                <HiIcons.HiTicket style={{transform: 'scaleX(-1)'}} />
-                <MdIcons.MdCheck style={{position: 'absolute', fontSize: '0.6rem', color: darkColorPalette[giveAwaysArray[index].colorCode]}} />
+                <p style={{fontSize: normalizedwidth === 100 ? '3vw' : '1.69vh'}}>Registered</p>
+                <BsIcons.BsCheckAll />
               </motion.button> :
               <motion.button className={styles.getTicket}
               onClick={() => frenIndex > -1 && frenRegister(address)}
@@ -379,14 +382,17 @@ function Generous() {
             <motion.div className={styles.prizeName}>
                 <p>{giveAwaysArray[index].prize.unitName}</p>
             </motion.div>
-            <motion.div className={styles.giveAwayRow}>
-                <FaIcons.FaKeybase style={{color: '#f3f8f2',fontSize: '1.2rem', marginLeft: '-0.1rem'}} />
-                <h1 style={{borderBottom: `2px solid ${darkColorPalette[giveAwaysArray[index].colorCode]}`}}>{giveAwaysArray[index].diceRoller.slice(0,8)+'...'}</h1>
-            </motion.div>
-            <motion.div className={styles.giveAwayRow}>
-                <BiIcons.BiKey style={{color: '#f3f8f2'}} />
-                <h1>{giveAwaysArray[index].barrier.amount+' '+giveAwaysArray[index].barrier.collection}</h1>
-            </motion.div>
+            { !frenRegistered ?
+            <>
+              <motion.div className={styles.giveAwayRow}>
+                  <FaIcons.FaKeybase style={{color: '#f3f8f2',fontSize: '1.2rem', marginLeft: '-0.1rem'}} />
+                  <h1 style={{borderBottom: `2px solid ${darkColorPalette[giveAwaysArray[index].colorCode]}`}}>{giveAwaysArray[index].diceRoller.slice(0,8)+'...'}</h1>
+              </motion.div>
+              <motion.div className={styles.giveAwayRow}>
+                  <BiIcons.BiKey style={{color: '#f3f8f2'}} />
+                  <h1>{giveAwaysArray[index].barrier.amount+' '+giveAwaysArray[index].barrier.collection}</h1>
+              </motion.div>
+            </> : null}
             <motion.div className={styles.giveAwayRow}>
                 <HiIcons.HiOutlineTicket style={{transform: 'scaleX(-1)',color: '#f3f8f2'}} />
                 <h1>{frenRegisterants.length} <span style={{color: '#f3f8f2'}}>/</span> {frenArray.length}</h1>
@@ -395,6 +401,13 @@ function Generous() {
                 <MdIcons.MdTimer style={{color: '#f3f8f2'}} />
                 <h1>{gaHours[index]}<span style={{color: '#f3f8f2'}}> h </span>{gaMins[index]}<span style={{color: '#f3f8f2'}}> m</span></h1>
             </motion.div>
+            { frenRegistered ?
+            <>
+              <motion.div className={styles.giveAwayRow}>
+              </motion.div>
+              <motion.div className={styles.giveAwayRow}>
+              </motion.div>
+            </> : null}
           </motion.div>
         )
       } else if (index === 1) {
@@ -526,21 +539,24 @@ function Generous() {
                 onClick={() => connectWallet()}
                 style={{color: lightColorPalette[giveAwaysArray[index].colorCode],
                   backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
-                <MdIcons.MdAccountBalanceWallet style={{fontSize: '1rem'}} />
+                <MdIcons.MdAccountBalanceWallet />
               </motion.button> :
               address === giveAwaysArray[index].diceRoller ?
               <motion.button className={styles.getTicket}
                 // onClick={() => connectWallet()}
                 style={{color: lightColorPalette[giveAwaysArray[index].colorCode],
                   backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
-                <BsIcons.BsDice3Fill style={{fontSize: '1rem'}} />
+                <BsIcons.BsDice3Fill />
               </motion.button> :
-              frensRegistered && address ? 
+              frensRegistered ? 
               <motion.button className={styles.getTicket}
-                style={{color: lightColorPalette[giveAwaysArray[index].colorCode],
+                style={{top: normalizedwidth === 100 ? '16vw' : '9vh',
+                  left: normalizedwidth === 100 ? '24vw' : '13.5vh',
+                  width: normalizedwidth === 100 ? '28vw' : '15.75vh',
+                  color: lightColorPalette[giveAwaysArray[index].colorCode],
                   backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
-                <HiIcons.HiTicket style={{transform: 'scaleX(-1)'}} />
-                <MdIcons.MdCheck style={{position: 'absolute', fontSize: '0.6rem', color: darkColorPalette[giveAwaysArray[index].colorCode]}} />
+                <p style={{fontSize: normalizedwidth === 100 ? '3vw' : '1.69vh'}}>Registered</p>
+                <BsIcons.BsCheckAll />
               </motion.button> :
               <motion.button className={styles.getTicket}
               onClick={() => frensIndex > -1 && frensRegister(address)}
@@ -554,14 +570,17 @@ function Generous() {
             <motion.div className={styles.prizeName}>
                 <p>{giveAwaysArray[index].prize.unitName}</p>
             </motion.div>
-            <motion.div className={styles.giveAwayRow}>
-                <FaIcons.FaKeybase style={{color: '#f3f8f2',fontSize: '1.2rem', marginLeft: '-0.1rem'}} />
-                <h1 style={{borderBottom: `2px solid ${darkColorPalette[giveAwaysArray[index].colorCode]}`}}>{giveAwaysArray[index].diceRoller.slice(0,8)+'...'}</h1>
-            </motion.div>
-            <motion.div className={styles.giveAwayRow}>
-                <BiIcons.BiKey style={{color: '#f3f8f2'}} />
-                <h1>{giveAwaysArray[index].barrier.amount+' '+giveAwaysArray[index].barrier.collection}</h1>
-            </motion.div>
+            { !frensRegistered ?
+            <>
+              <motion.div className={styles.giveAwayRow}>
+                  <FaIcons.FaKeybase style={{color: '#f3f8f2',fontSize: '1.2rem', marginLeft: '-0.1rem'}} />
+                  <h1 style={{borderBottom: `2px solid ${darkColorPalette[giveAwaysArray[index].colorCode]}`}}>{giveAwaysArray[index].diceRoller.slice(0,8)+'...'}</h1>
+              </motion.div>
+              <motion.div className={styles.giveAwayRow}>
+                  <BiIcons.BiKey style={{color: '#f3f8f2'}} />
+                  <h1>{giveAwaysArray[index].barrier.amount+' '+giveAwaysArray[index].barrier.collection}</h1>
+              </motion.div>
+            </> : null}
             <motion.div className={styles.giveAwayRow}>
                 <HiIcons.HiOutlineTicket style={{transform: 'scaleX(-1)',color: '#f3f8f2'}} />
                 <h1>{frensRegisterants.length} <span style={{color: '#f3f8f2'}}>/</span> {frensArray.length}</h1>
@@ -570,6 +589,13 @@ function Generous() {
                 <MdIcons.MdTimer style={{color: '#f3f8f2'}} />
                 <h1>{gaHours[index]}<span style={{color: '#f3f8f2'}}> h </span>{gaMins[index]}<span style={{color: '#f3f8f2'}}> m</span></h1>
             </motion.div>
+            { frensRegistered ?
+            <>
+              <motion.div className={styles.giveAwayRow}>
+              </motion.div>
+              <motion.div className={styles.giveAwayRow}>
+              </motion.div>
+            </> : null}
           </motion.div>
         )
       } else {
@@ -701,21 +727,24 @@ function Generous() {
                 onClick={() => connectWallet()}
                 style={{color: lightColorPalette[giveAwaysArray[index].colorCode],
                   backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
-                <MdIcons.MdAccountBalanceWallet style={{fontSize: '1rem'}} />
+                <MdIcons.MdAccountBalanceWallet />
               </motion.button> :
               address === giveAwaysArray[index].diceRoller ?
               <motion.button className={styles.getTicket}
                 // onClick={() => connectWallet()}
                 style={{color: lightColorPalette[giveAwaysArray[index].colorCode],
                   backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
-                <BsIcons.BsDice3Fill style={{fontSize: '1rem'}} />
+                <BsIcons.BsDice3Fill />
               </motion.button> :
-              sholderRegistered && address ? 
+              sholderRegistered ? 
               <motion.button className={styles.getTicket}
-                style={{color: lightColorPalette[giveAwaysArray[index].colorCode],
+                style={{top: normalizedwidth === 100 ? '16vw' : '9vh',
+                  left: normalizedwidth === 100 ? '24vw' : '13.5vh',
+                  width: normalizedwidth === 100 ? '28vw' : '15.75vh',
+                  color: lightColorPalette[giveAwaysArray[index].colorCode],
                   backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
-                <HiIcons.HiTicket style={{transform: 'scaleX(-1)'}} />
-                <MdIcons.MdCheck style={{position: 'absolute', fontSize: '0.6rem', color: darkColorPalette[giveAwaysArray[index].colorCode]}} />
+                <p style={{fontSize: normalizedwidth === 100 ? '3vw' : '1.69vh'}}>Registered</p>
+                <BsIcons.BsCheckAll />
               </motion.button> :
               <motion.button className={styles.getTicket}
               onClick={() => sholderIndex > -1 && sholderRegister(address)}
@@ -729,14 +758,17 @@ function Generous() {
             <motion.div className={styles.prizeName}>
                 <p>{giveAwaysArray[index].prize.unitName}</p>
             </motion.div>
-            <motion.div className={styles.giveAwayRow}>
-                <FaIcons.FaKeybase style={{color: '#f3f8f2',fontSize: '1.2rem', marginLeft: '-0.1rem'}} />
-                <h1 style={{borderBottom: `2px solid ${darkColorPalette[giveAwaysArray[index].colorCode]}`}}>{giveAwaysArray[index].diceRoller.slice(0,8)+'...'}</h1>
-            </motion.div>
-            <motion.div className={styles.giveAwayRow}>
-                <BiIcons.BiKey style={{color: '#f3f8f2'}} />
-                <h1>{giveAwaysArray[index].barrier.amount+' '+giveAwaysArray[index].barrier.collection}</h1>
-            </motion.div>
+            { !sholderRegistered ?
+            <>
+              <motion.div className={styles.giveAwayRow}>
+                  <FaIcons.FaKeybase style={{color: '#f3f8f2',fontSize: '1.2rem', marginLeft: '-0.1rem'}} />
+                  <h1 style={{borderBottom: `2px solid ${darkColorPalette[giveAwaysArray[index].colorCode]}`}}>{giveAwaysArray[index].diceRoller.slice(0,8)+'...'}</h1>
+              </motion.div>
+              <motion.div className={styles.giveAwayRow}>
+                  <BiIcons.BiKey style={{color: '#f3f8f2'}} />
+                  <h1>{giveAwaysArray[index].barrier.amount+' '+giveAwaysArray[index].barrier.collection}</h1>
+              </motion.div>
+            </> : null}
             <motion.div className={styles.giveAwayRow}>
                 <HiIcons.HiOutlineTicket style={{transform: 'scaleX(-1)',color: '#f3f8f2'}} />
                 <h1>{sholderRegisterants.length} <span style={{color: '#f3f8f2'}}>/</span> {sholderArray.length}</h1>
@@ -745,6 +777,13 @@ function Generous() {
                 <MdIcons.MdTimer style={{color: '#f3f8f2'}} />
                 <h1>{gaHours[index]}<span style={{color: '#f3f8f2'}}> h </span>{gaMins[index]}<span style={{color: '#f3f8f2'}}> m</span></h1>
             </motion.div>
+            { sholderRegistered ?
+            <>
+              <motion.div className={styles.giveAwayRow}>
+              </motion.div>
+              <motion.div className={styles.giveAwayRow}>
+              </motion.div>
+            </> : null}
           </motion.div>
         )
       }
