@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import * as MdIcons from 'react-icons/md'
 import * as RiIcons from 'react-icons/ri'
 import * as CgIcons from 'react-icons/cg'
+import * as BsIcons from 'react-icons/bs'
 import { motion, motionValue, useViewportScroll } from "framer-motion"
 import { darkColorPalette, lightColorPalette } from './colorPalette'
 
@@ -30,8 +31,8 @@ export default function NavSlider({colorCode}) {
   })
 
   const router = useRouter()
-  const routes = ['/','/headlist','/sholders','/roadmap']
-  const colorCodes = [2,3,0,4]
+  const routes = ['/','/headlist','/sholders','/generous','/roadmap']
+  const colorCodes = [2,3,0,5,4]
 
   function NavDot({routeIndex}) {
     return(
@@ -51,7 +52,9 @@ export default function NavSlider({colorCode}) {
           style={{
             backgroundColor: darkColorPalette[3],
             marginLeft: `${offset}vw`}}
-          animate={routes.indexOf(router.route.slice(0,9)) !== 2 ? 
+          animate={routes.indexOf(router.route.slice(0,9)) == 3 ?
+            {left: normalizedwidth === 100 ? '8vw' : '4.5vh'} :
+            routes.indexOf(router.route.slice(0,9)) !== 2 ? 
             {bottom: normalizedwidth === 100 ? '10vw' : '5.625vh'} :
             router.route === routes[2] ?
             {bottom: normalizedwidth === 100 ? '64vw' : '36vh'} :
@@ -65,6 +68,7 @@ export default function NavSlider({colorCode}) {
             routes.indexOf(router.route.slice(0,9)) == 1 ? <MdIcons.MdFace />:
             routes.indexOf(router.route.slice(0,9)) == 2 && router.route == routes[2] ? <CgIcons.CgTrophy />:
             routes.indexOf(router.route.slice(0,9)) == 2 ? null :
+            routes.indexOf(router.route.slice(0,9)) == 3 ? <BsIcons.BsDice3Fill style={{fontSize: '1rem'}} /> :
             <RiIcons.RiRouteFill />}
           </motion.div>
           <div className={styles.navLinks}>
@@ -72,16 +76,17 @@ export default function NavSlider({colorCode}) {
             <NavDot routeIndex={1} />
             <NavDot routeIndex={2} />
             <NavDot routeIndex={3} />
+            <NavDot routeIndex={4} />
           </div>
           <div className={styles.navBearing}
             onClick={() => router.reload()}>
             <svg width="18" height="90" viewBox="0 0 18 90" fill="none" xmlns="http://www.w3.org/2000/svg">
               <motion.circle cx='9' cy="9" r="7" 
-                animate={{y: routes.indexOf(router.route.slice(0,9))*23 + 2 ,
+                animate={{y: routes.indexOf(router.route.slice(0,9))*17.25 + 2 ,
                   fill: lightColorPalette[colorCodes[routes.indexOf(router.route.slice(0,9))]]}}
                 transition={{duration: 0.2}} />
               <motion.circle cx='9' cy="9" r="5" fill={darkColorPalette[3]}
-                animate={{y: routes.indexOf(router.route.slice(0,9))*23 + 2}}
+                animate={{y: routes.indexOf(router.route.slice(0,9))*17.25 + 2}}
                 transition={{duration: 0.1}} />
             </svg>
           </div>
