@@ -1,0 +1,280 @@
+.container {
+  display: flex;
+  width: 100vw;
+  justify-content: space-evenly;
+  height: 100vh;
+  align-items: center;
+  background-color: var(--color-bg-primary);
+}
+
+.generous {
+  position: relative;
+  background-color: var(--color-bg-primary);
+  overflow: scroll;
+}
+
+.generous::-webkit-scrollbar {
+  height: 0.125rem;
+  width: 0.125rem;
+}
+
+.generous::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+.generous::-webkit-scrollbar-thumb {
+  background: var(--color-bg-primary);
+  border-radius: 0.0625rem;
+}
+
+.wheelOne, .wheelTwo, .wheelThree, .wheelFour {
+  position: absolute;
+}
+
+.wheelOne {
+  top: -24.75vh;
+  left: 0;
+}
+
+.wheelTwo {
+  left: 27vh;
+  top: 5.63vh;
+}
+
+.wheelThree {
+  left: -24.75vh;
+  top: 33.75vh;
+}
+
+.wheelFour {
+  top: 63vh;
+  left: 27vh;
+}
+
+.logoHolder {
+  position: absolute;
+  width: 15.75vh;
+  height: 15.75vh;
+  top: 24.75vh;
+  z-index: 1000;
+  border-radius: 0 0 7.88vh 7.88vh;
+  background-color: var(--color-bg-primary);
+  overflow: hidden;
+}
+
+.walletRow {
+  position: absolute;
+  top: 27vh;
+  left: 28.13vh;
+  width: 24.19vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.walletRow p {
+  font-size: 0.9rem;
+  width: 18vh;
+  text-align: right;
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+.wallet {
+  width: 5.06vh;
+  height: 5.06vh;
+  border-radius: 3vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.81vh;
+  border: none;
+}
+
+.sholderRow {
+  position: absolute;
+  top: 33.75vh;
+  left: 34.88vh;
+  width: 17.44vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.7rem;
+}
+
+.sholder {
+  width: 5.06vh;
+  height: 5.06vh;
+  border-radius: 2.6vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.frenRow {
+  position: absolute;
+  top: 40.5vh;
+  left: 34.88vh;
+  width: 20.81vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.7rem;
+}
+
+.fren {
+  position: absolute;
+  left: 13.5vh;
+  width: 2.81vh;
+  height: 2.81vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.frenRow p, .sholderRow p {
+  color: var(--color-text-secondary);
+  text-align: right;
+  width: 11.25vh;
+  margin: 0;
+}
+
+.topTitle {
+  position: absolute;
+display: flex;
+justify-content: space-around;
+align-items: center;
+width: 30.38vh;
+  top:-13.5vh;
+  left: 25.88vh;
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+.topTitle h1{
+  font-size: 2.25vh;
+  font-weight: 300;
+}
+
+.giveAwayCard {
+  position: absolute;
+  width: 34.88vh;
+  height: 14.63vh;
+  padding: 0.56vh 0 0.56vh 12.38vh;
+  border-radius: 2.25vh 7.31vh 7.31vh 2.25vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: var(--color-bg-primary);
+  font-family: 'Gluten', cursive;
+}
+
+.getTicket {
+  position: absolute;
+  top:6.75vh;
+  left: 28.13vh;
+  width: 4.5vh;
+  height: 4.5vh;
+  border-radius: 2.25vh;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+
+.giveAwayRow p {
+  font-size: 0.9rem;
+  font-weight: 300;
+  margin: 0 0 0 0.5rem;
+}
+
+.giveAwayRow h1{
+  font-size: 0.7rem;
+  margin: 0 0 0 0.5rem;
+}
+
+.giveAwayRow span {
+  font-size: 0.7rem;
+}
+
+.giveAwayRow {
+  display: flex;
+  width: 23.63vh;
+  height: 3.38vh;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 1.13vh;
+}
+
+.prizeImg {
+  width: 8.44vh;
+  height: 8.44vh;
+  border-radius: 1.69vh;
+  position: absolute;
+  top: 0.84vh;
+  left: 0.84vh;
+  overflow: hidden;
+}
+
+.prizeName {
+  width: 8.44vh;
+  text-align: center;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 10.97vh;
+  left: 5.06vh;
+  overflow: hidden;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.prizeAmount {
+  width: 8.44vh;
+  text-align: center;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 12.94vh;
+  left: 5.06vh;
+  overflow: hidden;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.mainArrowHolder {
+  position: absolute;
+  width: 30.94vh;
+  height: 30.94vh;
+  top: 9vh;
+  left: 9vh;
+}
+
+.arrowHolder {
+  position: absolute;
+  width: 30.94vh;
+  height: 30.94vh;
+  top: 9vh;
+  left: 9vh;
+}
+
+.arrows {
+  transform: scaleY(-1) rotate(-5deg);
+}
+.counterArrows {
+  transform: scaleY(-1) rotate(145deg);
+}
+
+.lastArrows {
+  transform: rotate(145deg);
+}
+
+.counterArrowHolder {
+  position: absolute;
+  width: 30.94vh;
+  height: 30.94vh;
+  top: 9vh;
+  left: 9vh;
+}

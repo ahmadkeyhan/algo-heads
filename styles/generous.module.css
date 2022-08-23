@@ -1,0 +1,280 @@
+.container {
+    display: flex;
+    width: 100vw;
+    justify-content: space-evenly;
+    height: 100vh;
+    align-items: center;
+    background-color: var(--color-bg-primary);
+  }
+  
+  .generous {
+    position: relative;
+    background-color: var(--color-bg-primary);
+    overflow: scroll;
+  }
+  
+  .generous::-webkit-scrollbar {
+    height: 0.125rem;
+    width: 0.125rem;
+  }
+  
+  .generous::-webkit-scrollbar-track {
+    background: var(--color-bg-primary);
+  }
+  
+  .generous::-webkit-scrollbar-thumb {
+    background: var(--color-bg-primary);
+    border-radius: 0.0625rem;
+  }
+  
+  .wheelOne, .wheelTwo, .wheelThree, .wheelFour {
+    position: absolute;
+  }
+  
+  .wheelOne {
+    top: -44vw;
+    left: 0;
+  }
+  
+  .wheelTwo {
+    left: 48vw;
+    top: 10vw;
+  }
+  
+  .wheelThree {
+    left: -44vw;
+    top: 60vw;
+  }
+  
+  .wheelFour {
+    top: 112vw;
+    left: 48vw;
+  }
+
+  .logoHolder {
+    position: absolute;
+    width: 28vw;
+    height: 28vw;
+    top: 44vw;
+    z-index: 1000;
+    border-radius: 0 0 14vw 14vw;
+    background-color: var(--color-bg-primary);
+    overflow: hidden;
+  }
+
+  .walletRow {
+    position: absolute;
+    top: 48vw;
+    left: 50vw;
+    width: 43vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .walletRow p {
+    font-size: 0.8rem;
+    width: 32vw;
+    text-align: right;
+    margin: 0;
+    color: var(--color-text-primary);
+  }
+
+  .wallet {
+    width: 9vw;
+    height: 9vw;
+    border-radius: 4.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5vw;
+    border: none;
+  }
+
+  .sholderRow {
+    position: absolute;
+    top: 60vw;
+    left: 62vw;
+    width: 31vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.7rem;
+  }
+
+  .sholder {
+    width: 9vw;
+    height: 9vw;
+    border-radius: 4.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+  }
+
+  .frenRow {
+    position: absolute;
+    top: 72vw;
+    left: 62vw;
+    width: 37vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.7rem;
+  }
+
+  .fren {
+    position: absolute;
+    left: 24vw;
+    width: 5vw;
+    height: 5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+  }
+
+  .frenRow p, .sholderRow p {
+    color: var(--color-text-secondary);
+    text-align: right;
+    width: 20vw;
+    margin: 0;
+  }
+
+  .topTitle {
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 54vw;
+    top:-24vw;
+    left: 46vw;
+    margin: 0;
+    color: var(--color-text-secondary);
+  }
+
+  .topTitle h1{
+    font-size: 4vw;
+    font-weight: 300;
+  }
+  
+  .giveAwayCard {
+    position: absolute;
+    width: 62vw;
+    height: 26vw;
+    padding: 1vw 0 1vw 22vw;
+    border-radius: 4vw 13vw 13vw 4vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: var(--color-bg-primary);
+    font-family: 'Gluten', cursive;
+  }
+
+  .getTicket {
+    position: absolute;
+    top:12vw;
+    left: 50vw;
+    width: 8vw;
+    height: 8vw;
+    border-radius: 4vw;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+  }
+
+
+.giveAwayRow p {
+    font-size: 0.9rem;
+    font-weight: 300;
+    margin: 0 0 0 0.5rem;
+}
+
+  .giveAwayRow h1{
+    font-size: 0.7rem;
+    margin: 0 0 0 0.5rem;
+  }
+
+  .giveAwayRow span {
+    font-size: 0.7rem;
+  }
+
+  .giveAwayRow {
+    display: flex;
+    width: 42vw;
+    height: 6vw;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 2vw;
+  }
+  
+  .prizeImg {
+    width: 15vw;
+    height: 15vw;
+    border-radius: 3vw;
+    position: absolute;
+    top: 1.5vw;
+    left: 1.5vw;
+    overflow: hidden;
+  }
+
+  .prizeName {
+    width: 15vw;
+    text-align: center;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 19.5vw;
+    left: 9vw;
+    overflow: hidden;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  .prizeAmount {
+    width: 15vw;
+    text-align: center;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 23vw;
+    left: 9vw;
+    overflow: hidden;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  .mainArrowHolder {
+    position: absolute;
+    width: 55vw;
+    height: 55vw;
+    top: 16vw;
+    left: 16vw;
+  }
+  
+  .arrowHolder {
+    position: absolute;
+    width: 55vw;
+    height: 55vw;
+    top: 16vw;
+    left: 16vw;
+  }
+  
+  .arrows {
+    transform: scaleY(-1) rotate(-5deg);
+  }
+  .counterArrows {
+    transform: scaleY(-1) rotate(145deg);
+  }
+
+  .lastArrows {
+    transform: rotate(145deg);
+  }
+
+  .counterArrowHolder {
+    position: absolute;
+    width: 55vw;
+    height: 55vw;
+    top: 16vw;
+    left: 16vw;
+  }
