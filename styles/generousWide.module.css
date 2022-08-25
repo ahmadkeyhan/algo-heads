@@ -87,7 +87,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2.81vh;
   border: none;
 }
 
@@ -99,7 +98,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.7rem;
 }
 
 .sholder {
@@ -109,7 +107,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
 }
 
 .frenRow {
@@ -120,7 +117,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.7rem;
 }
 
 .fren {
@@ -131,10 +127,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
 }
 
 .frenRow p, .sholderRow p {
+  font-size: 0.7rem;
   color: var(--color-text-secondary);
   text-align: right;
   width: 11.25vh;
@@ -182,7 +178,6 @@ width: 30.38vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2.81vh;
   font-family: 'Gluten', cursive;
 }
 
