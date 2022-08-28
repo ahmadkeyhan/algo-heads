@@ -1,4 +1,4 @@
-const { connectToDatabase } = require('../../lib/mongodb')
+const { connectToDatabase } = require('../../../lib/mongodb')
 var ObjectId = require('mongodb').ObjectId
 
 async function updateShuffles(req, res) {

@@ -1,4 +1,4 @@
-const { connectToDatabase } = require('../../lib/mongodb')
+const { connectToDatabase } = require('../../../lib/mongodb')
 var ObjectId = require('mongodb').ObjectId
 
 async function updateGiveAway(req, res) {
@@ -12,7 +12,7 @@ async function updateGiveAway(req, res) {
                 winner: giveAway.winner}},
             {upsert: true})
         return res.json({
-            message: 'Shuffle updated!'
+            message: 'giveAway updated!'
         })
     } catch (error) {
         return res.json({

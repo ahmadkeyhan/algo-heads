@@ -1,4 +1,4 @@
-const { connectToDatabase } = require('../../lib/mongodb')
+const { connectToDatabase } = require('../../../lib/mongodb')
 
 async function updateFrens(req, res) {
     try {

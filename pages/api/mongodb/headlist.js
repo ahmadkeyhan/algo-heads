@@ -1,13 +1,13 @@
-const { connectToDatabase } = require('../../lib/mongodb')
+const { connectToDatabase } = require('../../../lib/mongodb')
 
-async function updateAuction(req, res) {
+async function listHeads(req, res) {
     try {
         let { db } = await connectToDatabase();
-        let auction = req.body;
-        auction = JSON.parse(auction);
-        await db.collection('auctions').updateOne({escrowWallet: auction.escrowWallet}, {$set:{bidHistory: auction.bidHistory, lifeCycle: auction.lifeCycle}}, {upsert: true})
+        let head = req.body;
+        head = JSON.parse(head);
+        await db.collection('heads').updateOne({assetId: head.assetId}, {$set:{price: head.price, sholder: head.sholder}}, {upsert: true})
         return res.json({
-            message: 'Auction updated!'
+            message: 'head listed!'
         })
     } catch (error) {
         return res.json({
@@ -16,17 +16,17 @@ async function updateAuction(req, res) {
     }
 }
 
-async function getAuctions(req, res) {
+async function getHeads(req, res) {
     try {
         let { db } = await connectToDatabase();
 
-        let auctions = await db
-            .collection('auctions')
+        let heads = await db
+            .collection('heads')
             .find({})
             .sort({ _id: -1 })
             .toArray()
         return res.json({
-            message: JSON.parse(JSON.stringify(auctions))
+            message: JSON.parse(JSON.stringify(heads))
         })
     } catch (error) {
         return res.json({
@@ -38,11 +38,11 @@ async function getAuctions(req, res) {
 export default async function handler(req, res) {
     switch (req.method) {
         case 'GET': {
-            return getAuctions(req, res);
+            return getHeads(req, res);
         }
 
         case 'POST': {
-            return updateAuction(req, res);
+            return listHeads(req, res);
         }
     }
 }

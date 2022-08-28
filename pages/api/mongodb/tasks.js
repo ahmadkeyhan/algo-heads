@@ -1,4 +1,4 @@
-const { connectToDatabase } = require('../../lib/mongodb')
+const { connectToDatabase } = require('../../../lib/mongodb')
 
 export default async function getTasks(req, res) {
     try {
