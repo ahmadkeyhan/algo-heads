@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import narrowStyles from '../styles/head.module.css'
 import wideStyles from '../styles/headWide.module.css'
 import { useState, useEffect } from 'react'
@@ -20,7 +21,7 @@ function Head() {
   }, [activeTheme])
 
   const [headIndex, setHeadIndex] = useState(-1)
-  const [fetchedheads, setFetchedHeads] = useState()
+  const [fetchedHeads, setFetchedHeads] = useState()
   const [isLoading, setLoading] = useState()
   const [headArray, setHeadArray] = useState([])
   const [colorCode, setColorCode] = useState(3)
@@ -29,7 +30,7 @@ function Head() {
 
   useEffect(() => {
     setLoading(true)
-    fetch('/api/headlist')
+    fetch('api/mongodb/headlist')
       .then((res) => res.json())
       .then((data) => {
         data.message.sort((a,b) => a.assetId*1 - b.assetId*1)
@@ -41,7 +42,7 @@ function Head() {
             setHeadIndex(index)
             console.log(headIndex)
             setColorCode(h.bgColorCode > -1 ? h.bgColorCode : 5)
-            fetch(`/api/asset/?assetId=${h.assetId}`)
+            fetch(`/api/nftx/asset/?assetId=${h.assetId}`)
               .then((res) => res.json())
               .then((data) => {
                 setMetaData(data.message)
@@ -74,24 +75,23 @@ function Head() {
 
   function HeadHolder({top, left}) {
     return (
-      <motion.div>
-        <motion.div className={styles.headHolder}
-          style={{top: top, left: left}}>
-          <Image className={styles.head} src={headArray[headIndex].src} layout='fill' />
+      <motion.div className={styles.headHolder}
+        style={{top: `${top}vw`, left: `${left}vw`}}>
+        <motion.div className={styles.headFrame}
+        style={{backgroundColor: lightColorPalette[colorCode]}}>
+          <Image className={styles.head} src={fetchedHeads[headIndex].src} layout='fill' />
         </motion.div>
         <motion.div className={styles.headCard}
           style={{
-            color:activeTheme === 'light' ? darkColorPalette[colorCode]: null,
-            top: top,
-            left: top}}>
-          <p>{headArray[headIndex].src.slice(1,12)}</p>
+            color:activeTheme === 'light' ? darkColorPalette[colorCode]: null}}>
+          <p>{metaData.name}</p>
         </motion.div>
       </motion.div>
     )
   }
 
 
-  if(fetchedheads) {
+  if( fetchedHeads && metaData) {
     if(headIndex !== -1) {
       return (
         <div className={styles.headlist}
@@ -99,18 +99,33 @@ function Head() {
           width: `${normalizedwidth}vw`}}>
           <div className={styles.wheelHolder}>
             <div className={styles.wheelOne}>
-              <HeadHolder top={44} left={0} />
+              <HeadHolder top={16} left={14} />
             </div>
           </div>
+          <div className={styles.wheelTwo}>
+            <motion.div className={styles.infoRect}
+              style={{borderColor: lightColorPalette[colorCode],
+                top: '4vw',
+                right: '26vw',
+                width: '50vw'}}>
+              <p>Asset id: <span>{metaData.assetId}</span></p>
+            </motion.div>
+            <motion.div className={styles.infoRect}
+              style={{borderColor: lightColorPalette[colorCode],
+                top: '17vw',
+                right: '10vw',
+                width: '46vw'}}>
+              <p>Unit name: <span>{metaData.unitName}</span></p>
+            </motion.div>
+            </div>
         </div>
         )
     } else {
-      return (
-        <p>ids dont match</p>
-      )
+      router.push('/headlist')
     }
     
   } else {
+    console.log('loading')
     return (
       <div className={styles.headlist}
         style={{height: `${normalizedwidth*16/9}vw`,

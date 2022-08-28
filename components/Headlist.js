@@ -86,14 +86,14 @@ function Headlist() {
 
 //   useEffect(() => {
 //     setLoading(true)
-//     fetch('api/headlist')
+//     fetch('api/mongodb/headlist')
 //     .then((res) => res.json())
 //     .then((headData) => {
 //       headData.message.sort((a,b) => a.assetId-b.assetId)
 //       setSortedHeads(headData.message)
 //       headData.message.map((head) => {
 //         listedHeads.push(head)
-//         fetch(`api/algoXasset/?id=${head.assetId}`).then((res) => res.json())
+//         fetch(`api/algoexplorer/asset/?id=${head.assetId}`).then((res) => res.json())
 //         .then((data) => {
 //           if (sholders.indexOf(data.message) === -1) {
 //             sholders.push(data.message)
@@ -110,14 +110,14 @@ function Headlist() {
 
   useEffect(() => {
       setLoading(true)
-      fetch('api/headlist')
+      fetch('api/mongodb/headlist')
       .then((res) => res.json())
       .then((headData) => {
         headData.message.sort((a,b) => a.assetId-b.assetId)
         setSortedHeads(headData.message)
         headData.message.map((head) => listedHeads.push(head))
         console.log(listedHeads, sortedHeads)
-        fetch('api/nftx')
+        fetch('api/nftx/sales')
         .then((res) => res.json())
         .then((data) => {
           data.message.sales.reverse()
@@ -141,14 +141,14 @@ function Headlist() {
             if (!sholderCatcher) {
               sholders.push({address: head.sholder.address, heads: [{assetId: head.assetId, bgColorCode: head.bgColorCode, src: head.src}]})
             }
-            fetch('api/headlist' , {
+            fetch('api/mongodb/headlist' , {
               method: 'POST',
               body: JSON.stringify(head)
             }).then((res) => res.json())
           })
           setLoading(false)
           sholders.map((sholder) => {
-            fetch('api/sholders', {
+            fetch('api/mongodb/sholders', {
               method: 'POST',
               body: JSON.stringify(sholder)
             }).then((res) => res.json())

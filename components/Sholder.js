@@ -30,7 +30,7 @@ function Sholder() {
 
   useEffect(() => {
     setLoading(true)
-    fetch('/api/sholders')
+    fetch('/api/mongodb/sholders')
       .then((res) => res.json())
       .then((data) => {
         data.message.sort((a,b) => b.heads.length - a.heads.length)

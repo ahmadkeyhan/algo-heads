@@ -15,7 +15,7 @@ function Roadmap() {
     useEffect(() => {
         setLoading(true)
         console.log('loading')
-        fetch('api/tasks')
+        fetch('api/mongodb/tasks')
           .then((res) => res.json())
           .then((data) => {
             setTasks(data.message)

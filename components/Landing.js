@@ -42,7 +42,7 @@ function Landing() {
   // useEffect(() => {
   //   setShufflesLoading(true)
   //   console.log('shuffles are loading...')
-  //   fetch('api/shuffles')
+  //   fetch('api/mongodb/shuffles')
   //     .then((res) => res.json())
   //     .then((data) => {
   //       var now = new Date()
@@ -90,7 +90,7 @@ function Landing() {
   const [aucSecs, setAucSecs] = useState(0)
   useEffect(() => {
     setAucsLoading(true)
-    fetch('api/auctions')
+    fetch('api/mongodb/auctions')
       .then((res) => res.json())
       .then((data) => {
         data.message.reverse().map((auction) => {
@@ -120,7 +120,7 @@ function Landing() {
           if (now > auction.UTCEnd) {
             auction.lifeCycle = 2
           }
-          fetch(`api/escrowTxns/?wallet=${auction.escrowWallet}`)
+          fetch(`api/algoexplorer/escrowTxns/?wallet=${auction.escrowWallet}`)
             .then((res) => res.json())
             .then((data) => {
               data.message.sort((txna, txnb) => txna["confirmed-round"] - txnb["confirmed-round"])
@@ -129,7 +129,7 @@ function Landing() {
               data.message.map((txn, index) => {
                 index && auction.bidHistory.push({bid: txn["payment-transaction"].amount, bidder: txn.sender})
               })
-              fetch('api/auctions' , {
+              fetch('api/mongodb/auctions' , {
                 method: 'POST',
                 body: JSON.stringify(auction)
               }).then((res) => res.json())
@@ -169,7 +169,7 @@ function Landing() {
   const [sholderIndex, setSholderIndex] = useState()
   useEffect(() => {
     setSholdersLoading(true)
-    fetch('/api/sholders')
+    fetch('/api/mongodb/sholders')
       .then((res) => res.json())
       .then((data) => {
         data.message.sort((a,b) => b.heads.length - a.heads.length)
@@ -544,7 +544,7 @@ function Landing() {
   //handle registery 
   function registerSholder(sholder) {
     shuffles[0].registery.push({sholder: sholder, points: authLevel-1})
-    fetch('api/shuffles' , {
+    fetch('api/mongodb/shuffles' , {
       method: 'POST',
       body: JSON.stringify(shuffles[0])
     }).then((res) => res.json())
@@ -564,7 +564,7 @@ function Landing() {
       var winner = registeryArray.splice(winnerIndex,1)
       shuffles[0].assets[i].winner = winner[0]
     }
-    fetch('api/shuffles', {
+    fetch('api/mongodb/shuffles', {
       method: 'POST',
       body: JSON.stringify(shuffles[0])
     })
