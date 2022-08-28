@@ -11,6 +11,7 @@ import * as HiIcons from 'react-icons/hi'
 import * as FaIcons from 'react-icons/fa'
 import * as CgIcons from 'react-icons/cg'
 import * as BiIcons from 'react-icons/bi'
+import * as IoIcons from 'react-icons/io5'
 import { lightColorPalette, darkColorPalette } from '../components/colorPalette'
 import { arrowPalette, linkArrowPalette, scrollArrowPalette } from './Assets'
 import MyAlgoConnect from '@randlabs/myalgo-connect'
@@ -50,7 +51,7 @@ function Generous() {
     const [frensLoading, setFrensLoading] = useState()
     useEffect(() => {
       setFrensLoading(true)
-      fetch('/api/nftxHolder?collectionId=mostly-frens')
+      fetch('/api/nftx/holders?collectionId=mostly-frens')
         .then((res) => res.json())
         .then((data) => {
           data.message.sort((a,b) => b.asaIds.length - a.asaIds.length)
@@ -71,7 +72,7 @@ function Generous() {
     const [sholdersLoading, setSholdersLoading] = useState()
     useEffect(() => {
       setSholdersLoading(true)
-      fetch('/api/nftxHolder?collectionId=algo-heads')
+      fetch('/api/nftx/holders?collectionId=algo-heads')
         .then((res) => res.json())
         .then((data) => {
           data.message.sort((a,b) => b.asaIds.length - a.asaIds.length)
@@ -96,6 +97,11 @@ function Generous() {
     }
     const connectWallet = async () => {
       try {
+        setSholderLvl(0)
+        setFrenLvl(0)
+        setFrenRegistered(false)
+        setFrensRegistered(false)
+        setSholderRegistered(false)
         let fetchedAccount = await myAlgoConnect.connect(settings).then((fetchedAccount) => {
           setAddress(fetchedAccount[0].address)
           setName(fetchedAccount[0].name)
@@ -139,7 +145,7 @@ function Generous() {
     const [frenRegisterants, setFrenRegisterants]= useState([])
     function frenRegister(address) {
       giveAwaysArray[0].registerants.push(address)
-      fetch('api/giveAways' , {
+      fetch('api/mongodb/giveAways' , {
         method: 'POST',
         body: JSON.stringify(giveAwaysArray[0])
       }).then((res) => res.json())
@@ -154,7 +160,7 @@ function Generous() {
     const [frensRegisterants, setFrensRegisterants]= useState([])
     function frensRegister(address) {
       giveAwaysArray[1].registerants.push(address)
-      fetch('api/giveAways' , {
+      fetch('api/mongodb/giveAways' , {
         method: 'POST',
         body: JSON.stringify(giveAwaysArray[1])
       }).then((res) => res.json())
@@ -169,7 +175,7 @@ function Generous() {
     const [sholderRegisterants, setSholderRegisterants]= useState([])
     function sholderRegister(address) {
       giveAwaysArray[2].registerants.push(address)
-      fetch('api/giveAways' , {
+      fetch('api/mongodb/giveAways' , {
         method: 'POST',
         body: JSON.stringify(giveAwaysArray[2])
       }).then((res) => res.json())
@@ -188,18 +194,35 @@ function Generous() {
     const [gaHours, setGaHours] = useState([])
     const [gaMins, setGaMins] = useState([])
     const [gaSecs, setGaSecs] = useState([])
+    const [frenWinners, setFrenWinners] = useState()
+    const [frensWinners, setFrensWinners] = useState()
+    const [sholderWinners, setSholderWinners] = useState()
+    const [showFrenWinners, setShowFrenWinners] = useState(false)
+    const [showFrensWinners, setShowFrensWinners] = useState(false)
+    const [showSholderWinners, setShowSholderWinners] = useState(false)
+    const [copyText, setCopyText] = useState(false)
     useEffect(() => {
       setLoadingGiveAways(true)
-      fetch('api/giveAways')
+      fetch('api/mongodb/giveAways')
         .then((res) => res.json())
         .then((data) => {
           console.log(data)
           var now = new Date()
           data.message.map((giveAway,index) => {
             giveAway.rollingTime =new Date(giveAway.rollingTime)
-            index===0 && setFrenRegisterants(giveAway.registerants)
-            index===1 && setFrensRegisterants(giveAway.registerants)
-            index===2 && setSholderRegisterants(giveAway.registerants)
+            if (index===0) {
+              setFrenRegisterants(giveAway.registerants)
+              giveAway.winner.length > 0 && setFrenWinners(giveAway.winner)
+            }
+            if (index===1) {
+              setFrensRegisterants(giveAway.registerants)
+              giveAway.winner.length > 0 && setFrensWinners(giveAway.winner)
+            }
+            if(index===2) {
+              setSholderRegisterants(giveAway.registerants)
+              giveAway.winner.length > 0 && setSholderWinners(giveAway.winner)
+            }
+
             if (now < giveAway.rollingTime) {
               setInterval(() => {
                 var now = new Date()
@@ -219,6 +242,77 @@ function Generous() {
         })
       setLoadingGiveAways(false)
     },[])
+
+    // rolling the dice
+    function frenDiceRoller() {
+      var now = new Date()
+      if (now > giveAwaysArray[0].rollingTime) {
+        for (var i = 0; i < 10; i++) {
+          var winnerIndex = Math.floor(Math.random()*frenRegisterants.length)
+          var winner = frenRegisterants.splice(winnerIndex,1)
+          giveAwaysArray[0].winner.push(winner[0])
+        }
+        fetch('api/mongodb/giveAways' , {
+          method: 'POST',
+          body: JSON.stringify(giveAwaysArray[0])
+        }).then((res) => res.json())
+        .then((data) => {
+          if (data.message == 'giveAway updated!')  {
+            setFrenWinners(giveAwaysArray[0].winner)
+          } else {
+            console.log(data.message)
+          }
+        })
+      } else {
+        console.log('too early to roll the dice!')
+      }
+    }
+
+    function frensDiceRoller() {
+      var now = new Date()
+      if (now > giveAwaysArray[1].rollingTime) {
+        for (var i = 0; i < 10; i++) {
+          var winnerIndex = Math.floor(Math.random()*frensRegisterants.length)
+          var winner = frensRegisterants.splice(winnerIndex,1)
+          giveAwaysArray[1].winner.push(winner[0])
+        }
+        fetch('api/mongodb/giveAways' , {
+          method: 'POST',
+          body: JSON.stringify(giveAwaysArray[1])
+        }).then((res) => res.json())
+        .then((data) => {
+          if (data.message == 'giveAway updated!')  {
+            setFrensWinners(giveAwaysArray[1].winner)
+          } else {
+            console.log(data.message)
+          }
+        })
+      } else {
+        console.log('too early to roll the dice!')
+      }
+    }
+
+    function sholderDiceRoller() {
+      var now = new Date()
+      if (now > giveAwaysArray[2].rollingTime) {
+        var winnerIndex = Math.floor(Math.random()*sholderRegisterants.length)
+        var winner = sholderRegisterants.splice(winnerIndex,1)
+        giveAwaysArray[2].winner.push(winner[0])
+        fetch('api/mongodb/giveAways' , {
+          method: 'POST',
+          body: JSON.stringify(giveAwaysArray[2])
+        }).then((res) => res.json())
+        .then((data) => {
+          if (data.message == 'giveAway updated!')  {
+            setSholderWinners(giveAwaysArray[2].winner)
+          } else {
+            console.log(data.message)
+          }
+        })
+      } else {
+        console.log('too early to roll the dice!')
+      }
+    }
 
     function GiveAwayHolder({top, left, index}) {
       if (index === 0) {
@@ -345,6 +439,17 @@ function Generous() {
                 </motion.div>
             </motion.div>
             {
+              frenWinners ?
+              <motion.button className={styles.getTicket}
+                onClick={() => setShowFrenWinners(true)}
+                style={{top: normalizedwidth === 100 ? '16vw' : '9vh',
+                  left: normalizedwidth === 100 ? '24vw' : '13.5vh',
+                  width: normalizedwidth === 100 ? '28vw' : '15.75vh',
+                  color: lightColorPalette[giveAwaysArray[index].colorCode],
+                  backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
+                <p style={{fontSize: normalizedwidth === 100 ? '3vw' : '1.69vh'}}>winners</p>
+                <MdIcons.MdLeaderboard />
+              </motion.button> :
               !address ?
               <motion.button className={styles.getTicket}
                 onClick={() => connectWallet()}
@@ -352,9 +457,9 @@ function Generous() {
                   backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
                 <MdIcons.MdAccountBalanceWallet />
               </motion.button> :
-              address === giveAwaysArray[index].diceRoller ?
+              address === giveAwaysArray[index].diceRoller && !frenWinners ?
               <motion.button className={styles.getTicket}
-                // onClick={() => connectWallet()}
+                onClick={() => frenDiceRoller()}
                 style={{color: lightColorPalette[giveAwaysArray[index].colorCode],
                   backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
                 <BsIcons.BsDice3Fill />
@@ -382,7 +487,7 @@ function Generous() {
             <motion.div className={styles.prizeName}>
                 <p>{giveAwaysArray[index].prize.unitName}</p>
             </motion.div>
-            { !frenRegistered ?
+            { !frenRegistered && !frenWinners ?
             <>
               <motion.div className={styles.giveAwayRow}>
                   <FaIcons.FaKeybase style={{color: '#f3f8f2',fontSize: '1.2rem', marginLeft: '-0.1rem'}} />
@@ -534,6 +639,17 @@ function Generous() {
                 </motion.div>
             </motion.div>
             {
+              frensWinners ?
+              <motion.button className={styles.getTicket}
+                onClick={() => setShowFrensWinners(true)}
+                style={{top: normalizedwidth === 100 ? '16vw' : '9vh',
+                  left: normalizedwidth === 100 ? '24vw' : '13.5vh',
+                  width: normalizedwidth === 100 ? '28vw' : '15.75vh',
+                  color: lightColorPalette[giveAwaysArray[index].colorCode],
+                  backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
+                <p style={{fontSize: normalizedwidth === 100 ? '3vw' : '1.69vh'}}>winners</p>
+                <MdIcons.MdLeaderboard />
+              </motion.button> :
               !address ?
               <motion.button className={styles.getTicket}
                 onClick={() => connectWallet()}
@@ -541,9 +657,9 @@ function Generous() {
                   backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
                 <MdIcons.MdAccountBalanceWallet />
               </motion.button> :
-              address === giveAwaysArray[index].diceRoller ?
+              address === giveAwaysArray[index].diceRoller && !frensWinners ?
               <motion.button className={styles.getTicket}
-                // onClick={() => connectWallet()}
+                onClick={() => frensDiceRoller()}
                 style={{color: lightColorPalette[giveAwaysArray[index].colorCode],
                   backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
                 <BsIcons.BsDice3Fill />
@@ -570,7 +686,7 @@ function Generous() {
             <motion.div className={styles.prizeName}>
                 <p>{giveAwaysArray[index].prize.unitName}</p>
             </motion.div>
-            { !frensRegistered ?
+            { !frensRegistered && !frensWinners ?
             <>
               <motion.div className={styles.giveAwayRow}>
                   <FaIcons.FaKeybase style={{color: '#f3f8f2',fontSize: '1.2rem', marginLeft: '-0.1rem'}} />
@@ -722,6 +838,17 @@ function Generous() {
                 </motion.div>
             </motion.div>
             {
+              sholderWinners ?
+              <motion.button className={styles.getTicket}
+                onClick={() => setShowSholderWinners(true)}
+                style={{top: normalizedwidth === 100 ? '16vw' : '9vh',
+                  left: normalizedwidth === 100 ? '24vw' : '13.5vh',
+                  width: normalizedwidth === 100 ? '28vw' : '15.75vh',
+                  color: lightColorPalette[giveAwaysArray[index].colorCode],
+                  backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
+                <p style={{fontSize: normalizedwidth === 100 ? '3vw' : '1.69vh'}}>winners</p>
+                <MdIcons.MdLeaderboard />
+              </motion.button> :
               !address ?
               <motion.button className={styles.getTicket}
                 onClick={() => connectWallet()}
@@ -729,9 +856,9 @@ function Generous() {
                   backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
                 <MdIcons.MdAccountBalanceWallet />
               </motion.button> :
-              address === giveAwaysArray[index].diceRoller ?
+              address === giveAwaysArray[index].diceRoller && !sholderWinners ?
               <motion.button className={styles.getTicket}
-                // onClick={() => connectWallet()}
+                onClick={() => sholderDiceRoller()}
                 style={{color: lightColorPalette[giveAwaysArray[index].colorCode],
                   backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
                 <BsIcons.BsDice3Fill />
@@ -758,7 +885,7 @@ function Generous() {
             <motion.div className={styles.prizeName}>
                 <p>{giveAwaysArray[index].prize.unitName}</p>
             </motion.div>
-            { !sholderRegistered ?
+            { !sholderRegistered && !sholderWinners ?
             <>
               <motion.div className={styles.giveAwayRow}>
                   <FaIcons.FaKeybase style={{color: '#f3f8f2',fontSize: '1.2rem', marginLeft: '-0.1rem'}} />
@@ -792,7 +919,7 @@ function Generous() {
     // handle creating a giveaway
     // const createGiveAway = async event => {
     //   event.preventDefault()
-    //   fetch(`/api/algoXasset/?assetId=${event.target.prizeId.value}`)
+    //   fetch(`/api/algoexplorer/asset/?assetId=${event.target.prizeId.value}`)
     //   .then((res) => res.json())
     //   .then((data) => {
     //     console.log(data)
@@ -811,7 +938,7 @@ function Generous() {
     //       colorCode: event.target.colorCode.value * 1
     //     }
     //     // giveAway.prize.url = data.url
-    //     fetch('api/giveAways' , {
+    //     fetch('api/mongodb/giveAways' , {
     //       method: 'POST',
     //       body: JSON.stringify(giveAway)
     //     }).then((res) => res.json())
@@ -867,6 +994,120 @@ function Generous() {
                   <BsIcons.BsDice3Fill style={{color: lightColorPalette[5]}} />
                   <h1>Generous Give Aways</h1>
                 </motion.div>
+                {frenWinners && 
+                <motion.div className={styles.winnersCard}
+                  style={{backgroundColor: lightColorPalette[giveAwaysArray[0].colorCode]}}
+                  animate={showFrenWinners? null : {display: 'none'}}>
+                  <ol className={styles.winners}>
+                  {frenWinners.map((winner,index) => {
+                    return (
+                      <li key={index} className={styles.winner}>
+                        <p>{index+1}</p>
+                        <Link href={'https://algoexplorer.io/address/'+winner} passHref>
+                          <a target="_blank">
+                            <h1>{winner.slice(0,9)}...</h1>
+                          </a>
+                        </Link>
+                        <motion.div className={styles.copyButton}
+                          whileTap={{backgroundColor: 'var(--color-bg-primary)', color: lightColorPalette[giveAwaysArray[0].colorCode]}}
+                          onClick={() => {
+                            navigator.clipboard.writeText(winner)
+                            setCopyText(true)
+                            setInterval(() => setCopyText(false),2000)
+                            }}>
+                          <IoIcons.IoCopy />
+                        </motion.div>
+                      </li>
+                    )
+                  })}
+                  </ol>
+                  <motion.div className={styles.hideWinners}
+                    style={{color: lightColorPalette[giveAwaysArray[0].colorCode]}} 
+                    onClick={() => setShowFrenWinners(false)}>
+                    <MdIcons.MdClose />        
+                  </motion.div>
+                  <motion.div 
+                    animate={copyText? {opacity: 1} : {opacity: 0}}
+                    className={styles.copyText}>
+                    <p>copied!</p>
+                  </motion.div>
+                </motion.div>}
+                {frensWinners && 
+                <motion.div className={styles.winnersCard}
+                  style={{backgroundColor: lightColorPalette[giveAwaysArray[1].colorCode]}}
+                  animate={showFrensWinners? null : {display: 'none'}}>
+                  <ol className={styles.winners}>
+                  {frensWinners.map((winner,index) => {
+                    return (
+                      <li key={index} className={styles.winner}>
+                        <p>{index+1}</p>
+                        <Link href={'https://algoexplorer.io/address/'+winner} passHref>
+                          <a target="_blank">
+                            <h1>{winner.slice(0,9)}...</h1>
+                          </a>
+                        </Link>
+                        <motion.div className={styles.copyButton}
+                          whileTap={{backgroundColor: 'var(--color-bg-primary)', color: lightColorPalette[giveAwaysArray[1].colorCode]}}
+                          onClick={() => {
+                            navigator.clipboard.writeText(winner)
+                            setCopyText(true)
+                            setInterval(() => setCopyText(false),2000)
+                            }}>
+                          <IoIcons.IoCopy />
+                        </motion.div>
+                      </li>
+                    )
+                  })}
+                  </ol>
+                  <motion.div className={styles.hideWinners}
+                    style={{color: lightColorPalette[giveAwaysArray[1].colorCode]}} 
+                    onClick={() => setShowFrensWinners(false)}>
+                    <MdIcons.MdClose />        
+                  </motion.div>
+                  <motion.div 
+                    animate={copyText? {opacity: 1} : {opacity: 0}}
+                    className={styles.copyText}>
+                    <p>copied!</p>
+                  </motion.div>
+                </motion.div>}
+                {sholderWinners && 
+                <motion.div className={styles.winnersCard}
+                  style={{backgroundColor: lightColorPalette[giveAwaysArray[2].colorCode]}}
+                  animate={showSholderWinners? null : {display: 'none'}}>
+                  <ol className={styles.winners}>
+                  {sholderWinners.map((winner,index) => {
+                    return (
+                      <li key={index} className={styles.winner}>
+                        <p>{index+1}</p>
+                        <Link href={'https://algoexplorer.io/address/'+winner} passHref>
+                          <a target="_blank">
+                            <h1>{winner.slice(0,9)}...</h1>
+                          </a>
+                        </Link>
+                        <motion.div className={styles.copyButton}
+                          whileTap={{backgroundColor: 'var(--color-bg-primary)', color: lightColorPalette[giveAwaysArray[2].colorCode]}}
+                          onClick={() => {
+                            navigator.clipboard.writeText(winner)
+                            setCopyText(true)
+                            setInterval(() => setCopyText(false),2000)
+                            }}>
+                          <IoIcons.IoCopy />
+                        </motion.div>
+                      </li>
+                    )
+                  })}
+                  </ol>
+                  <motion.div className={styles.hideWinners}
+                    style={{color: lightColorPalette[giveAwaysArray[2].colorCode]}} 
+                    onClick={() => setShowSholderWinners(false)}>
+                    <MdIcons.MdClose />        
+                  </motion.div>
+                  <motion.div 
+                    animate={copyText? {opacity: 1} : {opacity: 0}}
+                    className={styles.copyText}>
+                    <p>copied!</p>
+                  </motion.div>
+                </motion.div>}
                 <GiveAwayHolder top={-11} left={46} index={0} />
                 <GiveAwayHolder top={17} left={70} index={1} />
                 <GiveAwayHolder top={45} left={70} index={2} />
@@ -915,6 +1156,120 @@ function Generous() {
                   <BsIcons.BsDice3Fill style={{color: lightColorPalette[5]}} />
                   <h1>Generous Give Aways</h1>
                 </motion.div>
+                {frenWinners && 
+                <motion.div className={styles.winnersCard}
+                  style={{backgroundColor: lightColorPalette[giveAwaysArray[0].colorCode]}}
+                  animate={showFrenWinners? null : {display: 'none'}}>
+                  <ol className={styles.winners}>
+                  {frenWinners.map((winner,index) => {
+                    return (
+                      <li key={index} className={styles.winner}>
+                        <p>{index+1}</p>
+                        <Link href={'https://algoexplorer.io/address/'+winner} passHref>
+                          <a target="_blank">
+                            <h1>{winner.slice(0,9)}...</h1>
+                          </a>
+                        </Link>
+                        <motion.div className={styles.copyButton}
+                          whileTap={{backgroundColor: 'var(--color-bg-primary)', color: lightColorPalette[giveAwaysArray[0].colorCode]}}
+                          onClick={() => {
+                            navigator.clipboard.writeText(winner)
+                            setCopyText(true)
+                            setInterval(() => setCopyText(false),2000)
+                            }}>
+                          <IoIcons.IoCopy />
+                        </motion.div>
+                      </li>
+                    )
+                  })}
+                  </ol>
+                  <motion.div className={styles.hideWinners}
+                    style={{color: lightColorPalette[giveAwaysArray[0].colorCode]}} 
+                    onClick={() => setShowFrenWinners(false)}>
+                    <MdIcons.MdClose />        
+                  </motion.div>
+                  <motion.div 
+                    animate={copyText? {opacity: 1} : {opacity: 0}}
+                    className={styles.copyText}>
+                    <p>copied!</p>
+                  </motion.div>
+                </motion.div>}
+                {frensWinners && 
+                <motion.div className={styles.winnersCard}
+                  style={{backgroundColor: lightColorPalette[giveAwaysArray[1].colorCode]}}
+                  animate={showFrensWinners? null : {display: 'none'}}>
+                  <ol className={styles.winners}>
+                  {frensWinners.map((winner,index) => {
+                    return (
+                      <li key={index} className={styles.winner}>
+                        <p>{index+1}</p>
+                        <Link href={'https://algoexplorer.io/address/'+winner} passHref>
+                          <a target="_blank">
+                            <h1>{winner.slice(0,9)}...</h1>
+                          </a>
+                        </Link>
+                        <motion.div className={styles.copyButton}
+                          whileTap={{backgroundColor: 'var(--color-bg-primary)', color: lightColorPalette[giveAwaysArray[1].colorCode]}}
+                          onClick={() => {
+                            navigator.clipboard.writeText(winner)
+                            setCopyText(true)
+                            setInterval(() => setCopyText(false),2000)
+                            }}>
+                          <IoIcons.IoCopy />
+                        </motion.div>
+                      </li>
+                    )
+                  })}
+                  </ol>
+                  <motion.div className={styles.hideWinners}
+                    style={{color: lightColorPalette[giveAwaysArray[1].colorCode]}} 
+                    onClick={() => setShowFrensWinners(false)}>
+                    <MdIcons.MdClose />        
+                  </motion.div>
+                  <motion.div 
+                    animate={copyText? {opacity: 1} : {opacity: 0}}
+                    className={styles.copyText}>
+                    <p>copied!</p>
+                  </motion.div>
+                </motion.div>}
+                {sholderWinners && 
+                <motion.div className={styles.winnersCard}
+                  style={{backgroundColor: lightColorPalette[giveAwaysArray[2].colorCode]}}
+                  animate={showSholderWinners? null : {display: 'none'}}>
+                  <ol className={styles.winners}>
+                  {sholderWinners.map((winner,index) => {
+                    return (
+                      <li key={index} className={styles.winner}>
+                        <p>{index+1}</p>
+                        <Link href={'https://algoexplorer.io/address/'+winner} passHref>
+                          <a target="_blank">
+                            <h1>{winner.slice(0,9)}...</h1>
+                          </a>
+                        </Link>
+                        <motion.div className={styles.copyButton}
+                          whileTap={{backgroundColor: 'var(--color-bg-primary)', color: lightColorPalette[giveAwaysArray[2].colorCode]}}
+                          onClick={() => {
+                            navigator.clipboard.writeText(winner)
+                            setCopyText(true)
+                            setInterval(() => setCopyText(false),2000)
+                            }}>
+                          <IoIcons.IoCopy />
+                        </motion.div>
+                      </li>
+                    )
+                  })}
+                  </ol>
+                  <motion.div className={styles.hideWinners}
+                    style={{color: lightColorPalette[giveAwaysArray[2].colorCode]}} 
+                    onClick={() => setShowSholderWinners(false)}>
+                    <MdIcons.MdClose />        
+                  </motion.div>
+                  <motion.div 
+                    animate={copyText? {opacity: 1} : {opacity: 0}}
+                    className={styles.copyText}>
+                    <p>copied!</p>
+                  </motion.div>
+                </motion.div>}
                 <GiveAwayHolder top={-11} left={46} index={0} />
                 <GiveAwayHolder top={17} left={70} index={1} />
                 <GiveAwayHolder top={45} left={70} index={2} />
