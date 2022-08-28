@@ -88,6 +88,7 @@
   justify-content: center;
   align-items: center;
   border: none;
+  cursor: pointer;
 }
 
 .sholderRow {
@@ -179,6 +180,7 @@ width: 30.38vh;
   justify-content: center;
   align-items: center;
   font-family: 'Gluten', cursive;
+  cursor: pointer;
 }
 
 
@@ -273,4 +275,77 @@ width: 30.38vh;
   height: 30.94vh;
   top: 9vh;
   left: 9vh;
+}
+
+.winnersCard {
+  position: absolute;
+  top: -13.5vh;
+  left: 25.88vh;
+  width: 48.38vh;
+  height: 60.75vh;
+  padding-top: 2.25vh;
+  border-radius: 2.25vh;
+  z-index: 1000;
+}
+
+.winners {
+  font-size: 0.8rem;
+  padding: 0 0 0 4.5vh;
+  margin: 0;
+}
+
+.winners li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5.63vh;
+  width: 27vh;
+}
+
+.winners h1 {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.winners p {
+  margin: 0;
+}
+
+.copyButton {
+  width: 5.63vh;
+  height: 5.63vh;
+  border-radius: 3vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: var(--color-bg-primary);
+}
+
+.copyText {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 45vh;
+  left: 33.75vh;
+  width: 9vh;
+  height: 5.63vh;
+  border-radius: 3vh;
+}
+
+.hideWinners {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 2.25vh;
+  left: 40.5vh;
+  width: 5.63vh;
+  height: 5.63vh;
+  border-radius: 3vh;
+  background-color: var(--color-bg-primary);
+  cursor: pointer;
 }
