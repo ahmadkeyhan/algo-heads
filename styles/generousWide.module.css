@@ -91,6 +91,23 @@
   cursor: pointer;
 }
 
+.donation {
+  position: absolute;
+  top: 27.56vh;
+  left: 18vh;
+  height: 3.94vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--color-text-primary);
+}
+
+.donation p {
+  font-size: 0.7rem;
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
 .sholderRow {
   position: absolute;
   top: 33.75vh;
