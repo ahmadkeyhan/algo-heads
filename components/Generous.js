@@ -57,9 +57,16 @@ function Generous() {
           data.message.sort((a,b) => b.asaIds.length - a.asaIds.length)
           setFrens(data.message)
           data.message.map((fren) => {
+            fren.nfd = ''
+            fetch(`/api/nfd/address?address=${fren.address}`)
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.message.length) {
+                fren.nfd = data.message[0].name
+              }
+            })
             fren.asaIds.length < 3 && setFrenArray(oldArray => [...oldArray, fren])
             fren.asaIds.length >= 3 && setFrensArray(oldArray => [...oldArray, fren])
-            fren.address === 'E6CH4SDDEROE4BGBWQUM66Y3XR7FDLSL32PILSYMGVVIWJLF6XHU5XW6YA' && console.log('here I am!')
           })
           setFrensLoading(false)
         })
@@ -78,15 +85,35 @@ function Generous() {
           data.message.sort((a,b) => b.asaIds.length - a.asaIds.length)
           setSholders(data.message)
           data.message.map((sholder) => {
+            sholder.nfd = ''
+            fetch(`/api/nfd/address?address=${sholder.address}`)
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.message.length) {
+                sholder.nfd = data.message[0].name
+              }
+            })
             setSholderArray(oldArray => [...oldArray, sholder])
           })
-          console.log(sholderArray)
           setSholdersLoading(false)
         })
     },[])
 
+    // fetch donation amount via algoexplorer api
+    const [donation, setDonation] = useState()
+    const [donationLoading, setDonationLoading] = useState()
+    useEffect(() => {
+      setDonationLoading(true)
+      fetch('api/algoexplorer/shrimpBank')
+        .then((res) => res.json())
+        .then((data) => {
+          setDonation(data.message)
+          setDonationLoading(false)
+        })
+    })
+
     // handle connection
-    const [address, setAddress] = useState()
+    const [address, setAddress] = useState('')
     const [name, setName] = useState()
     const [sholderLvl, setSholderLvl] = useState(0)
     const [frenLvl, setFrenLvl] = useState(0)
@@ -206,21 +233,26 @@ function Generous() {
       fetch('api/mongodb/giveAways')
         .then((res) => res.json())
         .then((data) => {
-          console.log(data)
           var now = new Date()
           data.message.map((giveAway,index) => {
             giveAway.rollingTime =new Date(giveAway.rollingTime)
             if (index===0) {
               setFrenRegisterants(giveAway.registerants)
-              giveAway.winner.length > 0 && setFrenWinners(giveAway.winner)
+              if (giveAway.winner.length > 0) {
+                setFrenWinners(giveAway.winner)
+              }
             }
             if (index===1) {
               setFrensRegisterants(giveAway.registerants)
-              giveAway.winner.length > 0 && setFrensWinners(giveAway.winner)
+              if (giveAway.winner.length > 0) {
+                setFrensWinners(giveAway.winner)
+              }
             }
             if(index===2) {
               setSholderRegisterants(giveAway.registerants)
-              giveAway.winner.length > 0 && setSholderWinners(giveAway.winner)
+              if (giveAway.winner.length > 0) {
+                setSholderWinners(giveAway.winner)
+              }
             }
 
             if (now < giveAway.rollingTime) {
@@ -946,7 +978,7 @@ function Generous() {
     //   })
     // }
 
-    if (giveAways && sholders && frens && address) {
+    if (giveAways && sholders && frens && donation && address) {
       return (
         <div className={styles.generous}
           style={{height: `${normalizedwidth*16/9}vw`,
@@ -980,6 +1012,11 @@ function Generous() {
                   <Image className={styles.frenLogo} src='/frensIcon.png' layout='fill' />
                 </div>
               </div>
+              <div className={styles.donation}>
+                <p>{donation}</p>
+                <p>🍤</p>
+                <p>donated</p>
+              </div>
             </div>
             <div className={styles.wheelTwo}>
               <motion.div className={styles.counterArrowHolder}>
@@ -1005,7 +1042,7 @@ function Generous() {
                         <p>{index+1}</p>
                         <Link href={'https://algoexplorer.io/address/'+winner} passHref>
                           <a target="_blank">
-                            <h1>{winner.slice(0,9)}...</h1>
+                          <h1>{winner.nfd ? winner.nfd : `${winner.slice(0,9)}...`}</h1>
                           </a>
                         </Link>
                         <motion.div className={styles.copyButton}
@@ -1043,7 +1080,7 @@ function Generous() {
                         <p>{index+1}</p>
                         <Link href={'https://algoexplorer.io/address/'+winner} passHref>
                           <a target="_blank">
-                            <h1>{winner.slice(0,9)}...</h1>
+                          <h1>{winner.nfd ? winner.nfd : `${winner.slice(0,9)}...`}</h1>
                           </a>
                         </Link>
                         <motion.div className={styles.copyButton}
@@ -1081,7 +1118,7 @@ function Generous() {
                         <p>{index+1}</p>
                         <Link href={'https://algoexplorer.io/address/'+winner} passHref>
                           <a target="_blank">
-                            <h1>{winner.slice(0,9)}...</h1>
+                          <h1>{winner.nfd ? winner.nfd : `${winner.slice(0,9)}...`}</h1>
                           </a>
                         </Link>
                         <motion.div className={styles.copyButton}
@@ -1121,9 +1158,8 @@ function Generous() {
           </div>
         </div>
       )
-    }
-
-    if (giveAways && sholders && frens) {
+    } 
+    if (giveAways && sholders && frens && donation) {
       return (
         <div className={styles.generous}
           style={{height: `${normalizedwidth*16/9}vw`,
@@ -1136,11 +1172,16 @@ function Generous() {
               <div className={styles.walletRow}>
                 {name? <p>{name}</p> : <p>connect</p>}
                 <button className={styles.wallet}
-                onClick={() => connectWallet()}
-                style={{backgroundColor: lightColorPalette[5],
-                  color: darkColorPalette[5]}}>
-                <MdIcons.MdAccountBalanceWallet />
-              </button>
+                  onClick={() => connectWallet()}
+                  style={{backgroundColor: lightColorPalette[5],
+                    color: darkColorPalette[5]}}>
+                  <MdIcons.MdAccountBalanceWallet />
+                </button>
+              </div>
+              <div className={styles.donation}>
+                <p>{donation}</p>
+                <p>🍤</p>
+                <p>donated</p>
               </div>
             </div>
             <div className={styles.wheelTwo}>
@@ -1167,7 +1208,7 @@ function Generous() {
                         <p>{index+1}</p>
                         <Link href={'https://algoexplorer.io/address/'+winner} passHref>
                           <a target="_blank">
-                            <h1>{winner.slice(0,9)}...</h1>
+                          <h1>{winner.nfd ? winner.nfd : `${winner.slice(0,9)}...`}</h1>
                           </a>
                         </Link>
                         <motion.div className={styles.copyButton}
@@ -1205,7 +1246,7 @@ function Generous() {
                         <p>{index+1}</p>
                         <Link href={'https://algoexplorer.io/address/'+winner} passHref>
                           <a target="_blank">
-                            <h1>{winner.slice(0,9)}...</h1>
+                          <h1>{winner.nfd ? winner.nfd : `${winner.slice(0,9)}...`}</h1>
                           </a>
                         </Link>
                         <motion.div className={styles.copyButton}
@@ -1243,7 +1284,7 @@ function Generous() {
                         <p>{index+1}</p>
                         <Link href={'https://algoexplorer.io/address/'+winner} passHref>
                           <a target="_blank">
-                            <h1>{winner.slice(0,9)}...</h1>
+                          <h1>{winner.nfd ? winner.nfd : `${winner.slice(0,9)}...`}</h1>
                           </a>
                         </Link>
                         <motion.div className={styles.copyButton}
