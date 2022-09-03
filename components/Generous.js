@@ -27,7 +27,7 @@ function Generous() {
     useEffect(() => {
       setWidth(window.visualViewport.width)
       setHeight(window.visualViewport.height)
-      if (window.visualViewport.height/window.visualViewport.width >= 16/9) {
+      if (window.visualViewport.height > window.visualViewport.width) {
         setNormalizedWidth(100)
       } else {
         setNormalizedWidth((window.visualViewport.height*900)/(16*window.visualViewport.width))
@@ -352,120 +352,120 @@ function Generous() {
           <motion.div className={styles.giveAwayCard}
               style={{backgroundColor: lightColorPalette[giveAwaysArray[index].colorCode],
                 color: darkColorPalette[giveAwaysArray[index].colorCode],
-              top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+              top: window.visualViewport.height > window.visualViewport.width ?
                 `${top}vw` : `${top*9/16}vh`,
-              left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+              left: window.visualViewport.height > window.visualViewport.width ?
                 `${left}vw` : `${left*9/16}vh`}}>
             <motion.div className={styles.ticketHolder}>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top:window.visualViewport.height > window.visualViewport.width ?
                      '-2vw' : '-1.13vh',
-                    left:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left:window.visualViewport.height > window.visualViewport.width ?
                      '17vw' : '9.56vh',
-                    width:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width:window.visualViewport.height > window.visualViewport.width ?
                      '4vw' : '2.25vh',
-                    height:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height:window.visualViewport.height > window.visualViewport.width ?
                      '4vw' : '2.25vh',
-                    borderRadius:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius:window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top: window.visualViewport.height > window.visualViewport.width ?
                      '3vw' : '1.69vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left: window.visualViewport.height > window.visualViewport.width ?
                      '18.5vw' : '10.4vh',
-                    width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
-                    height: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height: window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
-                    borderRadius: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top: window.visualViewport.height > window.visualViewport.width ?
                      '6.6vw' : '3.71vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left: window.visualViewport.height > window.visualViewport.width ?
                      '18.5vw' : '10.4vh',
-                    width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
-                    height: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height: window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
-                    borderRadius: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top: window.visualViewport.height > window.visualViewport.width ?
                      '10.2vw' : '5.74vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left: window.visualViewport.height > window.visualViewport.width ?
                      '18.5vw' : '10.4vh',
-                    width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
-                    height: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height: window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
-                    borderRadius: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top: window.visualViewport.height > window.visualViewport.width ?
                      '13.8vw' : '7.77vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left: window.visualViewport.height > window.visualViewport.width ?
                      '18.5vw' : '10.4vh',
-                    width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
-                    height: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height: window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
-                    borderRadius: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top: window.visualViewport.height > window.visualViewport.width ?
                      '17.4vw' : '9.8vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left: window.visualViewport.height > window.visualViewport.width ?
                      '18.5vw' : '10.4vh',
-                    width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
-                    height: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height: window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
-                    borderRadius: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top: window.visualViewport.height > window.visualViewport.width ?
                      '21vw' : '11.83vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left: window.visualViewport.height > window.visualViewport.width ?
                      '18.5vw' : '10.4vh',
-                    width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
-                    height: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height: window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
-                    borderRadius: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top:window.visualViewport.height > window.visualViewport.width ?
                      '24vw' : '13.5vh',
-                    left:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left:window.visualViewport.height > window.visualViewport.width ?
                      '17vw' : '9.56vh',
-                    width:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width:window.visualViewport.height > window.visualViewport.width ?
                      '4vw' : '2.25vh',
-                    height:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height:window.visualViewport.height > window.visualViewport.width ?
                      '4vw' : '2.25vh',
-                    borderRadius:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius:window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
@@ -552,120 +552,120 @@ function Generous() {
           <motion.div className={styles.giveAwayCard}
               style={{backgroundColor: lightColorPalette[giveAwaysArray[index].colorCode],
                 color: darkColorPalette[giveAwaysArray[index].colorCode],
-              top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+              top: window.visualViewport.height > window.visualViewport.width ?
                 `${top}vw` : `${top*9/16}vh`,
-              left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+              left: window.visualViewport.height > window.visualViewport.width ?
                 `${left}vw` : `${left*9/16}vh`}}>
             <motion.div className={styles.ticketHolder}>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top:window.visualViewport.height > window.visualViewport.width ?
                      '-2vw' : '-1.13vh',
-                    left:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left:window.visualViewport.height > window.visualViewport.width ?
                      '17vw' : '9.56vh',
-                    width:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width:window.visualViewport.height > window.visualViewport.width ?
                      '4vw' : '2.25vh',
-                    height:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height:window.visualViewport.height > window.visualViewport.width ?
                      '4vw' : '2.25vh',
-                    borderRadius:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius:window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top: window.visualViewport.height > window.visualViewport.width ?
                      '3vw' : '1.69vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left: window.visualViewport.height > window.visualViewport.width ?
                      '18.5vw' : '10.4vh',
-                    width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
-                    height: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height: window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
-                    borderRadius: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top: window.visualViewport.height > window.visualViewport.width ?
                      '6.6vw' : '3.71vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left: window.visualViewport.height > window.visualViewport.width ?
                      '18.5vw' : '10.4vh',
-                    width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
-                    height: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height: window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
-                    borderRadius: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top: window.visualViewport.height > window.visualViewport.width ?
                      '10.2vw' : '5.74vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left: window.visualViewport.height > window.visualViewport.width ?
                      '18.5vw' : '10.4vh',
-                    width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
-                    height: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height: window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
-                    borderRadius: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top: window.visualViewport.height > window.visualViewport.width ?
                      '13.8vw' : '7.77vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left: window.visualViewport.height > window.visualViewport.width ?
                      '18.5vw' : '10.4vh',
-                    width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
-                    height: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height: window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
-                    borderRadius: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top: window.visualViewport.height > window.visualViewport.width ?
                      '17.4vw' : '9.8vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left: window.visualViewport.height > window.visualViewport.width ?
                      '18.5vw' : '10.4vh',
-                    width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
-                    height: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height: window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
-                    borderRadius: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top: window.visualViewport.height > window.visualViewport.width ?
                      '21vw' : '11.83vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left: window.visualViewport.height > window.visualViewport.width ?
                      '18.5vw' : '10.4vh',
-                    width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
-                    height: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height: window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
-                    borderRadius: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top:window.visualViewport.height > window.visualViewport.width ?
                      '24vw' : '13.5vh',
-                    left:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left:window.visualViewport.height > window.visualViewport.width ?
                      '17vw' : '9.56vh',
-                    width:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width:window.visualViewport.height > window.visualViewport.width ?
                      '4vw' : '2.25vh',
-                    height:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height:window.visualViewport.height > window.visualViewport.width ?
                      '4vw' : '2.25vh',
-                    borderRadius:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius:window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
@@ -751,120 +751,120 @@ function Generous() {
           <motion.div className={styles.giveAwayCard}
               style={{backgroundColor: lightColorPalette[giveAwaysArray[index].colorCode],
                 color: darkColorPalette[giveAwaysArray[index].colorCode],
-              top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+              top: window.visualViewport.height > window.visualViewport.width ?
                 `${top}vw` : `${top*9/16}vh`,
-              left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+              left: window.visualViewport.height > window.visualViewport.width ?
                 `${left}vw` : `${left*9/16}vh`}}>
             <motion.div className={styles.ticketHolder}>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top:window.visualViewport.height > window.visualViewport.width ?
                      '-2vw' : '-1.13vh',
-                    left:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left:window.visualViewport.height > window.visualViewport.width ?
                      '17vw' : '9.56vh',
-                    width:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width:window.visualViewport.height > window.visualViewport.width ?
                      '4vw' : '2.25vh',
-                    height:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height:window.visualViewport.height > window.visualViewport.width ?
                      '4vw' : '2.25vh',
-                    borderRadius:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius:window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top: window.visualViewport.height > window.visualViewport.width ?
                      '3vw' : '1.69vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left: window.visualViewport.height > window.visualViewport.width ?
                      '18.5vw' : '10.4vh',
-                    width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
-                    height: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height: window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
-                    borderRadius: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top: window.visualViewport.height > window.visualViewport.width ?
                      '6.6vw' : '3.71vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left: window.visualViewport.height > window.visualViewport.width ?
                      '18.5vw' : '10.4vh',
-                    width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
-                    height: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height: window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
-                    borderRadius: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top: window.visualViewport.height > window.visualViewport.width ?
                      '10.2vw' : '5.74vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left: window.visualViewport.height > window.visualViewport.width ?
                      '18.5vw' : '10.4vh',
-                    width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
-                    height: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height: window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
-                    borderRadius: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top: window.visualViewport.height > window.visualViewport.width ?
                      '13.8vw' : '7.77vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left: window.visualViewport.height > window.visualViewport.width ?
                      '18.5vw' : '10.4vh',
-                    width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
-                    height: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height: window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
-                    borderRadius: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top: window.visualViewport.height > window.visualViewport.width ?
                      '17.4vw' : '9.8vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left: window.visualViewport.height > window.visualViewport.width ?
                      '18.5vw' : '10.4vh',
-                    width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
-                    height: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height: window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
-                    borderRadius: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top: window.visualViewport.height > window.visualViewport.width ?
                      '21vw' : '11.83vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left: window.visualViewport.height > window.visualViewport.width ?
                      '18.5vw' : '10.4vh',
-                    width: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
-                    height: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height: window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
-                    borderRadius: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
                      '1vw' : '0.56vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
                 <motion.div className={styles.punch}
                   style={{position: 'absolute',
-                    top:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    top:window.visualViewport.height > window.visualViewport.width ?
                      '24vw' : '13.5vh',
-                    left:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    left:window.visualViewport.height > window.visualViewport.width ?
                      '17vw' : '9.56vh',
-                    width:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    width:window.visualViewport.height > window.visualViewport.width ?
                      '4vw' : '2.25vh',
-                    height:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    height:window.visualViewport.height > window.visualViewport.width ?
                      '4vw' : '2.25vh',
-                    borderRadius:window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+                    borderRadius:window.visualViewport.height > window.visualViewport.width ?
                      '2vw' : '1.13vh',
                     backgroundColor: 'var(--color-bg-primary)'}}>
                 </motion.div>
@@ -981,7 +981,7 @@ function Generous() {
     if (giveAways && sholders && frens && donation && address) {
       return (
         <div className={styles.generous}
-          style={{height: `${normalizedwidth*16/9}vw`,
+          style={{height: '100vh',
           width: `${normalizedwidth}vw`}}>
           <div className={styles.wheelHolder}>
             <div className={styles.wheelOne}>
@@ -1162,7 +1162,7 @@ function Generous() {
     if (giveAways && sholders && frens && donation) {
       return (
         <div className={styles.generous}
-          style={{height: `${normalizedwidth*16/9}vw`,
+          style={{height: '100vh',
           width: `${normalizedwidth}vw`}}>
           <div className={styles.wheelHolder}>
             <div className={styles.wheelOne}>

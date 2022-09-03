@@ -63,7 +63,7 @@ function Head() {
     setWidth(window.visualViewport.width)
     setHeight(window.visualViewport.height)
 
-    if (window.visualViewport.height/window.visualViewport.width >= 16/9) {
+    if (window.visualViewport.height > window.visualViewport.width) {
       setNormalizedWidth(100) 
 
     } else {
@@ -95,7 +95,7 @@ function Head() {
     if(headIndex !== -1) {
       return (
         <div className={styles.headlist}
-          style={{height: `${normalizedwidth*16/9}vw`,
+          style={{height: '100vh',
           width: `${normalizedwidth}vw`}}>
           <div className={styles.wheelHolder}>
             <div className={styles.wheelOne}>
@@ -128,7 +128,7 @@ function Head() {
     console.log('loading')
     return (
       <div className={styles.headlist}
-        style={{height: `${normalizedwidth*16/9}vw`,
+        style={{height: '100vh',
         width: `${normalizedwidth}vw`}}>
         <div className={styles.wheelHolder}>
         </div>

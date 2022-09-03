@@ -197,7 +197,7 @@ function Headlist() {
     setActiveTheme(document.body.dataset.theme)
     setWidth(window.visualViewport.width)
     setHeight(window.visualViewport.height)
-    if (window.visualViewport.height/window.visualViewport.width < 16/9) {
+    if (window.visualViewport.height < window.visualViewport.width) {
       setNormalizedWidth((window.visualViewport.height*900)/(16*window.visualViewport.width))
       setStyles(wideStyles)
     }
@@ -208,8 +208,8 @@ function Headlist() {
       return (
         <motion.div className={styles.headHolder}
           style={{color: activeTheme==='light' && sortedHeads[rank].bgColorCode !== -1 ? darkColorPalette[sortedHeads[rank].bgColorCode] : activeTheme === 'light' && sortedHeads[rank].bgColorCode === -1 ? lightColorPalette[5] : null,
-          top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${top}vw` : `${top*9/16}vh`,
-          left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${left}vw` : `${left*9/16}vh`}}>
+          top: window.visualViewport.height > window.visualViewport.width ? `${top}vw` : `${top*9/16}vh`,
+          left: window.visualViewport.height > window.visualViewport.width ? `${left}vw` : `${left*9/16}vh`}}>
           <motion.div style={{borderColor: sortedHeads[rank].bgColorCode !== -1 ? lightColorPalette[sortedHeads[rank].bgColorCode] : '#ffa7ff'}} className={rank == step ? styles.firstPriceTag : styles.priceTag}>
             <p className={styles.price}>{sortedHeads[rank].price}</p>
             <motion.div className={styles.algoLogo}>
@@ -232,7 +232,7 @@ function Headlist() {
             className={rank == step ? styles.bigFrame : styles.frame}>
             <Image style={{transform: `rotate(${rotation*-1}deg)`}} src={sortedHeads[rank].src} alt={sortedHeads[rank].src.slice(1,12)} layout='fill' />
           </motion.div>
-          <motion.div style={rank == step ? {fontSize: '0.8rem', top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? '28vw' : '15.75vh'} : null} className={styles.headCard}>
+          <motion.div style={rank == step ? {fontSize: '0.8rem', top: window.visualViewport.height > window.visualViewport.width ? '28vw' : '15.75vh'} : null} className={styles.headCard}>
             <p>{sortedHeads[rank].src.slice(1,12)}</p>
           </motion.div>
         </motion.div>
@@ -242,10 +242,10 @@ function Headlist() {
         return (
           <motion.div className={styles.bigHeadHolder}
             style={{color: sortedHeads[rank+1].bgColorCode !== -1 ? darkColorPalette[sortedHeads[rank+1].bgColorCode] : lightColorPalette[5],
-            top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${top}vw` : `${top*9/16}vh`,
-            left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${left}vw` : `${left*9/16}vh`}}>
+            top: window.visualViewport.height > window.visualViewport.width ? `${top}vw` : `${top*9/16}vh`,
+            left: window.visualViewport.height > window.visualViewport.width ? `${left}vw` : `${left*9/16}vh`}}>
             <motion.div
-              style={{marginLeft: window.visualViewport.height/window.visualViewport.width >= 16/9 ? '1vw' : '0.56vh',
+              style={{marginLeft: window.visualViewport.height > window.visualViewport.width ? '1vw' : '0.56vh',
               border: `0.125rem solid ${sortedHeads[rank+1].bgColorCode !== -1 ? lightColorPalette[sortedHeads[rank+1].bgColorCode] : '#ffa7ff'}`}}
               className={styles.nftxLink}>
               <p>Not sold!</p>
@@ -266,8 +266,8 @@ function Headlist() {
         return (
           <motion.div className={styles.bigHeadHolder}
             style={{color: activeTheme==='light' && sortedHeads[rank+1].bgColorCode !== -1 ? darkColorPalette[sortedHeads[rank+1].bgColorCode] : activeTheme==='light' && sortedHeads[rank+1].bgColorCode === -1 ? lightColorPalette[5] : null,
-            top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${top}vw` : `${top*9/16}vh`,
-            left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${left}vw` : `${left*9/16}vh`}}>
+            top: window.visualViewport.height > window.visualViewport.width ? `${top}vw` : `${top*9/16}vh`,
+            left: window.visualViewport.height > window.visualViewport.width ? `${left}vw` : `${left*9/16}vh`}}>
             <motion.div className={styles.bigPriceTag}>
               <p>Last sold:</p>
               <div>
@@ -332,8 +332,8 @@ function Headlist() {
     } else {
       return (
         <motion.div className={styles.headHolder}
-          style={{top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${top}vw` : `${top*9/16}vh`,
-          left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${left}vw` : `${left*9/16}vh`}}>
+          style={{top: window.visualViewport.height > window.visualViewport.width ? `${top}vw` : `${top*9/16}vh`,
+          left: window.visualViewport.height > window.visualViewport.width ? `${left}vw` : `${left*9/16}vh`}}>
           <motion.div
             style={rank == sortedHeads.length && activeTheme === 'light' ?
               {color: darkColorPalette[colorCode],backgroundColor: lightColorPalette[colorCode], transform: `rotate(${rotation}deg)`} : 
@@ -352,7 +352,7 @@ function Headlist() {
   if(sortedHeads) {
     return (
       <div className={styles.headList}
-        style={{height: `${normalizedwidth*16/9}vw`,
+        style={{height: '100vh',
         width: `${normalizedwidth}vw`}}>
         <motion.div className={styles.wheelHolder}>
           <motion.div className={styles.wheelFive}>
@@ -531,7 +531,7 @@ function Headlist() {
   } else {
     return (
       <div className={styles.headList}
-        style={{height: `${normalizedwidth*16/9}vw`,
+        style={{height: '100vh',
         width: `${normalizedwidth}vw`}}>
         <motion.div className={styles.wheelHolder}>
           <motion.div className={styles.wheelFive}>

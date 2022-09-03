@@ -74,7 +74,7 @@ function Sholder() {
           0.75,0.8125, 0.875,0.9375, 1]}
     })
 
-    if (window.visualViewport.height/window.visualViewport.width >= 16/9) {
+    if (window.visualViewport.height > window.visualViewport.width) {
       setNormalizedWidth(100) 
       setControlIndex([
         {        
@@ -327,8 +327,8 @@ function Sholder() {
             backgroundColor: sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
               lightColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
               '#ffa7ff',
-            top: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${top}vw` : `${top*9/16}vh`,
-            left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? `${left}vw` : `${left*9/16}vh`}}>
+            top: window.visualViewport.height > window.visualViewport.width ? `${top}vw` : `${top*9/16}vh`,
+            left: window.visualViewport.height > window.visualViewport.width ? `${left}vw` : `${left*9/16}vh`}}>
             <motion.div className={styles.sholderHolder}>
                 <Image src={sholderRanking[rank].heads[sholderRanking[rank].heads.length-1].src} layout='fill' />
             </motion.div>
@@ -397,7 +397,7 @@ function Sholder() {
     if(sholderRank !== -1) {
       return (
         <div className={styles.landing}
-          style={{height: `${normalizedwidth*16/9}vw`,
+          style={{height: '100vh',
           width: `${normalizedwidth}vw`}}>
           <div className={styles.wheelHolder}>
             <div className={styles.wheelOne}>
@@ -479,7 +479,7 @@ function Sholder() {
   } else {
     return (
       <div className={styles.landing}
-        style={{height: `${normalizedwidth*16/9}vw`,
+        style={{height: '100vh',
         width: `${normalizedwidth}vw`}}>
         <div className={styles.wheelHolder}>
           <div className={styles.wheelOne}>

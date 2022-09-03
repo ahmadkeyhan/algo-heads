@@ -59,7 +59,7 @@ function Sholders() {
     setWidth(window.visualViewport.width)
     setHeight(window.visualViewport.height)
 
-    if (window.visualViewport.height/window.visualViewport.width >= 16/9) {
+    if (window.visualViewport.height > window.visualViewport.width) {
       setNormalizedWidth(100)
 
     } else {
@@ -78,9 +78,9 @@ function Sholders() {
             backgroundColor: sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode > -1 ?
               lightColorPalette[sholders[rank].heads[sholders[rank].heads.length-1].bgColorCode] :
               '#ffa7ff',
-            top: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+            top: window.visualViewport.height>window.visualViewport.width ?
               `${top}vw` : `${top*9/16}vh`,
-            left: window.visualViewport.height/window.visualViewport.width >= 16/9 ?
+            left: window.visualViewport.height>window.visualViewport.width ?
               `${left}vw` : `${left*9/16}vh`}}
             onClick={() => router.push(`/sholders/${sholders[rank].address}`)}>
             <motion.div className={styles.sholderHolder}>
@@ -139,7 +139,7 @@ function Sholders() {
   if(sholders) {
     return (
         <div className={styles.landing}
-          style={{height: `${normalizedwidth*16/9}vw`,
+          style={{height: '100vh',
           width: `${normalizedwidth}vw`}}>
           <div className={styles.wheelHolder}>
             <div className={styles.wheelOne}>
@@ -228,7 +228,7 @@ function Sholders() {
   } else {
     return (
         <div className={styles.landing}
-          style={{height: `${normalizedwidth*16/9}vw`,
+          style={{height: '100vh',
           width: `${normalizedwidth}vw`}}>
           <div className={styles.wheelHolder}>
             <div className={styles.wheelOne}>

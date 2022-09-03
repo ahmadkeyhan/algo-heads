@@ -271,7 +271,7 @@ function Landing() {
   useEffect(() => {
     setWidth(window.visualViewport.width)
     setHeight(window.visualViewport.height)
-    if (window.visualViewport.height/window.visualViewport.width >= 16/9) {
+    if (window.visualViewport.height > window.visualViewport.width) {
       setNormalizedWidth(100)
       control1.start({
         left: ['27vw', '27vw', '27vw', '27vw',
@@ -573,7 +573,7 @@ function Landing() {
   if(auctions) {
     return (
       <div className={styles.landing}
-        style={{height: `${normalizedwidth*16/9}vw`,
+        style={{height: '100vh',
         width: `${normalizedwidth}vw`}}>
         <div className={styles.wheelHolder}>
           <div className={styles.wheelOne}>
@@ -586,48 +586,48 @@ function Landing() {
             {shufflesOrAuctions ? 
               <>
                 <motion.div className={styles.headHolder}
-                  style={{width:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '32vw' : '18vh',
-                    height:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '32vw' : '18vh',
-                    top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '88vw' : '49.5vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? '27vw' : '15.19vh'}}>
+                  style={{width:window.visualViewport.height > window.visualViewport.width ? '32vw' : '18vh',
+                    height:window.visualViewport.height > window.visualViewport.width ? '32vw' : '18vh',
+                    top:window.visualViewport.height > window.visualViewport.width ? '88vw' : '49.5vh',
+                    left: window.visualViewport.height > window.visualViewport.width ? '27vw' : '15.19vh'}}>
                   <Image className={styles.head}
                     src={shufflesArray[0].assets[shuffleIndex].src}
                     layout='fill' />
                 </motion.div>
                 <motion.div className={styles.headCard}
-                  style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '92vw' : '51.75vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? '27vw' : '15.19vh',
+                  style={{top:window.visualViewport.height > window.visualViewport.width ? '92vw' : '51.75vh',
+                    left: window.visualViewport.height > window.visualViewport.width ? '27vw' : '15.19vh',
                     borderBottom: `2px solid ${shufflesArray[0].assets[shuffleIndex].color}`}}>
                   <p>
                     AlgoHead{shufflesArray[0].assets[shuffleIndex].src.slice(9,12)}
                   </p>
                 </motion.div>
                 <motion.div className={styles.headHolder}
-                  style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh'}}
+                  style={{top:window.visualViewport.height > window.visualViewport.width ? '84vw' : '47.25vh',
+                    left: window.visualViewport.height > window.visualViewport.width ? '60vw' : '33.75vh'}}
                   onClick={() => setShuffleIndex((shuffleIndex+1)%5)}>
                   <Image className={styles.head}
                     src={shufflesArray[0].assets[(shuffleIndex+1)%5].src}
                     layout='fill' />
                 </motion.div>
                 <motion.div className={styles.headCard}
-                  style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh'}}>
+                  style={{top:window.visualViewport.height > window.visualViewport.width ? '84vw' : '47.25vh',
+                    left: window.visualViewport.height > window.visualViewport.width ? '60vw' : '33.75vh'}}>
                   <p>
                     AH{shufflesArray[0].assets[(shuffleIndex+1)%5].src.slice(9,12)}
                   </p>
                 </motion.div>
                 <motion.div className={styles.headHolder}
-                  style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh',
-                    left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh'}}
+                  style={{top:window.visualViewport.height > window.visualViewport.width ? '60vw' : '33.75vh',
+                    left:window.visualViewport.height > window.visualViewport.width ? '84vw' : '47.25vh'}}
                   onClick={() => setShuffleIndex((shuffleIndex+2)%5)}>
                   <Image className={styles.head}
                     src={shufflesArray[0].assets[(shuffleIndex+2)%5].src}
                     layout='fill' />
                 </motion.div>
                 <motion.div className={styles.headCard}
-                  style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh',
-                    left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh'}}>
+                  style={{top:window.visualViewport.height > window.visualViewport.width ? '60vw' : '33.75vh',
+                    left:window.visualViewport.height > window.visualViewport.width ? '84vw' : '47.25vh'}}>
                   <p>
                     AH{shufflesArray[0].assets[(shuffleIndex+2)%5].src.slice(9,12)}
                   </p>
@@ -635,33 +635,33 @@ function Landing() {
               </> : 
               <>
                 <motion.div className={styles.headHolder}
-                  style={{width:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '32vw' : '18vh',
-                    height:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '32vw' : '18vh',
-                    top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '88vw' : '49.5vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? '27vw' : '15.19vh'}}>
+                  style={{width:window.visualViewport.height > window.visualViewport.width ? '32vw' : '18vh',
+                    height:window.visualViewport.height > window.visualViewport.width ? '32vw' : '18vh',
+                    top:window.visualViewport.height > window.visualViewport.width ? '88vw' : '49.5vh',
+                    left: window.visualViewport.height > window.visualViewport.width ? '27vw' : '15.19vh'}}>
                   <Image className={styles.head}
                     src={auctionsArray[auctionIndex].asset}
                     layout='fill' />
                 </motion.div>
                 <motion.div className={styles.headCard}
-                  style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '92vw' : '51.75vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? '27vw' : '15.19vh',
+                  style={{top:window.visualViewport.height > window.visualViewport.width ? '92vw' : '51.75vh',
+                    left: window.visualViewport.height > window.visualViewport.width ? '27vw' : '15.19vh',
                     borderBottom: `2px solid ${auctionsArray[auctionIndex].color}`}}>
                   <p>
                     AlgoHead{auctionsArray[auctionIndex].asset.slice(9,12)}
                   </p>
                 </motion.div>
                 <motion.div className={styles.headHolder}
-                  style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh'}}
+                  style={{top:window.visualViewport.height > window.visualViewport.width ? '84vw' : '47.25vh',
+                    left: window.visualViewport.height > window.visualViewport.width ? '60vw' : '33.75vh'}}
                   onClick={() => setAuctionIndex((auctionIndex+1)%4)}>
                   <Image className={styles.head}
                     src={auctionsArray[(auctionIndex+1)%4].asset}
                     layout='fill' />
                 </motion.div>
                 <motion.div className={styles.headCard}
-                  style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh',
-                    left: window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh'}}>
+                  style={{top:window.visualViewport.height > window.visualViewport.width ? '84vw' : '47.25vh',
+                    left: window.visualViewport.height > window.visualViewport.width ? '60vw' : '33.75vh'}}>
                   <p>
                     AH{auctionsArray[(auctionIndex+1)%4].asset.slice(9,12)}
                   </p>
@@ -678,16 +678,16 @@ function Landing() {
                 </motion.div>
                 </motion.div>
                 <motion.div className={styles.headHolder}
-                  style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh',
-                    left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh'}}
+                  style={{top:window.visualViewport.height > window.visualViewport.width ? '60vw' : '33.75vh',
+                    left:window.visualViewport.height > window.visualViewport.width ? '84vw' : '47.25vh'}}
                   onClick={() => setAuctionIndex((auctionIndex+2)%4)}>
                   <Image className={styles.head}
                     src={auctionsArray[(auctionIndex+2)%4].asset}
                     layout='fill' />
                 </motion.div>
                 <motion.div className={styles.headCard}
-                  style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh',
-                    left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh'}}>
+                  style={{top:window.visualViewport.height > window.visualViewport.width ? '60vw' : '33.75vh',
+                    left:window.visualViewport.height > window.visualViewport.width ? '84vw' : '47.25vh'}}>
                   <p>
                     AH{auctionsArray[(auctionIndex+2)%4].asset.slice(9,12)}
                   </p>
@@ -769,31 +769,31 @@ function Landing() {
             {shufflesOrAuctions ? 
             <>
               <motion.div className={styles.headHolder}
-                style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh',
-                 left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '4vw' : '2.25vh'}}
+                style={{top:window.visualViewport.height > window.visualViewport.width ? '60vw' : '33.75vh',
+                 left:window.visualViewport.height > window.visualViewport.width ? '4vw' : '2.25vh'}}
                 onClick={() => setShuffleIndex((shuffleIndex+3)%5)}>
                 <Image className={styles.head}
                   src={shufflesArray[0].assets[(shuffleIndex+3)%5].src}
                   layout='fill' />
               </motion.div>
               <motion.div className={styles.headCard}
-                style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh',
-                 left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '4vw' : '2.25vh'}}>
+                style={{top:window.visualViewport.height > window.visualViewport.width ? '60vw' : '33.75vh',
+                 left:window.visualViewport.height > window.visualViewport.width ? '4vw' : '2.25vh'}}>
                 <p>
                   AH{shufflesArray[0].assets[(shuffleIndex+3)%5].src.slice(9,12)}
                 </p>
               </motion.div>
               <motion.div className={styles.headHolder}
-                style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh',
-                 left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '27vw' : '15.19vh'}}
+                style={{top:window.visualViewport.height > window.visualViewport.width ? '84vw' : '47.25vh',
+                 left:window.visualViewport.height > window.visualViewport.width ? '27vw' : '15.19vh'}}
                 onClick={() => setShuffleIndex((shuffleIndex+4)%5)}>
                 <Image className={styles.head}
                   src={shufflesArray[0].assets[(shuffleIndex+4)%5].src}
                   layout='fill' />
               </motion.div>
               <motion.div className={styles.headCard}
-                style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh',
-                 left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '27vw' : '15.19vh'}}>
+                style={{top:window.visualViewport.height > window.visualViewport.width ? '84vw' : '47.25vh',
+                 left:window.visualViewport.height > window.visualViewport.width ? '27vw' : '15.19vh'}}>
                 <p>
                   AH{shufflesArray[0].assets[(shuffleIndex+4)%5].src.slice(9,12)}
                 </p>
@@ -801,16 +801,16 @@ function Landing() {
             </> :
             <>
               <motion.div className={styles.headHolder}
-                style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh',
-                 left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '4vw' : '2.25vh'}}
+                style={{top:window.visualViewport.height > window.visualViewport.width ? '60vw' : '33.75vh',
+                 left:window.visualViewport.height > window.visualViewport.width ? '4vw' : '2.25vh'}}
                 onClick={() => setAuctionIndex((auctionIndex+3)%4)}>
                 <Image className={styles.head}
                   src={auctionsArray[(auctionIndex+3)%4].asset}
                   layout='fill' />
               </motion.div>
               <motion.div className={styles.headCard}
-                style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '60vw' : '33.75vh',
-                 left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '4vw' : '2.25vh'}}>
+                style={{top:window.visualViewport.height > window.visualViewport.width ? '60vw' : '33.75vh',
+                 left:window.visualViewport.height > window.visualViewport.width ? '4vw' : '2.25vh'}}>
                 <p>
                   AH{auctionsArray[(auctionIndex+3)%4].asset.slice(9,12)}
                 </p>
@@ -827,16 +827,16 @@ function Landing() {
                 </motion.div>
               </motion.div>
               <motion.div className={styles.headHolder}
-                style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh',
-                 left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '27vw' : '15.19vh'}}
+                style={{top:window.visualViewport.height > window.visualViewport.width ? '84vw' : '47.25vh',
+                 left:window.visualViewport.height > window.visualViewport.width ? '27vw' : '15.19vh'}}
                 onClick={() => setAuctionIndex((auctionIndex+4)%4)}>
                 <Image className={styles.head}
                   src={auctionsArray[(auctionIndex+4)%4].asset}
                   layout='fill' />
               </motion.div>
               <motion.div className={styles.headCard}
-                style={{top:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '84vw' : '47.25vh',
-                 left:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '27vw' : '15.19vh'}}>
+                style={{top:window.visualViewport.height > window.visualViewport.width ? '84vw' : '47.25vh',
+                 left:window.visualViewport.height > window.visualViewport.width ? '27vw' : '15.19vh'}}>
                 <p>
                   AH{auctionsArray[(auctionIndex+4)%4].asset.slice(9,12)}
                 </p>
@@ -927,11 +927,11 @@ function Landing() {
                 <motion.div className={styles.winners}
                   onClick={() => setPossibleWinners(!possibleWinners)}
                   style={{border: `2px solid ${shufflesArray[0].assets[shuffleIndex].color}`}}
-                  animate={possibleWinners ? {height:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '28vw' : '15.75vh'} :
-                    {height:window.visualViewport.height/window.visualViewport.width >= 16/9 ? '8vw' : '4.5vh'}}>
+                  animate={possibleWinners ? {height:window.visualViewport.height > window.visualViewport.width ? '28vw' : '15.75vh'} :
+                    {height:window.visualViewport.height > window.visualViewport.width ? '8vw' : '4.5vh'}}>
                   <motion.div className={styles.possibleWinners}
                     style={{position: 'fixed',
-                      margin: window.visualViewport.height/window.visualViewport.width >= 16/9 ? '-7.11vw 0 0 0' : '-4vh 0 0 0'}}>
+                      margin: window.visualViewport.height > window.visualViewport.width ? '-7.11vw 0 0 0' : '-4vh 0 0 0'}}>
                     <CgIcons.CgTrophy style={{fontSize : '1rem', color: shufflesArray[0].assets[shuffleIndex].color }} />
                     <p>{possibleWinners ? 'chance' :'Possible winners'}</p>
                   </motion.div>
