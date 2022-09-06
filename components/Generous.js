@@ -74,7 +74,9 @@ function Generous() {
 
     //fetch sholders from api
     const [sholderArray, setSholderArray]= useState([])
+    const [spinSholderArray, setSpinSholderArray]= useState([])
     const[sholderIndex, setSholderIndex] = useState(-1)
+    const[spinSholderIndex, setSpinSholderIndex] = useState(-1)
     const [sholders, setSholders] = useState()
     const [sholdersLoading, setSholdersLoading] = useState()
     useEffect(() => {
@@ -93,7 +95,8 @@ function Generous() {
                 sholder.nfd = data.message[0].name
               }
             })
-            setSholderArray(oldArray => [...oldArray, sholder])
+            sholder.asaIds.length < 5 && setSholderArray(oldArray => [...oldArray, sholder])
+            sholder.asaIds.length >= 5 && setSpinSholderArray(oldArray => [...oldArray, sholder])
           })
           setSholdersLoading(false)
         })
@@ -110,10 +113,10 @@ function Generous() {
           setDonation(data.message)
           setDonationLoading(false)
         })
-    })
+    },[])
 
     // handle connection
-    const [address, setAddress] = useState('')
+    const [address, setAddress] = useState()
     const [name, setName] = useState()
     const [sholderLvl, setSholderLvl] = useState(0)
     const [frenLvl, setFrenLvl] = useState(0)
@@ -129,6 +132,7 @@ function Generous() {
         setFrenRegistered(false)
         setFrensRegistered(false)
         setSholderRegistered(false)
+        setSpinSholderRegistered(false)
         let fetchedAccount = await myAlgoConnect.connect(settings).then((fetchedAccount) => {
           setAddress(fetchedAccount[0].address)
           setName(fetchedAccount[0].name)
@@ -150,14 +154,22 @@ function Generous() {
               setSholderLvl(sholder.asaIds.length)
             }
           })
+          spinSholderArray.map((sholder, index) => {
+            if (sholder.address === fetchedAccount[0].address)  {
+              setSpinSholderIndex(index)
+              setSholderLvl(sholder.asaIds.length)
+            }
+          })
           giveAwaysArray.map((giveAway, index) => {
             if (giveAway.registerants.indexOf(fetchedAccount[0].address) > -1) {
               if (index === 0) {
                 setFrenRegistered(true)
               } else if (index === 1) {
                 setFrensRegistered(true)
-              } else {
+              } else if (index === 2) {
                 setSholderRegistered(true)
+              } else {
+                setSpinSholderRegistered(true)
               }
             }
           }) 
@@ -170,8 +182,10 @@ function Generous() {
     //handle registery
     const [frenRegistered, setFrenRegistered]= useState(false)
     const [frenRegisterants, setFrenRegisterants]= useState([])
+    const [frenRegisterLoading, setFrenRegisterLoading] = useState()
     function frenRegister(address) {
       giveAwaysArray[0].registerants.push(address)
+      setFrenRegisterLoading(true)
       fetch('api/mongodb/giveAways' , {
         method: 'POST',
         body: JSON.stringify(giveAwaysArray[0])
@@ -179,14 +193,16 @@ function Generous() {
       .then(() => {
         setFrenRegistered(true)
         setFrenRegisterants(giveAwaysArray[0].registerants)
-        console.log('registered')
+        setFrenRegisterLoading(false)
       })
     }
 
     const [frensRegistered, setFrensRegistered]= useState(false)
     const [frensRegisterants, setFrensRegisterants]= useState([])
+    const [frensRegisterLoading, setFrensRegisterLoading] = useState()
     function frensRegister(address) {
       giveAwaysArray[1].registerants.push(address)
+      setFrensRegisterLoading(true)
       fetch('api/mongodb/giveAways' , {
         method: 'POST',
         body: JSON.stringify(giveAwaysArray[1])
@@ -194,22 +210,41 @@ function Generous() {
       .then(() => {
         setFrensRegistered(true)
         setFrensRegisterants(giveAwaysArray[1].registerants)
-        console.log('registered')
+        setFrensRegisterLoading(false)
       })
     }
 
     const [sholderRegistered, setSholderRegistered]= useState(false)
     const [sholderRegisterants, setSholderRegisterants]= useState([])
+    const [sholderRegisterLoading, setSholderRegisterLoading] = useState()
     function sholderRegister(address) {
       giveAwaysArray[2].registerants.push(address)
+      setSholderRegisterLoading(true)
       fetch('api/mongodb/giveAways' , {
         method: 'POST',
         body: JSON.stringify(giveAwaysArray[2])
       }).then((res) => res.json())
       .then(() => {
-        setSholderRegistered(true)
         setSholderRegisterants(giveAwaysArray[2].registerants)
-        console.log('registered')
+        setSholderRegistered(true)
+        setSholderRegisterLoading(false)
+      })
+    }
+
+    const [spinSholderRegistered, setSpinSholderRegistered]= useState(false)
+    const [spinSholderRegisterants, setSpinSholderRegisterants]= useState([])
+    const [spinSholderRegisterLoading, setSpinSholderRegisterLoading] = useState()
+    function spinSholderRegister(address) {
+      giveAwaysArray[3].registerants.push(address)
+      setSpinSholderRegisterLoading(true)
+      fetch('api/mongodb/giveAways' , {
+        method: 'POST',
+        body: JSON.stringify(giveAwaysArray[3])
+      }).then((res) => res.json())
+      .then(() => {
+        setSpinSholderRegistered(true)
+        setSpinSholderRegisterants(giveAwaysArray[3].registerants)
+        setSpinSholderRegisterLoading(false)
       })
     }
 
@@ -220,13 +255,14 @@ function Generous() {
     const [loadingGiveAways, setLoadingGiveAways] = useState()
     const [gaHours, setGaHours] = useState([])
     const [gaMins, setGaMins] = useState([])
-    const [gaSecs, setGaSecs] = useState([])
     const [frenWinners, setFrenWinners] = useState()
     const [frensWinners, setFrensWinners] = useState()
     const [sholderWinners, setSholderWinners] = useState()
+    const [spinSholderWinners, setSpinSholderWinners] = useState()
     const [showFrenWinners, setShowFrenWinners] = useState(false)
     const [showFrensWinners, setShowFrensWinners] = useState(false)
     const [showSholderWinners, setShowSholderWinners] = useState(false)
+    const [showSpinSholderWinners, setShowSpinSholderWinners] = useState(false)
     const [copyText, setCopyText] = useState(false)
     useEffect(() => {
       setLoadingGiveAways(true)
@@ -252,6 +288,12 @@ function Generous() {
               setSholderRegisterants(giveAway.registerants)
               if (giveAway.winner.length > 0) {
                 setSholderWinners(giveAway.winner)
+              }
+            }
+            if(index===3) {
+              setSpinSholderRegisterants(giveAway.registerants)
+              if (giveAway.winner.length > 0) {
+                setSpinSholderWinners(giveAway.winner)
               }
             }
 
@@ -337,6 +379,28 @@ function Generous() {
         .then((data) => {
           if (data.message == 'giveAway updated!')  {
             setSholderWinners(giveAwaysArray[2].winner)
+          } else {
+            console.log(data.message)
+          }
+        })
+      } else {
+        console.log('too early to roll the dice!')
+      }
+    }
+
+    function spinSholderDiceRoller() {
+      var now = new Date()
+      if (now > giveAwaysArray[3].rollingTime) {
+        var winnerIndex = Math.floor(Math.random()*spinSholderRegisterants.length)
+        var winner = spinSholderRegisterants.splice(winnerIndex,1)
+        giveAwaysArray[3].winner.push(winner[0])
+        fetch('api/mongodb/giveAways' , {
+          method: 'POST',
+          body: JSON.stringify(giveAwaysArray[3])
+        }).then((res) => res.json())
+        .then((data) => {
+          if (data.message == 'giveAway updated!')  {
+            setSpinSholderWinners(giveAwaysArray[3].winner)
           } else {
             console.log(data.message)
           }
@@ -489,7 +553,7 @@ function Generous() {
                   backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
                 <MdIcons.MdAccountBalanceWallet />
               </motion.button> :
-              address === giveAwaysArray[index].diceRoller && !frenWinners ?
+              address === giveAwaysArray[index].diceRoller ?
               <motion.button className={styles.getTicket}
                 onClick={() => frenDiceRoller()}
                 style={{color: lightColorPalette[giveAwaysArray[index].colorCode],
@@ -506,6 +570,15 @@ function Generous() {
                 <p style={{fontSize: normalizedwidth === 100 ? '3vw' : '1.69vh'}}>Registered</p>
                 <BsIcons.BsCheckAll />
               </motion.button> :
+              frenRegisterLoading ? 
+              <motion.button className={styles.getTicket}
+                style={{top: normalizedwidth === 100 ? '16vw' : '9vh',
+                  left: normalizedwidth === 100 ? '24vw' : '13.5vh',
+                  width: normalizedwidth === 100 ? '28vw' : '15.75vh',
+                  color: lightColorPalette[giveAwaysArray[index].colorCode],
+                  backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
+                <p style={{fontSize: normalizedwidth === 100 ? '3vw' : '1.69vh'}}>Shold on!</p>
+              </motion.button> :
               <motion.button className={styles.getTicket}
               onClick={() => frenIndex > -1 && frenRegister(address)}
                 style={{color: lightColorPalette[giveAwaysArray[index].colorCode],
@@ -519,7 +592,7 @@ function Generous() {
             <motion.div className={styles.prizeName}>
                 <p>{giveAwaysArray[index].prize.unitName}</p>
             </motion.div>
-            { !frenRegistered && !frenWinners ?
+            { !frenRegistered && !frenWinners && !frenRegisterLoading ?
             <>
               <motion.div className={styles.giveAwayRow}>
                   <FaIcons.FaKeybase style={{color: '#f3f8f2',fontSize: '1.2rem', marginLeft: '-0.1rem'}} />
@@ -538,7 +611,7 @@ function Generous() {
                 <MdIcons.MdTimer style={{color: '#f3f8f2'}} />
                 <h1>{gaHours[index]}<span style={{color: '#f3f8f2'}}> h </span>{gaMins[index]}<span style={{color: '#f3f8f2'}}> m</span></h1>
             </motion.div>
-            { frenRegistered ?
+            { frenRegistered || frenRegisterLoading ?
             <>
               <motion.div className={styles.giveAwayRow}>
               </motion.div>
@@ -689,7 +762,7 @@ function Generous() {
                   backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
                 <MdIcons.MdAccountBalanceWallet />
               </motion.button> :
-              address === giveAwaysArray[index].diceRoller && !frensWinners ?
+              address === giveAwaysArray[index].diceRoller ?
               <motion.button className={styles.getTicket}
                 onClick={() => frensDiceRoller()}
                 style={{color: lightColorPalette[giveAwaysArray[index].colorCode],
@@ -706,6 +779,15 @@ function Generous() {
                 <p style={{fontSize: normalizedwidth === 100 ? '3vw' : '1.69vh'}}>Registered</p>
                 <BsIcons.BsCheckAll />
               </motion.button> :
+              frensRegisterLoading ? 
+              <motion.button className={styles.getTicket}
+                style={{top: normalizedwidth === 100 ? '16vw' : '9vh',
+                  left: normalizedwidth === 100 ? '24vw' : '13.5vh',
+                  width: normalizedwidth === 100 ? '28vw' : '15.75vh',
+                  color: lightColorPalette[giveAwaysArray[index].colorCode],
+                  backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
+                <p style={{fontSize: normalizedwidth === 100 ? '3vw' : '1.69vh'}}>Shold on!</p>
+              </motion.button> :
               <motion.button className={styles.getTicket}
               onClick={() => frensIndex > -1 && frensRegister(address)}
                 style={{color: lightColorPalette[giveAwaysArray[index].colorCode],
@@ -718,7 +800,7 @@ function Generous() {
             <motion.div className={styles.prizeName}>
                 <p>{giveAwaysArray[index].prize.unitName}</p>
             </motion.div>
-            { !frensRegistered && !frensWinners ?
+            { !frensRegistered && !frensWinners && !frensRegisterLoading ?
             <>
               <motion.div className={styles.giveAwayRow}>
                   <FaIcons.FaKeybase style={{color: '#f3f8f2',fontSize: '1.2rem', marginLeft: '-0.1rem'}} />
@@ -737,7 +819,7 @@ function Generous() {
                 <MdIcons.MdTimer style={{color: '#f3f8f2'}} />
                 <h1>{gaHours[index]}<span style={{color: '#f3f8f2'}}> h </span>{gaMins[index]}<span style={{color: '#f3f8f2'}}> m</span></h1>
             </motion.div>
-            { frensRegistered ?
+            { frensRegistered || frensRegisterLoading ?
             <>
               <motion.div className={styles.giveAwayRow}>
               </motion.div>
@@ -746,7 +828,7 @@ function Generous() {
             </> : null}
           </motion.div>
         )
-      } else {
+      } else if (index === 2) {
         return (
           <motion.div className={styles.giveAwayCard}
               style={{backgroundColor: lightColorPalette[giveAwaysArray[index].colorCode],
@@ -888,7 +970,7 @@ function Generous() {
                   backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
                 <MdIcons.MdAccountBalanceWallet />
               </motion.button> :
-              address === giveAwaysArray[index].diceRoller && !sholderWinners ?
+              address === giveAwaysArray[index].diceRoller ?
               <motion.button className={styles.getTicket}
                 onClick={() => sholderDiceRoller()}
                 style={{color: lightColorPalette[giveAwaysArray[index].colorCode],
@@ -905,6 +987,15 @@ function Generous() {
                 <p style={{fontSize: normalizedwidth === 100 ? '3vw' : '1.69vh'}}>Registered</p>
                 <BsIcons.BsCheckAll />
               </motion.button> :
+              sholderRegisterLoading ? 
+              <motion.button className={styles.getTicket}
+                style={{top: normalizedwidth === 100 ? '16vw' : '9vh',
+                  left: normalizedwidth === 100 ? '24vw' : '13.5vh',
+                  width: normalizedwidth === 100 ? '28vw' : '15.75vh',
+                  color: lightColorPalette[giveAwaysArray[index].colorCode],
+                  backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
+                <p style={{fontSize: normalizedwidth === 100 ? '3vw' : '1.69vh'}}>Shold on!</p>
+              </motion.button> :
               <motion.button className={styles.getTicket}
               onClick={() => sholderIndex > -1 && sholderRegister(address)}
                 style={{color: lightColorPalette[giveAwaysArray[index].colorCode],
@@ -917,7 +1008,7 @@ function Generous() {
             <motion.div className={styles.prizeName}>
                 <p>{giveAwaysArray[index].prize.unitName}</p>
             </motion.div>
-            { !sholderRegistered && !sholderWinners ?
+            { !sholderRegistered && !sholderWinners && !sholderRegisterLoading ?
             <>
               <motion.div className={styles.giveAwayRow}>
                   <FaIcons.FaKeybase style={{color: '#f3f8f2',fontSize: '1.2rem', marginLeft: '-0.1rem'}} />
@@ -936,7 +1027,215 @@ function Generous() {
                 <MdIcons.MdTimer style={{color: '#f3f8f2'}} />
                 <h1>{gaHours[index]}<span style={{color: '#f3f8f2'}}> h </span>{gaMins[index]}<span style={{color: '#f3f8f2'}}> m</span></h1>
             </motion.div>
-            { sholderRegistered ?
+            { sholderRegistered || sholderRegisterLoading ?
+            <>
+              <motion.div className={styles.giveAwayRow}>
+              </motion.div>
+              <motion.div className={styles.giveAwayRow}>
+              </motion.div>
+            </> : null}
+          </motion.div>
+        )
+      } else {
+        return (
+          <motion.div className={styles.giveAwayCard}
+              style={{backgroundColor: lightColorPalette[giveAwaysArray[index].colorCode],
+                color: darkColorPalette[giveAwaysArray[index].colorCode],
+              top: window.visualViewport.height > window.visualViewport.width ?
+                `${top}vw` : `${top*9/16}vh`,
+              left: window.visualViewport.height > window.visualViewport.width ?
+                `${left}vw` : `${left*9/16}vh`}}>
+            <motion.div className={styles.ticketHolder}>
+                <motion.div className={styles.punch}
+                  style={{position: 'absolute',
+                    top:window.visualViewport.height > window.visualViewport.width ?
+                     '-2vw' : '-1.13vh',
+                    left:window.visualViewport.height > window.visualViewport.width ?
+                     '17vw' : '9.56vh',
+                    width:window.visualViewport.height > window.visualViewport.width ?
+                     '4vw' : '2.25vh',
+                    height:window.visualViewport.height > window.visualViewport.width ?
+                     '4vw' : '2.25vh',
+                    borderRadius:window.visualViewport.height > window.visualViewport.width ?
+                     '2vw' : '1.13vh',
+                    backgroundColor: 'var(--color-bg-primary)'}}>
+                </motion.div>
+                <motion.div className={styles.punch}
+                  style={{position: 'absolute',
+                    top: window.visualViewport.height > window.visualViewport.width ?
+                     '3vw' : '1.69vh',
+                    left: window.visualViewport.height > window.visualViewport.width ?
+                     '18.5vw' : '10.4vh',
+                    width: window.visualViewport.height > window.visualViewport.width ?
+                     '1vw' : '0.56vh',
+                    height: window.visualViewport.height > window.visualViewport.width ?
+                     '2vw' : '1.13vh',
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
+                     '1vw' : '0.56vh',
+                    backgroundColor: 'var(--color-bg-primary)'}}>
+                </motion.div>
+                <motion.div className={styles.punch}
+                  style={{position: 'absolute',
+                    top: window.visualViewport.height > window.visualViewport.width ?
+                     '6.6vw' : '3.71vh',
+                    left: window.visualViewport.height > window.visualViewport.width ?
+                     '18.5vw' : '10.4vh',
+                    width: window.visualViewport.height > window.visualViewport.width ?
+                     '1vw' : '0.56vh',
+                    height: window.visualViewport.height > window.visualViewport.width ?
+                     '2vw' : '1.13vh',
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
+                     '1vw' : '0.56vh',
+                    backgroundColor: 'var(--color-bg-primary)'}}>
+                </motion.div>
+                <motion.div className={styles.punch}
+                  style={{position: 'absolute',
+                    top: window.visualViewport.height > window.visualViewport.width ?
+                     '10.2vw' : '5.74vh',
+                    left: window.visualViewport.height > window.visualViewport.width ?
+                     '18.5vw' : '10.4vh',
+                    width: window.visualViewport.height > window.visualViewport.width ?
+                     '1vw' : '0.56vh',
+                    height: window.visualViewport.height > window.visualViewport.width ?
+                     '2vw' : '1.13vh',
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
+                     '1vw' : '0.56vh',
+                    backgroundColor: 'var(--color-bg-primary)'}}>
+                </motion.div>
+                <motion.div className={styles.punch}
+                  style={{position: 'absolute',
+                    top: window.visualViewport.height > window.visualViewport.width ?
+                     '13.8vw' : '7.77vh',
+                    left: window.visualViewport.height > window.visualViewport.width ?
+                     '18.5vw' : '10.4vh',
+                    width: window.visualViewport.height > window.visualViewport.width ?
+                     '1vw' : '0.56vh',
+                    height: window.visualViewport.height > window.visualViewport.width ?
+                     '2vw' : '1.13vh',
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
+                     '1vw' : '0.56vh',
+                    backgroundColor: 'var(--color-bg-primary)'}}>
+                </motion.div>
+                <motion.div className={styles.punch}
+                  style={{position: 'absolute',
+                    top: window.visualViewport.height > window.visualViewport.width ?
+                     '17.4vw' : '9.8vh',
+                    left: window.visualViewport.height > window.visualViewport.width ?
+                     '18.5vw' : '10.4vh',
+                    width: window.visualViewport.height > window.visualViewport.width ?
+                     '1vw' : '0.56vh',
+                    height: window.visualViewport.height > window.visualViewport.width ?
+                     '2vw' : '1.13vh',
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
+                     '1vw' : '0.56vh',
+                    backgroundColor: 'var(--color-bg-primary)'}}>
+                </motion.div>
+                <motion.div className={styles.punch}
+                  style={{position: 'absolute',
+                    top: window.visualViewport.height > window.visualViewport.width ?
+                     '21vw' : '11.83vh',
+                    left: window.visualViewport.height > window.visualViewport.width ?
+                     '18.5vw' : '10.4vh',
+                    width: window.visualViewport.height > window.visualViewport.width ?
+                     '1vw' : '0.56vh',
+                    height: window.visualViewport.height > window.visualViewport.width ?
+                     '2vw' : '1.13vh',
+                    borderRadius: window.visualViewport.height > window.visualViewport.width ?
+                     '1vw' : '0.56vh',
+                    backgroundColor: 'var(--color-bg-primary)'}}>
+                </motion.div>
+                <motion.div className={styles.punch}
+                  style={{position: 'absolute',
+                    top:window.visualViewport.height > window.visualViewport.width ?
+                     '24vw' : '13.5vh',
+                    left:window.visualViewport.height > window.visualViewport.width ?
+                     '17vw' : '9.56vh',
+                    width:window.visualViewport.height > window.visualViewport.width ?
+                     '4vw' : '2.25vh',
+                    height:window.visualViewport.height > window.visualViewport.width ?
+                     '4vw' : '2.25vh',
+                    borderRadius:window.visualViewport.height > window.visualViewport.width ?
+                     '2vw' : '1.13vh',
+                    backgroundColor: 'var(--color-bg-primary)'}}>
+                </motion.div>
+            </motion.div>
+            {
+              spinSholderWinners ?
+              <motion.button className={styles.getTicket}
+                onClick={() => setShowSholderWinners(true)}
+                style={{top: normalizedwidth === 100 ? '16vw' : '9vh',
+                  left: normalizedwidth === 100 ? '24vw' : '13.5vh',
+                  width: normalizedwidth === 100 ? '28vw' : '15.75vh',
+                  color: lightColorPalette[giveAwaysArray[index].colorCode],
+                  backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
+                <p style={{fontSize: normalizedwidth === 100 ? '3vw' : '1.69vh'}}>winners</p>
+                <MdIcons.MdLeaderboard />
+              </motion.button> :
+              !address ?
+              <motion.button className={styles.getTicket}
+                onClick={() => connectWallet()}
+                style={{color: lightColorPalette[giveAwaysArray[index].colorCode],
+                  backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
+                <MdIcons.MdAccountBalanceWallet />
+              </motion.button> :
+              address === giveAwaysArray[index].diceRoller ?
+              <motion.button className={styles.getTicket}
+                onClick={() => spinSholderDiceRoller()}
+                style={{color: lightColorPalette[giveAwaysArray[index].colorCode],
+                  backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
+                <BsIcons.BsDice3Fill />
+              </motion.button> :
+              spinSholderRegistered ? 
+              <motion.button className={styles.getTicket}
+                style={{top: normalizedwidth === 100 ? '16vw' : '9vh',
+                  left: normalizedwidth === 100 ? '24vw' : '13.5vh',
+                  width: normalizedwidth === 100 ? '28vw' : '15.75vh',
+                  color: lightColorPalette[giveAwaysArray[index].colorCode],
+                  backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
+                <p style={{fontSize: normalizedwidth === 100 ? '3vw' : '1.69vh'}}>Registered</p>
+                <BsIcons.BsCheckAll />
+              </motion.button> :
+              spinSholderRegisterLoading ? 
+              <motion.button className={styles.getTicket}
+                style={{top: normalizedwidth === 100 ? '16vw' : '9vh',
+                  left: normalizedwidth === 100 ? '24vw' : '13.5vh',
+                  width: normalizedwidth === 100 ? '28vw' : '15.75vh',
+                  color: lightColorPalette[giveAwaysArray[index].colorCode],
+                  backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
+                <p style={{fontSize: normalizedwidth === 100 ? '3vw' : '1.69vh'}}>Shold on!</p>
+              </motion.button> :
+              <motion.button className={styles.getTicket}
+              onClick={() => spinSholderIndex > -1 && spinSholderRegister(address)}
+                style={{color: lightColorPalette[giveAwaysArray[index].colorCode],
+                  backgroundColor: darkColorPalette[giveAwaysArray[index].colorCode]}}>
+                <HiIcons.HiOutlineTicket style={{transform: 'scaleX(-1)'}} />
+              </motion.button>}
+            <motion.div className={styles.prizeImg}>
+                <Image src={giveAwaysArray[index].prize.url} layout='fill' />
+            </motion.div>
+            <motion.div className={styles.prizeName}>
+                <p>{giveAwaysArray[index].prize.unitName}</p>
+            </motion.div>
+            { !spinSholderRegistered && !spinSholderWinners && !spinSholderRegisterLoading ?
+            <>
+              <motion.div className={styles.giveAwayRow}>
+                  <FaIcons.FaKeybase style={{color: '#f3f8f2',fontSize: '1.2rem', marginLeft: '-0.1rem'}} />
+                  <h1 style={{borderBottom: `2px solid ${darkColorPalette[giveAwaysArray[index].colorCode]}`}}>{giveAwaysArray[index].diceRoller.slice(0,8)+'...'}</h1>
+              </motion.div>
+              <motion.div className={styles.giveAwayRow}>
+                  <BiIcons.BiKey style={{color: '#f3f8f2'}} />
+                  <h1>{giveAwaysArray[index].barrier.amount+' '+giveAwaysArray[index].barrier.collection}</h1>
+              </motion.div>
+            </> : null}
+            <motion.div className={styles.giveAwayRow}>
+                <HiIcons.HiOutlineTicket style={{transform: 'scaleX(-1)',color: '#f3f8f2'}} />
+                <h1>{spinSholderRegisterants.length} <span style={{color: '#f3f8f2'}}>/</span> {spinSholderArray.length}</h1>
+            </motion.div>
+            <motion.div className={styles.giveAwayRow}>
+                <MdIcons.MdTimer style={{color: '#f3f8f2'}} />
+                <h1>{gaHours[index]}<span style={{color: '#f3f8f2'}}> h </span>{gaMins[index]}<span style={{color: '#f3f8f2'}}> m</span></h1>
+            </motion.div>
+            { spinSholderRegistered || spinSholderRegisterLoading ?
             <>
               <motion.div className={styles.giveAwayRow}>
               </motion.div>
@@ -977,7 +1276,6 @@ function Generous() {
     //     .then((data) => console.log(data.message))
     //   })
     // }
-
     if (giveAways && sholders && frens && donation && address) {
       return (
         <div className={styles.generous}
@@ -1148,7 +1446,7 @@ function Generous() {
                 <GiveAwayHolder top={-11} left={46} index={0} />
                 <GiveAwayHolder top={17} left={70} index={1} />
                 <GiveAwayHolder top={45} left={70} index={2} />
-                {/* <GiveAwayHolder top={73} left={46} index={2} /> */}
+                <GiveAwayHolder top={73} left={46} index={3} />
             </div>
             <div className={styles.wheelFour}>
               <motion.div className={styles.arrowHolder}>
@@ -1158,8 +1456,7 @@ function Generous() {
           </div>
         </div>
       )
-    } 
-    if (giveAways && sholders && frens && donation) {
+    } else if (giveAways && sholders && frens && donation) {
       return (
         <div className={styles.generous}
           style={{height: '100vh',
@@ -1314,7 +1611,48 @@ function Generous() {
                 <GiveAwayHolder top={-11} left={46} index={0} />
                 <GiveAwayHolder top={17} left={70} index={1} />
                 <GiveAwayHolder top={45} left={70} index={2} />
-                {/* <GiveAwayHolder top={73} left={46} index={2} /> */}
+                <GiveAwayHolder top={73} left={46} index={3} />
+            </div>
+            <div className={styles.wheelFour}>
+              <motion.div className={styles.arrowHolder}>
+                <Image className={styles.lastArrows} src={activeTheme === 'light' ? scrollArrowPalette[5] : scrollArrowPalette[7]} layout='fill' />
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div className={styles.generous}
+          style={{height: '100vh',
+          width: `${normalizedwidth}vw`}}>
+          <div className={styles.wheelHolder}>
+            <div className={styles.wheelOne}>
+              <div className={styles.logoHolder}>
+                <Image className={styles.logo} src={activeTheme==='light'? '/logo.png' : '/darkLogo.png'} layout='fill' />
+              </div>
+              <div className={styles.walletRow}>
+                {name? <p>{name}</p> : <p>connect</p>}
+                <button className={styles.wallet}
+                  style={{backgroundColor: lightColorPalette[5],
+                    color: darkColorPalette[5]}}>
+                  <MdIcons.MdAccountBalanceWallet />
+                </button>
+              </div>
+            </div>
+            <div className={styles.wheelTwo}>
+              <motion.div className={styles.counterArrowHolder}>
+                <Image className={styles.counterArrows} src={activeTheme === 'light' ? scrollArrowPalette[5] : scrollArrowPalette[7]} layout='fill' />
+              </motion.div>
+            </div>
+            <div className={styles.wheelThree}>
+                <motion.div className={styles.mainArrowHolder}>
+                  <Image className={styles.arrows} src={activeTheme === 'light' ? arrowPalette[5] : arrowPalette[7]} layout='fill' />
+                </motion.div>
+                <motion.div className={styles.topTitle}>
+                  <BsIcons.BsDice3Fill style={{color: lightColorPalette[5]}} />
+                  <h1>Generous Give Aways</h1>
+                </motion.div>
             </div>
             <div className={styles.wheelFour}>
               <motion.div className={styles.arrowHolder}>
@@ -1325,59 +1663,6 @@ function Generous() {
         </div>
       )
     }
-
-  
-  //   return (
-  //   <form onSubmit={createGiveAway} className={styles.form}>
-  //     <div className={styles.formRow}>
-  //       <div className={styles.formCol}>
-  //         <label htmlFor='rollingTime' className={styles.label}>rolling time</label>
-  //         <input name='rollingTime' id='rollingTime' type='datetime-local' className={styles.input} required />
-  //       </div>
-  //     </div>
-  //     <div className={styles.formRow}>
-  //       <div className={styles.formCol}>
-  //         <label htmlFor='prizeId' className={styles.label}>prize asset id</label>
-  //         <input name='prizeId' id='prizeId' type='text' className={styles.input} required />
-  //       </div>
-  //       <div className={styles.formCol}>
-  //         <label htmlFor='prizeAmount' className={styles.label}>amount</label>
-  //         <input name='prizeAmount' id='prizeAmount' type='number' className={styles.input} required />
-  //       </div>
-  //     </div>
-  //     <div className={styles.formRow}>
-  //       <div className={styles.formCol}>
-  //         <label htmlFor='barrierCollection' className={styles.label}>for holders of</label>
-  //         <select name='barrierCollection' id='barrierCollection' className={styles.input} required>
-  //           <option value='mostlyFrens'>mostly frens</option>
-  //           <option value='algoHeads'>algo heads</option>
-  //         </select>
-  //       </div>
-  //       <div className={styles.formCol}>
-  //         <label htmlFor='barrierAmount' className={styles.label}>amount</label>
-  //         <input name='barrierAmount' id='barrierAmount' type='number' className={styles.input} required />
-  //       </div>
-  //     </div>
-  //     <div className={styles.formRow}>
-  //       <div className={styles.formCol}>
-  //         <label htmlFor='colorCode' className={styles.label}>color code</label>
-  //         <select name='colorCode' id='colorCode' className={styles.input} required>
-  //           <option value='0'>blue</option>
-  //           <option value={1}>green</option>
-  //           <option value={2}>yellow</option>
-  //           <option value={3}>grey</option>
-  //           <option value={4}>red</option>
-  //           <option value={5}>purple</option>
-  //           <option value={6}>orange</option>
-  //           <option value={7}>pearl white</option>
-  //         </select>
-  //       </div>
-  //     </div>
-  //     {roller && <button type='submit' className={styles.submit}>submit</button>}
-  //     <div onClick={() => connectWallet()} className={styles.submit}>connect</div>
-  //   </form>
-  // )
-
 }
 
 export default Generous

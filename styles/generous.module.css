@@ -38,16 +38,16 @@
   
   .wheelTwo {
     left: 48vw;
-    top: 10vw;
+    top: 2vw;
   }
   
   .wheelThree {
     left: -44vw;
-    top: 60vw;
+    top: 52vw;
   }
   
   .wheelFour {
-    top: 112vw;
+    top: 104vw;
     left: 48vw;
   }
 
@@ -240,11 +240,15 @@
     text-align: center;
     position: absolute;
     transform: translate(-50%,-50%);
-    top: 19.5vw;
+    top: 21vw;
     left: 9vw;
     overflow: hidden;
     font-size: 0.7rem;
     font-weight: 600;
+  }
+
+  .prizeName p {
+    line-height: 1rem;
   }
 
   .prizeAmount {
